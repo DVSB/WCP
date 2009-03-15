@@ -82,6 +82,7 @@ class CPCore extends WCF implements HeaderMenuContainer, UserCPMenuContainer
 	{
 		parent :: loadDefaultCacheResources();
 		WCF :: getCache()->addResource('cronjobs-'.PACKAGE_ID, WCF_DIR.'cache/cache.cronjobs-'.PACKAGE_ID.'.php', WCF_DIR.'lib/system/cache/CacheBuilderCronjobs.class.php');
+		WCF :: getCache()->addResource('help-'.PACKAGE_ID, WCF_DIR.'cache/cache.help-'.PACKAGE_ID.'.php', WCF_DIR.'lib/system/cache/CacheBuilderHelp.class.php');
 	}
 
 	/**

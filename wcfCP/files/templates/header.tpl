@@ -16,10 +16,10 @@
 						<li {if $this->user->pmUnreadCount} class="new"{/if}><a href="index.php?page=PMList{@SID_ARG_2ND}"><img src="{@RELATIVE_WCF_DIR}icon/pm{if $this->user->pmUnreadCount}Full{else}Empty{/if}S.png" alt="" /> <span>{lang}wcfdevnet.header.userMenu.pm{/lang}</span>{if $this->user->pmUnreadCount} ({#$this->user->pmUnreadCount}){/if}</a>{if $this->user->pmTotalCount >= $this->user->getPermission('user.pm.maxPm')} <span class="pmBoxFull">{lang}wcf.pm.userMenu.mailboxIsFull{/lang}</span>{/if}</li>
 					{/if}
 					{if $this->user->getPermission('admin.general.canUseAcp')}
-						<li><a href="acp/index.php?packageID={@PACKAGE_ID}"><img src="{@RELATIVE_WCFDEVNET_DIR}icon/acpS.png" alt="" /> <span>{lang}wcfdevnet.header.userMenu.acp{/lang}</span></a></li>
+						<li><a href="acp/index.php?packageID={@PACKAGE_ID}"><img src="{@RELATIVE_CP_DIR}icon/acpS.png" alt="" /> <span>{lang}CP.header.userMenu.acp{/lang}</span></a></li>
 					{/if}
 				{else}
-					<li><a href="index.php?form=UserLogin{@SID_ARG_2ND}" id="loginButton"><img src="{@RELATIVE_WCF_DIR}icon/loginS.png" alt="" /> <span>{lang}wcfdevnet.header.userMenu.login{/lang}</span></a></li>
+					<li><a href="index.php?form=UserLogin{@SID_ARG_2ND}" id="loginButton"><img src="{@RELATIVE_WCF_DIR}icon/loginS.png" alt="" /> <span>{lang}CP.header.userMenu.login{/lang}</span></a></li>
 					{if !REGISTER_DISABLED}<li><a href="index.php?page=Register{@SID_ARG_2ND}"><img src="{@RELATIVE_WCF_DIR}icon/registerS.png" alt="" /> <span>{lang}wbb.header.userMenu.register{/lang}</span></a></li>{/if}
 
 					{if $this->language->countAvailableLanguages() > 1}

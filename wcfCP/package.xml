@@ -18,8 +18,6 @@
 
 	<requiredpackages>
 		<requiredpackage>com.woltlab.wcf</requiredpackage>
-		<requiredpackage>com.woltlab.wcf.data.cronjobs</requiredpackage>
-		<requiredpackage>com.woltlab.wcf.acp.system.db</requiredpackage>
 		<requiredpackage>com.woltlab.wcf.data.page</requiredpackage>
 		<requiredpackage>com.woltlab.wcf.form.user</requiredpackage>
 	</requiredpackages>
