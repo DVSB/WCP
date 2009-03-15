@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/acpMenu.dtd">
+<data>
+	<import>
+		<acpmenuitem name="wcf.acp.menu.link.openhope">
+			<icon>icon/systemL.png</icon>
+			<showorder>4</showorder>
+		</acpmenuitem>
+	</import>
+</data>

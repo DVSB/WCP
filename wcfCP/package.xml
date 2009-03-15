@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE package SYSTEM "DTD/package.dtd">
+<package name="com.toby.cp">
+
+	<packageInformation>
+		<packageName>WCF Controlpanel</packageName>
+		<packageDescription>Ein Servercontrolpanel, inspiriert von SysCP</packageDescription>
+		<version>0.0.1-alpha</version>
+		<standalone>1</standalone>
+		<date>2009-03-14</date>
+	</packageInformation>
+
+	<authorInformation>
+		<author>Tobias Friebel</author>
+		<authorURL>http://cp.tobyf.de/</authorURL>
+		<license>GPL</license>
+	</authorInformation>
+
+	<requiredpackages>
+		<requiredpackage>com.woltlab.wcf</requiredpackage>
+		<requiredpackage>com.woltlab.wcf.data.cronjobs</requiredpackage>
+		<requiredpackage>com.woltlab.wcf.acp.system.db</requiredpackage>
+		<requiredpackage>com.woltlab.wcf.data.page</requiredpackage>
+		<requiredpackage>com.woltlab.wcf.form.user</requiredpackage>
+	</requiredpackages>
+
+	<instructions type="install">
+		<languages languagecode="de">de.xml</languages>
+		<options>options.xml</options>
+		<files>files.tar</files>
+		<templates>templates.tar</templates>
+		<acpmenu>acpmenu.xml</acpmenu>
+		<groupoptions>groupoptions.xml</groupoptions>
+		<sql>install.sql</sql>
+		<headermenu>headermenu.xml</headermenu>
+	</instructions>
+
+</package>
