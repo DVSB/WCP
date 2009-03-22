@@ -1,0 +1,477 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/options.dtd">
+<data>
+	<import>
+		<categories>
+			<category name="offline"></category>
+			<category name="offline.general">
+				<parent>offline</parent>
+			</category>
+
+			<category name="system"></category>
+			<category name="system.general">
+				<parent>system</parent>
+			</category>
+
+			<category name="panel"></category>
+			<category name="panel.general">
+				<parent>panel</parent>
+			</category>
+
+			<category name="customer"></category>
+			<category name="customer.general">
+				<parent>customer</parent>
+			</category>
+
+			<category name="logger"></category>
+			<category name="logger.general">
+				<parent>logger</parent>
+			</category>
+
+			<category name="dkim"></category>
+			<category name="dkim.general">
+				<parent>dkim</parent>
+			</category>
+		</categories>
+
+		<options>
+		  	<!-- panel -->
+		    <option name="phpmyadmin_url">
+		        <categoryname>panel</categoryname>
+
+		        <defaultvalue>https://phpmyadmin.friebel.name</defaultvalue>
+		    </option>
+
+		    <option name="webmail_url">
+		        <categoryname>panel</categoryname>
+
+		        <defaultvalue></defaultvalue>
+		    </option>
+
+		    <option name="webftp_url">
+		        <categoryname>panel</categoryname>
+
+		        <defaultvalue></defaultvalue>
+		    </option>
+
+		    <option name="pathedit">
+		        <categoryname>panel</categoryname>
+
+		        <defaultvalue>Dropdown</defaultvalue>
+		    </option>
+
+		    <option name="paging">
+		        <categoryname>panel</categoryname>
+
+		        <defaultvalue>30</defaultvalue>
+		    </option>
+
+		    <option name="sendalternativemail">
+		        <categoryname>panel</categoryname>
+
+		        <defaultvalue>0</defaultvalue>
+		    </option>
+
+		    <option name="natsorting">
+		        <categoryname>panel</categoryname>
+
+		        <defaultvalue>1</defaultvalue>
+		    </option>
+
+		    <option name="no_robots">
+		        <categoryname>panel</categoryname>
+
+		        <defaultvalue>0</defaultvalue>
+		    </option>
+
+		    <option name="decimal_places">
+		        <categoryname>panel</categoryname>
+
+		        <defaultvalue>4</defaultvalue>
+		    </option>
+
+		    <option name="unix_names">
+		        <categoryname>panel</categoryname>
+
+		        <defaultvalue>1</defaultvalue>
+		    </option>
+
+		    <option name="allow_preset">
+		        <categoryname>panel</categoryname>
+
+		        <defaultvalue>1</defaultvalue>
+		    </option>
+		    <!-- panel -->
+
+		    <!-- customer -->
+		    <option name="accountprefix">
+		        <categoryname>customer</categoryname>
+
+		        <defaultvalue>web</defaultvalue>
+		    </option>
+
+		    <option name="ftpprefix">
+		        <categoryname>customer</categoryname>
+
+		        <defaultvalue>_ftp</defaultvalue>
+		    </option>
+
+		    <option name="mysqlprefix">
+		        <categoryname>customer</categoryname>
+
+		        <defaultvalue>_sql</defaultvalue>
+		    </option>
+		    <!-- customer -->
+
+		    <!-- system -->
+		    <option name="lastaccountnumber">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>0</defaultvalue>
+		    </option>
+
+		    <option name="lastguid">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>10000</defaultvalue>
+		    </option>
+
+		    <option name="documentroot_prefix">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>/home/</defaultvalue>
+		    </option>
+
+		    <option name="logfiles_directory">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>/var/log/syscp/</defaultvalue>
+		    </option>
+
+		    <option name="ipaddress">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>83.151.25.254</defaultvalue>
+		    </option>
+
+		    <option name="apachereload_command">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>/etc/init.d/apache2 reload</defaultvalue>
+		    </option>
+
+		    <option name="last_traffic_run">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>1228258905</defaultvalue>
+		    </option>
+
+		    <option name="vmail_uid">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>5000</defaultvalue>
+		    </option>
+
+		    <option name="vmail_gid">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>5000</defaultvalue>
+		    </option>
+
+		    <option name="vmail_homedir">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>/home/vmail/</defaultvalue>
+		    </option>
+
+		    <option name="hostname">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue></defaultvalue>
+		    </option>
+
+		    <option name="mysql_access_host">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>localhost</defaultvalue>
+		    </option>
+
+		    <option name="apacheconf_filename">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>vhosts.conf</defaultvalue>
+		    </option>
+
+		    <option name="lastcronrun">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>1207430401</defaultvalue>
+		    </option>
+
+		    <option name="defaultip">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>1</defaultvalue>
+		    </option>
+
+		    <option name="webserver">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>apache1</defaultvalue>
+		    </option>
+
+		    <option name="phpappendopenbasedir">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue></defaultvalue>
+		    </option>
+
+		    <option name="mod_log_sql">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>0</defaultvalue>
+		    </option>
+
+		    <option name="mod_fcgid">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>0</defaultvalue>
+		    </option>
+
+		    <option name="apacheconf_vhost">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>/etc/apache2/sites-enabled/</defaultvalue>
+		    </option>
+
+		    <option name="apacheconf_diroptions">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>/etc/apache2/sites-enabled/</defaultvalue>
+		    </option>
+
+		    <option name="apacheconf_htpasswddir">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>/etc/apache2/cp-htpasswd/</defaultvalue>
+		    </option>
+
+		    <option name="webalizer_quiet">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>2</defaultvalue>
+		    </option>
+
+		    <option name="apacheconf_directory">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>/etc/apache2/sites-available/</defaultvalue>
+		    </option>
+
+		    <option name="deactivateddocroot">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue></defaultvalue>
+		    </option>
+
+		    <option name="mod_fcgid_configdir">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>/var/www/php-fcgi-scripts</defaultvalue>
+		    </option>
+
+		    <option name="mod_fcgid_tmpdir">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>/var/kunden/tmp</defaultvalue>
+		    </option>
+
+		    <option name="default_vhostconf">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue></defaultvalue>
+		    </option>
+
+		    <option name="mail_quota_enabled">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>0</defaultvalue>
+		    </option>
+
+		    <option name="mail_quota">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>100</defaultvalue>
+		    </option>
+
+		    <option name="webalizer_enabled">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>1</defaultvalue>
+		    </option>
+
+		    <option name="awstats_enabled">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>0</defaultvalue>
+		    </option>
+
+		    <option name="awstats_domain_file">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>/etc/awstats/</defaultvalue>
+		    </option>
+
+		    <option name="awstats_model_file">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>/etc/awstats/awstats.model.conf.syscp</defaultvalue>
+		    </option>
+
+		    <option name="awstats_path">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>/usr/share/awstats/VERSION/webroot/cgi-bin/</defaultvalue>
+		    </option>
+
+		    <option name="awstats_updateall_command">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>/usr/bin/awstats_updateall.pl</defaultvalue>
+		    </option>
+
+		    <option name="webserver">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>apache2</defaultvalue>
+		    </option>
+
+		    <option name="mod_fcgid_wrapper">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>0</defaultvalue>
+		    </option>
+
+		    <option name="mod_fcgid_starter">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>0</defaultvalue>
+		    </option>
+
+		    <option name="mod_fcgid_peardir">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>/usr/share/php/:/usr/share/php5/</defaultvalue>
+		    </option>
+
+		    <option name="index_file_extension">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>html</defaultvalue>
+		    </option>
+
+		    <option name="realtime_port">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>0</defaultvalue>
+		    </option>
+
+		    <option name="mod_fcgid_maxrequests">
+		        <categoryname>system</categoryname>
+
+		        <defaultvalue>250</defaultvalue>
+		    </option>
+			<!-- system -->
+
+		    <!-- logger -->
+		    <option name="logger_enabled">
+		        <categoryname>logger</categoryname>
+
+		        <defaultvalue>1</defaultvalue>
+		    </option>
+
+		    <option name="logfile">
+		        <categoryname>logger</categoryname>
+
+		        <defaultvalue></defaultvalue>
+		    </option>
+
+		    <option name="logtypes">
+		        <categoryname>logger</categoryname>
+
+		        <defaultvalue>syslog</defaultvalue>
+		    </option>
+
+		    <option name="severity">
+		        <categoryname>logger</categoryname>
+
+		        <defaultvalue>2</defaultvalue>
+		    </option>
+		    <!-- logger -->
+
+		    <!-- dkim -->
+		    <option name="dkim_prefix">
+		        <categoryname>dkim</categoryname>
+
+		        <defaultvalue>/etc/postfix/dkim/</defaultvalue>
+		    </option>
+
+		    <option name="dkim_domains">
+		        <categoryname>dkim</categoryname>
+
+		        <defaultvalue>domains</defaultvalue>
+		    </option>
+
+		    <option name="dkim_dkimkeys">
+		        <categoryname>dkim</categoryname>
+
+		        <defaultvalue>dkim-keys.conf</defaultvalue>
+		    </option>
+
+		    <option name="dkimrestart_command">
+		        <categoryname>dkim</categoryname>
+
+		        <defaultvalue>/etc/init.d/dkim-filter restart</defaultvalue>
+		    </option>
+
+		    <option name="use_dkim">
+		        <categoryname>dkim</categoryname>
+
+		        <defaultvalue>0</defaultvalue>
+		    </option>
+		    <!-- dkim -->
+
+			<!-- general.cookie -->
+			<option name="cookie_path">
+				<categoryname>general.cookie</categoryname>
+				<optiontype>text</optiontype>
+				<defaultvalue></defaultvalue>
+			</option>
+			<!-- /general.cookie-->
+
+			<!-- general -->
+			<option name="install_date">
+				<categoryname>general</categoryname>
+				<optiontype>integer</optiontype>
+				<hidden>1</hidden>
+			</option>
+			<!-- /general -->
+
+			<!-- offline -->
+			<option name="offline">
+				<categoryname>offline.general</categoryname>
+				<optiontype>boolean</optiontype>
+				<enableoptions><![CDATA[offline_message,offline_message_allow_html]]></enableoptions>
+			</option>
+			<option name="offline_message">
+				<categoryname>offline.general</categoryname>
+				<optiontype>textarea</optiontype>
+			</option>
+			<option name="offline_message_allow_html">
+				<categoryname>offline.general</categoryname>
+				<optiontype>boolean</optiontype>
+			</option>
+
+		</options>
+	</import>
+</data>
