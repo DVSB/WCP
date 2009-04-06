@@ -2,10 +2,10 @@
 <!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/headerMenu.dtd">
 <data>
 	<import>
-		<pagemenuitem name="cp.header.menu.start">
+		<pagemenuitem name="cp.header.menu.ftp">
 			<icon>icon/portalM.png</icon>
-			<link>index.php</link>
-			<showorder>1</showorder>
+			<link>index.php?page=FTPList</link>
+			<showorder>4</showorder>
 		</pagemenuitem>
 	</import>
 </data>

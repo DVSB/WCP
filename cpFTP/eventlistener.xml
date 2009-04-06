@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE import SYSTEM "DTD/import.dtd">
+<data>
+	<import>
+		<eventlistener>
+			<eventClassName>IndexPage</eventClassName>
+			<eventName>readData</eventName>
+			<listenerClassFile>lib/system/event/listener/IndexFTPListener.class.php</listenerClassFile>
+		</eventlistener>
+		<eventlistener>
+			<eventClassName>UserAddForm</eventClassName>
+			<eventName>saved</eventName>
+			<listenerClassFile>lib/system/event/listener/UserAddFTPListener.class.php</listenerClassFile>
+			<environment>admin</environment>
+			<inherit>1</inherit>
+			<nice>10</nice>
+		</eventlistener>
+	</import>
+</data>
