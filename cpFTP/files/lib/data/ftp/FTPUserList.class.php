@@ -2,6 +2,16 @@
 require_once (WCF_DIR . 'lib/data/DatabaseObjectList.class.php');
 require_once (CP_DIR . 'lib/data/ftp/FTPUser.class.php');
 
+/**
+ * Handels a list of ftp accounts
+ *
+ * @author		Tobias Friebel
+ * @copyright	2009 Tobias Friebel
+ * @license		GNU General Public License <http://opensource.org/licenses/gpl-2.0.php>
+ * @package		com.toby.cp.ftp
+ * @subpackage	data.ftp
+ * @category 	Control Panel
+ */
 class FTPUserList extends DatabaseObjectList
 {
 	public $ftpUsers = array ();
@@ -23,18 +33,23 @@ class FTPUserList extends DatabaseObjectList
 	 */
 	public function readObjects()
 	{
+		list($orderField, $orderOrder) = explode(' ', $this->sqlOrderBy);
+
 		$sql = "SELECT		" . (!empty($this->sqlSelects) ? $this->sqlSelects . ',' : '') . "
-							ftp_users.*, user_table.username,
+							ftp_users.*
 				FROM		cp" . CP_N . "_ftp_users ftp_users
-				LEFT JOIN	cp" . CP_N . "_user user_table
-					ON		(user_table.userID = ftp_users.userID)
 				" . $this->sqlJoins . "
 				" . (!empty($this->sqlConditions) ? "WHERE " . $this->sqlConditions : '') . "
-				" . (!empty($this->sqlOrderBy) ? "ORDER BY " . $this->sqlOrderBy : '');
+				" //. (!empty($this->sqlOrderBy) ? "ORDER BY ftp_users." . $this->sqlOrderBy : '');
+				. (!empty($this->sqlOrderBy) ? "ORDER BY CONCAT( IF( ASCII( LEFT( ftp_users." . $orderField . ", 1 ) ) > 57,
+												LEFT( ftp_users." . $orderField . ", 1 ), '0' ),
+												IF( ASCII( RIGHT( ftp_users." . $orderField . ", 1 ) ) > 57,
+												LPAD( ftp_users." . $orderField . ", 255, '0' ),
+												LPAD( CONCAT( ftp_users." . $orderField . ", '-' ), 255, '0' ) ) ) " . $orderOrder : '');
 		$result = WCF :: getDB()->sendQuery($sql, $this->sqlLimit, $this->sqlOffset);
-		while ($row = WCF :: getDB()->fetchArray())
+		while ($row = WCF :: getDB()->fetchArray($result))
 		{
-			$this->ftpUsers[] = new FTPUsers(null, $row);
+			$this->ftpUsers[] = new FTPUser(null, $row);
 		}
 	}
 

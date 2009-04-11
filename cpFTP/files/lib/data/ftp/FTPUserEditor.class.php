@@ -9,17 +9,64 @@
  */
 
 require_once (CP_DIR . 'lib/data/ftp/FTPUser.class.php');
+require_once (CP_DIR . 'lib/data/user/CPUser.class.php');
 
+/**
+ * Creates/manipulates one ftp account
+ *
+ * @author		Tobias Friebel
+ * @copyright	2009 Tobias Friebel
+ * @license		GNU General Public License <http://opensource.org/licenses/gpl-2.0.php>
+ * @package		com.toby.cp.ftp
+ * @subpackage	data.ftp
+ * @category 	Control Panel
+ */
 class FTPUserEditor extends FTPUser
 {
-	public static function create($userID, $username, $password, $homedir, $undeletable = 0)
+	/**
+	 * create a new ftp account
+	 *
+	 * @param int $userID
+	 * @param string $username
+	 * @param string $password
+	 * @param string $homedir
+	 * @param int $undeletable
+	 *
+	 * @return object
+	 */
+	public static function create($userID, $username, $password, $homedir, $description = '', $undeletable = 0, $addPostFix = true)
 	{
-		$user = new User($userID);
+		$user = new CPUser($userID);
+
+		$groupname = $username;
+
+		if ($addPostFix)
+		{
+			$sql = "SELECT username AS name
+					FROM cp" . CP_N . "_ftp_users
+					WHERE userID = " . intval($userID) . "
+					ORDER BY CONCAT(
+						IF( ASCII( LEFT( username, 1 ) ) > 57, LEFT( username, 1 ), '0' ),
+						IF( ASCII( RIGHT( username, 1 ) ) > 57, LPAD( username, 255, '0' ), LPAD( CONCAT( username, '-' ), 255, '0' ) )
+						) DESC
+					LIMIT 1";
+			$postFix = WCF :: getDB()->getFirstRow($sql);
+
+			if (empty($postFix))
+			{
+				$username .= FTP_POSTFIX . '1';
+			}
+			else
+			{
+				$postFix = intval(str_replace($username . FTP_POSTFIX, '', $postFix['name']));
+				$username .= FTP_POSTFIX . ++$postFix;
+			}
+		}
 
 		$sql = "INSERT INTO	cp" . CP_N . "_ftp_users
-						(userID, username, uid, gid, password, homedir, undeletable)
+						(userID, username, uid, gid, password, homedir, undeleteable, description)
 				VALUES
-						(" . $userID . ", '" . escapeString($username) . "', " . intval($user->guid) . ", " . intval($user->guid) . ", ENCRYPT('" . escapeString($password) . "'), '" . escapeString($homedir) . "', " . intval($undeletable) . ")
+						(" . $userID . ", '" . escapeString($username) . "', " . intval($user->guid) . ", " . intval($user->guid) . ", ENCRYPT('" . escapeString($password) . "'), '" . escapeString($homedir) . "', " . intval($undeletable) . ", '" . escapeString($description) . "')
 				ON DUPLICATE KEY UPDATE
 						password = ENCRYPT('" . escapeString($password) . "')";
 		WCF :: getDB()->sendQuery($sql);
@@ -29,28 +76,37 @@ class FTPUserEditor extends FTPUser
 		$sql = "INSERT INTO cp" . CP_N . "_ftp_groups
 						(userID, groupname, gid, members)
 				VALUES
-						(" . $userID . ", '" . escapeString($username) . "', " . $user->guid . ", '" . escapeString($username) . "')
+						(" . $userID . ", '" . escapeString($groupname) . "', " . intval($user->guid) . ", '" . escapeString($username) . "')
 				ON DUPLICATE KEY UPDATE
 						members = CONCAT_WS(',', members, '" . escapeString($username) . "')";
 		WCF :: getDB()->sendQuery($sql);
 
+		$user->getEditor()->updateOptions(array('ftpaccountsUsed' => ++$user->ftpaccountsUsed));
+
 		return new FTPUserEditor($ftpUserID);
 	}
 
-	public function update($password)
+	/**
+	 * change password of ftp-account
+	 *
+	 * @param string $password
+	 */
+	public function update($password, $path, $description)
 	{
 		// Update
 		$sql = "UPDATE	cp" . CP_N . "_ftp_users
-				SET		password = ENCRYPT('" . escapeString($password) . "')
+				SET		password = ENCRYPT('" . escapeString($password) . "'),
+						path = '" . escapeString($path) . "',
+						description = '" . escapeString($description) . "'
 				WHERE 	ftpUserID = " . $this->ftpUserID;
 		WCF :: getDB()->sendQuery($sql);
 	}
 
+	/**
+	 * delete an ftp account
+	 */
 	public function delete()
 	{
-		if ($this->undeleteable != 0)
-			return;
-
 		$sql = "UPDATE 	cp" . CP_N . "_ftp_groups
 				SET 	members = REPLACE(members, '," . $this->username . "', '')
 				WHERE 	userID = " . $this->userID;
@@ -59,6 +115,8 @@ class FTPUserEditor extends FTPUser
 		$sql = "DELETE FROM	cp" . CP_N . "_ftp_users
 				WHERE		ftpUserID = " . $this->ftpUserID;
 		WCF :: getDB()->sendQuery($sql);
+
+		$user->updateOptions(array('ftpaccountsUsed' => --$user->ftpaccountsUsed));
 	}
 }
 

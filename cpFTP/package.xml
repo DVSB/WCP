@@ -5,7 +5,7 @@
 	<packageInformation>
 		<packageName>WCF Controlpanel FTP Modul</packageName>
 		<packageDescription>Ermöglicht FTP-Zugriff auf den Server</packageDescription>
-		<version>0.0.1-alpha</version>
+		<version>0.0.2-alpha</version>
 		<plugin>com.toby.cp</plugin>
 		<date>2009-04-04</date>
 	</packageInformation>
@@ -38,7 +38,6 @@
 		<options>options.xml</options>
 		<files>files.tar</files>
 		<templates>templates.tar</templates>
-		<acpmenu>acpmenu.xml</acpmenu>
 		<groupoptions>groupoptions.xml</groupoptions>
 		<pagemenu>pagemenu.xml</pagemenu>
 		<eventlistener>eventlistener.xml</eventlistener>

@@ -10,6 +10,16 @@
 
 require_once (WCF_DIR . 'lib/data/DatabaseObject.class.php');
 
+/**
+ * Represents one ftp account
+ *
+ * @author		Tobias Friebel
+ * @copyright	2009 Tobias Friebel
+ * @license		GNU General Public License <http://opensource.org/licenses/gpl-2.0.php>
+ * @package		com.toby.cp.ftp
+ * @subpackage	data.ftp
+ * @category 	Control Panel
+ */
 class FTPUser extends DatabaseObject
 {
 	public function __construct($ftpUserID, $row = null)
@@ -20,7 +30,7 @@ class FTPUser extends DatabaseObject
 					FROM	cp" . CP_N . "_ftp_users ftp_users
 					JOIN	cp" . CP_N . "_ftp_groups ftp_groups
 						ON	(ftp_users.userID = ftp_groups.userID)
-					WHERE	ftpUserID = " . $ftpUserID;
+					WHERE	ftpUserID = " . intval($ftpUserID);
 			$row = WCF :: getDB()->getFirstRow($sql);
 		}
 
