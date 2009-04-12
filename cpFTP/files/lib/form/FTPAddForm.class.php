@@ -15,6 +15,8 @@ class FTPAddForm extends AbstractSecureForm
 
 	public $description = '';
 
+	public $ftpAccount;
+
 	/**
 	 * @see Form::readFormParameters()
 	 */
@@ -45,11 +47,11 @@ class FTPAddForm extends AbstractSecureForm
 		if (empty($this->path))
 			throw new UserInputException('path', 'notempty');
 
-		if (!CPUtils :: validatePath($this->path, WCF :: getUser()->homeDir, true))
+		if (!CPUtils :: validatePath(WCF :: getUser()->homeDir . '/'. $this->path, WCF :: getUser()->homeDir))
 			throw new UserInputException('path', 'invalid');
 
-		if (WCF :: getUser()->ftpaccounts >= WCF :: getUser()->ftpaccountsUsed)
-			throw new UserInputException('fpt', 'tomuch');
+		if (WCF :: getUser()->ftpaccounts <= WCF :: getUser()->ftpaccountsUsed)
+			throw new UserInputException('ftp', 'tomuch');
 	}
 
 	/**
@@ -74,16 +76,33 @@ class FTPAddForm extends AbstractSecureForm
 		parent :: save();
 
 		// create
-		$this->ftpUser = FTPUserEditor :: create(WCF :: getUser()->userID,
-												 WCF :: getUser()->username,
-												 $this->password,
-												 $this->path,
-												 $this->description
-												);
+		$this->ftpAccount = FTPUserEditor :: create(WCF :: getUser()->userID,
+												 	WCF :: getUser()->username,
+												 	$this->password,
+												 	WCF :: getUser()->homeDir . '/'. $this->path,
+												 	$this->description
+													);
 		$this->saved();
 
 		$url = 'index.php?page=FTPList'. SID_ARG_2ND_NOT_ENCODED;
 		HeaderUtil::redirect($url);
+	}
+
+	/**
+	 * @see Page::show()
+	 */
+	public function show()
+	{
+		require_once(WCF_DIR.'lib/page/util/menu/PageMenu.class.php');
+		PageMenu::setActiveMenuItem('cp.header.menu.ftp');
+
+		if (WCF :: getUser()->ftpaccounts <= WCF :: getUser()->ftpaccountsUsed)
+		{
+			require_once(WCF_DIR.'lib/system/exception/PermissionDeniedException.class.php');
+			throw new PermissionDeniedException();
+		}
+
+		parent :: show();
 	}
 }
 ?>

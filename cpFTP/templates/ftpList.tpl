@@ -12,7 +12,17 @@
 <div class="contentHeader">
 	{pages print=true assign=pagesLinks link="index.php?page=FTPList&pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"|concat:SID_ARG_2ND_NOT_ENCODED}
 </div>
-
+{if $this->user->ftpaccounts > $this->user->ftpaccountsUsed}
+	<div class="contentHeader">
+		<div class="largeButtons">
+			<ul>
+				<li><a href="index.php?form=FTPAdd{@SID_ARG_2ND}">
+				<img title="{lang}cp.ftp.addAccount{/lang}" alt=""
+					src="{icon}ftpAccountAddM.png{/icon}" /> <span>{lang}cp.ftp.addAccount{/lang}</span> </a></li>
+			</ul>
+		</div>
+	</div>
+{/if}
 {if $ftpAccounts|count}
 	<div class="border">
 		<div class="containerHead"><h3>{lang}cp.ftp.list{/lang}</h3></div>
@@ -33,7 +43,7 @@
 			<tbody>
 			{foreach from=$ftpAccounts item=ftpAccount}
 				<tr class="{cycle values="container-1,container-2"}">
-					<td class="columnFtpUserID columnID">{@$ftpAccount->ftpUserID}</td>
+					<td class="columnFtpUserID columnID"><a href="index.php?action=FTPDelete&amp;ftpUserID={@$ftpAccount->ftpUserID}{@SID_ARG_2ND}"><img src="{icon}deleteS.png{/icon}" alt="" title="{lang}cp.ftp.deleteAccount{/lang}" /></a>{if $ftpAccount->loginEnabled == 'N'}<a href="index.php?action=FTPEnable&amp;ftpUserID={@$ftpAccount->ftpUserID}{@SID_ARG_2ND}"><img src="{icon}disabledS.png{/icon}" alt="" title="{lang}cp.ftp.disableAccount{/lang}" /></a>{else}<a href="index.php?action=FTPDisable&amp;ftpUserID={@$ftpAccount->ftpUserID}{@SID_ARG_2ND}"><img src="{icon}enabledS.png{/icon}" alt="" title="{lang}cp.ftp.disableAccount{/lang}" /></a>{/if}</td>
 					<td class="columnUsername columnText"><a href="index.php?form=FTPEdit&amp;ftpUserID={@$ftpAccount->ftpUserID}{@SID_ARG_2ND}">{$ftpAccount->username}</a></td>
 					<td class="columnHomedir columnText">{$ftpAccount->homedir}</td>
 					<td class="columnLoginCount columnText">{@$ftpAccount->loginCount}</td>

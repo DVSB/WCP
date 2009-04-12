@@ -2,6 +2,8 @@
 <head>
 	<title>{lang}cp.ftp.addAccount{/lang} - {lang}wcf.user.usercp{/lang} - {lang}{PAGE_TITLE}{/lang}</title>
 	{include file='headInclude' sandbox=false}
+	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/AjaxRequest.class.js"></script>
+	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/Suggestion.class.js"></script>
 </head>
 <body{if $templateName|isset} id="tpl{$templateName|ucfirst}"{/if}>
 {include file='header' sandbox=false}
@@ -41,7 +43,13 @@
 						</div>
 						<div class="formField">
 							<input type="text" class="inputText" name="path" value="{$path}" id="path" />
-
+							<script type="text/javascript">
+								//<![CDATA[
+								suggestion.enableMultiple(false);
+								suggestion.source = 'index.php?page=PathSuggest'+SID_ARG_2ND;
+								suggestion.init('path');
+								//]]>
+							</script>
 							{if $errorField == 'path'}
 								<p class="innerError">
 									{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}

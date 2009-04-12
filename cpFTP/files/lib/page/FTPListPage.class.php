@@ -103,5 +103,16 @@ class FTPListPage extends SortablePage
 			'ftpAccounts' => $this->ftpList->getObjects()
 		));
 	}
+
+	/**
+	 * @see Page::show()
+	 */
+	public function show()
+	{
+		require_once(WCF_DIR.'lib/page/util/menu/PageMenu.class.php');
+		PageMenu::setActiveMenuItem('cp.header.menu.ftp');
+
+		parent::show();
+	}
 }
 ?>

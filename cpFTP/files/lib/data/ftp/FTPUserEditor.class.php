@@ -63,12 +63,16 @@ class FTPUserEditor extends FTPUser
 			}
 		}
 
+		$homedir = FileUtil :: addTrailingSlash(FileUtil :: getRealPath($homedir));
+
 		$sql = "INSERT INTO	cp" . CP_N . "_ftp_users
-						(userID, username, uid, gid, password, homedir, undeleteable, description)
+						(userID, username, uid, gid,
+						 password, homedir, undeleteable,
+						 description, loginEnabled)
 				VALUES
-						(" . $userID . ", '" . escapeString($username) . "', " . intval($user->guid) . ", " . intval($user->guid) . ", ENCRYPT('" . escapeString($password) . "'), '" . escapeString($homedir) . "', " . intval($undeletable) . ", '" . escapeString($description) . "')
-				ON DUPLICATE KEY UPDATE
-						password = ENCRYPT('" . escapeString($password) . "')";
+						(" . $userID . ", '" . escapeString($username) . "', " . intval($user->guid) . ", " . intval($user->guid) . ",
+						 ENCRYPT('" . escapeString($password) . "'), '" . escapeString($homedir) . "', " . intval($undeletable) . ",
+						 '" . escapeString($description) . "', 'Y')";
 		WCF :: getDB()->sendQuery($sql);
 
 		$ftpUserID = WCF :: getDB()->getInsertID('cp' . CP_N . '_ftp_users', 'ftpUserID');
@@ -116,7 +120,67 @@ class FTPUserEditor extends FTPUser
 				WHERE		ftpUserID = " . $this->ftpUserID;
 		WCF :: getDB()->sendQuery($sql);
 
+		require_once (WCF_DIR . '/lib/data/user/UserEditor.class.php');
+		$user = new UserEditor($this->userID);
 		$user->updateOptions(array('ftpaccountsUsed' => --$user->ftpaccountsUsed));
+	}
+
+	/**
+	 * delete all ftp accounts for this user
+	 */
+	public static function deleteAll($userID)
+	{
+		$sql = "DELETE 	FROM cp" . CP_N . "_ftp_groups
+				WHERE 		 userID = " . $userID;
+		WCF :: getDB()->sendQuery($sql);
+
+		$sql = "DELETE FROM	cp" . CP_N . "_ftp_users
+				WHERE		userID = " . $userID;
+		WCF :: getDB()->sendQuery($sql);
+	}
+
+	/**
+	 * enable ftp account
+	 */
+	public function enable()
+	{
+		$sql = "UPDATE	cp" . CP_N . "_ftp_users
+				SET		loginEnabled = 'Y'
+				WHERE	ftpUserID = " . $this->ftpUserID;
+		WCF :: getDB()->sendQuery($sql);
+	}
+
+	/**
+	 * disable ftp account
+	 */
+	public function disable()
+	{
+		$sql = "UPDATE	cp" . CP_N . "_ftp_users
+				SET		loginEnabled = 'N'
+				WHERE	ftpUserID = " . $this->ftpUserID;
+		WCF :: getDB()->sendQuery($sql);
+	}
+
+	/**
+	 * enable ftp account
+	 */
+	public static function enableAll($userID)
+	{
+		$sql = "UPDATE	cp" . CP_N . "_ftp_users
+				SET		loginEnabled = 'Y'
+				WHERE	userID = " . $userID;
+		WCF :: getDB()->sendQuery($sql);
+	}
+
+	/**
+	 * disable ftp account
+	 */
+	public static function disableAll($userID)
+	{
+		$sql = "UPDATE	cp" . CP_N . "_ftp_users
+				SET		loginEnabled = 'N'
+				WHERE	userID = " . $userID;
+		WCF :: getDB()->sendQuery($sql);
 	}
 }
 
