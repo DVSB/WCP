@@ -45,10 +45,7 @@ class FTPUserEditor extends FTPUser
 			$sql = "SELECT username AS name
 					FROM cp" . CP_N . "_ftp_users
 					WHERE userID = " . intval($userID) . "
-					ORDER BY CONCAT(
-						IF( ASCII( LEFT( username, 1 ) ) > 57, LEFT( username, 1 ), '0' ),
-						IF( ASCII( RIGHT( username, 1 ) ) > 57, LPAD( username, 255, '0' ), LPAD( CONCAT( username, '-' ), 255, '0' ) )
-						) DESC
+					ORDER BY LENGTH(username), username
 					LIMIT 1";
 			$postFix = WCF :: getDB()->getFirstRow($sql);
 

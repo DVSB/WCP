@@ -58,7 +58,7 @@ class FTPListPage extends SortablePage
 		// read objects
 		$this->ftpList->sqlOffset = ($this->pageNo - 1) * $this->itemsPerPage;
 		$this->ftpList->sqlLimit = $this->itemsPerPage;
-		$this->ftpList->sqlOrderBy = $this->sortField . ' ' . $this->sortOrder;
+		$this->ftpList->sqlOrderBy = 'ftp_users.' . $this->sortField . ' ' . $this->sortOrder;
 		$this->ftpList->sqlConditions = 'ftp_users.userID = ' . WCF :: getUser()->userID;
 		$this->ftpList->readObjects();
 	}

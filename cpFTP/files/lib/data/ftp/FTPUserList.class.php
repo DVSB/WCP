@@ -33,19 +33,19 @@ class FTPUserList extends DatabaseObjectList
 	 */
 	public function readObjects()
 	{
-		list($orderField, $orderOrder) = explode(' ', $this->sqlOrderBy);
+		//naturally order by username
+		if (strpos($this->sqlOrderBy, 'username') !== false)
+		{
+			list(, $sortOrder) = explode(' ', $this->sqlOrderBy);
+			$this->sqlOrderBy = "SUBSTRING_INDEX(ftp_users.username, '" . FTP_POSTFIX . "', 1) " . $sortOrder . ", SUBSTRING_INDEX(ftp_users.username, '" . FTP_POSTFIX . "', -1) + 0 " . $sortOrder;
+		}
 
 		$sql = "SELECT		" . (!empty($this->sqlSelects) ? $this->sqlSelects . ',' : '') . "
 							ftp_users.*
 				FROM		cp" . CP_N . "_ftp_users ftp_users
 				" . $this->sqlJoins . "
 				" . (!empty($this->sqlConditions) ? "WHERE " . $this->sqlConditions : '') . "
-				" //. (!empty($this->sqlOrderBy) ? "ORDER BY ftp_users." . $this->sqlOrderBy : '');
-				. (!empty($this->sqlOrderBy) ? "ORDER BY CONCAT( IF( ASCII( LEFT( ftp_users." . $orderField . ", 1 ) ) > 57,
-												LEFT( ftp_users." . $orderField . ", 1 ), '0' ),
-												IF( ASCII( RIGHT( ftp_users." . $orderField . ", 1 ) ) > 57,
-												LPAD( ftp_users." . $orderField . ", 255, '0' ),
-												LPAD( CONCAT( ftp_users." . $orderField . ", '-' ), 255, '0' ) ) ) " . $orderOrder : '');
+				" . (!empty($this->sqlOrderBy) ? "ORDER BY " . $this->sqlOrderBy : '');
 		$result = WCF :: getDB()->sendQuery($sql, $this->sqlLimit, $this->sqlOffset);
 		while ($row = WCF :: getDB()->fetchArray($result))
 		{
