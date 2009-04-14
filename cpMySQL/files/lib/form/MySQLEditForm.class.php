@@ -8,25 +8,23 @@
  * $Id$
  */
 
-require_once (CP_DIR . 'lib/form/FTPAddForm.class.php');
+require_once (CP_DIR . 'lib/form/MySQLAddForm.class.php');
 
-class FTPEditForm extends FTPAddForm
+class MySQLEditForm extends MySQLAddForm
 {
 	/**
 	 * @see Page::readData()
 	 */
 	public function readData()
 	{
-		if (isset($_REQUEST['ftpUserID']))
-			$this->ftpAccount = new FTPUserEditor($_REQUEST['ftpUserID']);
+		if (isset($_REQUEST['mysqlID']))
+			$this->mysql = new MySQLEditor($_REQUEST['mysqlID']);
 
-		if (is_null($this->ftpAccount))
+		if (is_null($this->mysql))
 			throw new SystemException('no such account');
 
-		if ($this->ftpAccount->userID != WCF :: getUser()->userID)
+		if ($this->mysql->userID != WCF :: getUser()->userID)
 			throw new SystemException('invalid user');
-
-		$this->path = str_replace(WCF :: getUser()->homeDir, '', $this->ftpAccount->homedir);
 
 		parent :: readData();
 	}
@@ -40,8 +38,7 @@ class FTPEditForm extends FTPAddForm
 
 		WCF :: getTPL()->assign(array (
 			'password' => '',
-			'path' => $this->path,
-			'description' => $this->ftpAccount->description,
+			'description' => $this->mysql->description,
 		));
 	}
 
@@ -54,12 +51,11 @@ class FTPEditForm extends FTPAddForm
 
 		// update
 		$this->ftpAccount->update($this->password,
-								  WCF :: getUser()->homeDir . '/'. $this->path,
 								  $this->description
 								 );
 		$this->saved();
 
-		$url = 'index.php?page=FTPList'. SID_ARG_2ND_NOT_ENCODED;
+		$url = 'index.php?page=MySQLList'. SID_ARG_2ND_NOT_ENCODED;
 		HeaderUtil::redirect($url);
 	}
 
@@ -69,7 +65,7 @@ class FTPEditForm extends FTPAddForm
 	public function show()
 	{
 		require_once(WCF_DIR.'lib/page/util/menu/PageMenu.class.php');
-		PageMenu::setActiveMenuItem('cp.header.menu.ftp');
+		PageMenu::setActiveMenuItem('cp.header.menu.mysql');
 
 		parent::show();
 	}

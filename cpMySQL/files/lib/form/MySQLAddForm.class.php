@@ -7,15 +7,13 @@ class FTPAddForm extends AbstractSecureForm
 	/**
 	 * @see AbstractPage::$templateName
 	 */
-	public $templateName = 'ftpAdd';
+	public $templateName = 'mysqlAdd';
 
 	public $password = '';
 
-	public $path = '';
-
 	public $description = '';
 
-	public $ftpAccount;
+	public $mysql;
 
 	/**
 	 * @see Form::readFormParameters()
@@ -26,9 +24,6 @@ class FTPAddForm extends AbstractSecureForm
 
 		if (isset($_POST['password']))
 			$this->password = StringUtil :: trim($_POST['password']);
-
-		if (isset($_POST['path']))
-			$this->path = StringUtil :: trim($_POST['path']);
 
 		if (isset($_POST['description']))
 			$this->description = StringUtil :: trim($_POST['description']);
@@ -44,11 +39,8 @@ class FTPAddForm extends AbstractSecureForm
 		if (empty($this->password))
 			throw new UserInputException('password', 'notempty');
 
-		if (empty($this->path))
-			throw new UserInputException('path', 'notempty');
-
-		if (!CPUtils :: validatePath(WCF :: getUser()->homeDir . '/'. $this->path, WCF :: getUser()->homeDir))
-			throw new UserInputException('path', 'invalid');
+		if (WCF :: getUser()->mysqls <= WCF :: getUser()->mysqlsUsed)
+			throw new UserInputException('mysql', 'tomuch');
 	}
 
 	/**
@@ -60,7 +52,6 @@ class FTPAddForm extends AbstractSecureForm
 
 		WCF :: getTPL()->assign(array (
 			'password' => $this->password,
-			'path' => $this->path,
 			'description' => $this->description,
 		));
 	}
@@ -73,15 +64,14 @@ class FTPAddForm extends AbstractSecureForm
 		parent :: save();
 
 		// create
-		$this->ftpAccount = FTPUserEditor :: create(WCF :: getUser()->userID,
-												 	WCF :: getUser()->username,
-												 	$this->password,
-												 	WCF :: getUser()->homeDir . '/'. $this->path,
-												 	$this->description
-													);
+		$this->mysql = MySQLEditor :: create(WCF :: getUser()->userID,
+											 WCF :: getUser()->username,
+											 $this->password,
+											 $this->description
+											);
 		$this->saved();
 
-		$url = 'index.php?page=FTPList'. SID_ARG_2ND_NOT_ENCODED;
+		$url = 'index.php?page=MySQLList'. SID_ARG_2ND_NOT_ENCODED;
 		HeaderUtil::redirect($url);
 	}
 
@@ -91,9 +81,9 @@ class FTPAddForm extends AbstractSecureForm
 	public function show()
 	{
 		require_once(WCF_DIR.'lib/page/util/menu/PageMenu.class.php');
-		PageMenu::setActiveMenuItem('cp.header.menu.ftp');
+		PageMenu::setActiveMenuItem('cp.header.menu.mysql');
 
-		if (WCF :: getUser()->ftpaccounts <= WCF :: getUser()->ftpaccountsUsed)
+		if (WCF :: getUser()->mysqls <= WCF :: getUser()->mysqlsUsed)
 		{
 			require_once(WCF_DIR.'lib/system/exception/PermissionDeniedException.class.php');
 			throw new PermissionDeniedException();

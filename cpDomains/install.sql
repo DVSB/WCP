@@ -7,7 +7,6 @@ CREATE TABLE `cp1_1_domains` (
   `aliasdomain` int(11) unsigned default NULL,
   `documentroot` varchar(255) NOT NULL default '',
   `ipandport` int(11) unsigned NOT NULL default '1',
-  `isbinddomain` tinyint(1) NOT NULL default '0',
   `isemaildomain` tinyint(1) NOT NULL default '0',
   `email_only` tinyint(1) NOT NULL default '0',
   `iswildcarddomain` tinyint(1) NOT NULL default '0',

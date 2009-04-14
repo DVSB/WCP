@@ -30,7 +30,9 @@ class FTPUserEditor extends FTPUser
 	 * @param string $username
 	 * @param string $password
 	 * @param string $homedir
+	 * @param string $description
 	 * @param int $undeletable
+	 * @param boolean $addPostFix
 	 *
 	 * @return object
 	 */
@@ -45,7 +47,7 @@ class FTPUserEditor extends FTPUser
 			$sql = "SELECT username AS name
 					FROM cp" . CP_N . "_ftp_users
 					WHERE userID = " . intval($userID) . "
-					ORDER BY LENGTH(username), username
+					ORDER BY SUBSTRING_INDEX(username, '" . FTP_POSTFIX . "', -1) + 0 DESC
 					LIMIT 1";
 			$postFix = WCF :: getDB()->getFirstRow($sql);
 

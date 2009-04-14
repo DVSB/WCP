@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE import SYSTEM "DTD/import.dtd">
+<data>
+	<import>
+		<eventlistener>
+			<eventClassName>IndexPage</eventClassName>
+			<eventName>readData</eventName>
+			<listenerClassFile>lib/system/event/listener/IndexMySQLListener.class.php</listenerClassFile>
+		</eventlistener>
+		<eventlistener>
+			<eventClassName>UserDeleteAction</eventClassName>
+			<eventName>executed</eventName>
+			<listenerClassFile>lib/system/event/listener/UserACPMySQLListener.class.php</listenerClassFile>
+		</eventlistener>
+	</import>
+</data>
