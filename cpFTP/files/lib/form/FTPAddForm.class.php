@@ -47,7 +47,7 @@ class FTPAddForm extends AbstractSecureForm
 		if (empty($this->path))
 			throw new UserInputException('path', 'notempty');
 
-		if (!CPUtils :: validatePath(WCF :: getUser()->homeDir . '/'. $this->path, WCF :: getUser()->homeDir))
+		if (!CPUtils :: validatePath(WCF :: getUser()->homeDir . $this->path, WCF :: getUser()->homeDir))
 			throw new UserInputException('path', 'invalid');
 	}
 
@@ -62,6 +62,7 @@ class FTPAddForm extends AbstractSecureForm
 			'password' => $this->password,
 			'path' => $this->path,
 			'description' => $this->description,
+			'action' => 'add',
 		));
 	}
 

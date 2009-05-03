@@ -94,12 +94,14 @@ class FTPUserEditor extends FTPUser
 	 *
 	 * @param string $password
 	 */
-	public function update($password, $path, $description)
+	public function update($password, $homedir, $description)
 	{
+		$homedir = FileUtil :: addTrailingSlash(FileUtil :: getRealPath($homedir));
+
 		// Update
 		$sql = "UPDATE	cp" . CP_N . "_ftp_users
 				SET		password = ENCRYPT('" . escapeString($password) . "'),
-						path = '" . escapeString($path) . "',
+						homedir = '" . escapeString($homedir) . "',
 						description = '" . escapeString($description) . "'
 				WHERE 	ftpUserID = " . $this->ftpUserID;
 		WCF :: getDB()->sendQuery($sql);

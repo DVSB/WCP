@@ -42,6 +42,8 @@ class FTPEditForm extends FTPAddForm
 			'password' => '',
 			'path' => $this->path,
 			'description' => $this->ftpAccount->description,
+			'ftpUserID' => $this->ftpAccount->ftpUserID,
+			'action' => 'edit',
 		));
 	}
 
@@ -50,7 +52,7 @@ class FTPEditForm extends FTPAddForm
 	 */
 	public function save()
 	{
-		parent :: save();
+		AbstractSecureForm :: save();
 
 		// update
 		$this->ftpAccount->update($this->password,
@@ -71,7 +73,7 @@ class FTPEditForm extends FTPAddForm
 		require_once(WCF_DIR.'lib/page/util/menu/PageMenu.class.php');
 		PageMenu::setActiveMenuItem('cp.header.menu.ftp');
 
-		parent::show();
+		AbstractSecureForm :: show();
 	}
 }
 ?>

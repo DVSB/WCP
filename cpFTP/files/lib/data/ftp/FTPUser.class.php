@@ -9,6 +9,7 @@
  */
 
 require_once (WCF_DIR . 'lib/data/DatabaseObject.class.php');
+require_once (CP_DIR . 'lib/data/user/CPUser.class.php');
 
 /**
  * Represents one ftp account
@@ -22,6 +23,8 @@ require_once (WCF_DIR . 'lib/data/DatabaseObject.class.php');
  */
 class FTPUser extends DatabaseObject
 {
+	static $users = array();
+
 	public function __construct($ftpUserID, $row = null)
 	{
 		if ($ftpUserID !== null)
@@ -35,6 +38,14 @@ class FTPUser extends DatabaseObject
 		}
 
 		parent :: __construct($row);
+	}
+
+	protected function handleData($data)
+	{
+		if (!array_key_exists($data['userID'], self :: $users))
+			self :: $users[$data['userID']] = new CPUser($data['userID']);
+		$data['relativehomedir'] = '/' . StringUtil :: replace(self :: $users[$data['userID']]->homeDir, '', $data['homedir']);
+		parent :: handleData($data);
 	}
 }
 ?>

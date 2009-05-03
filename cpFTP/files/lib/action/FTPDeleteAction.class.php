@@ -14,7 +14,7 @@ class FTPDeleteAction extends AbstractAction
 
 		$ftpAccount = new FTPUserEditor($_REQUEST['ftpUserID']);
 
-		if ($ftpAccount->userID == WCF :: getUser()->userID)
+		if ($ftpAccount->userID == WCF :: getUser()->userID && $ftpAccount->undeleteable != 1)
 			$ftpAccount->delete();
 
 		$url = 'index.php?page=FTPList'. SID_ARG_2ND_NOT_ENCODED;

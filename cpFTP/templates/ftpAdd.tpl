@@ -1,6 +1,6 @@
 {include file="documentHeader"}
 <head>
-	<title>{lang}cp.ftp.addAccount{/lang} - {lang}wcf.user.usercp{/lang} - {lang}{PAGE_TITLE}{/lang}</title>
+	<title>{lang}cp.ftp.{@$action}Account{/lang} - {lang}wcf.user.usercp{/lang} - {lang}{PAGE_TITLE}{/lang}</title>
 	{include file='headInclude' sandbox=false}
 	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/AjaxRequest.class.js"></script>
 	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/Suggestion.class.js"></script>
@@ -16,7 +16,7 @@
 		{/if}
 	{/capture}
 
-	<form method="post" action="index.php?form=FTPAdd">
+	<form method="post" action="index.php?form=FTP{@$action|ucfirst}">
 		<div class="border tabMenuContent">
 			<div class="container-1">
 				<fieldset>
@@ -76,6 +76,7 @@
 		<div class="formSubmit">
 			{@SID_INPUT_TAG}
 			{@SECURITY_TOKEN_INPUT_TAG}
+			{if $ftpUserID|isset}<input type="hidden" name="ftpUserID" value="{@$ftpUserID}" />{/if}
 			<input type="submit" accesskey="s" value="{lang}wcf.global.button.submit{/lang}" />
 			<input type="reset" accesskey="r" value="{lang}wcf.global.button.reset{/lang}" />
 		</div>
