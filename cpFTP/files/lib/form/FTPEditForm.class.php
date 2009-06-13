@@ -26,7 +26,8 @@ class FTPEditForm extends FTPAddForm
 		if ($this->ftpAccount->userID != WCF :: getUser()->userID)
 			throw new SystemException('invalid user');
 
-		$this->path = str_replace(WCF :: getUser()->homeDir, '', $this->ftpAccount->homedir);
+		//remove homedir-path from ftp-path, we show only relative paths
+		$this->path = '/' . StringUtil :: replace(WCF :: getUser()->homeDir, '', $this->ftpAccount->homedir);
 
 		parent :: readData();
 	}

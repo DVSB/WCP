@@ -3,28 +3,27 @@
 <data>
 	<import>
 		<categories>
-			<category name="customer.ftp">
-				<parent>customer</parent>
+			<category name="cpftp"></category>
+			<category name="cpftp.postfix">
+				<parent>cpftp</parent>
+			</category>
+			<category name="cpftp.link">
+				<parent>cpftp</parent>
 			</category>
 		</categories>
 
 		<options>
-		  	<!-- links -->
-		    <option name="webftp_url">
-		        <categoryname>customer.ftp</categoryname>
+		    <option name="ftp_weburl">
+		        <categoryname>cpftp.link</categoryname>
 				<optiontype>text</optiontype>
 		        <defaultvalue></defaultvalue>
 		    </option>
-		    <!-- links -->
-
-		    <!-- customer -->
 		    <option name="ftp_postfix">
-		        <categoryname>customer.ftp</categoryname>
+		        <categoryname>cpftp.postfix</categoryname>
 				<optiontype>text</optiontype>
 		        <defaultvalue>_ftp</defaultvalue>
 		        <validationpattern>.+</validationpattern>
 		    </option>
-		    <!-- customer -->
 		</options>
 	</import>
 </data>
