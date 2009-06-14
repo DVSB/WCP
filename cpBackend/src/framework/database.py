@@ -1,12 +1,11 @@
 import MySQLdb
-from ConfigParser import ConfigParser
 
 class database(object):
 
     def __init__ (self, configfile):
         self.config = {}
         self.read(configfile)
-
+        
         self.connect()
         
     def read(self, configfile):
@@ -39,6 +38,14 @@ class database(object):
         c.execute(query)
 
         return c.fetchall()
+    
+    def queryDict(self, query):
+        c = MySQLdb.cursors.DictCursor(self.connection)
+
+        c.execute(query)
+
+        return c.fetchall()
+    
 
     def querySingle(self, query):
         c = self.connection.cursor()

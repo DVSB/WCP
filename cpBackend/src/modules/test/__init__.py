@@ -1,1 +1,1 @@
-print "test"
+from test import *

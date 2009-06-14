@@ -14,6 +14,8 @@ config = configuration.configuration(db)
 
 jh = jobhandler.jobhandler(db, config)
 
-jh.loadModules()
+jh.findPendingJobs()
 
 jh.firePendingJobs()
+
+jh.finishJobs()
