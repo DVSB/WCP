@@ -1,6 +1,9 @@
+from framework.PHPUnserialize import PHPUnserialize
+
 class basishandler(object):
     def __init__(self, data, db, config):
-        self.data = data
+        u = PHPUnserialize()
+        self.data = u.unserialize(data)
         self.db = db
         self.config = config
         

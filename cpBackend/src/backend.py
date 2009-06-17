@@ -1,18 +1,20 @@
 #!/usr/bin/python -O
 
 import sys
-from framework import *
+from framework.database import *
+from framework.configuration import *
+from framework.jobhandler import *
 
 if len(sys.argv) == 2:
     dbconfig = sys.argv[1]
 else:
     dbconfig = '../config.inc.php'
 
-db = database.database(dbconfig)
+db = database(dbconfig)
 
-config = configuration.configuration(db)
+config = configuration(db)
 
-jh = jobhandler.jobhandler(db, config)
+jh = jobhandler(db, config)
 
 jh.findPendingJobs()
 

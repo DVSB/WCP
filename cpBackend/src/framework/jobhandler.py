@@ -14,8 +14,8 @@ class jobhandler(object):
         
         for job in self.jobs:
             try:
-                module = self.loadModule(job['jobhandlerModule'])
-                func = getattr(module, job['jobhandlerName'])
+                module = self.loadModule(job['jobhandler'])
+                func = getattr(module, job['jobhandler'])
                 obj = func(job['data'], self.db, self.config)
                 job['retVar'] = obj.run()
             except Exception, e:
@@ -25,7 +25,7 @@ class jobhandler(object):
         lastRun = localtime(self.config.get("general", "last_run_backend"))
         currentTime = localtime()
         
-        triggers = ['immediately']
+        triggers = ['asap']
         
         if lastRun.tm_hour != currentTime.tm_hour:
             triggers.append('hourchange')
@@ -43,9 +43,7 @@ class jobhandler(object):
             triggers.append('yearchange')
         
         self.jobs = self.db.queryDict("SELECT * \
-                                   FROM cp"+self.db.cp+"_jobhandler_tasks jt \
-                                   JOIN cp"+self.db.cp+"_jobhandler jh \
-                                   ON (jt.jobhandlerName = jh.jobhandlerName) \
+                                   FROM cp"+self.db.cp+"_jobhandler_task jt \
                                    WHERE nextExec IN ('"+"','".join(triggers)+"')")
         
     def finishJobs(self):
@@ -53,12 +51,13 @@ class jobhandler(object):
             if job['retVar'] != 'success':
                 #do something here
                 print "error ocurred"
+                print job
             else:
                 if job['volatile'] == 1:
-                    self.db.query("DELETE FROM cp"+self.db.cp+"_jobhandler_tasks \
+                    self.db.query("DELETE FROM cp"+self.db.cp+"_jobhandler_task \
                                    WHERE jobhandlerTaskID = " + str(job['jobhandlerTaskID']))
                 else:
-                    self.db.query("UPDATE cp"+self.db.cp+"_jobhandler_tasks \
+                    self.db.query("UPDATE cp"+self.db.cp+"_jobhandler_task \
                                    SET lastExec = UNIX_TIMESTAMP() \
                                    WHERE jobhandlerTaskID = " + str(job['jobhandlerTaskID']))
                       
