@@ -23,8 +23,7 @@ class database(object):
                 self.wcfnr = vals[3].replace(");", "")
                 
         # TODO get this value also from configfile, but to begin this will do
-        self.cpnr = "1"
-        self.cp = self.wcfnr+'_'+self.cpnr
+        self.cpnr = self.wcfnr+'_1'
 
     def connect(self):
         self.connection = MySQLdb.connect(host=self.config['dbHost'],\
