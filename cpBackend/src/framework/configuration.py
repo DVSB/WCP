@@ -3,23 +3,36 @@ _TRUE_VALUES = ('yes', 'true', 'enabled', 'on', 'aye', '1', 1, True)
 
 class configuration(object):
 
-	def __init__ (self, db):
+	def __init__ (self, db, wcfconfig):
 		self.db = db
+		self.wcf = wcfconfig
 		self.read()
 
 	def read (self):
+		packages = self.db.query('SELECT          optionID\
+                        		  FROM            wcf'+ self.db.wcfnr +'_option acp_option,\
+                                        		  wcf'+ self.db.wcfnr +'_package_dependency package_dependency\
+                        		  WHERE           acp_option.packageID = package_dependency.dependency\
+                                        		  AND package_dependency.packageID = ' + self.wcf.package_id + '\
+                        		  ORDER BY        package_dependency.priority')
+		p = ''
+		for package in packages:
+			p += str(package[0]) + ','
+
+		p = p.rstrip(',')
+		
 		configs = self.db.query('SELECT optionName, categoryName, optionType, optionValue, optionID \
-								FROM wcf'+self.db.wcfnr+'_option')
+								 FROM wcf' + self.db.wcfnr + '_option\
+								 WHERE optionID IN (' + p + ')\
+								 ORDER BY optionName')
 
 		self.config = {}
 
 		for c in configs:
-			section = c[1].split('.')[0]
+			if self.config.has_key(c[1]) == False:
+				self.config[c[1]] = {}
 
-			if self.config.has_key(section) == False:
-				self.config[section] = {}
-
-			self.config[section][c[0]] = (c[2],c[3],c[4])
+			self.config[c[1]][c[0]] = (c[2],c[3],c[4])
 
 	def getSection(self, section):
 		if self.config.has_key(section) == True:

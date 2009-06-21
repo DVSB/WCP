@@ -9,11 +9,15 @@ class createhome(basishandler):
                                   JOIN cp' + self.db.cpnr + '_user cpuser ON (user.userID = cpuser.userID) \
                                   WHERE user.userID = ' + self.data['userID'])[0]      
         
-        dirs = self.config.get('cp', 'home_dirs')
-
+        dirsDB = self.config.getSection('cp.global.homedirs')
+        
+        dirs = ''
+        for dir in dirsDB:
+            dirs += dirsDB[dir][1]
+        
         dirs = dirs.replace("{USERNAME}", user["username"])
         dirs = dirs.replace("{GUID}", str(user["guid"]))
-        dirs = dirs.replace("{HOMEDIR_PREFIX}", self.config.get('cp', 'homedir_prefix'))
+        dirs = dirs.replace("{HOMEDIR_PREFIX}", self.config.get('cp.global', 'homedir_prefix'))
         
         dirs = dirs.split("\r\n")
         

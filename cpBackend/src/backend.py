@@ -1,18 +1,21 @@
 #!/usr/bin/python -O
 
 import sys
+from framework.wcfconfig import *
 from framework.database import *
 from framework.configuration import *
 from framework.jobhandler import *
 
 if len(sys.argv) == 2:
-    dbconfig = sys.argv[1]
+    path = sys.argv[1]
 else:
-    dbconfig = '../config.inc.php'
+    path = ".."
 
-db = database(dbconfig)
+wcfconfig = wcfconfig(path)
 
-config = configuration(db)
+db = database(wcfconfig)
+
+config = configuration(db, wcfconfig)
 
 jh = jobhandler(db, config)
 
