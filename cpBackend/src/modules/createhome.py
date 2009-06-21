@@ -13,7 +13,8 @@ class createhome(basishandler):
         
         dirs = ''
         for dir in dirsDB:
-            dirs += dirsDB[dir][1]
+            if dirsDB[dir][0] == 'textarea':
+                dirs += dirsDB[dir][1]
         
         dirs = dirs.replace("{USERNAME}", user["username"])
         dirs = dirs.replace("{GUID}", str(user["guid"]))
