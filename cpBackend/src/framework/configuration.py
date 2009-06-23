@@ -19,11 +19,11 @@ class configuration(object):
 		for package in packages:
 			p += str(package[0]) + ','
 
-		p = p.rstrip(',')
+		self.packages = p.rstrip(',')
 		
 		configs = self.db.query('SELECT optionName, categoryName, optionType, optionValue, optionID \
 								 FROM wcf' + self.db.wcfnr + '_option\
-								 WHERE optionID IN (' + p + ')\
+								 WHERE optionID IN (' + self.packages + ')\
 								 ORDER BY optionName')
 
 		self.config = {}

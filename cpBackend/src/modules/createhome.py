@@ -9,7 +9,7 @@ class createhome(basishandler):
                                   JOIN cp' + self.db.cpnr + '_user cpuser ON (user.userID = cpuser.userID) \
                                   WHERE user.userID = ' + self.data['userID'])[0]      
         
-        dirsDB = self.config.getSection('cp.global.homedirs')
+        dirsDB = self.config.getSection('cp.backendpaths.createpaths')
         
         dirs = ''
         for dir in dirsDB:
@@ -30,8 +30,6 @@ class createhome(basishandler):
             dir[3] = dir[3].split(".")
             dir[3][0] = getUID(dir[3][0])
             dir[3][1] = getGID(dir[3][1])
-            
-            print dir
             
             mkPath(dir[0], dir[1], dir[2], dir[3][0], dir[3][1])
             
