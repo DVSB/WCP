@@ -25,24 +25,30 @@ class configuration(object):
 								 FROM wcf' + self.db.wcfnr + '_option\
 								 WHERE optionID IN (' + self.packages + ')\
 								 ORDER BY optionName')
-
 		self.config = {}
+		self.section = {}
 
 		for c in configs:
-			if self.config.has_key(c[1]) == False:
-				self.config[c[1]] = {}
+			if self.section.has_key(c[1]) == False:
+				self.section[c[1]] = []
 
-			self.config[c[1]][c[0]] = (c[2],c[3],c[4])
+			self.section[c[1]].append(c[0])
+			
+			self.config[c[0]] = (c[2],c[3],c[4])
 
 	def getSection(self, section):
-		if self.config.has_key(section) == True:
-			return self.config[section]
+		if self.section.has_key(section) == True:
+			ret = {}
+			for sec in self.section[section]:
+				ret[sec] = self.config[sec]
+			return ret
 		else:
 			return None
 		
-	def set(self, section, option, value):
-		if self.config.has_key(section) == True and self.config[section].has_key(option):
-			config = self.config[section][option]
+	def set(self, option, value):
+		if self.config.has_key(option):
+			self.config[option][1] = value
+			config = self.config[option]
 			if config[0] == 'boolean':
 				value = bool(value)
 				if value:
@@ -55,9 +61,9 @@ class configuration(object):
 					   WHERE optionID = " + str(config[2])
 			self.db.query(sql)
 			
-	def get(self, section, option):
-		if self.config.has_key(section) == True and self.config[section].has_key(option):
-			config = self.config[section][option]
+	def get(self, option):
+		if self.config.has_key(option):
+			config = self.config[option]
 			if config[0] == 'boolean':
 				if config[1] in _TRUE_VALUES:
 					return True

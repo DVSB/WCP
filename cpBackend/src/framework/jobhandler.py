@@ -10,7 +10,7 @@ class jobhandler(object):
         self.config = config
         
     def findPendingJobs(self):
-        lastRun = localtime(self.config.get("general", "last_run_backend"))
+        lastRun = localtime(self.config.get("last_run_backend"))
         currentTime = localtime()
         
         triggers = ['asap']
@@ -39,13 +39,13 @@ class jobhandler(object):
         self.findPendingJobs()
         
         for job in self.jobs:
-            try:
+            #try:
                 module = self.loadModule(job['jobhandler'])
                 func = getattr(module, job['jobhandler'])
                 obj = func(job['data'], self.db, self.config)
                 job['retVar'] = obj.run()
-            except Exception, e:
-                job['retVar'] = e
+            #except Exception, e:
+                #job['retVar'] = e
         
     def finishJobs(self):
         for job in self.jobs:
@@ -62,7 +62,7 @@ class jobhandler(object):
                                    SET lastExec = UNIX_TIMESTAMP() \
                                    WHERE jobhandlerTaskID = " + str(job['jobhandlerTaskID']))
                       
-        self.config.set("general", "last_run_backend", int(time()))
+        self.config.set("last_run_backend", int(time()))
 
     def loadModule(self, name):                
         # Fast path: see if the module has already been imported.

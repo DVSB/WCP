@@ -16,10 +16,8 @@ class createhome(basishandler):
             if dirsDB[dir][0] == 'textarea':
                 dirs += dirsDB[dir][1]
         
-        dirs = dirs.replace("{USERNAME}", user["username"])
-        dirs = dirs.replace("{GUID}", str(user["guid"]))
-        dirs = dirs.replace("{HOMEDIR_PREFIX}", self.config.get('cp.global', 'homedir_prefix'))
-        
+        dirs = parseOptions(dirs, self.config)
+        dirs = parseUser(dirs, user)
         dirs = dirs.split("\r\n")
         
         for dir in dirs:

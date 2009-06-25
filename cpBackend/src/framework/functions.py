@@ -1,8 +1,10 @@
 import os
 import os.path
 import sys
+import str
 from grp import getgrnam
 from pwd import getpwnam
+from re import *
 
 def mkPath(typ, path, mode, uid, gid):
     """
@@ -61,4 +63,26 @@ def getGID(gid):
         gid = getgrnam(gid).gr_gid
 
     return int(gid)
+
+def parseOptions(string, config):
+    options = findall("{(.+?)}", string, MULTILINE)
+    
+    for option in options:
+        value = config.get(str.lower(option))
+        if value is not None:
+            string = string.replace("{" + option + "}", str(value))
+            
+    return string
+
+def parseUser(string, user):
+    options = findall("{(.+?)}", string, MULTILINE)
+    
+    user = dict((k.lower(), v) for k,v in user.iteritems())
+    
+    for option in options:
+        if user.has_key(str.lower(option)):
+            string = string.replace("{" + option + "}", str(user[str.lower(option)]))
+            
+    return string
+    
     
