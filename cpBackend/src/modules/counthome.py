@@ -1,30 +1,29 @@
 from framework.basishandler import *
+from framework.functions import *
 import os
-from os.path import join, getsize
+import os.path
+import glob
 
 class counthome(basishandler):
     
     def run(self):  
-        users = self.db.queryDict('SELECT * \
-                                   FROM   wcf' + self.db.wcfnr + '_user user \
-                                   JOIN   cp' + self.db.cpnr + '_user cpuser ON (user.userID = cpuser.userID)')      
-
-        option = str(self.db.querySingle("SELECT optionID \
-                                          FROM   wcf" + self.db.wcfnr + "_user_option \
-                                          WHERE  optionName = 'diskspaceUsed' AND packageID = " + self.config.wcf.package_id)[0])      
+        users = getActiveUsers(self.config)
         
         dirsDB = self.config.getSection('cp.backendpaths.countpaths')
+        
+        option = getUserOptions(self.config, ['diskspaceUsed'])[0][0]
         
         odirs = ''
         for dir in dirsDB:
             if dirsDB[dir][0] == 'textarea':
                 odirs += dirsDB[dir][1]
-                
+        
+        # parse dirs with options
         odirs = parseOptions(odirs, self.config)        
         
         for user in users:   
-        
-            dirs = parseUser(odir, user)
+            # parse dirs with userdata
+            dirs = parseUser(odirs, user)
             dirs = dirs.split("\r\n")
             
             bytes = 0
@@ -32,14 +31,22 @@ class counthome(basishandler):
             for dir in dirs:
                 dir = dir.split(":")
                 
+                # empty dirs are not good
+                if dir[0] is '':
+                    continue
+                
                 exclude = []
-                if len(dir) > 1 and dir[1] != '':
+                if len(dir) > 1 and dir[1] != '': # are there dirs to exclude?
                     exclude = dir[1].split(",")
                 
-                self.getDirSize(dir[0], exclude)
-                           
+                bytes += self.getDirSize(dir[0], exclude)
+            
+            # turn bytes to megabytes
+            bytes /= 1024*1024 
+
+            # update user
             self.db.query("UPDATE  wcf" + self.db.wcfnr + "_user_option_value \
-                           SET     userOption" + option + " = '" + str(bytes) + "' \
+                           SET     userOption" + str(option) + " = '" + str(bytes) + "' \
                            WHERE   userID = " + str(user["userID"]))      
                     
         return 'success'
@@ -49,15 +56,27 @@ class counthome(basishandler):
         
         dir_size = 0
         
+        # if * is in path, get all matching dirs
         if "*" in dir:
-             print "search for every match"
+            dirs = glob.glob(dir)
+            
+            for dir in dirs:
+                if dir in exclude: # do not enter excluded dirs
+                    continue
+                dir_size += self.getDirSize(dir, exclude)
+                
+            return dir_size
         
-        for (path, dirs, files) in os.walk(dir, True, None, True):
+        # walk given dir, count all files and call func recursivly for subdirs
+        for (path, dirs, files) in os.walk(dir):
             for file in files:
-                dir_size = sum(getsize(join(path, file)) for file in files)
+                file = os.path.join(path, file)
+                if os.path.exists(file) is True: # for heavens sake, ignore missing files (dangling symlinks?!)
+                    dir_size += os.path.getsize(file)
                 
             for dir in dirs:
-                if join(path, dir) not in exclude:
+                dir = os.path.join(path, dir)
+                if dir not in exclude: # do not enter excluded dirs
                     dir_size += self.getDirSize(dir, exclude)
                 
         return dir_size

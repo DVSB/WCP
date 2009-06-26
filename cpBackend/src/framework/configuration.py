@@ -34,7 +34,7 @@ class configuration(object):
 
 			self.section[c[1]].append(c[0])
 			
-			self.config[c[0]] = (c[2],c[3],c[4])
+			self.config[c[0]] = [c[2],c[3],c[4]]
 
 	def getSection(self, section):
 		if self.section.has_key(section) == True:

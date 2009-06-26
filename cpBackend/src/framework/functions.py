@@ -1,7 +1,6 @@
 import os
 import os.path
 import sys
-import str
 from grp import getgrnam
 from pwd import getpwnam
 from re import *
@@ -85,4 +84,22 @@ def parseUser(string, user):
             
     return string
     
+def getActiveUsers(conf):
+    users = conf.db.queryDict('SELECT * \
+                               FROM   wcf' + conf.db.wcfnr + '_user user \
+                               JOIN   cp' + conf.db.cpnr + '_user cpuser ON (user.userID = cpuser.userID)\
+                               WHERE  banned = 0')      
+    return users
+
+def getUserOptions(conf, getoptions):
+    options = ""
+    for option in getoptions:
+        options += str("'" + option + "'") + ','
+        
+    options = options.rstrip(',')
+
+    options = conf.db.query("SELECT optionID \
+                             FROM   wcf" + conf.db.wcfnr + "_user_option \
+                             WHERE  optionName IN (" + options + ") AND packageID IN (" + conf.packages + ")") 
+    return options
     
