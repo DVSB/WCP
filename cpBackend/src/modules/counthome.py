@@ -26,7 +26,7 @@ class counthome(basishandler):
             dirs = parseUser(odirs, user)
             dirs = dirs.split("\r\n")
             
-            bytes = 0
+            bytes = 0.0
             
             for dir in dirs:
                 dir = dir.split(":")
@@ -66,18 +66,17 @@ class counthome(basishandler):
                 dir_size += self.getDirSize(dir, exclude)
                 
             return dir_size
-        
+
         # walk given dir, count all files and call func recursivly for subdirs
         for (path, dirs, files) in os.walk(dir):
+            for dir in dirs:    
+                if dir in exclude:
+                    dirs.remove(dir) # remove ignored dirs
+                    
             for file in files:
                 file = os.path.join(path, file)
-                if os.path.exists(file) is True: # for heavens sake, ignore missing files (dangling symlinks?!)
+                if os.path.exists(file) is True: # ignore missing files (dangling symlinks?!)
                     dir_size += os.path.getsize(file)
-                
-            for dir in dirs:
-                dir = os.path.join(path, dir)
-                if dir not in exclude: # do not enter excluded dirs
-                    dir_size += self.getDirSize(dir, exclude)
-                
+
         return dir_size
                 
