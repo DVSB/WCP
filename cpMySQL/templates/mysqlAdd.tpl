@@ -14,7 +14,7 @@
 		{/if}
 	{/capture}
 
-	<form method="post" action="index.php?form=MySQLAdd">
+	<form method="post" action="index.php?form=MySQL{@$action|ucfirst}">
 		<div class="border tabMenuContent">
 			<div class="container-1">
 				<fieldset>
@@ -52,6 +52,7 @@
 		<div class="formSubmit">
 			{@SID_INPUT_TAG}
 			{@SECURITY_TOKEN_INPUT_TAG}
+			{if $mysqlID|isset}<input type="hidden" name="mysqlID" value="{@$mysqlID}" />{/if}
 			<input type="submit" accesskey="s" value="{lang}wcf.global.button.submit{/lang}" />
 			<input type="reset" accesskey="r" value="{lang}wcf.global.button.reset{/lang}" />
 		</div>

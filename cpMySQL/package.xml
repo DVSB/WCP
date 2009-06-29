@@ -5,7 +5,7 @@
 	<packageInformation>
 		<packageName>WCF Controlpanel MySQL Modul</packageName>
 		<packageDescription>Ermöglicht die Anlage von MySQL-Datenbanken</packageDescription>
-		<version>0.0.1-alpha</version>
+		<version>0.0.5-alpha</version>
 		<plugin>com.toby.cp</plugin>
 		<date>2009-04-04</date>
 	</packageInformation>
@@ -31,6 +31,8 @@
 		<pagemenu>pagemenu.xml</pagemenu>
 		<eventlistener>eventlistener.xml</eventlistener>
 		<useroptions>useroptions.xml</useroptions>
+		<acpmenu>acpmenu.xml</acpmenu>
+		<acptemplates>acptemplates.tar</acptemplates>
 	</instructions>
 
 	<instructions type="update" fromversion="0.0.*">
@@ -42,6 +44,8 @@
 		<pagemenu>pagemenu.xml</pagemenu>
 		<eventlistener>eventlistener.xml</eventlistener>
 		<useroptions>useroptions.xml</useroptions>
+		<acpmenu>acpmenu.xml</acpmenu>
+		<acptemplates>acptemplates.tar</acptemplates>
 	</instructions>
 
 </package>

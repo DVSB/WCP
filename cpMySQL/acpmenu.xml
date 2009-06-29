@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "DTDs/acpMenu.dtd">
+<data>
+	<import>
+		<acpmenuitem name="cp.acp.menu.link.databaseroot">
+			<parent>cp.acp.menu.link</parent>
+		</acpmenuitem>
+		
+		<acpmenuitem name="cp.acp.menu.link.databaseroot.mysql">
+			<icon>icon/databaseM.png</icon>
+			<link>index.php?form=MySQLRootData</link>
+			<parent>cp.acp.menu.link.databaseroot</parent>
+			<showorder>1</showorder>
+		</acpmenuitem>
+	</import>
+</data>

@@ -4,31 +4,35 @@
 	<import>
 		<categories>
 
-			<category name="customer.mysql">
-				<parent>customer</parent>
+			<category name="cpmysql"></category>
+			<category name="cpmysql.global">
+				<parent>cpmysql</parent>	
+			</category>
+			<category name="cpmysql.link">
+				<parent>cpmysql</parent>	
 			</category>
 
 		</categories>
 
 		<options>
-
-		    <option name="phpmyadmin_url">
-		        <categoryname>customer.mysql</categoryname>
-				<optiontype>text</optiontype>
-		        <defaultvalue></defaultvalue>
-		    </option>
-
-		    <option name="mysql_postfix">
-		        <categoryname>customer.mysql</categoryname>
+		
+			<option name="mysql_postfix">
+		        <categoryname>cpmysql.global</categoryname>
 				<optiontype>text</optiontype>
 		        <defaultvalue>_sql</defaultvalue>
 		        <validationpattern>.+</validationpattern>
 		    </option>
 
 		    <option name="mysql_access_host">
-		        <categoryname>system</categoryname>
+		        <categoryname>cpmysql.global</categoryname>
 				<optiontype>text</optiontype>
 		        <defaultvalue>localhost</defaultvalue>
+		    </option>
+
+		    <option name="phpmyadmin_url">
+		        <categoryname>cpmysql.link</categoryname>
+				<optiontype>text</optiontype>
+		        <defaultvalue></defaultvalue>
 		    </option>
 
 		</options>

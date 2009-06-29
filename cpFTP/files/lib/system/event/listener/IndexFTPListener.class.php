@@ -9,7 +9,7 @@ class IndexFTPListener implements EventListener
 	 */
 	public function execute($eventObj, $className, $eventName)
 	{
-		$eventObj->addDisplay('wcf.user.option.ftpaccounts',  WCF :: getUser()->ftpaccountsUsed.' ('.WCF :: getUser()->ftpaccounts.')');
+		$eventObj->addDisplay('wcf.user.option.ftpaccounts',  WCF :: getUser()->ftpaccountsUsed.' / '.WCF :: getUser()->ftpaccounts);
 	}
 }
 ?>

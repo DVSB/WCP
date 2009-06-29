@@ -9,7 +9,7 @@ class IndexMySQLListener implements EventListener
 	 */
 	public function execute($eventObj, $className, $eventName)
 	{
-		$eventObj->addDisplay('wcf.user.option.mysqls',  WCF :: getUser()->mysqlsUsed.' ('.WCF :: getUser()->mysqls.')');
+		$eventObj->addDisplay('wcf.user.option.mysqls',  WCF :: getUser()->mysqlsUsed.' / '.WCF :: getUser()->mysqls);
 	}
 }
 ?>

@@ -1,8 +1,8 @@
 <?php
-require_once (CP_DIR . 'lib/data/ftp/FTPUserEditor.class.php');
+require_once (CP_DIR . 'lib/data/mysql/MySQLEditor.class.php');
 require_once (WCF_DIR . 'lib/form/AbstractSecureForm.class.php');
 
-class FTPAddForm extends AbstractSecureForm
+class MySQLAddForm extends AbstractSecureForm
 {
 	/**
 	 * @see AbstractPage::$templateName
@@ -53,6 +53,7 @@ class FTPAddForm extends AbstractSecureForm
 		WCF :: getTPL()->assign(array (
 			'password' => $this->password,
 			'description' => $this->description,
+			'action' => 'add',
 		));
 	}
 

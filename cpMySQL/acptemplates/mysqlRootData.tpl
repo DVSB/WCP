@@ -3,7 +3,7 @@
 <div class="mainHeadline">
 	<img src="{@RELATIVE_WCF_DIR}icon/loginL.png" alt="" />
 	<div class="headlineContainer">
-		<h2>{lang}cp.acp.mysqlrootdata{/lang}</h2>
+		<h2>{lang}cp.acp.dbrootdata{/lang}</h2>
 	</div>
 </div>
 
@@ -16,53 +16,47 @@
 	<div class="border content">
 		<div class="container-1">
 			<fieldset>
-				<legend>{lang}wcf.acp.masterPassword.init{/lang}</legend>
+				<legend>{lang}cp.acp.mysql.userdata{/lang}</legend>
 
-				<div class="formElement{if $errorField == 'masterPassword'} formError{/if}" id="masterPasswordDiv">
+				<div class="formElement{if $errorField == 'rootUser'} formError{/if}" id="rootUserDiv">
 					<div class="formFieldLabel">
-						<label for="masterPassword">{lang}wcf.acp.masterPassword{/lang}</label>
+						<label for="rootUser">{lang}cp.acp.rootUser{/lang}</label>
 					</div>
 					<div class="formField">
-						<input type="password" class="inputText" id="masterPassword" name="masterPassword" value="{$masterPassword}" />
-						{if $errorField == 'masterPassword'}
+						<input type="text" class="inputText" id="rootUser" name="rootUser" value="{$rootUser}" />
+						{if $errorField == 'rootUser'}
 							<p class="innerError">
 								{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
-								{if $errorType == 'notSecure'}{lang}wcf.acp.masterPassword.error.notSecure{/lang}{/if}
 							</p>
 						{/if}
 					</div>
-					<div class="formFieldDesc hidden" id="masterPasswordHelpMessage">
-						{lang}wcf.acp.masterPassword.init.description{/lang}
+					<div class="formFieldDesc hidden" id="rootUserHelpMessage">
+						{lang}cp.acp.rootUser.description{/lang}
 					</div>
 				</div>
 				<script type="text/javascript">//<![CDATA[
-					inlineHelp.register('masterPassword');
+					inlineHelp.register('rootUser');
 				//]]></script>
 
-				<div class="formElement{if $errorField == 'confirmMasterPassword'} formError{/if}">
+				<div class="formElement{if $errorField == 'rootPassword'} formError{/if}" id="rootPasswordDiv">
 					<div class="formFieldLabel">
-						<label for="confirmMasterPassword">{lang}wcf.acp.masterPassword.confirm{/lang}</label>
+						<label for="rootPassword">{lang}cp.acp.rootPassword{/lang}</label>
 					</div>
 					<div class="formField">
-						<input type="password" class="inputText" id="confirmMasterPassword" name="confirmMasterPassword" value="{$confirmMasterPassword}" />
-						{if $errorField == 'confirmMasterPassword'}
+						<input type="password" class="inputText" id="rootPassword" name="rootPassword" value="{$rootPassword}" />
+						{if $errorField == 'rootPassword'}
 							<p class="innerError">
 								{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
-								{if $errorType == 'notEqual'}{lang}wcf.acp.masterPassword.error.notEqual{/lang}{/if}
 							</p>
 						{/if}
 					</div>
-				</div>
-
-				<div class="formElement">
-					<div class="formFieldLabel">
-						<label for="exampleMasterPassword">{lang}wcf.acp.masterPassword.example{/lang}</label>
-					</div>
-					<div class="formField">
-						<p><a href="#" id="setPasswort" title="{lang}wcf.acp.masterPassword.example.set{/lang}">{@$exampleMasterPassword}</a></p>
-						<input type="hidden" id="exampleMasterPassword" name="exampleMasterPassword" value="{@$exampleMasterPassword}" />
+					<div class="formFieldDesc hidden" id="rootPasswordHelpMessage">
+						{lang}cp.acp.rootPassword.description{/lang}
 					</div>
 				</div>
+				<script type="text/javascript">//<![CDATA[
+					inlineHelp.register('rootPassword');
+				//]]></script>
 			</fieldset>
 
 			{if $additionalFields|isset}{@$additionalFields}{/if}
@@ -74,7 +68,6 @@
 		<input type="reset" accesskey="r" value="{lang}wcf.global.button.reset{/lang}" />
 		<input type="hidden" name="packageID" value="{@PACKAGE_ID}" />
  		{@SID_INPUT_TAG}
- 		<input type="hidden" name="url" value="{$url}" />
  	</div>
 </form>
 

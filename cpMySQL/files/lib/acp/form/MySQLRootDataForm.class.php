@@ -49,8 +49,8 @@ class MySQLRootDataForm extends ACPForm
 	{
 		$file = new File(CP_DIR . 'mysqlrootconfig.inc.php');
 		$file->write('<?php'."\n".'
-$root_user = "' . $this->rootUser . '"'."\n".'
-$root_password = "' . $this->rootPassword . '"'."\n".'
+$root_user = "' . $this->rootUser . '";
+$root_password = "' . $this->rootPassword . '";
 ?>');
 		$file->close();
 		@chmod(CP_DIR . 'mysqlrootconfig.inc.php', 0777);

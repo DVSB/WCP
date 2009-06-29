@@ -38,7 +38,7 @@ class MySQLEditor extends MySQL
 	 */
 	public function __construct($mysqlID, $row = null)
 	{
-		parent :: __construct($row);
+		parent :: __construct($mysqlID, $row);
 
 		self :: getRootDB();
 	}
@@ -80,24 +80,30 @@ class MySQLEditor extends MySQL
 			}
 		}
 
-		$sql = "INSERT INTO	cp" . CP_N . "_mysql
-						(userID, mysqlname, description)
-				VALUES
-						(" . $userID . ", '" . escapeString($dbname) . "', '" . escapeString($description) . "')";
-		WCF :: getDB()->sendQuery($sql);
+		try 
+		{
+			self :: $rootDB->sendQuery("CREATE DATABASE IF NOT EXISTS `" . escapeString($dbname) . "`");
+	
+			self :: $rootDB->sendQuery("GRANT ALL PRIVILEGES ON `" . str_replace('_', '\_', escapeString($dbname)) . "`.* TO `" . escapeString($dbname) . "`@`" . MYSQL_ACCESS_HOST . "` IDENTIFIED BY PASSWORD('" . escapeString($password) . "')");
 
-		$mysqlID = WCF :: getDB()->getInsertID('cp' . CP_N . '_mysql', 'mysqlID');
-
-		$user->getEditor()->updateOptions(array (
-			'mysqlsUsed' => ++$user->mysqlsUsed
-		));
-
-		self :: $rootDB->query("CREATE DATABASE `" . escapeString($dbname) . "`");
-
-		self :: $rootDB->query("GRANT ALL PRIVILEGES ON `" . str_replace('_', '\_', escapeString($dbname)) . "`.* TO `" . escapeString($dbname) . "`@`" . MYSQL_ACCESS_HOST . "` IDENTIFIED BY 'password'");
-		self :: $rootDB->query("SET PASSWORD FOR `" . escapeString($dbname) . "`@`" . MYSQL_ACCESS_HOST . "` = PASSWORD('" . escapeString($password) . "')");
-
-		return new MySQLEditor($mysqlID);
+			$sql = "INSERT INTO	cp" . CP_N . "_mysql
+							(userID, mysqlname, description)
+					VALUES
+							(" . $userID . ", '" . escapeString($dbname) . "', '" . escapeString($description) . "')";
+			WCF :: getDB()->sendQuery($sql);
+	
+			$mysqlID = WCF :: getDB()->getInsertID('cp' . CP_N . '_mysql', 'mysqlID');
+	
+			$user->getEditor()->updateOptions(array (
+				'mysqlsUsed' => ++$user->mysqlsUsed
+			));
+		
+			return new MySQLEditor($mysqlID);
+		}
+		catch (Exception $e)
+		{
+			throw new SystemException('Databasecreation failed: ', 0, $e->getMessage());
+		}
 	}
 
 	/**
@@ -114,7 +120,7 @@ class MySQLEditor extends MySQL
 				WHERE 	mysqlID = " . $this->mysqlID;
 		WCF :: getDB()->sendQuery($sql);
 
-		self :: $rootDB->query("SET PASSWORD FOR `" . $this->mysqlname . "`@`" . MYSQL_ACCESS_HOST . "` = PASSWORD('" . escapeString($password) . "')");
+		self :: $rootDB->sendQuery("SET PASSWORD FOR `" . $this->mysqlname . "`@`" . MYSQL_ACCESS_HOST . "` = PASSWORD('" . escapeString($password) . "')");
 	}
 
 	/**
@@ -128,7 +134,7 @@ class MySQLEditor extends MySQL
 		// get configuration
 		$dbName = $dbCharset = $root_user = $root_password = '';
 		require_once (CP_DIR . 'mysqlrootconfig.inc.php');
-		require_once (WCF_DIR . 'config.inc.php');
+		require (WCF_DIR . 'config.inc.php');
 
 		// create database connection
 		require_once (WCF_DIR . 'lib/system/database/MySQLDatabase.class.php');
@@ -140,22 +146,26 @@ class MySQLEditor extends MySQL
 	 */
 	public function delete()
 	{
-		self :: $rootDB->query("REVOKE ALL PRIVILEGES ON * . * FROM `" . $this->mysqlname . "`@`" . MYSQL_ACCESS_HOST . "`");
-		self :: $rootDB->query("REVOKE ALL PRIVILEGES ON `" . str_replace('_', '\_', $this->mysqlname) . "` . * FROM `" . $this->mysqlname . "`@`" . MYSQL_ACCESS_HOST . "`");
-		self :: $rootDB->query("DELETE FROM mysql.user WHERE User = '" . $this->mysqlname . "' AND Host = '" . MYSQL_ACCESS_HOST . "'");
+		try 
+		{
+			self :: $rootDB->sendQuery("DROP USER `" . $this->mysqlname . "`");
+			self :: $rootDB->sendQuery("DROP DATABASE IF EXISTS `" . $this->mysqlname . "`");
 
-		self :: $rootDB->query("DROP DATABASE IF EXISTS `" . $this->mysqlname . "`");
-		self :: $rootDB->query("FLUSH PRIVILEGES");
-
-		$sql = "DELETE FROM	cp" . CP_N . "_mysql
-				WHERE		mysqlID = " . $this->mysqlID;
-		WCF :: getDB()->sendQuery($sql);
-
-		require_once (WCF_DIR . '/lib/data/user/UserEditor.class.php');
-		$user = new UserEditor($this->userID);
-		$user->updateOptions(array (
-			'mysqlsUsed' => --$user->mysqlsUsed
-		));
+	
+			$sql = "DELETE FROM	cp" . CP_N . "_mysql
+					WHERE		mysqlID = " . $this->mysqlID;
+			WCF :: getDB()->sendQuery($sql);
+	
+			require_once (WCF_DIR . '/lib/data/user/UserEditor.class.php');
+			$user = new UserEditor($this->userID);
+			$user->updateOptions(array (
+				'mysqlsUsed' => --$user->mysqlsUsed
+			));
+		}
+		catch (Exception $e)
+		{
+			throw new SystemException('Databasedeletion failed: ', 0, $e->getMessage());
+		}
 	}
 
 	/**

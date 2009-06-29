@@ -18,7 +18,7 @@
 			<ul>
 				<li><a href="index.php?form=MySQLAdd{@SID_ARG_2ND}">
 				<img title="{lang}cp.mysql.add{/lang}" alt=""
-					src="{iconmysqlAddM.png{/icon}" /> <span>{lang}cp.mysql.add{/lang}</span> </a></li>
+					src="{icon}mysqlAddM.png{/icon}" /> <span>{lang}cp.mysql.add{/lang}</span> </a></li>
 			</ul>
 		</div>
 	</div>
@@ -41,7 +41,7 @@
 			{foreach from=$mysqls item=mysql}
 				<tr class="{cycle values="container-1,container-2"}">
 					<td class="columnMySQLID columnID"><a href="index.php?action=MySQLDelete&amp;mysqlID={@$mysql->mysqlID}{@SID_ARG_2ND}"><img src="{icon}deleteS.png{/icon}" alt="" title="{lang}cp.mysql.delete{/lang}" /></a></td>
-					<td class="columnMySQLname columnText"><a href="index.php?form=FTPEdit&amp;mysqlID={@$mysql->mysqlID}{@SID_ARG_2ND}">{$mysql->mysqlname}</a></td>
+					<td class="columnMySQLname columnText"><a href="index.php?form=MySQLEdit&amp;mysqlID={@$mysql->mysqlID}{@SID_ARG_2ND}">{$mysql->mysqlname}</a></td>
 
 					{if $additionalColumns.$mysql->mysqlID|isset}{@$additionalColumns.$mysql->mysqlID}{/if}
 				</tr>

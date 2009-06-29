@@ -38,7 +38,9 @@ class MySQLEditForm extends MySQLAddForm
 
 		WCF :: getTPL()->assign(array (
 			'password' => '',
+			'mysqlID' => $this->mysql->mysqlID,
 			'description' => $this->mysql->description,
+			'action' => 'edit',
 		));
 	}
 
@@ -47,12 +49,12 @@ class MySQLEditForm extends MySQLAddForm
 	 */
 	public function save()
 	{
-		parent :: save();
+		AbstractSecureForm :: save();
 
 		// update
-		$this->ftpAccount->update($this->password,
-								  $this->description
-								 );
+		$this->mysql->update($this->password,
+							 $this->description
+							);
 		$this->saved();
 
 		$url = 'index.php?page=MySQLList'. SID_ARG_2ND_NOT_ENCODED;
