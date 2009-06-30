@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/options.dtd">
+<data>
+	<import>
+		<categories>
+			<category name="cpdomains"></category>
+			<category name="cpdomains.global">
+				<parent>cpdomains</parent>
+			</category>
+		</categories>
+
+		<options>
+		
+		    <option name="domains_defaultdomain">
+		        <categoryname>cpdomains.global</categoryname>
+				<optiontype>text</optiontype>
+		        <defaultvalue></defaultvalue>
+		        <validationpattern>.+</validationpattern>
+		    </option>
+		    
+		</options>
+	</import>
+</data>

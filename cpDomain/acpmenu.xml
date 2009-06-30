@@ -2,29 +2,26 @@
 <!DOCTYPE data SYSTEM "DTDs/acpMenu.dtd">
 <data>
 	<import>
-		<acpmenuitem name="cp.acp.menu.link">
-			<icon>icon/systemL.png</icon>
-			<showorder>3</showorder>
-		</acpmenuitem>
 
 		<acpmenuitem name="cp.acp.menu.link.domains">
 			<parent>cp.acp.menu.link</parent>
 		</acpmenuitem>
 
-		<acpmenuitem name="cp.acp.menu.link.domains.view">
-			<icon>icon/groupM.png</icon>
-			<link>index.php?page=DomainsList</link>
+		<acpmenuitem name="cp.acp.menu.link.domains.list">
+			<icon>icon/domainM.png</icon>
+			<link>index.php?page=domainsList</link>
 			<parent>cp.acp.menu.link.domains</parent>
-			<permissions>admin.cp.canShowDomains</permissions>
+			<permissions>admin.cp.canSeeDomains</permissions>
 			<showorder>1</showorder>
 		</acpmenuitem>
 
 		<acpmenuitem name="cp.acp.menu.link.domains.add">
-			<icon>icon/groupM.png</icon>
-			<link>index.php?form=DomainAdd</link>
+			<icon>icon/domainAddM.png</icon>
+			<link>index.php?form=domainAdd</link>
 			<parent>cp.acp.menu.link.domains</parent>
 			<permissions>admin.cp.canAddDomain</permissions>
 			<showorder>2</showorder>
 		</acpmenuitem>
+		
 	</import>
 </data>
