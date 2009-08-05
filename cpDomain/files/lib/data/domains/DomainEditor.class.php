@@ -1,18 +1,9 @@
 <?php
-/*
- * Copyright (c) 2009 Tobias Friebel
- * Authors: Tobias Friebel <TobyF@Web.de>
- *
- * Lizenz: GPL
- *
- * $Id$
- */
-
 require_once (CP_DIR . 'lib/data/domains/Domain.class.php');
 require_once (CP_DIR . 'lib/data/user/CPUser.class.php');
 
 /**
- * Creates/manipulates one ftp account
+ * Creates/manipulates a domain
  *
  * @author		Tobias Friebel
  * @copyright	2009 Tobias Friebel
