@@ -31,9 +31,9 @@ class jobhandler(object):
             triggers.append('yearchange')
         
         self.jobs = self.db.queryDict("SELECT * \
-                                   FROM cp" + self.db.cpnr + "_jobhandler_task jt \
-                                   WHERE nextExec IN ('" + "','".join(triggers) + "')\
-                                   ORDER BY jobhandlerTaskID ASC")
+                                       FROM     cp" + self.db.cpnr + "_jobhandler_task jt \
+                                       WHERE    nextExec IN ('" + "','".join(triggers) + "')\
+                                       ORDER BY priority DESC, jobhandlerTaskID ASC")
         
     def firePendingJobs(self):
         self.findPendingJobs()

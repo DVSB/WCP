@@ -31,6 +31,7 @@
 		<pagemenu>pagemenu.xml</pagemenu>
 		<eventlistener>eventlistener.xml</eventlistener>
 		<useroptions>useroptions.xml</useroptions>
+		<acpmenu>acpmenu.xml</acpmenu>
 	</instructions>
 
 	<instructions type="update" fromversion="0.0.*">

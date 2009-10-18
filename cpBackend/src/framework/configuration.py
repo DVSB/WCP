@@ -21,10 +21,10 @@ class configuration(object):
 
 		self.packages = p.rstrip(',')
 		
-		configs = self.db.query('SELECT optionName, categoryName, optionType, optionValue, optionID \
-								 FROM wcf' + self.db.wcfnr + '_option\
-								 WHERE optionID IN (' + self.packages + ')\
-								 ORDER BY optionName')
+		configs = self.db.query('SELECT 	optionName, categoryName, optionType, optionValue, optionID \
+								 FROM 		wcf' + self.db.wcfnr + '_option\
+								 WHERE 		optionID IN (' + self.packages + ')\
+								 ORDER BY 	optionName')
 		self.config = {}
 		self.section = {}
 
@@ -56,9 +56,9 @@ class configuration(object):
 				else:
 					value = '0'
 			
-			sql = "UPDATE wcf"+self.db.wcfnr+"_option \
-					   SET optionValue = '" + str(value) + "' \
-					   WHERE optionID = " + str(config[2])
+			sql = "UPDATE 	wcf"+self.db.wcfnr+"_option \
+				   SET 		optionValue = '" + str(value) + "' \
+				   WHERE 	optionID = " + str(config[2])
 			self.db.query(sql)
 			
 	def get(self, option):

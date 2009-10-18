@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/options.dtd">
+<data>
+	<import>
+	
+		<domainoptions>
+		
+			<domainoption name="ipAndPort">
+				<optiontype>integer</optiontype>
+				<defaultvalue>0</defaultvalue>
+			</domainoption>
+			
+			<domainoption name="documentroot">
+				<optiontype>text</optiontype>
+				<defaultvalue></defaultvalue>
+			</domainoption>
+			
+			<domainoption name="isWildcardDomain">
+				<optiontype>boolean</optiontype>
+				<defaultvalue>0</defaultvalue>
+			</domainoption>
+			
+			<domainoption name="wwwServerAlias">
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</domainoption>
+			
+			<domainoption name="isWildcardDomain">
+				<optiontype>boolean</optiontype>
+				<defaultvalue>0</defaultvalue>
+			</domainoption>
+			
+			<domainoption name="specialSettings">
+				<optiontype>textarea</optiontype>
+				<defaultvalue></defaultvalue>
+			</domainoption>
+			
+			<domainoption name="isAliasDomain">
+				<optiontype>radiobuttons</optiontype>
+				<selectoptions><![CDATA[none:cp.domain.alias.none
+alias:cp.domain.alias.alias
+redirect:cp.domain.alias.redirect]]></selectoptions>
+				<enableoptions><![CDATA[none:!redirectDomain,!aliasDomainID
+alias:!redirectDomain,aliasDomainID
+redirect:redirectDomain,!aliasDomainID]]></enableoptions>
+			</domainoption>
+			
+			<domainoption name="aliasDomainID">
+				<optiontype>option</optiontype>
+				<defaultvalue>0</defaultvalue>
+			</domainoption>
+			
+			<domainoption name="redirectDomain">
+				<optiontype>text</optiontype>
+				<defaultvalue></defaultvalue>
+			</domainoption>
+			
+			<domainoption name="noWebDomain">
+				<optiontype>boolean</optiontype>
+				<defaultvalue>0</defaultvalue>
+			</domainoption>
+			
+			<domainoption name="openbasedir">
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</domainoption>
+			
+			<domainoption name="openbasedirPath">
+				<optiontype>text</optiontype>
+				<defaultvalue></defaultvalue>
+			</domainoption>
+			
+		</domainoptions>
+
+	</import>
+</data>

@@ -9,7 +9,7 @@
 
 		<acpmenuitem name="cp.acp.menu.link.domains.list">
 			<icon>icon/domainM.png</icon>
-			<link>index.php?page=domainsList</link>
+			<link>index.php?page=domainList</link>
 			<parent>cp.acp.menu.link.domains</parent>
 			<permissions>admin.cp.canSeeDomains</permissions>
 			<showorder>1</showorder>

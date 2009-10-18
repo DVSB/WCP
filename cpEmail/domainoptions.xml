@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/options.dtd">
+<data>
+	<import>
+	
+		<domainoptions>
+			
+			<domainoption name="isEmailDomain">
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</domainoption>
+
+			<domainoption name="subCanEmailDomain">
+				<optiontype>boolean</optiontype>
+				<defaultvalue>0</defaultvalue>
+			</domainoption>
+			
+		</domainoptions>
+
+	</import>
+</data>

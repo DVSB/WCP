@@ -14,7 +14,7 @@ require_once(WCF_DIR.'lib/data/user/group/Group.class.php');
  * @subpackage	acp.page
  * @category 	Community Framework
  */
-class UserActionPage extends AbstractPage {
+class DomainActionPage extends AbstractPage {
 	public $userID = 0;
 	public static $validFunctions = array('mark', 'unmark', 'unmarkAll', 'deleteMarked');
 	

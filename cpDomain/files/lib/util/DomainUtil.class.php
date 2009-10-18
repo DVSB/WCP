@@ -7,8 +7,8 @@
  * @copyright	2009 Tobias Friebel	
  * @license		GNU General Public License <http://opensource.org/licenses/gpl-2.0.php>
  * @package		com.toby.cp.domain
- * @subpackage	acp.form
- * @category 	Control Panel
+ * @subpackage	util
+ * @category 	ControlPanel
  * @id			$Id$
  */
 class DomainUtil
