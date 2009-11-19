@@ -42,20 +42,6 @@ class DomainListPage extends SortablePage
 	{
 		parent :: readParameters();
 		
-		if (!empty($_REQUEST['searchID']))
-		{
-			$this->searchID = intval($_REQUEST['searchID']);
-			if ($this->searchID)
-				$this->readSearchResult();
-			if (!count($this->userIDs))
-			{
-				throw new IllegalLinkException();
-			}
-			if (!empty($this->sqlConditions))
-				$this->sqlConditions .= ' AND ';
-			$this->sqlConditions .= "user_table.userID IN (" . implode(',', $this->userIDs) . ")";
-		}
-		
 		// get user options
 		$this->readUserOptions();
 	}
@@ -90,18 +76,16 @@ class DomainListPage extends SortablePage
 		parent :: readData();
 		
 		// get marked users
-		$this->markedUsers = WCF :: getSession()->getVar('markedUsers');
-		if ($this->markedUsers == null || !is_array($this->markedUsers))
-			$this->markedUsers = array ();
-			
-		// get columns heads
-		$this->readColumnsHeads();
+		$this->markedDomains = WCF :: getSession()->getVar('markedDomains');
+		if ($this->markedDomains == null || !is_array($this->markedDomains))
+			$this->markedDomains = array ();
+
 		
 		// get users
-		$this->readUsers();
+		$this->readDomains();
 		
 		// build page url
-		$this->url = 'index.php?page=UserList&searchID=' . $this->searchID . '&action=' . rawurlencode($this->action) . '&pageNo=' . $this->pageNo . '&sortField=' . $this->sortField . '&sortOrder=' . $this->sortOrder . '&packageID=' . PACKAGE_ID . SID_ARG_2ND_NOT_ENCODED;
+		$this->url = 'index.php?page=DomainList&searchID=' . $this->searchID . '&action=' . rawurlencode($this->action) . '&pageNo=' . $this->pageNo . '&sortField=' . $this->sortField . '&sortOrder=' . $this->sortOrder . '&packageID=' . PACKAGE_ID . SID_ARG_2ND_NOT_ENCODED;
 	}
 
 	/**
@@ -112,9 +96,8 @@ class DomainListPage extends SortablePage
 		parent :: assignVariables();
 		
 		WCF :: getTPL()->assign(array (
-			'users' => $this->users, 
-			'searchID' => $this->searchID, 
-			'markedUsers' => count($this->markedUsers), 
+			'domains' => $this->domains, 
+			'markedDomains' => count($this->markedDomains), 
 			'url' => $this->url, 
 			'columnHeads' => $this->columnHeads, 
 			'columnValues' => $this->columnValues
@@ -127,10 +110,10 @@ class DomainListPage extends SortablePage
 	public function show()
 	{
 		// set active menu item
-		WCFACP :: getMenu()->setActiveMenuItem('wcf.acp.menu.link.user.' . ($this->searchID ? 'search' : 'list'));
+		WCFACP :: getMenu()->setActiveMenuItem('cp.acp.menu.link.domains.list');
 		
 		// check permission
-		WCF :: getUser()->checkPermission('admin.user.canSearchUser');
+		WCF :: getUser()->checkPermission('admin.cp.canSeeDomains');
 		
 		parent :: show();
 	}
@@ -143,7 +126,7 @@ class DomainListPage extends SortablePage
 		parent :: countItems();
 		
 		$sql = "SELECT	COUNT(*) AS count
-				FROM	wcf" . WCF_N . "_user user_table
+				FROM	cp"  .CP_N . "_domains domains
 				" . (!empty($this->sqlConditions) ? 'WHERE ' . $this->sqlConditions : '');
 		$row = WCF :: getDB()->getFirstRow($sql);
 		return $row['count'];
@@ -152,7 +135,7 @@ class DomainListPage extends SortablePage
 	/**
 	 * Gets the list of results.
 	 */
-	protected function readUsers()
+	protected function readDomains()
 	{
 		// get user ids
 		$userIDs = array ();
@@ -227,33 +210,9 @@ class DomainListPage extends SortablePage
 	}
 
 	/**
-	 * Gets the result of the search with the given search id.
-	 */
-	protected function readSearchResult()
-	{
-		// get user search from database
-		$sql = "SELECT	searchData
-			FROM	wcf" . WCF_N . "_search
-			WHERE	searchID = " . $this->searchID . "
-				AND userID = " . WCF :: getUser()->userID . "
-				AND searchType = 'users'";
-		$search = WCF :: getDB()->getFirstRow($sql);
-		if (!isset($search['searchData']))
-		{
-			throw new IllegalLinkException();
-		}
-		
-		$data = unserialize($search['searchData']);
-		$this->userIDs = $data['matches'];
-		$this->itemsPerPage = $data['itemsPerPage'];
-		$this->columns = $data['columns'];
-		unset($data);
-	}
-
-	/**
 	 * Gets the user options from cache.
 	 */
-	protected function readUserOptions()
+	protected function readDomainOptions()
 	{
 		// add cache resource
 		$cacheName = 'user-option-' . PACKAGE_ID;

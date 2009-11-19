@@ -8,7 +8,7 @@
  * $Id$
  */
 
-require_once (CP_DIR . 'lib/acp/form/DomainOptionListForm.class.php');
+require_once (WCF_DIR . 'lib/acp/form/DynamicOptionListForm.class.php');
 
 /**
  * Shows the domain add form.
@@ -20,21 +20,22 @@ require_once (CP_DIR . 'lib/acp/form/DomainOptionListForm.class.php');
  * @subpackage	acp.form
  * @category 	Control Panel
  */
-class DomainAddForm extends DomainOptionListForm
+class DomainAddForm extends DynamicOptionListForm
 {
 	public $templateName = 'domainAdd';
 	public $menuItemName = 'cp.acp.menu.link.domains.add';
 	public $permission = 'admin.cp.canAddDomain';
 	
-	public $domainname = '';
-	public $options = array ();
-	
-	/**
-	 * domain to add
-	 *
-	 * @var DomainEditor
-	 */
+	public $cacheClass = 'CacheBuilderDomainOption';
+
+	public $cacheName = 'domain-option-';
+	public $additionalFields = array();
 	public $domain;
+	public $options;
+	
+	public $domainname = '';
+	public $activeTabMenuItem = '';
+	public $activeSubTabMenuItem = '';
 
 	/**
 	 * @see Form::readFormParameters()
@@ -45,6 +46,11 @@ class DomainAddForm extends DomainOptionListForm
 		
 		if (isset($_POST['domainname']))
 			$this->domainname = StringUtil :: trim($_POST['domainname']);
+			
+		if (isset($_POST['activeTabMenuItem'])) 
+			$this->activeTabMenuItem = $_POST['activeTabMenuItem'];
+		if (isset($_POST['activeSubTabMenuItem'])) 
+			$this->activeSubTabMenuItem = $_POST['activeSubTabMenuItem'];
 	}
 
 	/**
@@ -65,6 +71,22 @@ class DomainAddForm extends DomainOptionListForm
 		// validate dynamic options
 		parent :: validate();
 	}
+	
+	/**
+	 * Validates an option.
+	 * 
+	 * @param	string		$key		option name
+	 * @param	array		$option		option data
+	 */
+	protected function validateOption($key, $option)
+	{
+		parent :: validateOption($key, $option);
+		
+		if ($option['required'] && empty($this->activeOptions[$key]['optionValue']))
+		{
+			throw new UserInputException($option['optionName']);
+		}
+	}
 
 	/**
 	 * @see Form::save()
@@ -74,8 +96,8 @@ class DomainAddForm extends DomainOptionListForm
 		AbstractForm :: save();
 		
 		// create
-		require_once (WCF_DIR . 'lib/data/domains/DomainEditor.class.php');
-		$this->domain = DomainEditor :: create($this->username, $this->email, $this->password, $this->groupIDs, $this->activeOptions, $this->additionalFields, $this->visibleLanguages);
+		require_once (CP_DIR . 'lib/data/domains/DomainEditor.class.php');
+		$this->domain = DomainEditor :: create($this->domainname, $this->activeOptions, $this->additionalFields);
 		$this->saved();
 		
 		// show empty add form
@@ -136,7 +158,9 @@ class DomainAddForm extends DomainOptionListForm
 		WCF :: getTPL()->assign(array (
 			'domainname' => $this->domainname, 
 			'options' => $this->options, 
-			'action' => 'add'
+			'action' => 'add',
+			'activeTabMenuItem' 	=> $this->activeTabMenuItem,
+			'activeSubTabMenuItem' 	=> $this->activeSubTabMenuItem
 		));
 	}
 
@@ -156,18 +180,6 @@ class DomainAddForm extends DomainOptionListForm
 		
 		// show form
 		parent :: show();
-	}
-
-	/**
-	 * @see DynamicOptionListForm::checkOption()
-	 */
-	protected function checkOption($optionName)
-	{
-		if (!parent :: checkOption($optionName))
-			return false;
-		$option = $this->cachedOptions[$optionName];
-		
-		return ($option['editable'] != 1 && $option['editable'] != 4 && !$option['disabled']);
 	}
 
 	/**
