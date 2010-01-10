@@ -54,9 +54,6 @@ class MySQLAddForm extends AbstractSecureForm
 
 		if (empty($this->password))
 			throw new UserInputException('password', 'notempty');
-
-		if (WCF :: getUser()->mysqls >= WCF :: getUser()->mysqlsUsed)
-			throw new UserInputException('mysql', 'tomuch');
 	}
 
 	/**

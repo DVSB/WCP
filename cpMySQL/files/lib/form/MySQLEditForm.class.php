@@ -30,17 +30,6 @@ class MySQLEditForm extends MySQLAddForm
 
 		AbstractSecureForm :: readData();
 	}
-	
-	/**
-	 * @see Form::validate()
-	 */
-	public function validate()
-	{
-		parent :: validate();
-
-		if (empty($this->password))
-			throw new UserInputException('password', 'notempty');
-	}
 
 	/**
 	 * @see Page::assignVariables()
