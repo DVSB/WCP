@@ -10,6 +10,8 @@ class MySQLDeleteAction extends AbstractAction
 	 */
 	public function execute()
 	{
+		WCF::getUser()->checkPermission('cp.mysql.canDeleteMySQL');
+		
 		parent :: execute();
 
 		$mysql = new MySQLEditor($_REQUEST['mysqlID']);

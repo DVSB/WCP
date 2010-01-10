@@ -70,5 +70,18 @@ $root_password = "' . $this->rootPassword . '";
 			'rootPassword' => $this->rootPassword
 		));
 	}
+	
+	/**
+	 * @see Form::show()
+	 */
+	public function show() 
+	{
+		// check permission
+		WCF::getUser()->checkPermission('admin.cp.canEditMySQLPW');
+		
+		WCFACP::checkMasterPassword();
+		
+		parent::show();
+	}
 }
 ?>

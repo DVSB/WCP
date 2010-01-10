@@ -84,7 +84,7 @@ class MySQLEditor extends MySQL
 		{
 			self :: $rootDB->sendQuery("CREATE DATABASE IF NOT EXISTS `" . escapeString($dbname) . "`");
 	
-			self :: $rootDB->sendQuery("GRANT ALL PRIVILEGES ON `" . str_replace('_', '\_', escapeString($dbname)) . "`.* TO `" . escapeString($dbname) . "`@`" . MYSQL_ACCESS_HOST . "` IDENTIFIED BY PASSWORD('" . escapeString($password) . "')");
+			self :: $rootDB->sendQuery("GRANT ALL PRIVILEGES ON `" . str_replace('_', '\_', escapeString($dbname)) . "`.* TO `" . escapeString($dbname) . "`@`" . MYSQL_ACCESS_HOST . "` IDENTIFIED BY '" . escapeString($password) . "'");
 
 			$sql = "INSERT INTO	cp" . CP_N . "_mysql
 							(userID, mysqlname, description)
@@ -148,7 +148,7 @@ class MySQLEditor extends MySQL
 	{
 		try 
 		{
-			self :: $rootDB->sendQuery("DROP USER `" . $this->mysqlname . "`");
+			self :: $rootDB->sendQuery("DROP USER `" . $this->mysqlname . "`@`" . MYSQL_ACCESS_HOST . "`");
 			self :: $rootDB->sendQuery("DROP DATABASE IF EXISTS `" . $this->mysqlname . "`");
 
 	

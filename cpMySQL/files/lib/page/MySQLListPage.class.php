@@ -29,12 +29,10 @@ class MySQLListPage extends SortablePage
 	public $itemsPerPage = 20;
 	public $defaultSortField = 'mysqlname';
 	public $defaultSortOrder = 'ASC';
-	//public $neededPermissions = 'name.der.berechtigung';
+	public $neededPermissions = 'cp.mysql.canListMySQL';
 
 	/**
-	 * ftp ist object
-	 *
-	 * @var	FTPUserList
+	 * @var	MySQLList
 	 */
 	public $mysqlList = null;
 

@@ -12,6 +12,8 @@ require_once (CP_DIR . 'lib/form/MySQLAddForm.class.php');
 
 class MySQLEditForm extends MySQLAddForm
 {
+	public $neededPermissions = array('cp.mysql.canEditMySQL', 'cp.mysql.canAddMySQL', 'cp.mysql.canListMySQL');
+	
 	/**
 	 * @see Page::readData()
 	 */
@@ -26,7 +28,18 @@ class MySQLEditForm extends MySQLAddForm
 		if ($this->mysql->userID != WCF :: getUser()->userID)
 			throw new SystemException('invalid user');
 
-		parent :: readData();
+		AbstractSecureForm :: readData();
+	}
+	
+	/**
+	 * @see Form::validate()
+	 */
+	public function validate()
+	{
+		parent :: validate();
+
+		if (empty($this->password))
+			throw new UserInputException('password', 'notempty');
 	}
 
 	/**
@@ -34,7 +47,7 @@ class MySQLEditForm extends MySQLAddForm
 	 */
 	public function assignVariables()
 	{
-		parent :: assignVariables();
+		AbstractSecureForm :: assignVariables();
 
 		WCF :: getTPL()->assign(array (
 			'password' => '',
@@ -58,18 +71,7 @@ class MySQLEditForm extends MySQLAddForm
 		$this->saved();
 
 		$url = 'index.php?page=MySQLList'. SID_ARG_2ND_NOT_ENCODED;
-		HeaderUtil::redirect($url);
-	}
-
-	/**
-	 * @see Page::show()
-	 */
-	public function show()
-	{
-		require_once(WCF_DIR.'lib/page/util/menu/PageMenu.class.php');
-		PageMenu::setActiveMenuItem('cp.header.menu.mysql');
-
-		parent::show();
+		HeaderUtil :: redirect($url);
 	}
 }
 ?>
