@@ -1,5 +1,5 @@
 <?php
-require_once (CP_DIR . 'lib/data/domains/DomainOption.class.php');
+require_once (CP_DIR . 'lib/data/domain/DomainOption.class.php');
 
 /**
  * Add/modifies Domainoptions
@@ -36,7 +36,7 @@ class DomainOptionEditor extends DomainOption
 	}
 
 	/**
-	 * Creates a new user option.
+	 * Creates a new domain option.
 	 *
 	 * @param 	string 		$optionName
 	 * @param 	string 		$optionType
@@ -52,28 +52,33 @@ class DomainOptionEditor extends DomainOption
 	 * @param 	integer 	$packageID
 	 * @return 	string
 	 */
-	public static function create($optionName, $optionType, $defaultValue, $validationPattern, $selectOptions, $enableOptions, $required, $editable, $visible, $showOrder, $packageID = PACKAGE_ID)
+	public static function create($optionName, $categoryName, $optionType, $defaultValue, $validationPattern, 
+									$selectOptions, $enableOptions, $required, $editable, $visible, $showOrder, 
+									$disabled, $permissions, $options, $additionalData, $packageID = PACKAGE_ID)
 	{
 		// insert new option
 		$sql = "INSERT INTO	cp" . CP_N . "_domain_option
-					(packageID, optionName, optionType, defaultValue,
-					validationPattern, selectOptions, enableOptions, required, editable,
-					visible, searchable, showOrder)
-			VALUES		(" . $packageID . ", '" . escapeString($optionName) . "', '" . escapeString($optionType) . "', '" . escapeString($defaultValue) . "',
+				(packageID, optionName, categoryName, optionType, defaultValue,
+				 validationPattern, selectOptions, enableOptions, required, editable,
+				 visible, showOrder, disabled, permissions, options, additionalData)
+				VALUES		
+				(" . $packageID . ", '" . escapeString($optionName) . "', '" . escapeString($optionType) . "', '" . escapeString($defaultValue) . "',
 					'" . escapeString($validationPattern) . "', '" . escapeString($selectOptions) . "', '" . escapeString($enableOptions) . "', " . $required . ", " . $editable . ",
-					" . $visible . ", " . $showOrder . ")";
+					" . $visible . ", " . $showOrder . ", " . $disabled . ", '" . escapeString($permissions) . "', '" . escapeString($options) . "', '" . escapeString(serialize($additionalData)) . "')";
 		WCF :: getDB()->sendQuery($sql);
+		
+		$optionID = WCF::getDB()->getInsertID();
 		
 		// add new option to table "cp".CP_N."_domain_option_value" 
 		$sql = "ALTER TABLE 	cp" . CP_N . "_domain_option_value
-				ADD COLUMN	" . $optionName . " " . self :: getColumnType($optionType);
+				ADD COLUMN	domainOption" . $optionID . " " . self :: getColumnType($optionType);
 		WCF :: getDB()->sendQuery($sql);
 		
 		// add the default value to this column
 		if ($defaultValue)
 		{
 			$sql = "UPDATE	cp" . CP_N . "_domain_option_value
-					SET 	" . $optionName . " = '" . escapeString($defaultValue) . "'";
+					SET 	domainOption" . $optionID . " = '" . escapeString($defaultValue) . "'";
 			WCF :: getDB()->sendQuery($sql);
 		}
 		
@@ -106,8 +111,10 @@ class DomainOptionEditor extends DomainOption
 	}
 
 	/**
-	 * Updates the data of an existing user option.
+	 * Updates the data of an existing domain option.
 	 *
+	 * @param 	string 		$optionName
+	 * @param 	string 		$categoryName
 	 * @param 	string 		$optionType
 	 * @param 	mixed 		$defaultValue
 	 * @param 	string 		$validationPattern
@@ -117,25 +124,36 @@ class DomainOptionEditor extends DomainOption
 	 * @param 	integer 	$editable
 	 * @param 	integer 	$visible
 	 * @param 	integer 	$showOrder
+	 * @param 	boolean 	$disabled
+	 * @param	string		$permissions
+	 * @param	string		$options
+	 * @param	array		$addionalData
 	 */
-	public function update($optionType, $defaultValue, $validationPattern, $selectOptions, $enableOptions, $required, $editable, $visible, $showOrder)
+	public function update($optionName, $categoryName, $optionType, $defaultValue, $validationPattern, $selectOptions, $enableOptions, $required, $editable, $visible, $showOrder, $disabled = 0, $permissions = '', $options = '', $additionalData = null)
 	{
 		$sql = "UPDATE 	cp" . CP_N . "_domain_option
-				SET		optionType = '" . escapeString($optionType) . "',
-						defaultValue = '" . escapeString($defaultValue) . "',
-						validationPattern = '" . escapeString($validationPattern) . "',
-						selectOptions = '" . escapeString($selectOptions) . "',
-						required = " . $required . ",
-						editable = " . $editable . ",
-						visible = " . $visible . ",
-						showOrder = " . $showOrder . ",
+				SET		optionName = '".escapeString($optionName)."',
+						categoryName = '".escapeString($categoryName)."',
+						optionType = '".escapeString($optionType)."',
+						defaultValue = '".escapeString($defaultValue)."',
+						validationPattern = '".escapeString($validationPattern)."',
+						selectOptions = '".escapeString($selectOptions)."',
+						required = ".$required.",
+						editable = ".$editable.",
+						visible = ".$visible.",
+						showOrder = ".$showOrder.",
+						enableOptions = '".escapeString($enableOptions)."',
+						disabled = ".$disabled.",
+						permissions = '".escapeString($permissions)."',
+						options = '".escapeString($options)."'
+						".($additionalData !== null ? ", additionalData = '".escapeString(serialize($additionalData))."'" : "")."
 				WHERE 	optionID = " . $this->optionID;
 		WCF :: getDB()->sendQuery($sql);
 		
 		// alter the table "wcf".WCF_N."_user_option_value" with this new option
 		$sql = "ALTER TABLE 	cp" . CP_N . "_domain_option_value
 				CHANGE		" . $this->optionName . " 
-					" . $this->optionName . " " . $this->getColumnType($optionType);
+					" . $this->optionName . " " . self :: getColumnType($optionType);
 		WCF :: getDB()->sendQuery($sql);
 	}
 }
