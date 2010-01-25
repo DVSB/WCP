@@ -5,6 +5,7 @@ class MySQLRootDataForm extends ACPForm
 {
 	// system
 	public $templateName = 'mysqlRootData';
+	public $activeMenuItem = 'cp.acp.menu.link.databaseroot.mysql';
 
 	private $rootUser = '';
 	private $rootPassword = '';
