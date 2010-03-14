@@ -18,6 +18,7 @@ if (!defined('NO_IMPORTS'))
  * @package		com.toby.cp.domain
  * @subpackage	data.domain
  * @category 	Control Panel
+ * @id			$Id$
  */
 class Domain extends DatabaseObject
 {
@@ -44,10 +45,17 @@ class Domain extends DatabaseObject
 		
 		if (!empty($sqlCondition))
 		{
-			$sql = "SELECT 		domain.*, domain_option.*,
-					FROM 		cp" . CP_N . "_domains domain
+			$sql = "SELECT 		domain.*, domain_option.*, user.username AS username, 
+								admin.username AS adminname, parentdomain.domainname AS parentDomainName
+					FROM 		cp" . CP_N . "_domain domain
 					LEFT JOIN 	cp" . CP_N . "_domain_option_value domain_option 
 							ON (domain_option.domainID = domain.domainID)
+					JOIN		wcf" . WCF_N . "_user user
+							ON (domain.userID = user.userID)
+					JOIN		wcf" . WCF_N . "_user admin
+							ON (domain.adminID = admin.userID)
+					LEFT JOIN	cp" . CP_N . "_domain parentdomain
+							ON (domain.parentDomainID = parentdomain.domainID)
 					WHERE 	" . $sqlCondition;
 			$row = WCF :: getDB()->getFirstRow($sql);
 		}
@@ -107,8 +115,8 @@ class Domain extends DatabaseObject
 	protected static function getDomainOptionCache()
 	{
 		$cacheName = 'domain-option';
-		CPCore :: getCache()->addResource($cacheName, CP_DIR . 'cache/cache.' . $cacheName . '.php', CP_DIR . 'lib/system/cache/CacheBuilderOption.class.php');
-		self :: $domainOptions = CPCore :: getCache()->get($cacheName, 'options');
+		WCF :: getCache()->addResource($cacheName, CP_DIR . 'cache/cache.' . $cacheName . '.php', CP_DIR . 'lib/system/cache/CacheBuilderDomainOption.class.php');
+		self :: $domainOptions = WCF :: getCache()->get($cacheName, 'options');
 	}
 
 	/**

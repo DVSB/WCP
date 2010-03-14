@@ -1,9 +1,9 @@
 <?php
 // wcf imports
-require_once (CP_DIR . 'lib/acp/form/DomainAddForm.class.php');
+require_once (CP_DIR . 'lib/acp/form/DomainEditForm.class.php');
 
 /**
- * Shows the domain edit form.
+ * Shows the subdomain edit form.
  *
  * @author		Tobias Friebel
  * @copyright	2009 Tobias Friebel
@@ -13,7 +13,7 @@ require_once (CP_DIR . 'lib/acp/form/DomainAddForm.class.php');
  * @category 	Control Panel
  * @id			$Id$
  */
-class DomainEditForm extends DomainAddForm
+class SubDomainEditForm extends DomainEditForm
 {
 	//public $permission = 'admin.domain.canEditDomain';
 	
@@ -48,14 +48,6 @@ class DomainEditForm extends DomainAddForm
 	}
 
 	/**
-	 * @see Page::readFormParameters()
-	 */
-	public function readFormParameters()
-	{
-		parent :: readFormParameters();
-	}
-
-	/**
 	 * @see Page::readData()
 	 */
 	public function readData()
@@ -78,18 +70,8 @@ class DomainEditForm extends DomainAddForm
 	{
 		$this->domainname = $this->domain->domainname;
 		
-		$this->username = $this->domain->username;
-		$this->userID = $this->domain->userID;
-		
-		$this->adminname = $this->domain->adminname;
-		$this->adminID = $this->domain->adminID;
-		
 		$this->parentDomainName = $this->domain->parentDomainName;
 		$this->parentDomainID = $this->domain->parentDomainID;
-		
-		$this->registrationDateDay = gmdate('d', $this->domain->registrationDate);
-		$this->registrationDateMonth = gmdate('m', $this->domain->registrationDate);
-		$this->registrationDateYear = gmdate('Y', $this->domain->registrationDate);
 			
 		foreach ($this->activeOptions as $key => $option)
 		{
@@ -124,9 +106,8 @@ class DomainEditForm extends DomainAddForm
 	{
 		AbstractForm :: save();
 		
-		// save user
-		$this->additionalFields['registrationDate'] = $this->registrationDate;
-		$this->domain->update($this->domainname, $this->userID, $this->adminID, 0, $this->activeOptions, $this->additionalFields);
+		// save domain
+		$this->domain->update($this->domainname, CPCore :: getUser()->userID, $this->adminID, $this->parentDomainID, $this->activeOptions, $this->additionalFields);
 		$this->saved();
 		
 		// show success message

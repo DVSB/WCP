@@ -11,6 +11,7 @@ require_once (WCF_DIR . 'lib/data/DatabaseObject.class.php');
  * @package			com.toby.cp.domain
  * @subpackage		data.domains
  * @category		ControlPanel
+ * @id				$Id$
  */
 class DomainOption extends DatabaseObject
 {

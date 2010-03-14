@@ -3,6 +3,17 @@
 require_once (WCF_DIR . 'lib/system/event/EventListener.class.php');
 require_once (CP_DIR . 'lib/data/domains/DomainEditor.class.php');
 
+/**
+ * Adds Actions for Domain-User-Interaction
+ *
+ * @author		Tobias Friebel
+ * @copyright	2009 Tobias Friebel
+ * @license		GNU General Public License <http://opensource.org/licenses/gpl-2.0.php>
+ * @package		com.toby.cp.domain
+ * @subpackage	system.event.listener
+ * @category 	Control Panel
+ * @id			$Id$
+ */
 class UserACPDomainListener implements EventListener
 {
 	/**

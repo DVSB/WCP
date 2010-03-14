@@ -2,7 +2,7 @@
 // wcf imports
 if (!defined('NO_IMPORTS'))
 {
-	require_once (WCF_DIR . 'lib/data/domain/Domain.class.php');
+	require_once (CP_DIR . 'lib/data/domain/Domain.class.php');
 }
 
 /**
@@ -14,6 +14,7 @@ if (!defined('NO_IMPORTS'))
  * @package		com.toby.cp.domains
  * @subpackage	data.domain
  * @category 	Control Panel
+ * @id			$Id$
  */
 class DomainEditor extends Domain
 {
@@ -29,10 +30,10 @@ class DomainEditor extends Domain
 	 * 
 	 * @return 	DomainEditor
 	 */
-	public static function create($domainame, $documentroot, $userID, $adminID, $parentDomainID = 0, $domainOptions = array(), $additionalFields = array())
+	public static function create($domainame, $userID, $adminID, $parentDomainID = 0, $domainOptions = array(), $additionalFields = array())
 	{
 		// insert main data
-		$domainID = self :: insert($domainame, $documentroot, $userID, $adminID, $parentDomainID, $additionalFields);
+		$domainID = self :: insert($domainame, $userID, $adminID, $parentDomainID, $additionalFields);
 		
 		// insert user options
 		self :: insertDomainOptions($domainID, $domainOptions);
@@ -53,7 +54,7 @@ class DomainEditor extends Domain
 	 * 
 	 * @return 	integer		new domainID
 	 */
-	public static function insert($domainame, $documentroot, $userID, $adminID, $parentDomainID, $additionalFields = array())
+	public static function insert($domainname, $userID, $adminID, $parentDomainID, $additionalFields = array())
 	{
 		$additionalColumnNames = $additionalColumnValues = '';
 		
@@ -67,10 +68,9 @@ class DomainEditor extends Domain
 		}
 		
 		$sql = "INSERT INTO	cp" . CP_N . "_domain
-						(domainname, documentroot, userID, adminID, parentDomainID
+						(domainname, userID, adminID, parentDomainID
 						" . $additionalColumnNames . ")
 				VALUES	('" . escapeString($domainname) . "',
-						'" . escapeString($documentroot) . "',
 						" . intval($userID) . ",
 						" . intval($adminID) . ",
 						" . intval($parentDomainID) . "
@@ -114,7 +114,7 @@ class DomainEditor extends Domain
 			
 			if (!empty($updateColumns))
 				$updateColumns .= ',';
-			$updateColumns .= 'userOption' . $option['optionID'] . ' = VALUES(domainOption' . $option['optionID'] . ')';
+			$updateColumns .= 'domainOption' . $option['optionID'] . ' = VALUES(domainOption' . $option['optionID'] . ')';
 			
 			// the value of this option was send via "activeOptions".
 			unset($defaultValues[$option['optionID']]);
@@ -153,9 +153,9 @@ class DomainEditor extends Domain
 	 * @param	array 		$additionalFields
 	 * @param 	array		$visibleLanguages
 	 */
-	public function update($domainname = '',  $documentroot = '', $userID = 0, $adminID = 0, $dynamicOptions = null, $additionalFields = array())
+	public function update($domainname, $userID, $adminID, $parentDomainID, $dynamicOptions = null, $additionalFields = array())
 	{
-		$this->updateDomain($domainname, $documentroot, $userID, $adminID, $additionalFields);
+		$this->updateDomain($domainname, $userID, $adminID, $parentDomainID, $additionalFields);
 		
 		if ($dynamicOptions !== null)
 			self :: insertDomainOptions($this->domainID, $dynamicOptions, true);
@@ -207,7 +207,7 @@ class DomainEditor extends Domain
 	 * @param	int 		$adminID
 	 * @param	array		$additionalFields
 	 */
-	protected function updateDomain($domainname = '', $documentroot = '', $userID = 0, $adminID = 0, $additionalFields = array())
+	protected function updateDomain($domainname = '', $userID = 0, $adminID = 0, $parentDomainID = 0, $additionalFields = array())
 	{
 		$updateSQL = '';
 		if (!empty($domainname))
@@ -216,28 +216,28 @@ class DomainEditor extends Domain
 			$this->domainname = $domainname;
 		}
 		
-		if (!empty($documentroot))
-		{
-			if (!empty($updateSQL))
-				$updateSQL .= ',';
-			$updateSQL .= "documentroot = '" . escapeString($documentroot) . "'";
-			$this->documentroot = $documentroot;
-		}
-		
 		if (!empty($userID))
 		{
 			if (!empty($updateSQL))
 				$updateSQL .= ',';
-			$updateSQL .= "userID = '" . $userID . "'";
-			$this->password = $password;
+			$updateSQL .= "userID = " . $userID;
+			$this->userID = $userID;
 		}
 		
 		if (!empty($adminID))
 		{
 			if (!empty($updateSQL))
 				$updateSQL .= ',';
-			$updateSQL .= "adminID = '" . $adminID . "'";
+			$updateSQL .= "adminID = " . $adminID;
 			$this->adminID = $adminID;
+		}
+		
+		if (!empty($parentDomainID))
+		{
+			if (!empty($updateSQL))
+				$updateSQL .= ',';
+			$updateSQL .= "parentDomainID = " . $parentDomainID;
+			$this->parentDomainID = $parentDomainID;
 		}
 		
 		foreach ($additionalFields as $key => $value)
@@ -283,6 +283,50 @@ class DomainEditor extends Domain
 		
 		return count($domainIDs);
 	}
+	
+	/**
+	 * Disable domains.
+	 * Returns the number of disabled domains.
+	 *
+	 * @param	array		$domainIDs
+	 * @return	integer
+	 */
+	public static function disableAll($domainIDs)
+	{
+		if (count($domainIDs) == 0)
+			return 0;
+		
+		$domainIDsStr = implode(',', $domainIDs);
+
+		$sql = "UPDATE 	cp" . CP_N . "_domain
+				SET		deactivated = 1
+				WHERE 	domainID IN (" . $domainIDsStr . ")";
+		WCF :: getDB()->sendQuery($sql);
+		
+		return count($domainIDs);
+	}
+	
+	/**
+	 * enable domains.
+	 * Returns the number of enabled domains.
+	 *
+	 * @param	array		$domainIDs
+	 * @return	integer
+	 */
+	public static function enableAll($domainIDs)
+	{
+		if (count($domainIDs) == 0)
+			return 0;
+		
+		$domainIDsStr = implode(',', $domainIDs);
+
+		$sql = "UPDATE 	cp" . CP_N . "_domain
+				SET		deactivated = 0
+				WHERE 	domainID IN (" . $domainIDsStr . ")";
+		WCF :: getDB()->sendQuery($sql);
+		
+		return count($domainIDs);
+	}
 
 	/**
 	 * Unmarks all marked domains.
@@ -302,7 +346,7 @@ class DomainEditor extends Domain
 		$sessionVars = WCF :: getSession()->getVars();
 		if (isset($sessionVars['markedDomains']))
 		{
-			if (in_array($this->userID, $sessionVars['markedDomains']))
+			if (in_array($this->domainID, $sessionVars['markedDomains']))
 				return 1;
 		}
 		

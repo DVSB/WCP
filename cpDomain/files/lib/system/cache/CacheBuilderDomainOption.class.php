@@ -2,26 +2,24 @@
 // wcf imports
 require_once (WCF_DIR . 'lib/system/cache/CacheBuilder.class.php');
 
+/**
+ * Caches domainoptions
+ *
+ * @author		Tobias Friebel
+ * @copyright	2009 Tobias Friebel
+ * @license		GNU General Public License <http://opensource.org/licenses/gpl-2.0.php>
+ * @package		com.toby.cp.domain
+ * @subpackage	system.cache
+ * @category 	Control Panel
+ * @id			$Id$
+ */
 class CacheBuilderDomainOption implements CacheBuilder
 {
-
 	/**
 	 * @see CacheBuilder::getData()
 	 */
 	public function getData($cacheResource)
-	{
-		$information = explode('-', $cacheResource['cache']);
-		if (count($information) == 3)
-		{
-			$type = $information[0] . '_';
-			$packageID = $information[2];
-		}
-		else
-		{
-			$type = '';
-			$packageID = $information[1];
-		}
-		
+	{	
 		$data = array (
 			'categories' => array (), 
 			'options' => array (), 
@@ -30,78 +28,39 @@ class CacheBuilderDomainOption implements CacheBuilder
 		);
 		
 		// option categories
-		// get all option categories and filter categories with low priority
-		$sql = "SELECT		categoryName, categoryID 
-				FROM		cp" . CP_N . "_" . $type . "option_category option_category,
-							wcf" . WCF_N . "_package_dependency package_dependency
-				WHERE 		option_category.packageID = package_dependency.dependency
-						AND package_dependency.packageID = " . $packageID . "
-				ORDER BY	package_dependency.priority";
+		// get needed option categories
+		$sql = "SELECT		option_category.*
+				FROM		cp" . CP_N . "_domain_option_category option_category
+				ORDER BY	showOrder";
 		$result = WCF :: getDB()->sendQuery($sql);
-		$optionCategories = array ();
 		while ($row = WCF :: getDB()->fetchArray($result))
 		{
-			$optionCategories[$row['categoryName']] = $row['categoryID'];
-		}
-		
-		if (count($optionCategories) > 0)
-		{
-			// get needed option categories
-			$sql = "SELECT		option_category.*, package.packageDir
-					FROM		cp" . CP_N . "_" . $type . "option_category option_category
-					LEFT JOIN	wcf" . WCF_N . "_package package
-						ON		(package.packageID = option_category.packageID)
-					WHERE		categoryID IN (" . implode(',', $optionCategories) . ")
-					ORDER BY	showOrder";
-			$result = WCF :: getDB()->sendQuery($sql);
-			while ($row = WCF :: getDB()->fetchArray($result))
+			$data['categories'][$row['categoryName']] = $row;
+			if (!isset($data['categoryStructure'][$row['parentCategoryName']]))
 			{
-				$data['categories'][$row['categoryName']] = $row;
-				if (!isset($data['categoryStructure'][$row['parentCategoryName']]))
-				{
-					$data['categoryStructure'][$row['parentCategoryName']] = array ();
-				}
-				
-				$data['categoryStructure'][$row['parentCategoryName']][] = $row['categoryName'];
+				$data['categoryStructure'][$row['parentCategoryName']] = array ();
 			}
+			
+			$data['categoryStructure'][$row['parentCategoryName']][] = $row['categoryName'];
 		}
 		
-		// options
-		// get all options and filter options with low priority
-		$sql = "SELECT		optionName, domainOptionID 
-				FROM		cp" . CP_N . "_" . $type . "option option_table,
-							wcf" . WCF_N . "_package_dependency package_dependency
-				WHERE 		option_table.packageID = package_dependency.dependency
-						AND package_dependency.packageID = " . $packageID . "
-				ORDER BY	package_dependency.priority";
+		// get needed options
+		$sql = "SELECT		*
+				FROM		cp" . CP_N . "_domain_option
+				ORDER BY	showOrder";
 		$result = WCF :: getDB()->sendQuery($sql);
-		$options = array ();
 		while ($row = WCF :: getDB()->fetchArray($result))
 		{
-			$options[$row['optionName']] = $row['optionID'];
-		}
-		
-		if (count($options) > 0)
-		{
-			// get needed options
-			$sql = "SELECT		*
-					FROM		cp" . CP_N . "_" . $type . "option
-					WHERE		domainOptionID IN (" . implode(',', $options) . ")
-					ORDER BY	showOrder";
-			$result = WCF :: getDB()->sendQuery($sql);
-			while ($row = WCF :: getDB()->fetchArray($result))
+			// unserialize additional data
+			$row['additionalData'] = (empty($row['additionalData']) ? array () : @unserialize($row['additionalData']));
+			
+			$data['options'][$row['optionName']] = $row;
+			if (!isset($data['optionToCategories'][$row['categoryName']]))
 			{
-				// unserialize additional data
-				$row['additionalData'] = (empty($row['additionalData']) ? array () : @unserialize($row['additionalData']));
-				
-				$data['options'][$row['optionName']] = $row;
-				if (!isset($data['optionToCategories'][$row['categoryName']]))
-				{
-					$data['optionToCategories'][$row['categoryName']] = array ();
-				}
-				
-				$data['optionToCategories'][$row['categoryName']][] = $row['optionName'];
+				$data['optionToCategories'][$row['categoryName']] = array ();
 			}
+			
+			$data['optionToCategories'][$row['categoryName']][] = $row['optionName'];
 		}
 		
 		return $data;

@@ -12,6 +12,7 @@ require_once (CP_DIR . 'lib/data/domain/DomainOptionEditor.class.php');
  * @package			com.toby.cp.domain
  * @subpackage		pip
  * @category		ControlPanel
+ * @id				$Id$
  */
 class DomainOptionsPackageInstallationPlugin extends AbstractXMLPackageInstallationPlugin
 {

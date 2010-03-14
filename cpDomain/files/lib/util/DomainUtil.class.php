@@ -36,13 +36,35 @@ class DomainUtil
 	 * @param	string		$name		domainname
 	 * @return 	boolean
 	 */
-	public static function isAvailableDomainname($name)
+	public static function isAvailableDomainname($name, $domainID = 0)
 	{
 		$sql = "SELECT 	COUNT(domainname) AS count
-				FROM 	cp" . CP_N . "_domains	
+				FROM 	cp" . CP_N . "_domain
 				WHERE 	domainname = '" . escapeString($name) . "'";
+		
+		if ($domainID != 0)
+			$sql .= " AND domainID <> " . $domainID;
+		
 		$existCount = WCF :: getDB()->getFirstRow($sql);
 		return $existCount['count'] == 0;
+	}
+	
+	/**
+	 * Returns number of domains for given userID, minus subdomains
+	 * 
+	 * @param	int			$userID
+	 * @param 	bool		$addSubDomains		if true, subdomains will also be counted
+	 * @return 	int
+	 */
+	public static function getDomainsForUser($userID, $addSubDomains = false)
+	{
+		$sql = "SELECT 	COUNT(*) AS count
+				FROM 	cp" . CP_N . "_domain	
+				WHERE 	userID = '" . intval($userID) . "'
+					" . ($addSubDomains ? ' AND parentDomainID IS NULL ' : '') . " 
+					AND deactivated = 0";
+		$count = WCF :: getDB()->getFirstRow($sql);
+		return $count['count'];
 	}
 }
 ?>

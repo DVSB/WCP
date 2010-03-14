@@ -1,17 +1,17 @@
-DROP TABLE IF EXISTS cp1_1_domains;
-CREATE TABLE cp1_1_domains (	
+DROP TABLE IF EXISTS cp1_1_domain;
+CREATE TABLE cp1_1_domain (	
   	domainID int(10) unsigned NOT NULL auto_increment,
   	userID int(10) NOT NULL default '0',
   	domainname varchar(255) NOT NULL default '',
 	adminID int(10) unsigned NOT NULL default '0',
-	addDate int(11) NOT NULL default '0',
-	registrationDate date NOT NULL,
+	addDate int(11) NOT NULL,
+	registrationDate INT(11) NOT NULL,
 	canEditDomain tinyint(1) NOT NULL default '1',
 	parentDomainID int(10) unsigned NOT NULL default '0',
 	deactivated tinyint(1) NOT NULL default '0',
 	PRIMARY KEY  (domainID),
 	KEY userID (userID),
-	KEY parentdomain (parentdomainID),
+	KEY parentdomain (parentDomainID),
 	KEY domain (domainname)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
@@ -35,12 +35,11 @@ CREATE TABLE IF NOT EXISTS cp1_1_domain_option (
 	optionName varchar(255) NOT NULL default '',
 	categoryName varchar(255) NOT NULL default '',
 	optionType varchar(255) NOT NULL default '',
-	optionValue mediumtext NULL,
+	defaultValue mediumtext NULL,
 	validationPattern text NULL,
 	selectOptions mediumtext NULL,
 	enableOptions mediumtext NULL,
 	required tinyint(1) unsigned NOT NULL default 0,
-	showOrder int(10) unsigned NOT NULL default 0,
 	hidden tinyint(1) unsigned NOT NULL default 0,
 	editable tinyint(1) unsigned NOT NULL default 0, 
 	visible tinyint(1) unsigned NOT NULL default 0,

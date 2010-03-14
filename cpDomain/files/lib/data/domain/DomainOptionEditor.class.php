@@ -10,6 +10,7 @@ require_once (CP_DIR . 'lib/data/domain/DomainOption.class.php');
  * @package			com.toby.cp.domain
  * @subpackage		data.domains
  * @category		ControlPanel
+ * @id				$Id$
  */
 class DomainOptionEditor extends DomainOption
 {
