@@ -40,7 +40,7 @@ class DomainEditForm extends DomainAddForm
 				throw new IllegalLinkException();
 			}
 			
-			if ($this->domain->adminID != CPACP :: getUser()->userID && !CPACP :: getUser()->getPermission('admin.general.isSuperAdmin'))
+			if ($this->domain->adminID != WCF :: getUser()->userID && !WCF :: getUser()->getPermission('admin.general.isSuperAdmin'))
 			{
 				throw new PermissionDeniedException();
 			}

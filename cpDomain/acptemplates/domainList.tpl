@@ -12,7 +12,7 @@
 	<p class="success">{lang}wcf.acp.domain.delete.success{/lang}</p>	
 {/if}
 {if $disabledDomains}
-	<p class="success">{lang}wcf.acp.domain.delete.success{/lang}</p>	
+	<p class="success">{lang}wcf.acp.domain.disabled.success{/lang}</p>	
 {/if}
 
 <div class="contentHeader">

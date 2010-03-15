@@ -9,7 +9,7 @@ require_once (CP_DIR . 'lib/acp/form/DomainEditForm.class.php');
  * @copyright	2009 Tobias Friebel
  * @license		GNU General Public License <http://opensource.org/licenses/gpl-2.0.php>
  * @package		com.toby.cp.domain
- * @subpackage	acp.form
+ * @subpackage	form
  * @category 	Control Panel
  * @id			$Id$
  */
@@ -25,7 +25,7 @@ class SubDomainEditForm extends DomainEditForm
 	 */
 	public function readParameters()
 	{
-		parent :: readParameters();
+		AbstractPage :: readParameters();
 		
 		if (isset($_REQUEST['domainID']))
 		{
@@ -40,27 +40,11 @@ class SubDomainEditForm extends DomainEditForm
 				throw new IllegalLinkException();
 			}
 			
-			if ($this->domain->adminID != CPACP :: getUser()->userID && !CPACP :: getUser()->getPermission('admin.general.isSuperAdmin'))
+			if ($this->domain->userID != WCF :: getUser()->userID)
 			{
 				throw new PermissionDeniedException();
 			}
 		}
-	}
-
-	/**
-	 * @see Page::readData()
-	 */
-	public function readData()
-	{
-		if (!count($_POST))
-		{
-			// default values
-			$this->readDefaultValues();
-		}
-		
-		parent :: readData();
-		
-		$this->url = 'index.php?form=DomainEdit&userID=' . $this->domain->domainID . SID_ARG_2ND_NOT_ENCODED;
 	}
 
 	/**
@@ -113,5 +97,24 @@ class SubDomainEditForm extends DomainEditForm
 		// show success message
 		WCF :: getTPL()->assign('success', true);
 	}
+	
+	/**
+	 * @see Page::show()
+	 */
+	public function show()
+	{
+		require_once(WCF_DIR.'lib/page/util/menu/PageMenu.class.php');
+		PageMenu::setActiveMenuItem('cp.header.menu.domain');
+		
+		// check permission
+		WCF :: getUser()->checkPermission($this->permission);
+		
+		// get domain options and categories from cache
+		$this->readCache();
+		
+		// show form
+		AbstractPage :: show();
+	}
+	
 }
 ?>

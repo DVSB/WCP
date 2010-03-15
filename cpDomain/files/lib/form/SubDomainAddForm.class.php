@@ -9,7 +9,7 @@ require_once (CP_DIR . 'lib/data/user/CPUser.class.php');
  * @copyright	2009 Tobias Friebel
  * @license		GNU General Public License <http://opensource.org/licenses/gpl-2.0.php>
  * @package		com.toby.cp.domain
- * @subpackage	acp.form
+ * @subpackage	form
  * @category 	Control Panel
  * @id			$Id$
  */
