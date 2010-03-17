@@ -4,16 +4,21 @@
 
 	{include file='headInclude' sandbox=false}
 </head>
-<body>
+<body{if $templateName|isset} id="tpl{$templateName|ucfirst}"{/if}>
 {include file='header' sandbox=false}
 
 <div id="main">
+	
+	<div class="mainHeadline">
+		<img src="{icon}mysqlL.png{/icon}" alt="" />
+		<div class="headlineContainer">
+			<h2>{lang}cp.acp.mysql.list{/lang}</h2>
+		</div>
+	</div>
 
-<div class="contentHeader">
-	{pages print=true assign=pagesLinks link="index.php?page=MySQLList&pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"|concat:SID_ARG_2ND_NOT_ENCODED}
-</div>
-{if $this->user->mysqls > $this->user->mysqlsUsed}
 	<div class="contentHeader">
+		{pages print=true assign=pagesLinks link="index.php?page=MySQLList&pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"|concat:SID_ARG_2ND_NOT_ENCODED}
+		{if $this->user->mysqls > $this->user->mysqlsUsed}
 		<div class="largeButtons">
 			<ul>
 				<li><a href="index.php?form=MySQLAdd{@SID_ARG_2ND}">
@@ -21,9 +26,10 @@
 					src="{icon}mysqlAddM.png{/icon}" /> <span>{lang}cp.mysql.add{/lang}</span> </a></li>
 			</ul>
 		</div>
+		{/if}
 	</div>
-{/if}
-{if $mysqls|count}
+
+	{if $mysqls|count}
 	<div class="border">
 		<div class="containerHead"><h3>{lang}cp.mysql.list{/lang}</h3></div>
 	</div>
@@ -53,7 +59,7 @@
 	<div class="contentFooter">
 		{@$pagesLinks}
 	</div>
-{/if}
+	{/if}
 </div>
 
 {include file='footer' sandbox=false}
