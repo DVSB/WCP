@@ -1,6 +1,6 @@
 <?php
-// wcf imports
-require_once (CP_DIR . 'lib/acp/form/DomainEditForm.class.php');
+
+require_once (CP_DIR . 'lib/form/SubDomainAddForm.class.php');
 
 /**
  * Shows the subdomain edit form.
@@ -13,12 +13,10 @@ require_once (CP_DIR . 'lib/acp/form/DomainEditForm.class.php');
  * @category 	Control Panel
  * @id			$Id$
  */
-class SubDomainEditForm extends DomainEditForm
+class SubDomainEditForm extends SubDomainAddForm
 {
-	//public $permission = 'admin.domain.canEditDomain';
-	
-	public $domainID = 0;
-	public $url = '';
+	public $templateName = 'subDomainEdit';
+	public $neededPermissions = ''; //admin.domain.canEditDomain';
 
 	/**
 	 * @see Page::readParameters()
@@ -44,6 +42,8 @@ class SubDomainEditForm extends DomainEditForm
 			{
 				throw new PermissionDeniedException();
 			}
+			
+			$this->readDefaultValues();
 		}
 	}
 
@@ -68,22 +68,6 @@ class SubDomainEditForm extends DomainEditForm
 	}
 
 	/**
-	 * @see Page::assignVariables()
-	 */
-	public function assignVariables()
-	{
-		parent :: assignVariables();
-		
-		WCF :: getTPL()->assign(array (
-			'domainID' => $this->domain->domainID, 
-			'action' => 'edit', 
-			'url' => $this->url, 
-			'markedUsers' => 0, 
-			'domain' => $this->domain
-		));
-	}
-
-	/**
 	 * @see Form::save()
 	 */
 	public function save()
@@ -91,30 +75,12 @@ class SubDomainEditForm extends DomainEditForm
 		AbstractForm :: save();
 		
 		// save domain
-		$this->domain->update($this->domainname, CPCore :: getUser()->userID, $this->adminID, $this->parentDomainID, $this->activeOptions, $this->additionalFields);
+		$this->domain->update($this->domainname, CPCore :: getUser()->userID, CPCore :: getUser()->adminID, $this->parentDomainID, $this->activeOptions, $this->additionalFields);
 		$this->saved();
 		
 		// show success message
 		WCF :: getTPL()->assign('success', true);
 	}
-	
-	/**
-	 * @see Page::show()
-	 */
-	public function show()
-	{
-		require_once(WCF_DIR.'lib/page/util/menu/PageMenu.class.php');
-		PageMenu::setActiveMenuItem('cp.header.menu.domain');
-		
-		// check permission
-		WCF :: getUser()->checkPermission($this->permission);
-		
-		// get domain options and categories from cache
-		$this->readCache();
-		
-		// show form
-		AbstractPage :: show();
-	}
-	
+
 }
 ?>

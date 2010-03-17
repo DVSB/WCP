@@ -18,7 +18,7 @@ require_once (CP_DIR . 'lib/data/domain/DomainList.class.php');
 class DomainListPage extends SortablePage
 {
 	// system
-	public $itemsPerPage = 50;
+	public $itemsPerPage = 10;
 	public $templateName = 'domainList';
 	
 	public $defaultSortField = 'domainname';
@@ -67,6 +67,7 @@ class DomainListPage extends SortablePage
 		{
 			case 'registrationDate':
 			case 'domainname':
+			case 'parentDomainID':
 			break;
 			default:
 				if (!isset($this->options[$this->sortField]))
@@ -95,10 +96,6 @@ class DomainListPage extends SortablePage
 		
 		WCF :: getTPL()->assign(array (
 			'domains' => $this->domainList->getObjects(), 
-//			'markedDomains' => count($this->markedDomains), 
-//			'url' => $this->url, 
-//			'columnHeads' => $this->columnHeads, 
-//			'columnValues' => $this->columnValues,
 			'deletedDomains' => '',
 			'disabledDomains' => '',
 		));
@@ -110,7 +107,7 @@ class DomainListPage extends SortablePage
 	public function show()
 	{
 		require_once(WCF_DIR.'lib/page/util/menu/PageMenu.class.php');
-		PageMenu::setActiveMenuItem('cp.header.menu.domain');
+		PageMenu :: setActiveMenuItem('cp.header.menu.domain');
 		
 		parent :: show();
 	}

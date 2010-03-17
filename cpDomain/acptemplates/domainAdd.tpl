@@ -87,34 +87,6 @@
 					inlineHelp.register('username');
 				//]]></script>
 				
-				<div class="formElement{if $errorType.adminname|isset} formError{/if}" id="adminnameDiv">
-					<div class="formFieldLabel">
-						<label for="adminname">{lang}cp.acp.domain.adminname{/lang}</label>
-					</div>
-					<div class="formField">
-						<input type="text" class="inputText" id="adminname" name="adminname" value="{$adminname}" />
-						<script type="text/javascript">
-							//<![CDATA[
-							suggestion.setSource('../index.php?page=AdminSuggest{@SID_ARG_2ND_NOT_ENCODED}');
-							suggestion.enableIcon(true);
-							suggestion.init('adminname');
-							//]]>
-						</script>
-						
-						{if $errorType.adminname|isset}
-							<p class="innerError">
-								{if $errorType.adminname == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
-							</p>
-						{/if}
-					</div>
-					<div class="formFieldDesc hidden" id="adminnameHelpMessage">
-						<p>{lang}cp.acp.domain.adminname.description{/lang}</p>
-					</div>
-				</div>
-				<script type="text/javascript">//<![CDATA[
-					inlineHelp.register('adminname');
-				//]]></script>
-				
 				<div class="formElement{if $errorType.registrationDate|isset} formError{/if}" id="registrationDateDiv">
 					<div class="formFieldLabel">
 						<label for="registrationDate">{lang}cp.acp.domain.registrationDate{/lang}</label>
@@ -152,6 +124,7 @@
 		
 			{if $additionalFieldSets|isset}{@$additionalFieldSets}{/if}
 		
+			{if !$options|empty}
 			<div class="tabMenu">
 				<ul>
 					{foreach from=$options item=categoryLevel1}
@@ -198,6 +171,7 @@
 					</div>
 				{/foreach}
 			{/foreach}
+			{/if}
 		</div>
 	</div>
 	

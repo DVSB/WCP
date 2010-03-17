@@ -33,8 +33,7 @@ class DomainAddForm extends DynamicOptionListForm
 	
 	public $username;
 	public $userID = 0;
-	
-	public $adminname;
+
 	public $adminID = 0;
 	
 	public $registrationDateDay = 0;
@@ -57,9 +56,6 @@ class DomainAddForm extends DynamicOptionListForm
 			
 		if (isset($_POST['username']))
 			$this->username = StringUtil :: trim($_POST['username']);
-			
-		if (isset($_POST['adminname']))
-			$this->adminname = StringUtil :: trim($_POST['adminname']);
 			
 		if (isset($_POST['parentDomainID']))
 			$this->parentDomainID = StringUtil :: trim($_POST['parentDomainID']);
@@ -118,27 +114,7 @@ class DomainAddForm extends DynamicOptionListForm
 			}
 				
 			$this->userID = $user->userID;
-		}
-		catch (UserInputException $e) 
-		{
-			$this->errorType[$e->getType()] = $e->getType();
-		}
-		
-		try 
-		{
-			// get user
-			$user = new UserSession(null, null, $this->adminname);
-			if (!$user->userID) 
-			{
-				throw new UserInputException('adminname', 'notFound');
-			}
-
-			if (!$user->getPermission('admin.general.canUseAcp')) 
-			{
-				throw new UserInputException('adminname', 'noAdmin');
-			}
-				
-			$this->adminID = $user->userID;
+			$this->adminID = $user->adminID;
 		}
 		catch (UserInputException $e) 
 		{
@@ -257,7 +233,6 @@ class DomainAddForm extends DynamicOptionListForm
 		WCF :: getTPL()->assign(array (
 			'domainname' => $this->domainname, 
 			'username' => $this->username,
-			'adminname' => $this->adminname,
 			'registrationDateDay' => $this->registrationDateDay,
 			'registrationDateMonth' => $this->registrationDateMonth,
 			'registrationDateYear' => $this->registrationDateYear,

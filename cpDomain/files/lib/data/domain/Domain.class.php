@@ -40,7 +40,7 @@ class Domain extends DatabaseObject
 		$sqlCondition = '';
 		if ($domainID !== null)
 		{
-			$sqlCondition = "domain.domainID = " . $domainID;
+			$sqlCondition = "domain.domainID = " . intval($domainID);
 		}
 		
 		if (!empty($sqlCondition))

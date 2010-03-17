@@ -68,6 +68,7 @@ class DomainListPage extends SortablePage
 			case 'adminname':
 			case 'registrationDate':
 			case 'domainname':
+			case 'parentDomainID':
 			break;
 			default:
 				if (!isset($this->options[$this->sortField]))

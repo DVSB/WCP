@@ -1,7 +1,7 @@
 <?php
 
 require_once (WCF_DIR . 'lib/system/event/EventListener.class.php');
-require_once (CP_DIR . 'lib/data/domains/DomainEditor.class.php');
+require_once (CP_DIR . 'lib/data/domain/DomainEditor.class.php');
 
 /**
  * Adds Actions for Domain-User-Interaction

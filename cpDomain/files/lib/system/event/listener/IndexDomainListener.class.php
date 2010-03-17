@@ -20,7 +20,7 @@ class IndexDomainListener implements EventListener
 	 */
 	public function execute($eventObj, $className, $eventName)
 	{
-		$eventObj->addDisplay('wcf.user.option.domains',  DomainUtil :: getDomainsForUser(WCF :: getUser()->userID));
+		$eventObj->addDisplay('wcf.user.option.domains',  DomainUtil :: countDomainsForUser(WCF :: getUser()->userID));
 		$eventObj->addDisplay('wcf.user.option.subdomains',  WCF :: getUser()->subdomainsUsed.' / '.WCF :: getUser()->subdomains);
 	}
 }

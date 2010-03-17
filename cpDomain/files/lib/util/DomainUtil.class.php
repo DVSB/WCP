@@ -56,15 +56,41 @@ class DomainUtil
 	 * @param 	bool		$addSubDomains		if true, subdomains will also be counted
 	 * @return 	int
 	 */
-	public static function getDomainsForUser($userID, $addSubDomains = false)
+	public static function countDomainsForUser($userID, $addSubDomains = false)
 	{
 		$sql = "SELECT 	COUNT(*) AS count
 				FROM 	cp" . CP_N . "_domain	
-				WHERE 	userID = '" . intval($userID) . "'
-					" . ($addSubDomains ? ' AND parentDomainID IS NULL ' : '') . " 
+				WHERE 	userID = " . intval($userID) . "
+					" . (!$addSubDomains ? ' AND (parentDomainID IS NULL OR parentDomainID = 0) ' : '') . " 
 					AND deactivated = 0";
 		$count = WCF :: getDB()->getFirstRow($sql);
 		return $count['count'];
+	}
+	
+	/**
+	 * Returns domains for given userID, minus subdomains
+	 * 
+	 * @param	int			$userID
+	 * @param 	bool		$addSubDomains		if true, subdomains will also be counted
+	 * @return 	array
+	 */
+	public static function getDomainsForUser($userID, $addSubDomains = false)
+	{
+		$sql = "SELECT 	domainID, domainname
+				FROM 	cp" . CP_N . "_domain	
+				WHERE 	userID = '" . intval($userID) . "'
+					" . (!$addSubDomains ? ' AND (parentDomainID IS NULL OR parentDomainID = 0) ' : '') . " 
+					AND deactivated = 0";
+		
+		$result = WCF :: getDB()->sendQuery($sql);
+		
+		$domains = array();
+		while ($row = WCF :: getDB()->fetchArray($result))
+		{
+			$domains[$row['domainID']] = $row['domainname'];
+		}
+		
+		return $domains;
 	}
 }
 ?>

@@ -256,6 +256,28 @@ class DomainEditor extends Domain
 			WCF :: getDB()->sendQuery($sql);
 		}
 	}
+	
+	/**
+	 * adds default subdomain
+	 * TODO: implement!
+	 *
+	 * @param	int		$userID
+	 */
+	public static function addDefaultSubDomain($userID)
+	{
+		
+	}
+	
+	/**
+	 * removes default subdomain
+	 * TODO: implement!
+	 *
+	 * @param	int		$userID
+	 */
+	public static function removeDefaultSubDomain($userID)
+	{
+		
+	}
 
 	/**
 	 * Deletes domains.
@@ -271,17 +293,55 @@ class DomainEditor extends Domain
 		
 		$domainIDsStr = implode(',', $domainIDs);
 		
-		// delete options from this user
+		// delete options for this domain
 		$sql = "DELETE 	FROM cp" . CP_N . "_domain_option_value
 				WHERE 	domainID IN (" . $domainIDsStr . ")";
 		WCF :: getDB()->sendQuery($sql);
 		
-		// delete user from user table
+		// delete domain from domain table
 		$sql = "DELETE 	FROM cp" . CP_N . "_domain
 				WHERE 	domainID IN (" . $domainIDsStr . ")";
 		WCF :: getDB()->sendQuery($sql);
 		
 		return count($domainIDs);
+	}
+	
+	/**
+	 * Deletes this domain
+	 */
+	public function delete()
+	{
+		// delete options for this domain
+		$sql = "DELETE 	FROM cp" . CP_N . "_domain_option_value
+				WHERE 	domainID = " . $this->domainID;
+		WCF :: getDB()->sendQuery($sql);
+		
+		// delete domain from domain table
+		$sql = "DELETE 	FROM cp" . CP_N . "_domain
+				WHERE 	domainID = " . $this->domainID;
+		WCF :: getDB()->sendQuery($sql);
+	}
+	
+	/**
+	 * disable this domain
+	 */
+	public function disable()
+	{
+		$sql = "UPDATE 	cp" . CP_N . "_domain
+				SET		deactivated = 1
+				WHERE 	domainID = " . $this->domainID;
+		WCF :: getDB()->sendQuery($sql);
+	}
+	
+	/**
+	 * enable this domain
+	 */
+	public function enable()
+	{
+		$sql = "UPDATE 	cp" . CP_N . "_domain
+				SET		deactivated = 0
+				WHERE 	domainID = " . $this->domainID;
+		WCF :: getDB()->sendQuery($sql);
 	}
 	
 	/**

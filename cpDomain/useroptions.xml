@@ -2,24 +2,29 @@
 <!DOCTYPE data SYSTEM "http://www.woltlab.com/DTD/options.dtd">
 <data>
 	<import>
+		<categories>
+			<category name="account.domain">
+				<parent>account</parent>
+			</category>
+		</categories>
 
 		<options>
 			<option name="addDefaultSubdomain">
-				<categoryname>account.service</categoryname>
+				<categoryname>account.domain</categoryname>
 				<optiontype>boolean</optiontype>
 				<visible>0</visible>
 				<editable>3</editable>
 				<defaultvalue>0</defaultvalue>
 			</option>
 			<option name="subdomains">
-				<categoryname>account.service</categoryname>
+				<categoryname>account.domain</categoryname>
 				<optiontype>integer</optiontype>
 				<visible>0</visible>
 				<editable>3</editable>
 				<defaultvalue>0</defaultvalue>
 			</option>
 			<option name="subdomainsUsed">
-				<categoryname>account.service</categoryname>
+				<categoryname>account.domain</categoryname>
 				<optiontype>integer</optiontype>
 				<visible>0</visible>
 				<editable>4</editable>

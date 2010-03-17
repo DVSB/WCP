@@ -35,7 +35,8 @@ class DomainList extends DatabaseObjectList
 	public function readObjects()
 	{
 		$sql = "SELECT		" . (!empty($this->sqlSelects) ? $this->sqlSelects . ',' : '') . "
-							domain.*, domain_option.*, user.username AS username, admin.username AS adminname
+							domain.*, domain_option.*, user.username AS username, 
+							admin.username AS adminname, parentDomain.domainname AS parentDomainName
 				FROM		cp" . CP_N . "_domain domain
 				LEFT JOIN 	cp" . CP_N . "_domain_option_value domain_option 
 							ON (domain_option.domainID = domain.domainID)
@@ -43,6 +44,8 @@ class DomainList extends DatabaseObjectList
 							ON (domain.userID = user.userID)
 				JOIN		wcf" . WCF_N . "_user admin
 							ON (domain.adminID = admin.userID)
+				LEFT JOIN	cp" . CP_N . "_domain parentDomain
+							ON (domain.parentDomainID = parentDomain.domainID)
 				" . $this->sqlJoins . "
 				" . (!empty($this->sqlConditions) ? "WHERE " . $this->sqlConditions : '') . "
 				" . (!empty($this->sqlOrderBy) ? "ORDER BY " . $this->sqlOrderBy : '');
