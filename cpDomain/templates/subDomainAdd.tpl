@@ -73,7 +73,7 @@
 							<label for="parentDomain">{lang}cp.acp.domain.parentDomain{/lang}</label>
 						</div>
 						<div class="formField">
-							{htmlOptions options=$parentDomains id=parentDomains name=parentDomainID}
+							{htmlOptions options=$parentDomains selected=$parentDomainID id=parentDomains name=parentDomainID}
 							{if $errorType.parentDomain|isset}
 								<p class="innerError">
 									{if $errorType.parentDomain == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}

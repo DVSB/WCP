@@ -57,7 +57,7 @@
 			{foreach from=$domains item=domain}
 				<tr class="{cycle values="container-1,container-2"}">
 					<td class="columnDomainID columnID">{if $domain->parentDomainID != 0}<a href="index.php?action=SubDomainDelete&amp;domainID={@$domain->domainID}{@SID_ARG_2ND}" onclick="return confirm(LANG_DELETE_CONFIRM);"><img src="{icon}deleteS.png{/icon}" alt="" title="{lang}cp.domain.deleteSubDomain{/lang}" /></a>{/if}{if $domain->deactivated == '1'}<a href="index.php?action=DomainEnable&amp;domainID={@$domain->domainID}{@SID_ARG_2ND}"><img src="{icon}disabledS.png{/icon}" alt="" title="{lang}cp.domain.disableDomain{/lang}" /></a>{else}<a href="index.php?action=DomainDisable&amp;domainID={@$domain->domainID}{@SID_ARG_2ND}"><img src="{icon}enabledS.png{/icon}" alt="" title="{lang}cp.domain.enableDomain{/lang}" /></a>{/if}</td>
-					<td class="columnDomainname columnText">{if $domain->canEditDomain}<a title="{lang}wcf.acp.group.edit{/lang}" href="index.php?form=SubDomainEdit&amp;domainID={@$domain->domainID}{@SID_ARG_2ND}">{$domain->domainname}</a>{else}{$domain->domainname}{/if}</td>
+					<td class="columnDomainname columnText">{if $domain->canEditDomain}<a title="{lang}wcf.acp.group.edit{/lang}" href="index.php?form={if $domain->parentDomainID != 0}Sub{/if}DomainEdit&amp;domainID={@$domain->domainID}{@SID_ARG_2ND}">{$domain->domainname}</a>{else}{$domain->domainname}{/if}</td>
 					<td class="columnParentDomain columnText">{$domain->parentDomainName}</td>
 					<td class="columnRegistrationDateDomain columnText">{if $domain->registrationDate != 0}{@$domain->registrationDate|date}{/if}</td>
 					<td class="columnAddDate columnText">{@$domain->addDate|date}</td>
@@ -67,6 +67,10 @@
 			{/foreach}
 			</tbody>
 		</table>
+	</div>
+
+	<div class="contentFooter">
+		{@$pagesLinks}
 	</div>
 	{/if}
 </div>

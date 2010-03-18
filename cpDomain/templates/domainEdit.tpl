@@ -42,7 +42,7 @@
 			</ul>
 		</div>
 	</div>
-	<form method="post" action="index.php?form=SubDomain{@$action|ucfirst}">
+	<form method="post" action="index.php?form=Domain{@$action|ucfirst}">
 		<div class="border content">
 			<div class="container-1">
 				<fieldset>

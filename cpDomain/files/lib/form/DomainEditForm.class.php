@@ -11,10 +11,11 @@ require_once (CP_DIR . 'lib/form/SubDomainAddForm.class.php');
  * @package		com.toby.cp.domain
  * @subpackage	form
  * @category 	Control Panel
- * @id			$Id$
+ * @id			$Id: SubDomainEditForm.class.php 58 2010-03-17 20:20:51Z toby $
  */
-class SubDomainEditForm extends SubDomainAddForm
+class DomainEditForm extends SubDomainAddForm
 {
+	public $templateName = 'domainEdit';
 	public $neededPermissions = ''; //admin.domain.canEditDomain';
 
 	/**
@@ -36,8 +37,8 @@ class SubDomainEditForm extends SubDomainAddForm
 			{
 				throw new IllegalLinkException();
 			}
-
-			if ($this->domain->userID != WCF :: getUser()->userID || !$this->domain->parentDomainID)
+			
+			if ($this->domain->userID != WCF :: getUser()->userID)
 			{
 				throw new PermissionDeniedException();
 			}
@@ -52,12 +53,6 @@ class SubDomainEditForm extends SubDomainAddForm
 	protected function readDefaultValues()
 	{
 		$this->domainname = $this->domain->domainname;
-		
-		$this->parentDomainName = $this->domain->parentDomainName;
-		$this->parentDomainID = $this->domain->parentDomainID;
-		
-		if ($this->parentDomainName)
-			$this->domainname = str_ireplace('.'.$this->parentDomainName, '', $this->domainname);
 			
 		foreach ($this->activeOptions as $key => $option)
 		{
@@ -77,10 +72,20 @@ class SubDomainEditForm extends SubDomainAddForm
 		parent :: assignVariables();
 		
 		WCF :: getTPL()->assign(array ( 
+			'domainID' => $this->domainID,
 			'action' => 'edit',
 		));
 	}
 
+	/**
+	 * @see Form::validate()
+	 */
+	public function validate()
+	{
+		// validate dynamic options
+		DynamicOptionListForm :: validate();
+	}
+	
 	/**
 	 * @see Form::save()
 	 */
@@ -89,34 +94,12 @@ class SubDomainEditForm extends SubDomainAddForm
 		AbstractForm :: save();
 		
 		// save domain
-		$this->domain->update($this->domainname, 0, 0, $this->parentDomainID, $this->activeOptions, $this->additionalFields);
+		$this->domain->update('', 0, 0, 0, $this->activeOptions, $this->additionalFields);
 		$this->saved();
 		
 		// show success message
 		WCF :: getTPL()->assign('success', true);
 	}
 
-	/**
-	 * @see Page::show()
-	 */
-	public function show()
-	{
-		require_once(WCF_DIR.'lib/page/util/menu/PageMenu.class.php');
-		PageMenu :: setActiveMenuItem('cp.header.menu.domain');
-		
-		if (!WCF::getUser()->userID) 
-		{
-			throw new PermissionDeniedException();
-		}
-		
-		// check permission
-		if (!empty($this->neededPermissions)) WCF :: getUser()->checkPermission($this->neededPermissions);
-		
-		// get domain options and categories from cache
-		$this->readCache();
-		
-		// show form
-		DynamicOptionListForm :: show();
-	}
 }
 ?>

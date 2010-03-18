@@ -65,7 +65,9 @@ class SubDomainAddForm extends DynamicOptionListForm
 	 */
 	public function validate()
 	{
-		// validate static user options 
+		//concat subdomainpart with parentdomain
+		$this->domainname .= '.' . $this->parentDomains[$this->parentDomainID];
+		
 		try
 		{
 			$this->validateDomainname($this->domainname);
@@ -110,14 +112,13 @@ class SubDomainAddForm extends DynamicOptionListForm
 		
 		// create
 		require_once (CP_DIR . 'lib/data/domain/DomainEditor.class.php');
-		$this->domainname .= '.' . $this->parentDomains[$this->parentDomainID];
 		$this->domain = DomainEditor :: create($this->domainname, CPCore :: getUser()->userID, CPCore :: getUser()->adminID, $this->parentDomainID, $this->activeOptions, $this->additionalFields);
 		$this->saved();
 		
 		// show empty add form
 		WCF :: getTPL()->assign(array (
 			'success' => true, 
-			'newDomain' => $this->domain,
+			'newDomain' => $this->domain
 		));
 		
 		// reset values
@@ -189,7 +190,9 @@ class SubDomainAddForm extends DynamicOptionListForm
 		WCF :: getTPL()->assign(array (
 			'domainname' => $this->domainname, 
 			'options' => $this->options, 
+			'domainID' => $this->domainID,
 			'parentDomains' => $this->parentDomains,
+			'parentDomainID' => $this->parentDomainID,
 			'action' => 'add',
 			'activeTabMenuItem' 	=> $this->activeTabMenuItem,
 			'activeSubTabMenuItem' 	=> $this->activeSubTabMenuItem
@@ -206,6 +209,12 @@ class SubDomainAddForm extends DynamicOptionListForm
 		
 		if (!WCF::getUser()->userID) 
 		{
+			throw new PermissionDeniedException();
+		}
+		
+		if (WCF :: getUser()->subdomains <= WCF :: getUser()->subdomainsUsed)
+		{
+			require_once(WCF_DIR.'lib/system/exception/PermissionDeniedException.class.php');
 			throw new PermissionDeniedException();
 		}
 		
