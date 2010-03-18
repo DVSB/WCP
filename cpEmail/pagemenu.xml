@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/headerMenu.dtd">
+<data>
+	<import>
+		<pagemenuitem name="cp.header.menu.email">
+			<icon>icon/portalM.png</icon>
+			<link>index.php?page=EmailList</link>
+		</pagemenuitem>
+	</import>
+</data>

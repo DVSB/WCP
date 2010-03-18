@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTD/options.dtd">
+<data>
+	<import>
+		<categories>
+			<category name="account.email">
+				<parent>account</parent>
+			</category>
+		</categories>
+
+		<options>
+			<option name="emailAddresses">
+				<categoryname>account.email</categoryname>
+				<optiontype>integer</optiontype>
+				<visible>0</visible>
+				<editable>3</editable>
+				<defaultvalue>10</defaultvalue>
+			</option>
+			<option name="emailAddressesUsed">
+				<categoryname>account.email</categoryname>
+				<optiontype>integer</optiontype>
+				<visible>0</visible>
+				<editable>4</editable>
+			</option>
+			
+			<option name="emailAccounts">
+				<categoryname>account.email</categoryname>
+				<optiontype>integer</optiontype>
+				<visible>0</visible>
+				<editable>3</editable>
+				<defaultvalue>10</defaultvalue>
+			</option>
+			<option name="emailAccountsUsed">
+				<categoryname>account.email</categoryname>
+				<optiontype>integer</optiontype>
+				<visible>0</visible>
+				<editable>4</editable>
+			</option>
+			
+			<option name="emailForwards">
+				<categoryname>account.email</categoryname>
+				<optiontype>integer</optiontype>
+				<visible>0</visible>
+				<editable>3</editable>
+				<defaultvalue>10</defaultvalue>
+			</option>
+			<option name="emailForwardsUsed">
+				<categoryname>account.email</categoryname>
+				<optiontype>integer</optiontype>
+				<visible>0</visible>
+				<editable>4</editable>
+			</option>
+			
+			<option name="emailIMAPenabled">
+				<categoryname>account.email</categoryname>
+				<optiontype>boolean</optiontype>
+				<visible>0</visible>
+				<editable>3</editable>
+				<defaultvalue>1</defaultvalue>
+			</option>
+			<option name="emailPOP3enabled">
+				<categoryname>account.email</categoryname>
+				<optiontype>boolean</optiontype>
+				<visible>0</visible>
+				<editable>3</editable>
+				<defaultvalue>1</defaultvalue>
+			</option>
+		</options>
+	</import>
+
+</data>

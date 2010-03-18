@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE import SYSTEM "DTD/import.dtd">
+<data>
+	<import>
+		<eventlistener>
+			<eventClassName>IndexPage</eventClassName>
+			<eventName>readData</eventName>
+			<listenerClassFile>lib/system/event/listener/IndexEmailsListener.class.php</listenerClassFile>
+		</eventlistener>
+		<eventlistener>
+			<eventClassName>UserAddForm</eventClassName>
+			<eventName>saved</eventName>
+			<listenerClassFile>lib/system/event/listener/UserACPEmailsListener.class.php</listenerClassFile>
+			<environment>admin</environment>
+			<inherit>1</inherit>
+			<nice>10</nice>
+		</eventlistener>
+		<eventlistener>
+			<eventClassName>UserBanForm</eventClassName>
+			<eventName>saved</eventName>
+			<listenerClassFile>lib/system/event/listener/UserACPEmailsListener.class.php</listenerClassFile>
+		</eventlistener>
+		<eventlistener>
+			<eventClassName>UserBanAction</eventClassName>
+			<eventName>executed</eventName>
+			<listenerClassFile>lib/system/event/listener/UserACPEmailsListener.class.php</listenerClassFile>
+		</eventlistener>
+		<eventlistener>
+			<eventClassName>UserUnbanAction</eventClassName>
+			<eventName>executed</eventName>
+			<listenerClassFile>lib/system/event/listener/UserACPEmailsListener.class.php</listenerClassFile>
+		</eventlistener>
+		<eventlistener>
+			<eventClassName>UserDeleteAction</eventClassName>
+			<eventName>executed</eventName>
+			<listenerClassFile>lib/system/event/listener/UserACPEmailsListener.class.php</listenerClassFile>
+		</eventlistener>
+	</import>
+</data>

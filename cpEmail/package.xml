@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE package SYSTEM "DTD/package.dtd">
+<package name="com.toby.cp.email">
+
+	<packageInformation>
+		<packageName>WCF Controlpanel eMail Modul</packageName>
+		<packageDescription>Ermöglicht Anlage von eMail-Adressen, Weiterleitungen, usw.</packageDescription>
+		<version>0.0.1-alpha</version>
+		<plugin>com.toby.cp</plugin>
+		<date>2010-03-18</date>
+	</packageInformation>
+
+	<authorInformation>
+		<author>Tobias Friebel</author>
+		<authorURL>http://dev.hugin-hosting.de/</authorURL>
+		<license>GPL</license>
+	</authorInformation>
+
+	<requiredpackages>
+		<requiredpackage minversion="1.1.0">com.woltlab.wcf</requiredpackage>
+		<requiredpackage>com.toby.cp</requiredpackage>
+		<requiredpackage>com.toby.cp.domain</requiredpackage>
+	</requiredpackages>
+
+	<instructions type="install">
+		<languages languagecode="de">de.xml</languages>
+		<options>options.xml</options>
+		<files>files.tar</files>
+		<templates>templates.tar</templates>
+		<groupoptions>groupoptions.xml</groupoptions>
+		<sql>install.sql</sql>
+		<pagemenu>pagemenu.xml</pagemenu>
+		<eventlistener>eventlistener.xml</eventlistener>
+		<useroptions>useroptions.xml</useroptions>
+	</instructions>
+
+	<instructions type="update" fromversion="0.0.*">
+		<languages languagecode="de">de.xml</languages>
+		<options>options.xml</options>
+		<files>files.tar</files>
+		<templates>templates.tar</templates>
+		<groupoptions>groupoptions.xml</groupoptions>
+		<pagemenu>pagemenu.xml</pagemenu>
+		<eventlistener>eventlistener.xml</eventlistener>
+		<useroptions>useroptions.xml</useroptions>
+	</instructions>
+
+</package>
