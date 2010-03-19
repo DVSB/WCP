@@ -13,23 +13,27 @@ require_once (CP_DIR . 'lib/form/FTPAddForm.class.php');
 class FTPEditForm extends FTPAddForm
 {
 	/**
-	 * @see Page::readData()
+	 * @see Page::readParameters()
 	 */
-	public function readData()
+	public function readParameters()
 	{
 		if (isset($_REQUEST['ftpUserID']))
 			$this->ftpAccount = new FTPUserEditor($_REQUEST['ftpUserID']);
 
-		if (is_null($this->ftpAccount))
-			throw new SystemException('no such account');
-
+		if (!$this->ftpAccount->ftpUserID)
+		{
+			throw new IllegalLinkException();
+		}
+			
 		if ($this->ftpAccount->userID != WCF :: getUser()->userID)
-			throw new SystemException('invalid user');
+		{
+			throw new PermissionDeniedException();
+		}
 
 		//remove homedir-path from ftp-path, we show only relative paths
 		$this->path = '/' . StringUtil :: replace(WCF :: getUser()->homeDir, '', $this->ftpAccount->homedir);
 
-		parent :: readData();
+		parent :: readParameters();
 	}
 
 	/**
