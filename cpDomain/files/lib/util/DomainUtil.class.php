@@ -22,12 +22,16 @@ class DomainUtil
 	 */
 	public static function isValidDomainname($name)
 	{
-		// check illegal characters
-		if (!preg_match('!^[^,\n]+$!', $name))
+		$domainname_tmp = 'http://' . $domainname;
+	
+		if(filter_var($domainname_tmp, FILTER_VALIDATE_URL) !== false)
+		{
+			return true;
+		}
+		else
 		{
 			return false;
 		}
-		return true;
 	}
 
 	/**

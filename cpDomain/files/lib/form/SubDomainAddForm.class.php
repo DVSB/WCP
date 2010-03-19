@@ -33,11 +33,14 @@ class SubDomainAddForm extends DynamicOptionListForm
 	public $activeTabMenuItem = '';
 	public $activeSubTabMenuItem = '';
 	
-	public function __construct()
+	/**
+	 * @see Page::readData()
+	 */
+	public function readData()
 	{
 		$this->parentDomains = DomainUtil :: getDomainsForUser(CPCore :: getUser()->userID);
 		
-		parent :: __construct();
+		parent :: readData();
 	}
 
 	/**
@@ -58,6 +61,20 @@ class SubDomainAddForm extends DynamicOptionListForm
 			
 		if (isset($_POST['activeSubTabMenuItem'])) 
 			$this->activeSubTabMenuItem = $_POST['activeSubTabMenuItem'];
+			
+		// check security token
+		$this->checkSecurityToken();
+	}
+	
+	/**
+	 * Validates the security token.
+	 */
+	protected function checkSecurityToken() 
+	{
+		if (!isset($_POST['t']) || !WCF::getSession()->checkSecurityToken($_POST['t'])) 
+		{
+			throw new IllegalLinkException();
+		}
 	}
 
 	/**

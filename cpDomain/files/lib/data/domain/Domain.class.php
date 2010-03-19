@@ -114,9 +114,8 @@ class Domain extends DatabaseObject
 	 */
 	protected static function getDomainOptionCache()
 	{
-		$cacheName = 'domain-option';
-		WCF :: getCache()->addResource($cacheName, CP_DIR . 'cache/cache.' . $cacheName . '.php', CP_DIR . 'lib/system/cache/CacheBuilderDomainOption.class.php');
-		self :: $domainOptions = WCF :: getCache()->get($cacheName, 'options');
+		WCF :: getCache()->addResource('domain-option', CP_DIR . 'cache/cache.domain-option.php', CP_DIR . 'lib/system/cache/CacheBuilderDomainOption.class.php');
+		self :: $domainOptions = WCF :: getCache()->get('domain-option', 'options');
 	}
 
 	/**

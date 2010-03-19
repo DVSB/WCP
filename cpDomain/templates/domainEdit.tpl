@@ -114,12 +114,12 @@
 		</div>
 		
 		<div class="formSubmit">
-			<input type="submit" accesskey="s" value="{lang}wcf.global.button.submit{/lang}" />
-			<input type="reset" accesskey="r" value="{lang}wcf.global.button.reset{/lang}" />
-			<input type="hidden" name="packageID" value="{@PACKAGE_ID}" />
-	 		{@SID_INPUT_TAG}
+			{@SID_INPUT_TAG}
+			{@SECURITY_TOKEN_INPUT_TAG}
 	 		<input type="hidden" name="action" value="{@$action}" />
 	 		{if $domainID|isset}<input type="hidden" name="domainID" value="{@$domainID}" />{/if}
+	 		<input type="submit" accesskey="s" value="{lang}wcf.global.button.submit{/lang}" />
+			<input type="reset" accesskey="r" value="{lang}wcf.global.button.reset{/lang}" />
 	 		
 	 		<input type="hidden" id="activeTabMenuItem" name="activeTabMenuItem" value="{$activeTabMenuItem}" />
 	 		<input type="hidden" id="activeSubTabMenuItem" name="activeSubTabMenuItem" value="{$activeSubTabMenuItem}" />
