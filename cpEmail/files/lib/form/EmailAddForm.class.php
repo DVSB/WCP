@@ -9,13 +9,23 @@ class EmailAddForm extends AbstractSecureForm
 	 */
 	public $templateName = 'emailAdd';
 	
-	public $password = '';
+	public $emailaddress = '';
 	
-	public $path = '';
+	public $isCatchall = 0;
 	
-	public $description = '';
-	
-	public $ftpAccount;
+	public $domains = array();
+
+	public $email;
+
+	/**
+	 * @see Page::readData()
+	 */
+	public function readData()
+	{
+		$this->domains = DomainUtil :: getDomainsForUser(CPCore :: getUser()->userID);
+		
+		parent :: readData();
+	}
 
 	/**
 	 * @see Form::readFormParameters()
@@ -24,14 +34,14 @@ class EmailAddForm extends AbstractSecureForm
 	{
 		parent :: readFormParameters();
 		
-		if (isset($_POST['password']))
-			$this->password = StringUtil :: trim($_POST['password']);
-		
-		if (isset($_POST['path']))
-			$this->path = StringUtil :: trim($_POST['path']);
-		
-		if (isset($_POST['description']))
-			$this->description = StringUtil :: trim($_POST['description']);
+		if (isset($_POST['emailaddress']))
+			$this->emailaddress = StringUtil :: trim($_POST['emailaddress']);
+			
+		if (isset($_POST['domainID']))
+			$this->domainID = intval($_POST['domainID']);
+			
+		if (isset($_POST['isCatchall']))
+			$this->isCatchall = intval($_POST['isCatchall']);
 	}
 
 	/**
@@ -41,14 +51,20 @@ class EmailAddForm extends AbstractSecureForm
 	{
 		parent :: validate();
 		
-		if (empty($this->password))
-			throw new UserInputException('password', 'notempty');
+		if (empty($this->emailaddress))
+			throw new UserInputException('emailaddress', 'empty');
+			
+		if ($this->domainID == 0)
+			throw new UserInputException('domain', 'empty');
+			
+		if (!array_key_exists($this->domainID, $this->domains))
+			throw new UserInputException('domain', 'notValid');
 		
-		if (empty($this->path))
-			throw new UserInputException('path', 'notempty');
+		//concat emailaddress with domain
+		$this->emailaddress .= '@' . $this->domains[$this->domainID];
 		
-		if (!CPUtils :: validatePath(WCF :: getUser()->homeDir . $this->path, WCF :: getUser()->homeDir))
-			throw new UserInputException('path', 'invalid');
+		if (!EmailUtil :: isValidEmailaddress($this->emailaddress))
+			throw new UserInputException('emailaddress', 'notValid');
 	}
 
 	/**
@@ -59,9 +75,9 @@ class EmailAddForm extends AbstractSecureForm
 		parent :: assignVariables();
 		
 		WCF :: getTPL()->assign(array (
-			'password' => $this->password, 
-			'path' => $this->path, 
-			'description' => $this->description, 
+			'emailaddress' => $this->emailaddress, 
+			'domains' => $this->domains,
+			'domainID' => $this->domainID, 
 			'action' => 'add'
 		));
 	}
@@ -74,10 +90,10 @@ class EmailAddForm extends AbstractSecureForm
 		parent :: save();
 		
 		// create
-		$this->ftpAccount = FTPUserEditor :: create(WCF :: getUser()->userID, WCF :: getUser()->username, $this->password, WCF :: getUser()->homeDir . '/' . $this->path, $this->description);
+		$this->email = EmailEditor :: create(WCF :: getUser()->userID, $this->emailaddress, $this->domainID, $this->isCatchall);
 		$this->saved();
 		
-		$url = 'index.php?page=FTPList' . SID_ARG_2ND_NOT_ENCODED;
+		$url = 'index.php?page=EmailList' . SID_ARG_2ND_NOT_ENCODED;
 		HeaderUtil :: redirect($url);
 	}
 

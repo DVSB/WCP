@@ -1,6 +1,6 @@
 {include file="documentHeader"}
 <head>
-	<title>{lang}cp.ftp.{@$action}Account{/lang} - {lang}wcf.user.usercp{/lang} - {lang}{PAGE_TITLE}{/lang}</title>
+	<title>{lang}cp.email.{@$action}Address{/lang} - {lang}wcf.user.usercp{/lang} - {lang}{PAGE_TITLE}{/lang}</title>
 	{include file='headInclude' sandbox=false}
 	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/AjaxRequest.class.js"></script>
 	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/Suggestion.class.js"></script>
@@ -16,44 +16,38 @@
 		{/if}
 	{/capture}
 
-	<form method="post" action="index.php?form=FTP{@$action|ucfirst}">
+	<form method="post" action="index.php?form=Email{@$action|ucfirst}">
 		<div class="border tabMenuContent">
 			<div class="container-1">
 				<fieldset>
-					<legend><label for="password">{lang}cp.ftp.createAccount{/lang}</label></legend>
+					<legend>{lang}cp.email.{@$action}Address{/lang}</legend>
 
-					<div class="formElement{if $errorField == 'password'} formError{/if}">
+					<div class="formElement{if $errorField == 'emailaddress'} formError{/if}">
 						<div class="formFieldLabel">
-							<label for="password">{lang}cp.ftp.password{/lang}</label>
+							<label for="emailaddress">{lang}cp.email.emailaddress{/lang}</label>
 						</div>
 						<div class="formField">
-							<input type="password" class="inputText" name="password" value="{$password}" id="password" />
+							<input type="text" class="inputText" name="emailaddress" value="{$emailaddress}" id="emailaddress" />
 
-							{if $errorField == 'password'}
+							{if $errorField == 'emailaddress'}
 								<p class="innerError">
 									{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
+									{if $errorType == 'notValid'}{lang}cp.email.error.notvalid{/lang}{/if}
 								</p>
 							{/if}
 						</div>
 					</div>
 
-					<div class="formElement{if $errorField == 'path'} formError{/if}">
+					<div class="formElement{if $errorField == 'domain'} formError{/if}">
 						<div class="formFieldLabel">
-							<label for="path">{lang}cp.ftp.path{/lang}</label>
+							<label for="domain">{lang}cp.email.domain{/lang}</label>
 						</div>
 						<div class="formField">
-							<input type="text" class="inputText" name="path" value="{$path}" id="path" />
-							<script type="text/javascript">
-								//<![CDATA[
-								suggestion.enableMultiple(false);
-								suggestion.source = 'index.php?page=PathSuggest'+SID_ARG_2ND;
-								suggestion.init('path');
-								//]]>
-							</script>
-							{if $errorField == 'path'}
+							{htmlOptions options=$domains selected=$domainID id=domain name=domain}
+							{if $errorField == 'domain'}
 								<p class="innerError">
 									{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
-									{if $errorType == 'invalid'}{lang}cp.ftp.invalidPath{/lang}{/if}
+									{if $errorType == 'notValid'}{lang}cp.email.error.notvalid{/lang}{/if}
 								</p>
 							{/if}
 						</div>
@@ -61,10 +55,10 @@
 
 					<div class="formElement">
 						<div class="formFieldLabel">
-							<label for="description">{lang}cp.ftp.description{/lang}</label>
+							<label for="description">{lang}cp.email.isCatchall{/lang}</label>
 						</div>
 						<div class="formField">
-							<textarea id="description" rows="15" cols="40" name="description">{$description}</textarea>
+							<input type="checkbox" name="isCatchall" value="1" {if $isCatchall}checked="checked" {/if}/>
 						</div>
 					</div>
 				</fieldset>

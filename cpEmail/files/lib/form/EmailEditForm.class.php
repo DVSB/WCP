@@ -10,26 +10,27 @@
 
 require_once (CP_DIR . 'lib/form/EmailAddForm.class.php');
 
-class EmailEditForm extends FTPAddForm
+class EmailEditForm extends EmailAddForm
 {
 	/**
-	 * @see Page::readData()
+	 * @see Page::readParameters()
 	 */
-	public function readData()
+	public function readParameters()
 	{
 		if (isset($_REQUEST['mailID']))
-			$this->ftpAccount = new FTPUserEditor($_REQUEST['mailID']);
+			$this->email = new EmailEditor($_REQUEST['mailID']);
+		
+		if (!$this->email->mailID)
+		{
+			throw new IllegalLinkException();
+		}
+			
+		if ($this->email->userID != WCF :: getUser()->userID)
+		{
+			throw new PermissionDeniedException();
+		}
 
-		if (is_null($this->ftpAccount))
-			throw new SystemException('no such account');
-
-		if ($this->ftpAccount->userID != WCF :: getUser()->userID)
-			throw new SystemException('invalid user');
-
-		//remove homedir-path from ftp-path, we show only relative paths
-		$this->path = '/' . StringUtil :: replace(WCF :: getUser()->homeDir, '', $this->ftpAccount->homedir);
-
-		parent :: readData();
+		parent :: readParameters();
 	}
 
 	/**
