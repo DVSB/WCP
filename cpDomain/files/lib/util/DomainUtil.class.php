@@ -16,11 +16,11 @@ class DomainUtil
 	/**
 	 * Returns true, if the given name is a valid domainname.
 	 * 
-	 * @param	string		$name		domainname
+	 * @param	string		$domainname		domainname
 	 * 
 	 * @return 	boolean
 	 */
-	public static function isValidDomainname($name)
+	public static function isValidDomainname($domainname)
 	{
 		$domainname_tmp = 'http://' . $domainname;
 	

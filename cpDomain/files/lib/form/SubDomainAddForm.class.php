@@ -41,6 +41,8 @@ class SubDomainAddForm extends DynamicOptionListForm
 		$this->parentDomains = DomainUtil :: getDomainsForUser(CPCore :: getUser()->userID);
 		
 		parent :: readData();
+
+		$this->options = $this->getOptionTree();
 	}
 
 	/**
@@ -187,16 +189,6 @@ class SubDomainAddForm extends DynamicOptionListForm
 		$this->loadActiveOptions($this->activeCategory);
 	}
 	
-	/**
-	 * @see Page::readData()
-	 */
-	public function readData()
-	{
-		parent :: readData();
-		
-		$this->options = $this->getOptionTree();
-	}
-
 	/**
 	 * @see Page::assignVariables()
 	 */
