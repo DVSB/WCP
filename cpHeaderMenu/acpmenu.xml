@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE import SYSTEM "DTD/import.dtd">
+<data>
+	<import>
+		<acpmenuitem name="wcf.acp.menu.link.pageMenuItem.maintenance">
+			<parent>wcf.acp.menu.link.pageMenuItem</parent>			
+			<permissions>admin.pageMenu.canAddPageMenuItem</permissions>			
+		</acpmenuitem>
+		<acpmenuitem name="wcf.acp.menu.link.pageMenuItem.import">
+			<parent>wcf.acp.menu.link.pageMenuItem.maintenance</parent>			
+			<link>index.php?form=AdvancedPageMenuImport</link>
+			<permissions>admin.pageMenu.canAddPageMenuItem</permissions>
+		</acpmenuitem>
+	</import>
+</data>

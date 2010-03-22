@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/styleattributes.dtd">
+<data>
+	<import>
+		<attribute>
+			<selector><![CDATA[.transMenu .background]]></selector>
+			<name><![CDATA[background-color]]></name>
+			<value><![CDATA[menu.main.background.color]]></value>
+		</attribute>
+		<attribute>
+			<selector><![CDATA[.transMenu .item.hover]]></selector>
+			<name><![CDATA[background-color]]></name>
+			<value><![CDATA[menu.main.background.color.hover]]></value>
+		</attribute>
+		<attribute>
+			<selector><![CDATA[.transMenu .item a]]></selector>
+			<name><![CDATA[color]]></name>
+			<value><![CDATA[menu.main.caption.color]]></value>
+		</attribute>
+		<attribute>
+			<selector><![CDATA[.transMenu .item a]]></selector>
+			<name><![CDATA[display]]></name>
+			<value><![CDATA[menu.main.caption.hide]]></value>
+		</attribute>
+		<attribute>
+			<selector><![CDATA[.transMenu .item a:hover]]></selector>
+			<name><![CDATA[color]]></name>
+			<value><![CDATA[menu.main.caption.color.hover]]></value>
+		</attribute>
+		<attribute>
+			<selector><![CDATA[.transMenu .item]]></selector>
+			<name><![CDATA[background-image]]></name>
+			<value><![CDATA[menu.main.background.image]]></value>
+		</attribute>
+		<attribute>
+			<selector><![CDATA[.transMenu .item.hover]]></selector>
+			<name><![CDATA[background-image]]></name>
+			<value><![CDATA[menu.main.background.image.hover]]></value>
+		</attribute>
+	</import>
+</data>

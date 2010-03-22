@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "DTD/language.dtd">
+
+<language languagecode="de">
+    <category name="wcf.advancedpagemenu">
+	<item name="wcf.advancedpagemenu.guest"><![CDATA[Gast]]></item>
+    </category>
+    <category name="wcf.acp.pageMenuItem">
+                <item name="wcf.acp.pageMenuItem.warning.isNative"><![CDATA[Dieser Menüeintrag gehört einem Plugin oder einer Endanwendung. Beim Bearbeiten oder Löschen können Pluginfunktionen unwirksam werden.]]></item>
+                <item name="wcf.acp.pageMenuItem.permissions"><![CDATA[Berechtigungen]]></item>
+                <item name="wcf.acp.pageMenuItem.groupPermissions"><![CDATA[Gruppenrechte]]></item>
+                <item name="wcf.acp.pageMenuItem.groupPermissions.description"><![CDATA[Wählen Sie die nötigen Benutzergruppen-Berechtigungen aus, um diesen Eintrag sehen zu können. Mehrfache Markierungen sind durch zusätzliches Drücken der Taste &raquo;Strg/Ctrl&laquo; (Windows) oder &raquo;Befehl/Command&laquo; (Mac OS) möglich.]]></item>
+                <item name="wcf.acp.pageMenuItem.groupIDs"><![CDATA[Gruppenzugehörigkeit]]></item>
+                <item name="wcf.acp.pageMenuItem.groupIDs.description"><![CDATA[Wählen Sie aus in welchen Gruppen der Benutzer angehören muss, um den Eintrag sehen zu können.]]></item>
+                <item name="wcf.acp.pageMenuItem.parentMenuItem"><![CDATA[Übergeordneter Eintrag]]></item>
+                <item name="wcf.acp.pageMenuItem.parentMenuItem.description"><![CDATA[Wählen sie einen übergeordneten Menüeintrag aus, um ein verschachteltes Menü zu erstellen. Alle Einträge, die von einem anderen Eintrag abhängig sind erscheinen in einem Javascript Dropdown.]]></item>
+                <item name="wcf.acp.pageMenuItem.import"><![CDATA[Menüeinträge importieren]]></item>
+                <item name="wcf.acp.pageMenuItem.import.success"><![CDATA[Die Menüeinträge wurden erfolgreich importiert. Sie sollten nun die Menüstruktur überprüfen.]]></item>
+                <item name="wcf.acp.pageMenuItem.import.upload"><![CDATA[Datei]]></item>
+                <item name="wcf.acp.pageMenuItem.import.upload.description"><![CDATA[Geben Sie einen lokalen XML Export aus der alten Headermenü-Plugin Version an.]]></item>
+	</category>	
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.category.advancedPageMenu"><![CDATA[Erweitertes Menü]]></item>
+		<item name="wcf.acp.option.category.advancedPageMenu.description"><![CDATA[Einstellungen des erweiterten Seiten-Menüs]]></item>
+		<item name="wcf.acp.option.category.advancedPageMenu.settings"><![CDATA[Einstellungen]]></item>
+		<item name="wcf.acp.option.category.advancedPageMenu.settings.description"><![CDATA[Die weiteren aus Version 1.0.x bekannten Optionen, lassen sich nun im Stileditor pro Stil einstellen.]]></item>
+		<item name="wcf.acp.option.advanced_page_menu_hide_delay"><![CDATA[Einklappverzögerung (ms)]]></item>
+		<item name="wcf.acp.option.advanced_page_menu_hide_delay.description"><![CDATA[Geben Sie die Zeit an, die verstreichen soll bevor sich das Menü selbststädnig wieder einklappt.]]></item>
+		<item name="wcf.acp.option.advanced_page_menu_slide_time"><![CDATA[Ein-/Ausfahrzeit (ms)]]></item>
+		<item name="wcf.acp.option.advanced_page_menu_slide_time.description"><![CDATA[Geben Sie an wie lange es dauern soll, bis sich ein Menü vollständig ein- oder ausklappt.]]></item>
+	</category>	
+	<category name="wcf.acp.menu">		
+		<item name="wcf.acp.menu.link.pageMenuItem.import"><![CDATA[Menüeinträge importieren]]></item>
+	</category>
+        <category name="wcf.acp.style">
+		<item name="wcf.acp.style.editor.menu.advancedPageMenu"><![CDATA[Erweitertes Seitenmenü]]></item>
+                <item name="wcf.acp.style.editor.menu.advancedPageMenu.description"><![CDATA[Hier können Sie die Darstellung des TransMenüs beeinflussen. Beachten Sie, dass Menüeinträge des TransMenüs alle CSS Eigenschaften von den normalen Menüeinträgen übernehmen.]]></item>
+                <item name="wcf.acp.style.editor.menu.advancedPageMenu.general"><![CDATA[Allgemein]]></item>
+                <item name="wcf.acp.style.editor.menu.advancedPageMenu.general.description"><![CDATA[]]></item>
+                <item name="wcf.acp.style.editor.padding.menu"><![CDATA[Menüinnenabstand]]></item>
+                <item name="wcf.acp.style.editor.padding.item"><![CDATA[Eintragsinnenabstand]]></item>
+                <item name="wcf.acp.style.editor.menu.advancedPageMenu.shadow"><![CDATA[Schatten]]></item>
+                <item name="wcf.acp.style.editor.menu.advancedPageMenu.shadow.description"><![CDATA[]]></item>
+                <item name="wcf.acp.style.editor.offset"><![CDATA[Versatz]]></item>
+                <item name="wcf.acp.style.editor.shadow.size"><![CDATA[Größe]]></item>
+                <item name="wcf.acp.style.editor.shadow.offset"><![CDATA[Versatz]]></item>
+	</category>
+	<category name="wcf.acp.package">
+		<item name="wcf.acp.package.step.install.AdvancedPageMenuPackageInstallationPlugin"><![CDATA[Menü-Einträge werden installiert ...]]></item>
+		<item name="wcf.acp.package.step.uninstall.AdvancedPageMenuPackageInstallationPlugin"><![CDATA[Menü-Einträge werden deinstalliert ...]]></item>
+		<item name="wcf.acp.package.step.update.AdvancedPageMenuPackageInstallationPlugin"><![CDATA[Menü-Einträge werden aktualisiert ...]]></item>
+	</category>
+</language>

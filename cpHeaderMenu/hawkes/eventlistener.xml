@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/eventListeners.dtd">
+<data>
+	<import>
+ 		<eventlistener>
+  			<eventClassName>StructuredTemplate</eventClassName>
+  			<eventName>shouldDisplay</eventName>
+  			<listenerClassFile>lib/system/event/listener/AdvancedPageMenuListener.class.php</listenerClassFile>  			
+ 		</eventlistener>
+ 		<eventlistener>
+  			<eventClassName>StyleAddForm</eventClassName>
+  			<eventName>assignVariables</eventName>
+  			<environment>admin</environment>
+  			<listenerClassFile>lib/system/event/listener/StyleFormAdvancedPageMenuListener.class.php</listenerClassFile>
+  			<inherit>1</inherit>  			
+ 		</eventlistener>
+ 		<eventlistener>
+  			<eventClassName>StyleAddForm</eventClassName>
+  			<eventName>validate</eventName>
+  			<environment>admin</environment>
+  			<listenerClassFile>lib/system/event/listener/StyleFormAdvancedPageMenuListener.class.php</listenerClassFile>
+  			<inherit>1</inherit>  			
+ 		</eventlistener> 
+ 		<eventlistener>
+  			<eventClassName>StyleAddForm</eventClassName>
+  			<eventName>save</eventName>
+  			<environment>admin</environment>
+  			<listenerClassFile>lib/system/event/listener/StyleFormAdvancedPageMenuListener.class.php</listenerClassFile>
+  			<inherit>1</inherit>  			
+ 		</eventlistener>
+ 		<eventlistener>
+  			<eventClassName>PageMenuItemListPage</eventClassName>
+  			<eventName>readParameters</eventName>
+  			<environment>admin</environment>
+  			<listenerClassFile>lib/system/event/listener/PageMenuRedirectListener.class.php</listenerClassFile>  				
+ 		</eventlistener>
+ 		<eventlistener>
+  			<eventClassName>PageMenuItemAddForm</eventClassName>
+  			<eventName>readParameters</eventName>
+  			<environment>admin</environment>
+  			<listenerClassFile>lib/system/event/listener/PageMenuRedirectListener.class.php</listenerClassFile>  				
+ 		</eventlistener>  		
+	</import>
+</data>

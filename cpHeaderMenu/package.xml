@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE package SYSTEM "http://www.woltlab.com/DTDs/package.dtd">
+<package name="com.toby.wcf.advancedpagemenu">
+
+	<packageinformation>
+		<packagename>Advanced Page Menu System</packagename>
+		<packagedescription>Dieses Plugin ersetzt das normale Seitenmenü mit einem erweiterten TransMenu gestützten Menü. Ebenso wird eine erweiterte Menüverwaltung mitgeliefert. Original von Hawkes, für CP modifiziert und angepasst.</packagedescription>
+		<isunique>1</isunique>
+		<version>1.1.0</version>
+		<date>2010-02-07</date>
+	</packageinformation>
+	
+	<authorinformation>
+		<author>Tobias Friebel, Vorlagen von Woltlab und Hawkes</author>
+		<authorURL>http://dev.hugin-hosting.de/</authorURL>
+		<license>LGPL</license>
+	</authorinformation>
+	
+	<requiredpackages>
+		<requiredpackage minversion="1.1.0">com.woltlab.wcf</requiredpackage>
+	</requiredpackages>
+	
+	<instructions type="install">
+		<acptemplates>acptemplates.tar</acptemplates>
+		<acpmenu>acpmenu.xml</acpmenu>
+		<files>files.tar</files>
+		<templates>templates.tar</templates>
+		<sql>install.sql</sql>
+		<packageinstallationplugins>pip.tar</packageinstallationplugins>
+		<languages languagecode="de">de.xml</languages>
+		<languages languagecode="de-informal">de-informal.xml</languages>
+		<languages languagecode="en">en.xml</languages>
+	</instructions>
+	
+</package>
