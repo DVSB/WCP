@@ -108,7 +108,7 @@ class EmailListPage extends SortablePage
 	public function show()
 	{
 		require_once(WCF_DIR.'lib/page/util/menu/PageMenu.class.php');
-		PageMenu :: setActiveMenuItem('cp.header.menu.emails');
+		PageMenu :: setActiveMenuItem('cp.header.menu.email');
 
 		parent :: show();
 	}

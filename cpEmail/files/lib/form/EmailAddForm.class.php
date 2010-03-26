@@ -14,7 +14,9 @@ class EmailAddForm extends AbstractSecureForm
 	public $isCatchall = 0;
 	
 	public $domains = array();
-
+	
+	public $domainID = 0;
+	
 	public $email;
 
 	/**
@@ -55,10 +57,10 @@ class EmailAddForm extends AbstractSecureForm
 			throw new UserInputException('emailaddress', 'empty');
 			
 		if ($this->domainID == 0)
-			throw new UserInputException('domain', 'empty');
+			throw new UserInputException('domainID', 'empty');
 			
 		if (!array_key_exists($this->domainID, $this->domains))
-			throw new UserInputException('domain', 'notValid');
+			throw new UserInputException('domainID', 'notValid');
 		
 		//concat emailaddress with domain
 		$this->emailaddress .= '@' . $this->domains[$this->domainID];
@@ -78,6 +80,7 @@ class EmailAddForm extends AbstractSecureForm
 			'emailaddress' => $this->emailaddress, 
 			'domains' => $this->domains,
 			'domainID' => $this->domainID, 
+			'isCatchall' => $this->isCatchall,
 			'action' => 'add'
 		));
 	}

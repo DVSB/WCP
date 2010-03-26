@@ -38,13 +38,13 @@
 						</div>
 					</div>
 
-					<div class="formElement{if $errorField == 'domain'} formError{/if}">
+					<div class="formElement{if $errorField == 'domainID'} formError{/if}">
 						<div class="formFieldLabel">
 							<label for="domain">{lang}cp.email.domain{/lang}</label>
 						</div>
 						<div class="formField">
-							{htmlOptions options=$domains selected=$domainID id=domain name=domain}
-							{if $errorField == 'domain'}
+							{htmlOptions options=$domains selected=$domainID id=domainID name=domainID}
+							{if $errorField == 'domainID'}
 								<p class="innerError">
 									{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
 									{if $errorType == 'notValid'}{lang}cp.email.error.notvalid{/lang}{/if}

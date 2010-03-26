@@ -37,11 +37,11 @@
 		<table class="tableList">
 			<thead>
 				<tr class="tableHead">
-					<th class="columnFtpUserID"><div>{lang}cp.ftp.ftpUserID{/lang}</div></th>
-					<th class="columnUsername{if $sortField == 'username'} active{/if}"><div><a href="index.php?page=FTPList&amp;pageNo={@$pageNo}&amp;sortField=username&amp;sortOrder={if $sortField == 'username' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.ftp.username{/lang}{if $sortField == 'username'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}</a></div></th>
-					<th class="columnHomedir{if $sortField == 'homedir'} active{/if}"><div><a href="index.php?page=FTPList&amp;pageNo={@$pageNo}&amp;sortField=homedir&amp;sortOrder={if $sortField == 'homedir' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.ftp.homedir{/lang}{if $sortField == 'homedir'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}</a></div></th>
-					<th class="columnLoginCount{if $sortField == 'loginCount'} active{/if}"><div><a href="index.php?page=FTPList&amp;pageNo={@$pageNo}&amp;sortField=loginCount&amp;sortOrder={if $sortField == 'loginCount' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.ftp.loginCount{/lang}{if $sortField == 'loginCount'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}</a></div></th>
-					<th class="columnLastLogin{if $sortField == 'lastLogin'} active{/if}"><div><a href="index.php?page=FTPList&amp;pageNo={@$pageNo}&amp;sortField=lastLogin&amp;sortOrder={if $sortField == 'lastLogin' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.ftp.lastLogin{/lang}{if $sortField == 'lastLogin'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}</a></div></th>
+					<th class="columnEmailID"><div>{lang}cp.email.mailID{/lang}</div></th>
+					<th class="columnEmailaddress{if $sortField == 'emailaddress'} active{/if}"><div><a href="index.php?page=EmailList&amp;pageNo={@$pageNo}&amp;sortField=emailaddress&amp;sortOrder={if $sortField == 'emailaddress' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.email.emailaddress{/lang}{if $sortField == 'emailaddress'} <img src="{icon}sort{@$sortOrder}S.png{/icon}" alt="" />{/if}</a></div></th>
+					<th class="columnDestination"><div>{lang}cp.email.destination{/lang}</div></th>
+					<th class="columnAccount"><div>{lang}cp.email.account{/lang}</div></th>
+					<th class="columnIsCatchall"><div>{lang}cp.email.isCatchall{/lang}</div></th>
 
 					{if $additionalColumnHeads|isset}{@$additionalColumnHeads}{/if}
 				</tr>
@@ -49,11 +49,11 @@
 			<tbody>
 			{foreach from=$emails item=email}
 				<tr class="{cycle values="container-1,container-2"}">
-					<td class="columnFtpUserID columnID">{if $ftpAccount->undeleteable != 1}<a href="index.php?action=FTPDelete&amp;ftpUserID={@$ftpAccount->ftpUserID}{@SID_ARG_2ND}" onclick="return confirm(LANG_DELETE_CONFIRM);"><img src="{icon}deleteS.png{/icon}" alt="" title="{lang}cp.ftp.deleteAccount{/lang}" /></a>{/if}{if $ftpAccount->loginEnabled == 'N'}<a href="index.php?action=FTPEnable&amp;ftpUserID={@$ftpAccount->ftpUserID}{@SID_ARG_2ND}"><img src="{icon}disabledS.png{/icon}" alt="" title="{lang}cp.ftp.disableAccount{/lang}" /></a>{else}<a href="index.php?action=FTPDisable&amp;ftpUserID={@$ftpAccount->ftpUserID}{@SID_ARG_2ND}"><img src="{icon}enabledS.png{/icon}" alt="" title="{lang}cp.ftp.enableAccount{/lang}" /></a>{/if}</td>
-					<td class="columnUsername columnText"><a href="index.php?form=FTPEdit&amp;ftpUserID={@$ftpAccount->ftpUserID}{@SID_ARG_2ND}">{$ftpAccount->username}</a></td>
-					<td class="columnHomedir columnText">{$email->relativehomedir}</td>
-					<td class="columnLoginCount columnText">{@$email->loginCount}</td>
-					<td class="columnLastLogin columnText">{@$email->lastLogin|time}</td>
+					<td class="columnEmailID columnID"><a href="index.php?action=EmailDelete&amp;mailID={@$email->mailID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}" onclick="return confirm(LANG_DELETE_CONFIRM);"><img src="{icon}deleteS.png{/icon}" alt="" title="{lang}cp.ftp.deleteAccount{/lang}" /></a></td>
+					<td class="columnEmailaddress columnText"><a href="index.php?form=EmailEdit&amp;mailID={@$email->mailID}{@SID_ARG_2ND}">{$email->emailaddress}</a></td>
+					<td class="columnDestination columnText">{$email->destination}</td>
+					<td class="columnAccount columnText"></td>
+					<td class="columnIsCatchall columnText">{if $email->isCatchall}{lang}cp.global.yes{/lang}{else}{lang}cp.global.no{/lang}{/if}</td>
 
 					{if $additionalColumns.$email->mailID|isset}{@$additionalColumns.$email->mailID}{/if}
 				</tr>

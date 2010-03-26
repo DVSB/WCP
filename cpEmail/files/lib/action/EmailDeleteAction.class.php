@@ -1,9 +1,9 @@
 <?php
 // wcf imports
-require_once (WCF_DIR . 'lib/action/AbstractAction.class.php');
+require_once (WCF_DIR . 'lib/action/AbstractSecureAction.class.php');
 require_once (CP_DIR . 'lib/data/ftp/FTPUserEditor.class.php');
 
-class EmailDeleteAction extends AbstractAction
+class EmailDeleteAction extends AbstractSecureAction
 {
 	/**
 	 * @see Action::execute()

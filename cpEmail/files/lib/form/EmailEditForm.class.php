@@ -41,10 +41,6 @@ class EmailEditForm extends EmailAddForm
 		parent :: assignVariables();
 
 		WCF :: getTPL()->assign(array (
-			'password' => '',
-			'path' => $this->path,
-			'description' => $this->ftpAccount->description,
-			'ftpUserID' => $this->ftpAccount->ftpUserID,
 			'action' => 'edit',
 		));
 	}
@@ -57,13 +53,13 @@ class EmailEditForm extends EmailAddForm
 		AbstractSecureForm :: save();
 
 		// update
-		$this->ftpAccount->update($this->password,
+		$this->email->update($this->password,
 								  WCF :: getUser()->homeDir . '/'. $this->path,
 								  $this->description
 								 );
 		$this->saved();
 
-		$url = 'index.php?page=FTPList'. SID_ARG_2ND_NOT_ENCODED;
+		$url = 'index.php?page=EmailList'. SID_ARG_2ND_NOT_ENCODED;
 		HeaderUtil::redirect($url);
 	}
 
@@ -73,7 +69,7 @@ class EmailEditForm extends EmailAddForm
 	public function show()
 	{
 		require_once(WCF_DIR.'lib/page/util/menu/PageMenu.class.php');
-		PageMenu::setActiveMenuItem('cp.header.menu.ftp');
+		PageMenu :: setActiveMenuItem('cp.header.menu.email');
 
 		AbstractSecureForm :: show();
 	}
