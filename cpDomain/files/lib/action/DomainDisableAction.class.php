@@ -1,9 +1,9 @@
 <?php
 // wcf imports
-require_once (WCF_DIR . 'lib/action/AbstractAction.class.php');
+require_once (WCF_DIR . 'lib/action/AbstractSecureAction.class.php');
 require_once (CP_DIR . 'lib/data/domain/DomainEditor.class.php');
 
-class DomainDisableAction extends AbstractAction
+class DomainDisableAction extends AbstractSecureAction
 {
 	/**
 	 * @see Action::execute()
