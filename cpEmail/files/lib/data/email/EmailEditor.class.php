@@ -82,7 +82,7 @@ class EmailEditor extends Email
 		
 		// Update
 		$sql = "UPDATE	cp" . CP_N . "_mail_virtual
-				SET		emailaddress = '" . $this->emailaddress . "',
+				SET		emailaddress = '" . escapeString($this->emailaddress) . "',
 						isCatchall = " . intval($this->isCatchall) . "
 				WHERE 	mailID = " . $this->mailID;
 		WCF :: getDB()->sendQuery($sql);
