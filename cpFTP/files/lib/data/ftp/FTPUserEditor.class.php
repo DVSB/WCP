@@ -138,6 +138,10 @@ class FTPUserEditor extends FTPUser
 		$sql = "DELETE FROM	cp" . CP_N . "_ftp_users
 				WHERE		userID = " . $userID;
 		WCF :: getDB()->sendQuery($sql);
+		
+		require_once (WCF_DIR . '/lib/data/user/UserEditor.class.php');
+		$user = new UserEditor($userID);
+		$user->updateOptions(array('ftpaccountsUsed' => 0));
 	}
 
 	/**
