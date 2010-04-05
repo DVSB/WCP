@@ -20,7 +20,7 @@ class SubDomainAddForm extends DynamicOptionListForm
 	
 	public $cacheClass = 'CacheBuilderDomainOption';
 
-	public $cacheName = 'domain-option-';
+	public $cacheName = 'domain-option';
 	public $additionalFields = array();
 	public $domain;
 	public $options;
@@ -84,23 +84,20 @@ class SubDomainAddForm extends DynamicOptionListForm
 	 */
 	public function validate()
 	{
-		//concat subdomainpart with parentdomain
-		$this->domainname .= '.' . $this->parentDomains[$this->parentDomainID];
-		
-		try
-		{
-			$this->validateDomainname($this->domainname);
-		}
-		catch (UserInputException $e)
-		{
-			$this->errorType[$e->getField()] = $e->getType();
-		}
-		
 		if ($this->parentDomainID == 0)
 			throw new UserInputException('parentDomain', 'empty');
 			
 		if (!array_key_exists($this->parentDomainID, $this->parentDomains))
 			throw new UserInputException('parentDomain', 'notValid');
+			
+		try
+		{
+			$this->validateDomainname($this->domainname . '.' . $this->parentDomains[$this->parentDomainID]);
+		}
+		catch (UserInputException $e)
+		{
+			$this->errorType[$e->getField()] = $e->getType();
+		}
 		
 		// validate dynamic options
 		parent :: validate();
@@ -131,22 +128,11 @@ class SubDomainAddForm extends DynamicOptionListForm
 		
 		// create
 		require_once (CP_DIR . 'lib/data/domain/DomainEditor.class.php');
-		$this->domain = DomainEditor :: create($this->domainname, CPCore :: getUser()->userID, CPCore :: getUser()->adminID, $this->parentDomainID, $this->activeOptions, $this->additionalFields);
+		$this->domain = DomainEditor :: create($this->domainname . '.' . $this->parentDomains[$this->parentDomainID], CPCore :: getUser()->userID, CPCore :: getUser()->adminID, $this->parentDomainID, $this->activeOptions, $this->additionalFields);
 		$this->saved();
 		
-		// show empty add form
-		WCF :: getTPL()->assign(array (
-			'success' => true, 
-			'newDomain' => $this->domain
-		));
-		
-		// reset values
-		$this->domainname = '';
-	
-		foreach ($this->activeOptions as $key => $option)
-		{
-			unset($this->activeOptions[$key]['optionValue']);
-		}
+		$url = 'index.php?page=DomainList' . SID_ARG_2ND_NOT_ENCODED;
+		HeaderUtil :: redirect($url);
 	}
 
 	/**

@@ -29,7 +29,7 @@
 		{if $this->user->subdomains > $this->user->subdomainsUsed}
 		<div class="largeButtons">
 			<ul>
-				<li><a href="index.php?form=SubDomainAdd&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}wcf.acp.group.add{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/groupAddM.png" alt="" /> <span>{lang}wcf.acp.domain.add{/lang}</span></a></li>
+				<li><a href="index.php?form=SubDomainAdd{@SID_ARG_2ND}" title="{lang}cp.domain.subDomainAdd{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/groupAddM.png" alt="" /> <span>{lang}wcf.acp.domain.add{/lang}</span></a></li>
 				{if $additionalLargeButtons|isset}{@$additionalLargeButtons}{/if}			
 			</ul>
 		</div>

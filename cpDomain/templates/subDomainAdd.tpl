@@ -34,14 +34,6 @@
 		<p class="success">{lang}cp.acp.domain.{@$action}.success{/lang}</p>	
 	{/if}
 	
-	<div class="contentHeader">
-		<div class="largeButtons">
-			<ul>
-				<li><a href="index.php?page=DomainList&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}cp.acp.menu.link.domains.list{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/groupM.png" alt="" /> <span>{lang}cp.acp.menu.link.domains.list{/lang}</span></a></li>
-				{if $additionalLargeButtons|isset}{@$additionalLargeButtons}{/if}
-			</ul>
-		</div>
-	</div>
 	<form method="post" action="index.php?form=SubDomain{@$action|ucfirst}">
 		<div class="border content">
 			<div class="container-1">
