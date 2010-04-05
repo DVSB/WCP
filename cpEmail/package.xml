@@ -5,9 +5,9 @@
 	<packageInformation>
 		<packageName>WCF Controlpanel eMail Modul</packageName>
 		<packageDescription>Ermöglicht Anlage von eMail-Adressen, Weiterleitungen, usw.</packageDescription>
-		<version>0.0.1-alpha</version>
+		<version>0.5.0-beta</version>
 		<plugin>com.toby.cp</plugin>
-		<date>2010-03-18</date>
+		<date>2010-04-05</date>
 	</packageInformation>
 
 	<authorInformation>

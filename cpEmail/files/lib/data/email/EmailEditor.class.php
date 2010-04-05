@@ -34,14 +34,25 @@ class EmailEditor extends Email
 	 *
 	 * @return object
 	 */
-	public static function create($userID, $emailaddress, $domainID, $isCatchall)
+	public static function create($userID, $emailaddress, $domainname, $domainID, $isCatchall)
 	{
 		$user = new CPUser($userID);
+		
+		$emailaddress_full = $emailaddress . '@' . $domainname;
+		
+		if ($isCatchall)
+		{
+			$emailaddress = '@' . $domainname;
+		}
+		else
+		{
+			$emailaddress = $emailaddress . '@' . $domainname;
+		}
 		
 		$sql = "INSERT INTO	cp" . CP_N . "_mail_virtual
 						(userID, emailaddress, emailaddress_full,
 						 domainID, isCatchall)
-				VALUES	(" . $user->userID . ", '" . escapeString($emailaddress) . "', '" . escapeString($emailaddress) . "',
+				VALUES	(" . $user->userID . ", '" . escapeString($emailaddress) . "', '" . escapeString($emailaddress_full) . "',
 						 " . intval($domainID) . ", " . intval($isCatchall) . ")";
 		WCF :: getDB()->sendQuery($sql);
 
@@ -54,15 +65,25 @@ class EmailEditor extends Email
 	}
 
 	/**
-	 * update email
-	 *
-	 * @param string $password
+	 * toggleCatchall
 	 */
-	public function update($isCatchall)
-	{
+	public function toggleCatchall()
+	{		
+		$this->isCatchall = !$this->isCatchall;
+		
+		if ($this->isCatchall)
+		{
+			$this->emailaddress = preg_replace('/.*@/', '@', $this->emailaddress_full);
+		}
+		else
+		{
+			$this->emailaddress = $this->emailaddress_full;
+		}
+		
 		// Update
 		$sql = "UPDATE	cp" . CP_N . "_mail_virtual
-				SET		isCatchall = " . intval($isCatchall) . "
+				SET		emailaddress = '" . $this->emailaddress . "',
+						isCatchall = " . intval($this->isCatchall) . "
 				WHERE 	mailID = " . $this->mailID;
 		WCF :: getDB()->sendQuery($sql);
 	}
@@ -76,22 +97,22 @@ class EmailEditor extends Email
 	{
 		$user = new CPUser($this->userID);
 		
-		$sql = "INSERT INTO	cp" . CP_N . "_mail_accounts
-							(userID, emailaddress, username, 
+		$sql = "INSERT INTO	cp" . CP_N . "_mail_account
+							(emailaddress, username, 
 							 password_enc," . (MAIL_STORE_PLAIN_PASSWORD ? 'password, ' : '') . " 
-							 mailID, uid, gid, homeDir, mailDir, 
+							 uid, gid, homeDir, mailDir, 
 							 domainID, quota, pop3, imap
 							)
-				VALUES		(" . $this->userID . ", '" . $this->emailaddress . "', '" . $this->emailaddress . "', 
+				VALUES		('" . $this->emailaddress . "', '" . $this->emailaddress . "', 
 							 ENCRYPT('" . escapeString($password) . "')," . (MAIL_STORE_PLAIN_PASSWORD ? "'" . escapeString($password) . "', " : '') . "
-							 " . $this->mailID . ", " . MAIL_UID . ", " . MAIL_GID . ", '" . MAIL_HOMEDIR . "', 
+							 " . MAIL_UID . ", " . MAIL_GID . ", '" . MAIL_HOMEDIR . "', '" . $user->username . '/' . $this->emailaddress . "',
 							 " . $this->domainID . ", 0, " . intval($user->emailIMAPenabled) . ", " . intval($user->emailPOP3enabled) . "
 							)";
 		WCF :: getDB()->sendQuery($sql);
 		
 		$accountID = WCF :: getDB()->getInsertID('cp' . CP_N . '_mail_accounts', 'accountID');
 		
-		$this->alterDestination($this->emailaddress); 
+		$this->addDestination($this->emailaddress); 
 		
 		$sql = "UPDATE 	cp" . CP_N . "_mail_virtual
 				SET		accountID = " . $accountID . ",
@@ -107,11 +128,11 @@ class EmailEditor extends Email
 	 */
 	public function removeAccount()
 	{
-		$sql = "DELETE FROM	cp" . CP_N . "_mail_accounts
+		$sql = "DELETE FROM	cp" . CP_N . "_mail_account
 				WHERE accountID = " . $this->accountID;
 		WCF :: getDB()->sendQuery($sql);
 		
-		$this->alterDestination($this->emailaddress, false);
+		$this->removeDestination($this->emailaddress);
 		
 		$sql = "UPDATE 	cp" . CP_N . "_mail_virtual
 				SET		accountID = 0,
@@ -125,10 +146,12 @@ class EmailEditor extends Email
 	
 	/**
 	 * update email account
+	 * 
+	 * @param string $password
 	 */
 	public function updateAccount($password)
 	{
-		$sql = "UPDATE 	cp" . CP_N . "_mail_accounts
+		$sql = "UPDATE 	cp" . CP_N . "_mail_account
 				SET		password_enc = ENCRYPT('" . escapeString($password) . "')
 				" . (MAIL_STORE_PLAIN_PASSWORD ? ", password = '" . escapeString($password) . "'" : '') . "
 				WHERE	accountID = " . $this->accountID;			 
@@ -138,13 +161,17 @@ class EmailEditor extends Email
 	/**
 	 * add forward for this email
 	 *
-	 * @param string $password
+	 * @param string $emailaddress
+	 * 
+	 * @return boolean
 	 */
 	public function addForward($emailaddress)
 	{
-		$this->alterDestination($emailaddress);
+		if (!$this->addDestination($emailaddress))
+			return false;
+		
 		$sql = "UPDATE	cp" . CP_N . "_mail_virtual
-				SET		destination = '" . $this->data['destination'] . "'
+				SET		destination = '" . escapeString($this->data['destination']) . "'
 				WHERE 	mailID = " . $this->mailID;
 		WCF :: getDB()->sendQuery($sql);
 		
@@ -155,15 +182,18 @@ class EmailEditor extends Email
 	/**
 	 * add forward for this email
 	 *
-	 * @param string $password
+	 * @param string $emailaddress
+	 * 
+	 * @return boolean
 	 */
 	public function removeForward($emailaddress)
 	{
-		$this->alterDestination($emailaddress, false);
+		if (!$this->removeDestination($emailaddress))
+			return false;
 		
 		// Update
 		$sql = "UPDATE	cp" . CP_N . "_mail_virtual
-				SET		destination = '" . $this->data['destination'] . "'
+				SET		destination = '" . escapeString($this->data['destination']) . "'
 				WHERE 	mailID = " . $this->mailID;
 		WCF :: getDB()->sendQuery($sql);
 		
@@ -172,24 +202,45 @@ class EmailEditor extends Email
 	}
 	
 	/**
-	 * alter destinationstring, add or remove emailaddress
+	 * add destination for this address
 	 * 
 	 * @param string $emailaddress
-	 * @param boolean $add			if false, emailaddress will be removed
+	 * 
+	 * @return boolean
 	 */
-	protected function alterDestination($emailaddress, $add = true)
+	protected function addDestination($emailaddress)
 	{
-		if ($add)
+		if (!in_array($emailaddress, $this->destination))
 		{
-			if (!empty($this->data['destination']))
-				$this->data['destination'] .= ', ';
+			$this->destination[] = $emailaddress;
+			$this->data['destination'] = implode(', ', $this->destination);
 			
-			$this->data['destination'] .= $this->emailaddress;
+			return true;
 		}
-		else 
+		
+		return false;
+	}
+	
+	/**
+	 * remove destination for this address
+	 * 
+	 * @param string $emailaddress
+	 * 
+	 * @return boolean
+	 */
+	protected function removeDestination($emailaddress)
+	{
+		foreach ($this->destination as $id => $destination)
 		{
-			$this->data['destination'] = str_replace(array($this->emailaddress . ',', $this->emailaddress), array('', ''), $this->data['destination']);
-		} 
+			if ($destination == $emailaddress)
+			{
+				unset($this->destination[$id]);
+				$this->data['destination'] = implode(', ', $this->destination);
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	/**
@@ -197,19 +248,37 @@ class EmailEditor extends Email
 	 */
 	public function delete()
 	{
+		$user = new UserEditor($this->userID);
+		$update = array(
+			'emailAddressesUsed' => --$user->emailAddressesUsed,
+			'emailForwardsUsed' => $user->emailForwardsUsed,
+			'emailAccountsUsed' => $user->emailAccountsUsed,
+		);
+		
 		if ($this->accountID)
 		{
-			$sql = "DELETE FROM	cp" . CP_N . "_mail_accounts
+			$sql = "DELETE FROM	cp" . CP_N . "_mail_account
 					WHERE		accountID = " . $this->accountID;
 			WCF :: getDB()->sendQuery($sql);
+			
+			$update['emailAccountsUsed'] -= 1;
+		}
+		
+		if (!empty($this->destinations))
+		{
+			$c = count($this->destinations);
+			
+			if ($this->accountID)
+				$c -= 1;
+				
+			$update['emailForwardersUsed'] -= $c;
 		}
 		
 		$sql = "DELETE FROM cp" . CP_N . "_mail_virtual
 				WHERE 	mailID = " . $this->mailID;
 		WCF :: getDB()->sendQuery($sql);
 
-		$user = new UserEditor($this->userID);
-		$user->updateOptions(array('emailAddressesUsed' => --$user->emailAddressesUsed));
+		$user->updateOptions($update);
 	}
 
 	/**
@@ -217,13 +286,20 @@ class EmailEditor extends Email
 	 */
 	public static function deleteAll($userID)
 	{
-		$sql = "DELETE 	FROM cp" . CP_N . "_mail_accounts
+		$sql = "DELETE 	FROM cp" . CP_N . "_mail_account
 				WHERE 		 userID = " . $userID;
 		WCF :: getDB()->sendQuery($sql);
 
 		$sql = "DELETE FROM	cp" . CP_N . "_mail_virtual
 				WHERE		userID = " . $userID;
 		WCF :: getDB()->sendQuery($sql);
+		
+		$user = new UserEditor($userID);
+		$user->updateOptions(array(
+			'emailAddressesUsed' => 0,
+			'emailForwardsUsed' => 0,
+			'emailAccountsUsed' => 0,
+		));
 	}
 
 	/**
@@ -231,8 +307,8 @@ class EmailEditor extends Email
 	 */
 	public function enable()
 	{
-		$sql = "UPDATE	cp" . CP_N . "_mail_accounts
-				SET		loginEnabled = 'Y'
+		$sql = "UPDATE	cp" . CP_N . "_mail_virtual
+				SET		enabled = 'Y'
 				WHERE	accountID = " . $this->accountID;
 		WCF :: getDB()->sendQuery($sql);
 	}
@@ -242,8 +318,8 @@ class EmailEditor extends Email
 	 */
 	public function disable()
 	{
-		$sql = "UPDATE	cp" . CP_N . "_mail_accounts
-				SET		loginEnabled = 'N'
+		$sql = "UPDATE	cp" . CP_N . "_mail_virtual
+				SET		enabled = 'N'
 				WHERE	accountID = " . $this->accountID;
 		WCF :: getDB()->sendQuery($sql);
 	}
@@ -253,8 +329,8 @@ class EmailEditor extends Email
 	 */
 	public static function enableAll($userID)
 	{
-		$sql = "UPDATE	cp" . CP_N . "_mail_accounts
-				SET		loginEnabled = 'Y'
+		$sql = "UPDATE	cp" . CP_N . "_mail_virtual
+				SET		enabled = 'Y'
 				WHERE	userID = " . $userID;
 		WCF :: getDB()->sendQuery($sql);
 	}
@@ -264,8 +340,8 @@ class EmailEditor extends Email
 	 */
 	public static function disableAll($userID)
 	{
-		$sql = "UPDATE	cp" . CP_N . "_mail_accounts
-				SET		loginEnabled = 'N'
+		$sql = "UPDATE	cp" . CP_N . "_mail_virtual
+				SET		enabled = 'N'
 				WHERE	userID = " . $userID;
 		WCF :: getDB()->sendQuery($sql);
 	}

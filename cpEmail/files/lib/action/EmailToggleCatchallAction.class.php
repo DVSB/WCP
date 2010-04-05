@@ -3,7 +3,7 @@
 require_once (WCF_DIR . 'lib/action/AbstractSecureAction.class.php');
 require_once (CP_DIR . 'lib/data/email/EmailEditor.class.php');
 
-class EmailDeleteAction extends AbstractSecureAction
+class EmailToggleCatchallAction extends AbstractSecureAction
 {
 	/**
 	 * @see Action::execute()
@@ -15,9 +15,9 @@ class EmailDeleteAction extends AbstractSecureAction
 		$email = new EmailEditor($_REQUEST['mailID']);
 
 		if ($email->userID == WCF :: getUser()->userID)
-			$email->delete();
+			$email->toggleCatchall();
 
-		$url = 'index.php?page=EmailList'. SID_ARG_2ND_NOT_ENCODED;
+		$url = 'index.php?page=EmailDetail&mailID=' . $email->mailID . SID_ARG_2ND_NOT_ENCODED;
 		HeaderUtil::redirect($url);
 	}
 }

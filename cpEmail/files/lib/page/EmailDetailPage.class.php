@@ -5,13 +5,16 @@
  *
  * Lizenz: GPL
  *
- * $Id$
+ * $Id: EmailEditForm.class.php 72 2010-03-26 15:01:12Z toby $
  */
 
-require_once (CP_DIR . 'lib/form/EmailAddForm.class.php');
+require_once (WCF_DIR . 'lib/page/AbstractPage.class.php');
+require_once (CP_DIR . 'lib/data/email/EmailEditor.class.php');
 
-class EmailEditForm extends EmailAddForm
+class EmailDetailPage extends AbstractPage
 {
+	public $templateName = 'emailDetail';
+	
 	/**
 	 * @see Page::readParameters()
 	 */
@@ -42,25 +45,13 @@ class EmailEditForm extends EmailAddForm
 
 		WCF :: getTPL()->assign(array (
 			'action' => 'edit',
+			'mailID' => $this->email->mailID,
+			'accountID' => $this->email->accountID,
+			'emailaddress' => $this->email->emailaddress,
+			'emailaddress_full' => $this->email->emailaddress_full,
+			'destination' => $this->email->destination,
+			'isCatchall' => $this->email->isCatchall,
 		));
-	}
-
-	/**
-	 * @see Form::save()
-	 */
-	public function save()
-	{
-		AbstractSecureForm :: save();
-
-		// update
-		$this->email->update($this->password,
-								  WCF :: getUser()->homeDir . '/'. $this->path,
-								  $this->description
-								 );
-		$this->saved();
-
-		$url = 'index.php?page=EmailList'. SID_ARG_2ND_NOT_ENCODED;
-		HeaderUtil::redirect($url);
 	}
 
 	/**
@@ -71,7 +62,7 @@ class EmailEditForm extends EmailAddForm
 		require_once(WCF_DIR.'lib/page/util/menu/PageMenu.class.php');
 		PageMenu :: setActiveMenuItem('cp.header.menu.email');
 
-		AbstractSecureForm :: show();
+		parent :: show();
 	}
 }
 ?>

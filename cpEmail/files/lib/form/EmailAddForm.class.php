@@ -62,10 +62,7 @@ class EmailAddForm extends AbstractSecureForm
 		if (!array_key_exists($this->domainID, $this->domains))
 			throw new UserInputException('domainID', 'notValid');
 		
-		//concat emailaddress with domain
-		$this->emailaddress .= '@' . $this->domains[$this->domainID];
-		
-		if (!EmailUtil :: isValidEmailaddress($this->emailaddress))
+		if (!EmailUtil :: isValidEmailaddress($this->emailaddress . '@' . $this->domains[$this->domainID]))
 			throw new UserInputException('emailaddress', 'notValid');
 	}
 
@@ -93,7 +90,7 @@ class EmailAddForm extends AbstractSecureForm
 		parent :: save();
 		
 		// create
-		$this->email = EmailEditor :: create(WCF :: getUser()->userID, $this->emailaddress, $this->domainID, $this->isCatchall);
+		$this->email = EmailEditor :: create(WCF :: getUser()->userID, $this->emailaddress, $this->domains[$this->domainID], $this->domainID, $this->isCatchall);
 		$this->saved();
 		
 		$url = 'index.php?page=EmailList' . SID_ARG_2ND_NOT_ENCODED;

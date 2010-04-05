@@ -34,13 +34,15 @@ class EmailList extends DatabaseObjectList
 	public function readObjects()
 	{
 		$sql = "SELECT		" . (!empty($this->sqlSelects) ? $this->sqlSelects . ',' : '') . "
-							mail_virtual.*
-				FROM		cp" . CP_N . "_mail_virtual mail_virtual
-				LEFT JOIN	cp" . CP_N . "_mail_accounts mail_accounts USING (accountID) 
+							account.*, virtual.*
+				FROM		cp" . CP_N . "_mail_virtual virtual
+				LEFT JOIN	cp" . CP_N . "_mail_account account USING (accountID) 
 				" . $this->sqlJoins . "
 				" . (!empty($this->sqlConditions) ? "WHERE " . $this->sqlConditions : '') . "
 				" . (!empty($this->sqlOrderBy) ? "ORDER BY " . $this->sqlOrderBy : '');
+		
 		$result = WCF :: getDB()->sendQuery($sql, $this->sqlLimit, $this->sqlOffset);
+		
 		while ($row = WCF :: getDB()->fetchArray($result))
 		{
 			$this->emails[] = new Email(null, $row);

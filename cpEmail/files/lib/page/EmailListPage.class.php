@@ -58,8 +58,8 @@ class EmailListPage extends SortablePage
 		// read objects
 		$this->emailList->sqlOffset = ($this->pageNo - 1) * $this->itemsPerPage;
 		$this->emailList->sqlLimit = $this->itemsPerPage;
-		$this->emailList->sqlOrderBy = 'mail_virtual.' . $this->sortField . ' ' . $this->sortOrder;
-		$this->emailList->sqlConditions = 'mail_virtual.userID = ' . WCF :: getUser()->userID;
+		$this->emailList->sqlOrderBy = 'virtual.' . $this->sortField . ' ' . $this->sortOrder;
+		$this->emailList->sqlConditions = 'virtual.userID = ' . WCF :: getUser()->userID;
 		$this->emailList->readObjects();
 	}
 

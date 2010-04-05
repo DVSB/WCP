@@ -7,13 +7,14 @@ CREATE TABLE cp1_1_mail_virtual (
 	domainID int(10) NOT NULL default '0',
 	accountID int(10) NOT NULL default '0',
 	isCatchall tinyint(1) unsigned NOT NULL default '0',
+	enabled enum('N','Y') NOT NULL default 'Y',
 	PRIMARY KEY  (mailID),
-	KEY emailaddress (emailaddress)
+	KEY accountID (accountID),
+	UNIQUE KEY emailaddress (emailaddress)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
-CREATE TABLE cp1_1_mail_accounts (
+CREATE TABLE cp1_1_mail_account (
 	accountID int(10) NOT NULL auto_increment,
-	userID int(10) NOT NULL default '0',
 	emailaddress varchar(255) NOT NULL default '',
 	username varchar(255) NOT NULL default '',
 	password varchar(128) NOT NULL default '',
@@ -27,7 +28,6 @@ CREATE TABLE cp1_1_mail_accounts (
 	quota bigint(13) NOT NULL default '0',
 	pop3 tinyint(1) NOT NULL default '1',
 	imap tinyint(1) NOT NULL default '1',
-	loginEnabled enum('N','Y') NOT NULL default 'Y',
 	PRIMARY KEY  (accountID),
 	UNIQUE KEY email (emailaddress)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
