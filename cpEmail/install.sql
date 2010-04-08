@@ -10,7 +10,8 @@ CREATE TABLE cp1_1_mail_virtual (
 	enabled enum('N','Y') NOT NULL default 'Y',
 	PRIMARY KEY  (mailID),
 	KEY accountID (accountID),
-	UNIQUE KEY emailaddress (emailaddress)
+	UNIQUE KEY emailaddress (emailaddress),
+	UNIQUE KEY catchall (domainID, isCatchall)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 CREATE TABLE cp1_1_mail_account (

@@ -33,6 +33,7 @@ class EmailList extends DatabaseObjectList
 	 */
 	public function readObjects()
 	{
+		// die selects nicht tauschen, sonst haben emails ohne account keine adresse mehr...
 		$sql = "SELECT		" . (!empty($this->sqlSelects) ? $this->sqlSelects . ',' : '') . "
 							account.*, virtual.*
 				FROM		cp" . CP_N . "_mail_virtual virtual

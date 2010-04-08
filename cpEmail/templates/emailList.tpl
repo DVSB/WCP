@@ -51,10 +51,10 @@
 				{assign var=forwardCount value=$email->destination|count}
 				<tr class="{cycle values="container-1,container-2"}">
 					<td class="columnEmailID columnID"><a href="index.php?action=EmailDelete&amp;mailID={$email->mailID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}" onclick="return confirm(LANG_DELETE_CONFIRM);"><img src="{icon}deleteS.png{/icon}" alt="" title="{lang}cp.email.deleteEmailaddress{/lang}" /></a></td>
-					<td class="columnEmailaddress columnText"><a href="index.php?page=EmailDetail&amp;mailID={$email->mailID}{@SID_ARG_2ND}">{$email->emailaddress}</a></td>
+					<td class="columnEmailaddress columnText"><a href="index.php?page=EmailDetail&amp;mailID={$email->mailID}{@SID_ARG_2ND}">{$email->emailaddress_full}</a></td>
 					<td class="columnDestination columnText">{if $forwardCount > 0 && $email->accountID}{$forwardCount - 1}{else}{$forwardCount}{/if} {if $this->user->emailForwards > $this->user->emailForwardsUsed}<a href="index.php?form=EmailAddForward&amp;mailID={$email->mailID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}">{lang}cp.email.addforward{/lang}</a>{/if}</td>
 					<td class="columnAccount columnText"><a href="index.php?form=EmailSetAccountPW&amp;mailID={$email->mailID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}">{lang}cp.email.account.{if $email->accountID}pwchange{else}addaccount{/if}{/lang}</a> {if $email->accountID}<a href="index.php?action=EmailDeleteAccount&amp;mailID={$email->mailID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}">{lang}cp.email.account.delete{/lang}</a>{/if}</td>
-					<td class="columnIsCatchall columnText">{if $email->isCatchall}{lang}cp.global.yes{/lang}{else}{lang}cp.global.no{/lang}{/if} <a href="index.php?action=EmailToggleCatchall&amp;mailID={$email->mailID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}">{lang}cp.email.isCatchall.{if $email->isCatchall}deactivate{else}activate{/if}{/lang}</a></td>
+					<td class="columnIsCatchall columnText">{if $email->isCatchall}{lang}cp.global.yes{/lang}{else}{lang}cp.global.no{/lang}{/if} {if !$domainsWithCatchall[$email->domainID]|isset || $email->isCatchall}<a href="index.php?action=EmailToggleCatchall&amp;mailID={$email->mailID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}">{lang}cp.email.isCatchall.{if $email->isCatchall}deactivate{else}activate{/if}{/lang}</a>{/if}</td>
 
 					{if $additionalColumns.$email->mailID|isset}{@$additionalColumns.$email->mailID}{/if}
 				</tr>

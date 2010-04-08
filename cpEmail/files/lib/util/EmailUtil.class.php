@@ -27,7 +27,7 @@ class EmailUtil
 	}
 
 	/**
-	 * Returns true, if the given domain is available.
+	 * Returns true, if the given emailaddress is available.
 	 * 
 	 * @param	string		$emailaddress		emailaddress
 	 * @return 	boolean
@@ -39,7 +39,28 @@ class EmailUtil
 				WHERE 	emailaddress = '" . escapeString($emailaddress) . "'";
 		
 		if ($mailID != 0)
-			$sql .= " AND mailID <> " . $mailID;
+			$sql .= " AND mailID <> " . intval($mailID);
+		
+		$existCount = WCF :: getDB()->getFirstRow($sql);
+		return $existCount['count'] == 0;
+	}
+	
+	/**
+	 * Returns true, if the given domain has no catchall
+	 * 
+	 * @param	int		$domainID		domainID
+	 * @param	int		$mainID			mailID
+	 * @return 	boolean
+	 */
+	public static function isAvailableCatchall($domainID, $mailID = 0)
+	{
+		$sql = "SELECT 	COUNT(*) AS count
+				FROM 	cp" . CP_N . "_mail_virtual
+				WHERE 	isCatchall = 1 
+					AND domainID = " . intval($domainID);
+		
+		if ($mailID != 0)
+			$sql .= " AND mailID <> " . intval($mailID);
 		
 		$existCount = WCF :: getDB()->getFirstRow($sql);
 		return $existCount['count'] == 0;

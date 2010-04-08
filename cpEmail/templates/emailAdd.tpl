@@ -32,7 +32,7 @@
 							{if $errorField == 'emailaddress'}
 								<p class="innerError">
 									{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
-									{if $errorType == 'notValid'}{lang}cp.email.error.notvalid{/lang}{/if}
+									{if $errorType == 'notValid'}{lang}cp.email.emailaddress.notvalid{/lang}{/if}
 								</p>
 							{/if}
 						</div>
@@ -47,18 +47,23 @@
 							{if $errorField == 'domainID'}
 								<p class="innerError">
 									{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
-									{if $errorType == 'notValid'}{lang}cp.email.error.notvalid{/lang}{/if}
+									{if $errorType == 'notValid'}{lang}cp.email.domain.notvalid{/lang}{/if}
 								</p>
 							{/if}
 						</div>
 					</div>
 
-					<div class="formElement">
+					<div class="formElement{if $errorField == 'isCatchall'} formError{/if}">
 						<div class="formFieldLabel">
 							<label for="description">{lang}cp.email.isCatchall{/lang}</label>
 						</div>
 						<div class="formField">
 							<input type="checkbox" name="isCatchall" value="1" {if $isCatchall}checked="checked" {/if}/>
+							{if $errorField == 'isCatchall'}
+								<p class="innerError">
+									{if $errorType == 'notValid'}{lang}cp.email.isCatchall.notvalid{/lang}{/if}
+								</p>
+							{/if}
 						</div>
 					</div>
 				</fieldset>

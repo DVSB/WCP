@@ -14,7 +14,7 @@ class EmailToggleCatchallAction extends AbstractSecureAction
 
 		$email = new EmailEditor($_REQUEST['mailID']);
 
-		if ($email->userID == WCF :: getUser()->userID)
+		if ($email->userID == WCF :: getUser()->userID && EmailUtil :: isAvailableCatchall($email->domainID, $email->mailID))
 			$email->toggleCatchall();
 
 		$url = 'index.php?page=EmailDetail&mailID=' . $email->mailID . SID_ARG_2ND_NOT_ENCODED;

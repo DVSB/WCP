@@ -44,13 +44,13 @@ class EmailDetailPage extends AbstractPage
 		parent :: assignVariables();
 
 		WCF :: getTPL()->assign(array (
-			'action' => 'edit',
 			'mailID' => $this->email->mailID,
 			'accountID' => $this->email->accountID,
 			'emailaddress' => $this->email->emailaddress,
 			'emailaddress_full' => $this->email->emailaddress_full,
 			'destination' => $this->email->destination,
 			'isCatchall' => $this->email->isCatchall,
+			'catchallAvailable' => EmailUtil :: isAvailableCatchall($this->email->domainID, $this->email->mailID),
 		));
 	}
 

@@ -5,7 +5,7 @@
 	<packageInformation>
 		<packageName>WCF Controlpanel eMail Modul</packageName>
 		<packageDescription>Ermöglicht Anlage von eMail-Adressen, Weiterleitungen, usw.</packageDescription>
-		<version>0.5.0-beta</version>
+		<version>0.5.0-beta2</version>
 		<plugin>com.toby.cp</plugin>
 		<date>2010-04-05</date>
 	</packageInformation>
@@ -34,7 +34,7 @@
 		<useroptions>useroptions.xml</useroptions>
 	</instructions>
 
-	<instructions type="update" fromversion="0.0.*">
+	<instructions type="update" fromversion="0.*">
 		<languages languagecode="de">de.xml</languages>
 		<options>options.xml</options>
 		<files>files.tar</files>

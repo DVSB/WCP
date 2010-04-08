@@ -38,7 +38,7 @@
 						<label for="description">{lang}cp.email.isCatchall{/lang}</label>
 					</div>
 					<div class="formField">
-						{if $isCatchall}{lang}cp.global.yes{/lang}{else}{lang}cp.global.no{/lang}{/if} <a href="index.php?action=EmailToggleCatchall&amp;mailID={@$mailID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}">{lang}cp.email.isCatchall.{if $isCatchall}deactivate{else}activate{/if}{/lang}</a>
+						{if $isCatchall}{lang}cp.global.yes{/lang}{else}{lang}cp.global.no{/lang}{/if} {if $catchallAvailable}<a href="index.php?action=EmailToggleCatchall&amp;mailID={@$mailID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}">{lang}cp.email.isCatchall.{if $isCatchall}deactivate{else}activate{/if}{/lang}</a>{/if}
 					</div>
 				</div>
 				

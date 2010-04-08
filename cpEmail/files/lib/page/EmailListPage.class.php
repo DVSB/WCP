@@ -13,7 +13,7 @@ require_once (WCF_DIR . 'lib/page/SortablePage.class.php');
 require_once (CP_DIR . 'lib/data/email/EmailList.class.php');
 
 /**
- * Shows a list available ftpaccounts for this user
+ * Shows a list available emailaddresses for this user
  *
  * @author		Tobias Friebel
  * @copyright	2009 Tobias Friebel
@@ -32,9 +32,9 @@ class EmailListPage extends SortablePage
 	//public $neededPermissions = 'name.der.berechtigung';
 
 	/**
-	 * ftp ist object
+	 * email list object
 	 *
-	 * @var	FTPUserList
+	 * @var	emailList
 	 */
 	public $emailList = null;
 
@@ -96,9 +96,19 @@ class EmailListPage extends SortablePage
 	public function assignVariables()
 	{
 		parent :: assignVariables();
+		
+		$emails = $this->emailList->getObjects();
+		
+		$domainsWithCatchall = array();
+		foreach ($emails as $e)
+		{
+			if ($e->isCatchall)
+				$domainsWithCatchall[$e->domainID] = true;
+		}
 
 		WCF :: getTPL()->assign(array (
-			'emails' => $this->emailList->getObjects()
+			'emails' => $emails,
+			'domainsWithCatchall' => $domainsWithCatchall,
 		));
 	}
 
