@@ -62,7 +62,7 @@ class EmailAddForm extends AbstractSecureForm
 		if (!array_key_exists($this->domainID, $this->domains))
 			throw new UserInputException('domainID', 'notValid');
 			
-		if (!EmailUtil :: isAvailableCatchall($this->domainID))
+		if ($this->isCatchall && !EmailUtil :: isAvailableCatchall($this->domainID))
 			throw new UserInputException('isCatchall', 'notValid');
 		
 		if (!EmailUtil :: isValidEmailaddress($this->emailaddress . '@' . $this->domains[$this->domainID]))
