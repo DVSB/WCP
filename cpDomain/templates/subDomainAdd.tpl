@@ -10,7 +10,7 @@
 	<script type="text/javascript">
 		//<![CDATA[
 		var tabMenu = new TabMenu();
-		onloadEvents.push(function() { tabMenu.showSubTabMenu("{$activeTabMenuItem}", "{$activeSubTabMenuItem}"); });
+		{if $options|count}onloadEvents.push(function() { tabMenu.showSubTabMenu('{@$options.0.categoryName}') });{/if}
 		//]]>
 	</script>
 </head>
@@ -85,54 +85,36 @@
 			
 				{if $additionalFieldSets|isset}{@$additionalFieldSets}{/if}
 			
-				{if !$options|empty}
+				{if $options|count || $additionalTabs|isset}
 				<div class="tabMenu">
 					<ul>
 						{foreach from=$options item=categoryLevel1}
-							<li id="{@$categoryLevel1.categoryName}"><a onclick="tabMenu.showSubTabMenu('{@$categoryLevel1.categoryName}');"><span>{lang}cp.acp.domain.category.{@$categoryLevel1.categoryName}{/lang}</span></a></li>
+							<li id="{@$categoryLevel1.categoryName}"><a onclick="tabMenu.showSubTabMenu('{@$categoryLevel1.categoryName}');"><span>{lang}cp.domain.option.category.{@$categoryLevel1.categoryName}{/lang}</span></a></li>
 						{/foreach}
+						
+						{if $additionalTabs|isset}{@$additionalTabs}{/if}
 					</ul>
 				</div>
 				<div class="subTabMenu">
-					<div class="containerHead">
-						{foreach from=$options item=categoryLevel1}
-							<ul class="hidden" id="{@$categoryLevel1.categoryName}-categories">
-								{foreach from=$categoryLevel1.categories item=categoryLevel2}
-									<li id="{@$categoryLevel1.categoryName}-{@$categoryLevel2.categoryName}"><a onclick="tabMenu.showTabMenuContent('{@$categoryLevel1.categoryName}-{@$categoryLevel2.categoryName}');"><span>{lang}cp.acp.domain.category.{@$categoryLevel2.categoryName}{/lang}</span></a></li>
-								{/foreach}
-							</ul>
-						{/foreach}
-					</div>
+					<div class="containerHead"><div> </div></div>
 				</div>
 				
 				{foreach from=$options item=categoryLevel1}
-					{foreach from=$categoryLevel1.categories item=categoryLevel2}
-						<div class="border tabMenuContent hidden" id="{@$categoryLevel1.categoryName}-{@$categoryLevel2.categoryName}-content">
-							<div class="container-1">
-								<h3 class="subHeadline">{lang}cp.acp.domain.option.category.{@$categoryLevel2.categoryName}{/lang}</h3>
-								<p class="description">{lang}cp.acp.domain.option.category.{@$categoryLevel2.categoryName}.description{/lang}</p>
-								
-								{if $categoryLevel2.options|isset && $categoryLevel2.options|count}
-									{include file='optionFieldList' options=$categoryLevel2.options langPrefix='cp.acp.domain.option.'}
-								{/if}
-								
-								{if $categoryLevel2.categories|isset}
-									{foreach from=$categoryLevel2.categories item=categoryLevel3}
-										<fieldset>
-											<legend>{lang}cp.acp.domain.option.category.{@$categoryLevel3.categoryName}{/lang}</legend>
-											<p class="description">{lang}cp.acp.domain.option.category.{@$categoryLevel3.categoryName}.description{/lang}</p>
-										
-											<div>
-												{include file='optionFieldList' options=$categoryLevel3.options langPrefix='cp.acp.domain.option.'}
-											</div>
-										</fieldset>
-									{/foreach}
-								{/if}
-							</div>
+					<div class="border tabMenuContent hidden" id="{@$categoryLevel1.categoryName}-content">
+						<div class="container-1">
+							<h3 class="subHeadline">{lang}cp.domain.option.category.{@$categoryLevel1.categoryName}{/lang}</h3>
+							
+							{foreach from=$categoryLevel1.categories item=categoryLevel2}
+								<fieldset>
+									<legend>{lang}cp.domain.option.category.{@$categoryLevel2.categoryName}{/lang}</legend>
+									
+									{include file='domainOptionFieldList' options=$categoryLevel2.options}
+								</fieldset>
+							{/foreach}
 						</div>
-					{/foreach}
+					</div>
 				{/foreach}
-				{/if}
+			{/if}
 			</div>
 		</div>
 		
@@ -143,9 +125,6 @@
 	 		{if $domainID|isset}<input type="hidden" name="domainID" value="{@$domainID}" />{/if}
 	 		<input type="submit" accesskey="s" value="{lang}wcf.global.button.submit{/lang}" />
 			<input type="reset" accesskey="r" value="{lang}wcf.global.button.reset{/lang}" />
-	 		
-	 		<input type="hidden" id="activeTabMenuItem" name="activeTabMenuItem" value="{$activeTabMenuItem}" />
-	 		<input type="hidden" id="activeSubTabMenuItem" name="activeSubTabMenuItem" value="{$activeSubTabMenuItem}" />
 	 	</div>
 	</form>
 	

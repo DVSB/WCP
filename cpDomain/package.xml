@@ -5,9 +5,9 @@
 	<packageInformation>
 		<packageName>WCF Controlpanel Domain Modul</packageName>
 		<packageDescription>Basismodul zur Domainverwaltung</packageDescription>
-		<version>0.5.0-alpha</version>
+		<version>0.5.0-beta4</version>
 		<plugin>com.toby.cp</plugin>
-		<date>2009-06-30</date>
+		<date>2010-04-11</date>
 	</packageInformation>
 
 	<authorInformation>
@@ -33,6 +33,8 @@
 		<eventlistener>eventlistener.xml</eventlistener>
 		<useroptions>useroptions.xml</useroptions>
 		<acpmenu>acpmenu.xml</acpmenu>
+		<domainoptions>domainoptions.xml</domainoptions>
+		<packageinstallationplugins>pip.tar</packageinstallationplugins>
 	</instructions>
 
 	<instructions type="update" fromversion="0.*">
@@ -45,6 +47,8 @@
 		<pagemenu>pagemenu.xml</pagemenu>
 		<eventlistener>eventlistener.xml</eventlistener>
 		<useroptions>useroptions.xml</useroptions>
+		<domainoptions>domainoptions.xml</domainoptions>
+		<packageinstallationplugins>pip.tar</packageinstallationplugins>
 	</instructions>
 
 </package>

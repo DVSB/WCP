@@ -41,11 +41,23 @@ class SubDomainEditForm extends SubDomainAddForm
 			{
 				throw new PermissionDeniedException();
 			}
-			
-			$this->readDefaultValues();
 		}
 	}
 
+	/**
+	 * @see Page::readData()
+	 */
+	public function readData()
+	{
+		if (!count($_POST))
+		{
+			// default values
+			$this->readDefaultValues();
+		}
+		
+		parent :: readData();
+	}
+	
 	/**
 	 * Gets the default values.
 	 */
@@ -61,7 +73,7 @@ class SubDomainEditForm extends SubDomainAddForm
 			
 		foreach ($this->activeOptions as $key => $option)
 		{
-			$value = $this->user->{'userOption' . $option['optionID']};
+			$value = $this->domain->{'domainOption' . $option['optionID']};
 			if ($value !== null)
 			{
 				$this->activeOptions[$key]['optionValue'] = $value;

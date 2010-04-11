@@ -48,14 +48,6 @@ class DomainEditForm extends DomainAddForm
 	}
 
 	/**
-	 * @see Page::readFormParameters()
-	 */
-	public function readFormParameters()
-	{
-		parent :: readFormParameters();
-	}
-
-	/**
 	 * @see Page::readData()
 	 */
 	public function readData()
@@ -67,8 +59,6 @@ class DomainEditForm extends DomainAddForm
 		}
 		
 		parent :: readData();
-		
-		$this->url = 'index.php?form=DomainEdit&userID=' . $this->domain->domainID . SID_ARG_2ND_NOT_ENCODED;
 	}
 
 	/**
@@ -93,7 +83,7 @@ class DomainEditForm extends DomainAddForm
 			
 		foreach ($this->activeOptions as $key => $option)
 		{
-			$value = $this->user->{'userOption' . $option['optionID']};
+			$value = $this->domain->{'domainOption' . $option['optionID']};
 			if ($value !== null)
 			{
 				$this->activeOptions[$key]['optionValue'] = $value;

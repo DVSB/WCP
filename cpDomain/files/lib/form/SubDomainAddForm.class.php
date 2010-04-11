@@ -1,5 +1,5 @@
 <?php
-require_once (WCF_DIR . 'lib/acp/form/DynamicOptionListForm.class.php');
+require_once (CP_DIR . 'lib/acp/form/DynamicDomainOptionListForm.class.php');
 require_once (CP_DIR . 'lib/data/user/CPUser.class.php');
 
 /**
@@ -13,25 +13,18 @@ require_once (CP_DIR . 'lib/data/user/CPUser.class.php');
  * @category 	Control Panel
  * @id			$Id$
  */
-class SubDomainAddForm extends DynamicOptionListForm
+class SubDomainAddForm extends DynamicDomainOptionListForm
 {
 	public $templateName = 'subDomainAdd';
 	public $neededPermissions = ''; //admin.cp.canAddDomain';
 	
-	public $cacheClass = 'CacheBuilderDomainOption';
-
-	public $cacheName = 'domain-option';
 	public $additionalFields = array();
 	public $domain;
-	public $options;
 	
 	public $domainname = '';
 	public $domainID = 0;
 	
 	public $parentDomainID = 0;
-	
-	public $activeTabMenuItem = '';
-	public $activeSubTabMenuItem = '';
 	
 	/**
 	 * @see Page::readData()
@@ -102,22 +95,6 @@ class SubDomainAddForm extends DynamicOptionListForm
 		// validate dynamic options
 		parent :: validate();
 	}
-	
-	/**
-	 * Validates an option.
-	 * 
-	 * @param	string		$key		option name
-	 * @param	array		$option		option data
-	 */
-	protected function validateOption($key, $option)
-	{
-		parent :: validateOption($key, $option);
-		
-		if ($option['required'] && empty($this->activeOptions[$key]['optionValue']))
-		{
-			throw new UserInputException($option['optionName']);
-		}
-	}
 
 	/**
 	 * @see Form::save()
@@ -159,23 +136,6 @@ class SubDomainAddForm extends DynamicOptionListForm
 	}
 	
 	/**
-	 * Gets all options and option categories from cache.
-	 */
-	protected function readCache() 
-	{
-		// get cache contents
-		$cacheName = $this->cacheName;
-		WCF::getCache()->addResource($cacheName, CP_DIR . 'cache/cache.'.$cacheName.'.php', CP_DIR . 'lib/system/cache/'.$this->cacheClass.'.class.php');
-		$this->cachedCategories = WCF::getCache()->get($cacheName, 'categories');
-		$this->cachedOptions = WCF::getCache()->get($cacheName, 'options');
-		$this->cachedCategoryStructure = WCF::getCache()->get($cacheName, 'categoryStructure');
-		$this->cachedOptionToCategories = WCF::getCache()->get($cacheName, 'optionToCategories');
-		
-		// get active options
-		$this->loadActiveOptions($this->activeCategory);
-	}
-	
-	/**
 	 * @see Page::assignVariables()
 	 */
 	public function assignVariables()
@@ -188,9 +148,7 @@ class SubDomainAddForm extends DynamicOptionListForm
 			'domainID' => $this->domainID,
 			'parentDomains' => $this->parentDomains,
 			'parentDomainID' => $this->parentDomainID,
-			'action' => 'add',
-			'activeTabMenuItem' 	=> $this->activeTabMenuItem,
-			'activeSubTabMenuItem' 	=> $this->activeSubTabMenuItem
+			'action' => 'add'
 		));
 	}
 
@@ -222,42 +180,18 @@ class SubDomainAddForm extends DynamicOptionListForm
 		// show form
 		parent :: show();
 	}
-
+	
 	/**
-	 * @see DynamicOptionListForm::getOptionTree()
+	 * @see DynamicOptionListForm::checkOption()
 	 */
-	protected function getOptionTree($parentCategoryName = '', $level = 0)
+	protected function checkOption($optionName) 
 	{
-		$options = array ();
-		
-		if (isset($this->cachedCategoryStructure[$parentCategoryName]))
-		{
-			// get super categories
-			foreach ($this->cachedCategoryStructure[$parentCategoryName] as $superCategoryName)
-			{
-				$superCategory = $this->cachedCategories[$superCategoryName];
-				$superCategory['options'] = array ();
-				
-				if ($this->checkCategory($superCategory))
-				{
-					if ($level <= 0)
-					{
-						$superCategory['categories'] = $this->getOptionTree($superCategoryName, $level + 1);
-					}
-					if ($level > 0 || count($superCategory['categories']) == 0)
-					{
-						$superCategory['options'] = $this->getCategoryOptions($superCategoryName);
-					}
-					
-					if ((isset($superCategory['categories']) && count($superCategory['categories']) > 0) || (isset($superCategory['options']) && count($superCategory['options']) > 0))
-					{
-						$options[] = $superCategory;
-					}
-				}
-			}
-		}
-		
-		return $options;
+		if (!parent ::  checkOption($optionName)) 
+			return false;
+			
+		$option = $this->cachedOptions[$optionName];
+		// show options visible for and editable by user 
+		return ($option['editable'] == 1 && !$option['disabled']);
 	}
 }
 ?>

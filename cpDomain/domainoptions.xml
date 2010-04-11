@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/options.dtd">
+<data>
+	<import>
+		<categories>
+				
+				<category name="default">
+					<showorder>100</showorder>
+				</category>
+				
+				<category name="default.comments">
+					<parent>default</parent>
+				</category>
+				
+		</categories>
+	
+		<options>
+
+			<option name="comments">
+				<categoryname>default.comments</categoryname>
+				<optiontype>textarea</optiontype>
+				<defaultvalue></defaultvalue>
+				<editable>1</editable>
+			</option>
+			
+			<option name="admincomments">
+				<categoryname>default.comments</categoryname>
+				<optiontype>textarea</optiontype>
+				<defaultvalue></defaultvalue>
+				<editable>0</editable>
+			</option>
+			
+		</options>
+
+	</import>
+</data>
