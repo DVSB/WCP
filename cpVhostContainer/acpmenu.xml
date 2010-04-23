@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "DTDs/acpMenu.dtd">
+<data>
+	<import>
+
+		<acpmenuitem name="cp.acp.menu.link.vhostcontainer">
+			<parent>cp.acp.menu.link</parent>
+		</acpmenuitem>
+
+		<acpmenuitem name="cp.acp.menu.link.vhostcontainer.list">
+			<icon>icon/domainM.png</icon>
+			<link>index.php?page=vhostContainerList</link>
+			<parent>cp.acp.menu.link.vhostcontainer</parent>
+			<permissions>admin.cp.canSeeVhostContainer</permissions>
+			<showorder>1</showorder>
+		</acpmenuitem>
+
+		<acpmenuitem name="cp.acp.menu.link.vhostcontainer.add">
+			<icon>icon/domainAddM.png</icon>
+			<link>index.php?form=vhostContainerAdd</link>
+			<parent>cp.acp.menu.link.vhostContainer</parent>
+			<permissions>admin.cp.canAddVhostContainer</permissions>
+			<showorder>2</showorder>
+		</acpmenuitem>
+		
+	</import>
+</data>

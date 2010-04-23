@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE package SYSTEM "DTD/package.dtd">
+<package name="com.toby.cp.vhostcontainer">
+
+	<packageInformation>
+		<packageName>WCF Controlpanel VhostContainer Modul</packageName>
+		<packageDescription>Basismodul zur Anlage von VhostContainern</packageDescription>
+		<version>0.0.1-alpha1</version>
+		<plugin>com.toby.cp</plugin>
+		<date>2010-04-23</date>
+	</packageInformation>
+
+	<authorInformation>
+		<author>Tobias Friebel</author>
+		<authorURL>http://dev.hugin-hosting.de/</authorURL>
+		<license>GPL</license>
+	</authorInformation>
+
+	<requiredpackages>
+		<requiredpackage minversion="1.1.0 Alpha 1">com.woltlab.wcf</requiredpackage>
+		<requiredpackage>com.toby.cp</requiredpackage>
+	</requiredpackages>
+
+	<instructions type="install">
+		<languages languagecode="de">de.xml</languages>
+		<options>options.xml</options>
+		<files>files.tar</files>
+		<acptemplates>acptemplates.tar</acptemplates>
+		<groupoptions>groupoptions.xml</groupoptions>
+		<sql>install.sql</sql>
+		<acpmenu>acpmenu.xml</acpmenu>
+		<domainoptions>domainoptions.xml</domainoptions>
+	</instructions>
+
+	<instructions type="update" fromversion="0.*">
+		<languages languagecode="de">de.xml</languages>
+		<options>options.xml</options>
+		<files>files.tar</files>
+		<acptemplates>acptemplates.tar</acptemplates>
+		<groupoptions>groupoptions.xml</groupoptions>
+		<acpmenu>acpmenu.xml</acpmenu>
+		<domainoptions>domainoptions.xml</domainoptions>
+	</instructions>
+
+</package>
