@@ -13,7 +13,7 @@ CREATE TABLE cp1_1_vhostContainer (
 	addNameStatement tinyint(1) NOT NULL default 0,
 	addServerName tinyint(1) NOT NULL default 1,
 	vhostTemplate text,
-	vhostDescription text,
+	vhostComments text,
 	sslCertFile varchar(255) NULL,
 	sslCertKeyFile varchar(255) NULL,
 	sslCertChainFile varchar(255) NULL,
