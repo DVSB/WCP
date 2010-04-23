@@ -11,7 +11,7 @@ require_once (CP_DIR . 'lib/data/vhost/VhostContainer.class.php');
  * @package		com.toby.cp.ftp
  * @subpackage	data.ftp
  * @category 	Control Panel
- * @id			$Id: DomainList.class.php 58 2010-03-17 20:20:51Z toby $
+ * @id			$Id$
  */
 class VhostContainerList extends DatabaseObjectList
 {

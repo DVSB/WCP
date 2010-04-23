@@ -5,7 +5,7 @@
  *
  * Lizenz: GPL
  *
- * $Id: EmailEditForm.class.php 72 2010-03-26 15:01:12Z toby $
+ * $Id$
  */
 
 require_once (WCF_DIR . 'lib/page/AbstractPage.class.php');

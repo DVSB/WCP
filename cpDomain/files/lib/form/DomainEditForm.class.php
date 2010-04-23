@@ -11,7 +11,7 @@ require_once (CP_DIR . 'lib/form/SubDomainAddForm.class.php');
  * @package		com.toby.cp.domain
  * @subpackage	form
  * @category 	Control Panel
- * @id			$Id: SubDomainEditForm.class.php 58 2010-03-17 20:20:51Z toby $
+ * @id			$Id$
  */
 class DomainEditForm extends SubDomainAddForm
 {
