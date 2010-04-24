@@ -7,7 +7,7 @@ CREATE TABLE cp1_1_vhostContainer (
 	isContainer tinyint(1) NOT NULL default 1,
 	isIPv6 tinyint(1) NOT NULL default 0,
 	isSSL tinyint(1) NOT NULL default 0,
-	useTemplate tinyint(1) NOT NULL default 0,
+	overwriteTemplate tinyint(1) NOT NULL default 0,
 	availableForUser tinyint(1) NOT NULL default 0, -- Not Yet, maybe later
 	addListenStatement tinyint(1) NOT NULL default 0,
 	addNameStatement tinyint(1) NOT NULL default 0,

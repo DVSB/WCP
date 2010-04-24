@@ -37,14 +37,14 @@ class VhostContainerAddForm extends ACPForm
 	public $addNameStatement = 0;
 	public $addServerName = 1;
 	
-	public $useTemplate = 0;
-	public $vhostTemplate = '';
+	public $overwriteTemplate = 0;
+	public $vhostTemplate;
 	
-	public $vhostComments = '';
+	public $vhostComments;
 	
-	public $sslCertFile = '';
-	public $sslCertKeyFile = '';
-	public $sslCertChainFile = '';
+	public $sslCertFile;
+	public $sslCertKeyFile;
+	public $sslCertChainFile;
 
 	/**
 	 * @see Form::readFormParameters()
@@ -62,7 +62,44 @@ class VhostContainerAddForm extends ACPForm
 		if (isset($_POST['port']))
 			$this->port = intval($_POST['port']);
 			
-		
+		if (isset($_POST['vhostType']))
+			$this->vhostType = StringUtil :: trim($_POST['vhostType']);
+			
+		if (isset($_POST['isContainer']))
+			$this->isContainer = intval($_POST['isContainer']);
+			
+		if (isset($_POST['isIPv6']))
+			$this->isIPv6 = intval($_POST['isIPv6']);
+			
+		if (isset($_POST['isSSL']))
+			$this->isSSL = intval($_POST['isSSL']);
+			
+		if (isset($_POST['addListenStatement']))
+			$this->addListenStatement = intval($_POST['addListenStatement']);
+			
+		if (isset($_POST['addNameStatement']))
+			$this->addNameStatement = intval($_POST['addNameStatement']);
+			
+		if (isset($_POST['addServerName']))
+			$this->addServerName = intval($_POST['addServerName']);
+			
+		if (isset($_POST['overwriteTemplate']))
+			$this->overwriteTemplate = intval($_POST['overwriteTemplate']);
+			
+		if (isset($_POST['vhostTemplate']))
+			$this->vhostTemplate = StringUtil :: trim($_POST['vhostTemplate']);
+			
+		if (isset($_POST['vhostComments']))
+			$this->vhostComments = StringUtil :: trim($_POST['vhostComments']);
+			
+		if (isset($_POST['sslCertFile']))
+			$this->sslCertFile = StringUtil :: trim($_POST['sslCertFile']);
+			
+		if (isset($_POST['sslCertKeyFile']))
+			$this->sslCertKeyFile = StringUtil :: trim($_POST['sslCertKeyFile']);
+			
+		if (isset($_POST['sslCertChainFile']))
+			$this->sslCertChainFile = StringUtil :: trim($_POST['sslCertChainFile']);
 	}
 
 	/**
@@ -73,6 +110,14 @@ class VhostContainerAddForm extends ACPForm
 		if (empty($this->vhostName))
 			throw new UserInputException('vhostName', 'empty');
 		
+		if (empty($this->ipAddress))
+			throw new UserInputException('ipAddress', 'empty');
+			
+		if (empty($this->port))
+			throw new UserInputException('port', 'empty');
+			
+		if (empty($this->vhostType))
+			throw new UserInputException('vhostType', 'empty');
 		
 		// validate dynamic options
 		parent :: validate();
@@ -88,7 +133,41 @@ class VhostContainerAddForm extends ACPForm
 		// create
 		require_once (CP_DIR . 'lib/data/vhost/VhostContainerEditor.class.php');
 		
-		$this->vhostContainer = VhostContainerEditor :: create($this->vhostName, $this->additionalFields);
+			$this->isContainer = intval($_POST['isContainer']);
+			
+		if (isset($_POST['isIPv6']))
+			$this->isIPv6 = intval($_POST['isIPv6']);
+			
+		if (isset($_POST['isSSL']))
+			$this->isSSL = intval($_POST['isSSL']);
+			
+		if (isset($_POST['addListenStatement']))
+			$this->addListenStatement = intval($_POST['addListenStatement']);
+			
+		if (isset($_POST['addNameStatement']))
+			$this->addNameStatement = intval($_POST['addNameStatement']);
+			
+		if (isset($_POST['addServerName']))
+			$this->addServerName = intval($_POST['addServerName']);
+			
+		if (isset($_POST['overwriteTemplate']))
+			$this->overwriteTemplate = intval($_POST['overwriteTemplate']);
+			
+		if (isset($_POST['vhostTemplate']))
+			$this->vhostTemplate = StringUtil :: trim($_POST['vhostTemplate']);
+			
+		if (isset($_POST['vhostComments']))
+			$this->vhostComments = StringUtil :: trim($_POST['vhostComments']);
+			
+		if (isset($_POST['sslCertFile']))
+			$this->sslCertFile = StringUtil :: trim($_POST['sslCertFile']);
+			
+		if (isset($_POST['sslCertKeyFile']))
+			$this->sslCertKeyFile = StringUtil :: trim($_POST['sslCertKeyFile']);
+			
+		if (isset($_POST['sslCertChainFile']))
+			$this->sslCertChainFile = StringUtil :: trim($_POST['sslCertChainFile']);
+		$this->vhostContainer = VhostContainerEditor :: create($this->vhostName, $this->ipAddress, $this->port, $this->vhostType, $this->additionalFields);
 		$this->saved();
 		
 		// show empty add form

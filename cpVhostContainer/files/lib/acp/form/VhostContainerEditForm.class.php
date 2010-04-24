@@ -16,8 +16,6 @@ require_once (CP_DIR . 'lib/acp/form/VhostContainerAddForm.class.php');
 class VhostContainerEditForm extends VhostContainerAddForm
 {
 	//public $permission = 'admin.domain.canEditDomain';
-	
-	public $vhostContainerID = 0;
 
 	/**
 	 * @see Page::readParameters()

@@ -26,10 +26,10 @@ class VhostContainerEditor extends VhostContainer
 	 * 
 	 * @return 	VhostContainerEditor
 	 */
-	public static function create($vhostName, $additionalFields = array())
+	public static function create($vhostName, $ipAddress, $port, $vhostType, $additionalFields = array())
 	{
 		// insert main data
-		$vhostContainerID = self :: insert($vhostName, $additionalFields);
+		$vhostContainerID = self :: insert($vhostName, $ipAddress, $port, $vhostType, $additionalFields);
 		
 		$vhostContainer = new VhostContainerEditor($vhostContainerID);
 		
@@ -44,7 +44,7 @@ class VhostContainerEditor extends VhostContainer
 	 * 
 	 * @return 	integer		new domainID
 	 */
-	public static function insert($vhostName, $additionalFields = array())
+	public static function insert($vhostName, $ipAddress, $port, $vhostType, $additionalFields = array())
 	{
 		$additionalColumnNames = $additionalColumnValues = '';
 			
@@ -55,9 +55,12 @@ class VhostContainerEditor extends VhostContainer
 		}
 		
 		$sql = "INSERT INTO	cp" . CP_N . "_vhostContainer
-						(vhostName
+						(vhostName, ipAddress, port, vhostType
 						" . $additionalColumnNames . ")
-				VALUES	('" . escapeString($vhostName) . "'
+				VALUES	('" . escapeString($vhostName) . "',
+						 '" . escapeString($ipAddress) . "',
+						 " . intval($port) . ",
+						 '" . escapeString($vhostType) . "'
 						" . $additionalColumnValues . ")";
 		WCF :: getDB()->sendQuery($sql);
 		return WCF :: getDB()->getInsertID();
@@ -69,9 +72,9 @@ class VhostContainerEditor extends VhostContainer
 	 * @param	string		$vhostName
 	 * @param	array 		$additionalFields
 	 */
-	public function update($vhostName, $additionalFields = array())
+	public function update($vhostName, $ipAddress, $port, $vhostType, $additionalFields = array())
 	{
-		$this->updateVhostContainer($vhostName, $additionalFields);
+		$this->updateVhostContainer($vhostName, $ipAddress, $port, $vhostType, $additionalFields);
 	}
 
 	/**
@@ -81,7 +84,7 @@ class VhostContainerEditor extends VhostContainer
 	 */
 	public function updateFields($additionalFields)
 	{
-		$this->updateVhostContainer('', $additionalFields);
+		$this->updateVhostContainer('', '', 0, '', $additionalFields);
 	}
 
 	/**
@@ -90,13 +93,31 @@ class VhostContainerEditor extends VhostContainer
  	 * @param 	string 		$vhostName
 	 * @param	array		$additionalFields
 	 */
-	protected function updateVhostContainer($vhostName = '', $additionalFields = array())
+	protected function updateVhostContainer($vhostName = '', $ipAddress = '', $port = 0, $vhostType = '', $additionalFields = array())
 	{
 		$updateSQL = '';
-		if (!empty($domainname))
+		if (!empty($vhostName))
 		{
 			$updateSQL = "vhostName = '" . escapeString($vhostName) . "'";
 			$this->vhostName = $vhostName;
+		}
+		
+		if (!empty($ipAddress))
+		{
+			$updateSQL = "ipAddress = '" . escapeString($ipAddress) . "'";
+			$this->ipAddress = $ipAddress;
+		}
+		
+		if ($port > 0)
+		{
+			$updateSQL = "port = " . intval($port);
+			$this->port = $port;
+		}
+		
+		if (!empty($vhostType))
+		{
+			$updateSQL = "vhostType = '" . escapeString($vhostType) . "'";
+			$this->vhostType = $vhostType;
 		}
 		
 		foreach ($additionalFields as $key => $value)
@@ -125,7 +146,7 @@ class VhostContainerEditor extends VhostContainer
 	 */
 	public static function deleteVhostContainer($vhostContainerIDs)
 	{
-		if (count($vhostContainerID) == 0)
+		if (count($vhostContainerIDs) == 0)
 			return 0;
 		
 		$vhostContainerIDsStr = implode(',', $vhostContainerIDs);
