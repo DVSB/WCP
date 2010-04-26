@@ -16,6 +16,7 @@ class DomainDeleteAction extends AbstractAction
 
 		if ($domain->adminID == WCF :: getUser()->userID || WCF :: getUser()->getPermission('admin.general.isSuperAdmin'))
 		{
+			$this->domainID = $domain->domainID;
 			$domain->delete();
 			EventHandler :: fireAction($this, 'domainDeleted');
 		}

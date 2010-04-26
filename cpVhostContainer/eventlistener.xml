@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE import SYSTEM "DTD/import.dtd">
+<data>
+	<import>
+		<eventlistener>
+			<eventClassName>DomainAddForm</eventClassName>
+			<eventName>saved</eventName>
+			<listenerClassFile>lib/system/event/listener/DomainVhostListener.class.php</listenerClassFile>
+			<environment>admin</environment>
+			<inherit>1</inherit>
+		</eventlistener>
+		
+		<eventlistener>
+			<eventClassName>DomainDeleteAction</eventClassName>
+			<eventName>domainDeleted</eventName>
+			<listenerClassFile>lib/system/event/listener/DomainVhostListener.class.php</listenerClassFile>
+			<environment>admin</environment>
+		</eventlistener>
+		
+		<eventlistener>
+			<eventClassName>SubDomainAddForm</eventClassName>
+			<eventName>saved</eventName>
+			<listenerClassFile>lib/system/event/listener/DomainVhostListener.class.php</listenerClassFile>
+			<environment>user</environment>
+			<inherit>1</inherit>
+		</eventlistener>
+		
+		<eventlistener>
+			<eventClassName>SubDomainDeleteAction</eventClassName>
+			<eventName>domainDeleted</eventName>
+			<listenerClassFile>lib/system/event/listener/DomainVhostListener.class.php</listenerClassFile>
+			<environment>user</environment>
+		</eventlistener>
+		
+		<eventlistener>
+			<eventClassName>DomainDisableAction</eventClassName>
+			<eventName>domainDisabled</eventName>
+			<listenerClassFile>lib/system/event/listener/DomainVhostListener.class.php</listenerClassFile>
+			<environment>user</environment>
+		</eventlistener>
+		
+		<eventlistener>
+			<eventClassName>DomainEnableAction</eventClassName>
+			<eventName>domainEnabled</eventName>
+			<listenerClassFile>lib/system/event/listener/DomainVhostListener.class.php</listenerClassFile>
+			<environment>user</environment>
+		</eventlistener>
+	</import>
+</data>

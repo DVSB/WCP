@@ -31,7 +31,9 @@
 			<thead>
 				<tr class="tableHead">
 					<th class="columnvhostContainerID{if $sortField == 'vhostContainerID'} active{/if}" colspan="2"><div><a href="index.php?page=vhostContainerList&amp;pageNo={@$pageNo}&amp;sortField=vhostContainerID&amp;sortOrder={if $sortField == 'vhostContainerID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.acp.vhostContainer.vhostContainerID{/lang}{if $sortField == 'vhostContainerID'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
-					<th class="columnvhostName{if $sortField == 'vhostContainername'} active{/if}"><div><a href="index.php?page=vhostContainerList&amp;pageNo={@$pageNo}&amp;sortField=vhostContainername&amp;sortOrder={if $sortField == 'vhostContainername' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.acp.vhostContainer.vhostContainername{/lang}{if $sortField == 'vhostContainername'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
+					<th class="columnvhostName{if $sortField == 'vhostContainername'} active{/if}"><div><a href="index.php?page=vhostContainerList&amp;pageNo={@$pageNo}&amp;sortField=vhostName&amp;sortOrder={if $sortField == 'vhostName' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.acp.vhostContainer.vhostName{/lang}{if $sortField == 'vhostName'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
+					<th class="columnipAddressPort{if $sortField == 'ipAddress'} active{/if}"><div><a href="index.php?page=vhostContainerList&amp;pageNo={@$pageNo}&amp;sortField=ipAddress&amp;sortOrder={if $sortField == 'ipAddress' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.acp.vhostContainer.ipAddressPort{/lang}{if $sortField == 'ipAddress'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
+					<th class="columnvhostType{if $sortField == 'vhostType'} active{/if}"><div><a href="index.php?page=vhostContainerList&amp;pageNo={@$pageNo}&amp;sortField=vhostType&amp;sortOrder={if $sortField == 'vhostType' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.acp.vhostContainer.vhostType/lang}{if $sortField == 'vhostType'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
 										
 					{if $additionalColumns|isset}{@$additionalColumns}{/if}
 				</tr>
@@ -54,8 +56,10 @@
 						{if $additionalButtons[$vhostContainer->vhostContainerID]|isset}{@$additionalButtons[$vhostContainer->vhostContainerID]}{/if}
 					</td>
 					<td class="columnvhostContainerID columnID">{@$vhostContainer->vhostContainerID}</td>
-					<td class="columnvhostContainername columnText">{if $vhostContainer->canEditvhostContainer}<a title="{lang}cp.acp.vhostContainer.edit{/lang}" href="index.php?form=vhostContainerEdit&amp;vhostContainerID={@$vhostContainer->vhostContainerID}{@SID_ARG_2ND}">{$vhostContainer->vhostName}</a>{else}{$vhostContainer->vhostName}{/if}</td>
-							
+					<td class="columnvhostName columnText">{if $vhostContainer->canEditvhostContainer}<a title="{lang}cp.acp.vhostContainer.edit{/lang}" href="index.php?form=vhostContainerEdit&amp;vhostContainerID={@$vhostContainer->vhostContainerID}{@SID_ARG_2ND}">{$vhostContainer->vhostName}</a>{else}{$vhostContainer->vhostName}{/if}</td>
+					<td class="columnipAddressPort columnText">{$vhostContainer->ipAddress}:{$vhostContainer->port}</td>
+					<td class="columnvhostType columnText">{$vhostContainer->vhostType}</td>
+					
 					{if $additionalColumns[$vhostContainer->vhostContainerID]|isset}{@$additionalColumns[$vhostContainer->vhostContainerID]}{/if}
 				</tr>
 			{/foreach}

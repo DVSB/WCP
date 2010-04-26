@@ -16,6 +16,7 @@ class DomainEnableAction extends AbstractSecureAction
 
 		if ($domain->userID == WCF :: getUser()->userID)
 		{
+			$this->domainID = $domain->domainID;
 			$domain->enable();
 			EventHandler :: fireAction($this, 'domainEnabled');
 		}

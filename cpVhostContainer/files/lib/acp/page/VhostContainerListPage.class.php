@@ -65,9 +65,7 @@ class VhostContainerListPage extends SortablePage
 		{
 			case 'vhostName':
 			case 'ipAddress':
-			case 'port':
 			case 'vhostType':
-			case 'isSSL':
 			break;
 			default:
 				if (!isset($this->options[$this->sortField]))

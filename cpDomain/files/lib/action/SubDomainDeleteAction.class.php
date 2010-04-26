@@ -16,6 +16,7 @@ class SubDomainDeleteAction extends AbstractSecureAction
 
 		if ($domain->userID == WCF :: getUser()->userID && $domain->parentDomainID != 0)
 		{
+			$this->domainID = $domain->domainID;
 			$domain->delete();
 			EventHandler :: fireAction($this, 'domainDeleted');
 		}

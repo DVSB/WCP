@@ -19,6 +19,7 @@
 	<requiredpackages>
 		<requiredpackage minversion="1.1.0 Alpha 1">com.woltlab.wcf</requiredpackage>
 		<requiredpackage>com.toby.cp</requiredpackage>
+		<requiredpackage>com.toby.cp.domain</requiredpackage>
 	</requiredpackages>
 
 	<instructions type="install">
@@ -30,6 +31,7 @@
 		<sql>install.sql</sql>
 		<acpmenu>acpmenu.xml</acpmenu>
 		<domainoptions>domainoptions.xml</domainoptions>
+		<eventlistener>eventlistener.xml</eventlistener>
 	</instructions>
 
 	<instructions type="update" fromversion="0.*">
@@ -40,6 +42,7 @@
 		<groupoptions>groupoptions.xml</groupoptions>
 		<acpmenu>acpmenu.xml</acpmenu>
 		<domainoptions>domainoptions.xml</domainoptions>
+		<eventlistener>eventlistener.xml</eventlistener>
 	</instructions>
 
 </package>

@@ -15,7 +15,7 @@ require_once (CP_DIR . 'lib/acp/form/VhostContainerAddForm.class.php');
  */
 class VhostContainerEditForm extends VhostContainerAddForm
 {
-	//public $permission = 'admin.domain.canEditDomain';
+	public $permission = 'admin.cp.canEditVhostContainer';
 
 	/**
 	 * @see Page::readParameters()
@@ -46,8 +46,22 @@ class VhostContainerEditForm extends VhostContainerAddForm
 	{
 		if (!count($_POST))
 		{
-			// default values
-			$this->readDefaultValues();
+			$this->vhostName = $this->vhostContainer->vhostName; 
+			$this->ipAddress = $this->vhostContainer->ipAddress;
+			$this->port = $this->vhostContainer->port;
+			$this->vhostType = $this->vhostContainer->vhostType;
+			$this->isContainer = $this->vhostContainer->isContainer;
+			$this->isIPv6 = $this->vhostContainer->isIPv6;
+			$this->isSSL = $this->vhostContainer->isSSL;
+			$this->addListenStatement = $this->vhostContainer->addListenStatement;
+			$this->addNameStatement = $this->vhostContainer->addNameStatement;
+			$this->addServerName = $this->vhostContainer->addServerName;
+			$this->overwriteTemplate = $this->vhostContainer->overwriteTemplate;
+			$this->vhostTemplate = $this->vhostContainer->vhostTemplate;
+			$this->vhostComments = $this->vhostContainer->vhostComments;
+			$this->sslCertFile = $this->vhostContainer->sslCertFile;
+			$this->sslCertKeyFile = $this->vhostContainer->sslCertKeyFile;
+			$this->sslCertChainFile = $this->vhostContainer->sslCertChainFile;
 		}
 		
 		parent :: readData();
@@ -62,8 +76,7 @@ class VhostContainerEditForm extends VhostContainerAddForm
 		
 		WCF :: getTPL()->assign(array (
 			'vhostContainerID' => $this->vhostContainer->vhostContainerID, 
-			'action' => 'edit', 
-			'vhostContainer' => $this->vhostContainer
+			'action' => 'edit',
 		));
 	}
 
@@ -74,8 +87,23 @@ class VhostContainerEditForm extends VhostContainerAddForm
 	{
 		ACPForm :: save();
 		
-		// save user
-		$this->vhostContainer->update($this->vhostName, $this->additionalFields);
+		// save vhostContainer
+		$this->additionalFields['isContainer'] = $this->isContainer;
+		$this->additionalFields['isIPv6'] = $this->isIPv6;
+		$this->additionalFields['isSSL'] = $this->isSSL;
+		$this->additionalFields['addListenStatement'] = $this->addListenStatement;
+		$this->additionalFields['addNameStatement'] = $this->addNameStatement;
+		$this->additionalFields['addServerName'] = $this->addServerName;
+		$this->additionalFields['overwriteTemplate'] = $this->overwriteTemplate;
+		$this->additionalFields['vhostTemplate'] = $this->vhostTemplate;
+		$this->additionalFields['vhostComments'] = $this->vhostComments;
+		$this->additionalFields['sslCertFile'] = $this->sslCertFile;
+		$this->additionalFields['sslCertKeyFile'] = $this->sslCertKeyFile;
+		$this->additionalFields['sslCertChainFile'] = $this->sslCertChainFile;
+		$this->vhostContainer->update($this->vhostName, $this->ipAddress, $this->port, $this->vhostType, $this->additionalFields);
+		
+		JobhandlerUtils :: addJob('updateVhosts', 0, array('vhostContainerID' => $this->vhostContainerID), 'asap');
+		
 		$this->saved();
 		
 		// show success message
