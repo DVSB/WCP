@@ -37,6 +37,7 @@
 			<option name="isAliasDomain">
 				<categoryname>web.definitions</categoryname>
 				<optiontype>radiobuttons</optiontype>
+				<defaultvalue>none</defaultvalue>
 				<selectoptions><![CDATA[none:cp.domain.alias.none
 alias:cp.domain.alias.alias
 redirect:cp.domain.alias.redirect]]></selectoptions>

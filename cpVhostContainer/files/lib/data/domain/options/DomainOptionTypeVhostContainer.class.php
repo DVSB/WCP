@@ -10,8 +10,11 @@ class DomainOptionTypeVhostContainer extends DomainOptionTypeSelect
 	 */
 	public function getFormElement(&$optionData)
 	{
+		if (!isset($optionData['optionValue']))
+			$optionData['optionValue'] = false;
+			
 		$sql = "SELECT 	vhostContainerID, vhostName 
-				FROM	cp" . CP_N . "vhostContainer";
+				FROM	cp" . CP_N . "_vhostContainer";
 		
 		$result = WCF :: getDB()->sendQuery($sql);
 		

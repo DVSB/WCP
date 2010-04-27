@@ -85,7 +85,7 @@ abstract class DynamicDomainOptionListForm extends DynamicOptionListForm
 	{
 		if (!isset($this->typeObjects[$type])) 
 		{
-			$className = 'DomainOptionType'.ucfirst(strtolower($type));
+			$className = 'DomainOptionType'.ucfirst($type);
 			$classPath = CP_DIR.'lib/data/domain/options/'.$className.'.class.php';
 			
 			// include class file
