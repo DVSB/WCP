@@ -4,15 +4,15 @@
 	<import>
 		<categories>
 			<category name="cp.vhostContainer">
-          <parent>cp</parent>
-      </category>
+				<parent>cp</parent>
+			</category>
 			<category name="cp.vhostContainer.vhostTypeDefinitions">
-          <parent>cp.vhostContainer</parent>
-      </category>
+				<parent>cp.vhostContainer</parent>
+			</category>
 		</categories>
 
 		<options>
-		    
+
 		</options>
 	</import>
 </data>

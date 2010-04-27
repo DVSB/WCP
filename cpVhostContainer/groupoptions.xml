@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/options.dtd">
+<data>
+	<import>
+
+		<categories>
+			<category name="admin.cp.vhostContainer">
+				<parent>admin.cp</parent>
+			</category>
+		</categories>
+
+		<options>
+			<option name="admin.cp.canSeeVhostContainer">
+				<categoryname>admin.cp.vhostContainer</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>0</defaultvalue>
+			</option>
+			
+			<option name="admin.cp.canAddVhostContainer">
+				<categoryname>admin.cp.vhostContainer</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>0</defaultvalue>
+			</option>
+			
+			<option name="admin.cp.canEditVhostContainer">
+				<categoryname>admin.cp.vhostContainer</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>0</defaultvalue>
+			</option>
+			<option name="admin.cp.canDeleteVhostContainer">
+				<categoryname>admin.cp.vhostContainer</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>0</defaultvalue>
+			</option>
+		</options>
+
+	</import>
+</data>

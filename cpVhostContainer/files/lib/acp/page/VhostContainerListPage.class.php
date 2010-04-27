@@ -82,7 +82,7 @@ class VhostContainerListPage extends SortablePage
 	{
 		parent :: countItems();
 		
-		return $this->vhostContainer->countObjects();
+		return $this->vhostList->countObjects();
 	}
 
 	/**
@@ -93,7 +93,7 @@ class VhostContainerListPage extends SortablePage
 		parent :: assignVariables();
 		
 		WCF :: getTPL()->assign(array (
-			'vhosts' => $this->vhostContainer->getObjects(), 
+			'vhosts' => $this->vhostList->getObjects(), 
 			'deletedVhosts' => '',
 		));
 	}
