@@ -2,10 +2,64 @@
 <!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/options.dtd">
 <data>
 	<import>
+		<categories>
+			<category name="cpvhostcontainer.ContainerApache2">
+				<parent>cpvhostcontainer</parent>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</category>
+		</categories>
+		
 		<options>
-		   <option name="vhostApache2Definition">
-				<parent>cp.vhostContainer.vhostTypeDefinitions</parent>
-			 </option> 
+			<option name="apache2vhostpath">
+				<categoryname>cpvhostcontainer.ContainerApache2</categoryname>
+				<optiontype>text</optiontype>
+				<defaultvalue>/etc/apache2/sites-enabled</defaultvalue>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</option> 
+			
+			<option name="apache2template">
+				<categoryname>cpvhostcontainer.ContainerApache2</categoryname>
+				<optiontype>textarea</optiontype>
+				<defaultvalue><![CDATA[<VirtualHost {IPADDRESS}:{PORT}>
+  ServerName {DOMAINNAME}
+  ServerAlias www.{DOMAINNAME}
+  ServerAdmin webmaster@{DOMAINNAME}
+  SuexecUserGroup {USERNAME} {USERNAME}
+  DocumentRoot "{DOCUMENTROOT}"
+  Alias /webalizer "{HOMEDIR_PREFIX}/{USERNAME}/webalizer/{DOMAINNAME}"
+  ErrorLog "/var/log/syscp/{USERNAME}/{DOMAINNAME}-error.log"
+  CustomLog "/var/log/syscp/{USERNAME}/{DOMAINNAME}-access.log" combined
+  
+  {SSLCONFIG}
+</VirtualHost>]]></defaultvalue>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</option> 
+			
+			<option name="apache2ssltemplate">
+				<categoryname>cpvhostcontainer.ContainerApache2</categoryname>
+				<optiontype>textarea</optiontype>
+				<defaultvalue><![CDATA[<IfModule mod_ssl.c>
+      SSLEngine on
+      SSLCipherSuite ALL:!ADH:!EXP56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP:+eNULL
+      SSLCertificateFile {SSLCERTFILE}
+      SSLCertificateKeyFile {SSLCERTKEYFILE}
+      SSLCertificateChainFile {SSLCERTCHAINFILE}
+
+      <Files ~ "\.(cgi|shtml)$">
+        SSLOptions +StdEnvVars
+      </Files>
+
+      SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl_unclean-shutdown
+ </IfModule>]]></defaultvalue>
+ 				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</option> 
 		</options>
+		
+		<option name="apache2reloadcommand">
+				<categoryname>cpvhostcontainer.ContainerApache2</categoryname>
+				<optiontype>text</optiontype>
+				<defaultvalue>/etc/init.d/apache2 restart</defaultvalue>
+			</option> 
+		
 	</import>
 </data>

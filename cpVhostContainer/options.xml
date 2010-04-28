@@ -3,16 +3,9 @@
 <data>
 	<import>
 		<categories>
-			<category name="cp.vhostContainer">
-				<parent>cp</parent>
-			</category>
-			<category name="cp.vhostContainer.vhostTypeDefinitions">
-				<parent>cp.vhostContainer</parent>
+			<category name="cpvhostcontainer">
+				<permissions>admin.cp.canEditVhostContainer</permissions>
 			</category>
 		</categories>
-
-		<options>
-
-		</options>
 	</import>
 </data>

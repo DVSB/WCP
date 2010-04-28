@@ -28,6 +28,7 @@ class VhostContainerAddForm extends ACPForm
 	public $port = '80';
 	
 	public $vhostType = '';
+	public $vhostTypes = array();
 	
 	public $isContainer = 1;
 	public $isIPv6 = 0;
@@ -46,6 +47,31 @@ class VhostContainerAddForm extends ACPForm
 	public $sslCertKeyFile;
 	public $sslCertChainFile;
 
+	/**
+	 * @see Page:readData()
+	 */
+	public function readData()
+	{
+		$sql = "SELECT	categoryName
+				FROM	wcf" . WCF_N . "_option_category
+				WHERE	categoryName LIKE 'cpvhostcontainer.Container%'
+						AND parentCategoryName = 'cpvhostcontainer'";
+		
+		$result = WCF :: getDB()->sendQuery($sql);
+		
+		while ($row = WCF :: getDB()->fetchArray($result))
+		{
+			$type = explode('.', $row['categoryName']);
+			
+			if (count($type) != 2)
+				continue;
+			
+			$this->vhostTypes[$type[1]] = WCF :: getLanguage()->get('wcf.acp.option.category.' . $row['categoryName']);
+		}
+		
+		parent :: readData();
+	}
+	
 	/**
 	 * @see Form::readFormParameters()
 	 */
@@ -113,7 +139,7 @@ class VhostContainerAddForm extends ACPForm
 		if (empty($this->ipAddress))
 			throw new UserInputException('ipAddress', 'empty');
 			
-		if ($this->validate_ip($this->ipAddress, $this->isIPv6))
+		if (!$this->validateIP($this->ipAddress, $this->isIPv6))
 			throw new UserInputException('ipAddress', 'notValid');
 			
 		if (empty($this->port))
@@ -125,7 +151,7 @@ class VhostContainerAddForm extends ACPForm
 		if (empty($this->vhostType))
 			throw new UserInputException('vhostType', 'empty');
 			
-		if (!in_array($this->vhostType, $this->vhostTypes))
+		if (!array_key_exists($this->vhostType, $this->vhostTypes))
 			throw new UserInputException('vhostType', 'notValid');
 		
 		// validate dynamic options
@@ -140,7 +166,7 @@ class VhostContainerAddForm extends ACPForm
 	 *
 	 * @return bool
 	 */
-	private function validate_ip($ipAddress, $isIPv6)
+	private function validateIP($ipAddress, $isIPv6)
 	{
 		if ($isIPv6 && filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) !== FALSE)
 			return true;

@@ -30,15 +30,15 @@
 			<fieldset id="data">
 				<legend>{lang}cp.acp.vhostContainer.data{/lang}</legend>
 				
-				<div class="formElement{if $errorType.vhostName|isset} formError{/if}" id="vhostNameDiv">
+				<div class="formElement{if $errorField == 'vhostName'} formError{/if}" id="vhostNameDiv">
 					<div class="formFieldLabel">
 						<label for="vhostName">{lang}cp.acp.vhostContainer.vhostName{/lang}</label>
 					</div>
 					<div class="formField">
 						<input type="text" class="inputText" id="vhostName" name="vhostName" value="{$vhostName}" />
-						{if $errorType.vhostName|isset}
+						{if $errorField == 'vhostName'}
 							<p class="innerError">
-								{if $errorType.vhostName == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
+								{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
 							</p>
 						{/if}
 					</div>
@@ -50,16 +50,16 @@
 					inlineHelp.register('vhostName');
 				//]]></script>
 				
-				<div class="formElement{if $errorType.ipAddress|isset} formError{/if}" id="ipAddressDiv">
+				<div class="formElement{if $errorField == 'ipAddress'} formError{/if}" id="ipAddressDiv">
 					<div class="formFieldLabel">
 						<label for="ipAddress">{lang}cp.acp.vhostContainer.ipAddress{/lang}</label>
 					</div>
 					<div class="formField">
 						<input type="text" class="inputText" id="ipAddress" name="ipAddress" value="{$ipAddress}" />
-						{if $errorType.ipAddress|isset}
+						{if $errorField == 'ipAddress'}
 							<p class="innerError">
-								{if $errorType.ipAddress == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
-								{if $errorType.ipAddress == 'notValid'}{lang}cp.acp.vhostContainer.ipAddress.notValid{/lang}{/if}
+								{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
+								{if $errorType == 'notValid'}{lang}cp.acp.vhostContainer.ipAddress.notValid{/lang}{/if}
 							</p>
 						{/if}
 					</div>
@@ -71,16 +71,16 @@
 					inlineHelp.register('ipAddress');
 				//]]></script>
 				
-				<div class="formElement{if $errorType.port|isset} formError{/if}" id="portDiv">
+				<div class="formElement{if $errorField == 'port'} formError{/if}" id="portDiv">
 					<div class="formFieldLabel">
 						<label for="port">{lang}cp.acp.vhostContainer.port{/lang}</label>
 					</div>
 					<div class="formField">
 						<input type="text" class="inputText" id="port" name="port" value="{$port}" />
-						{if $errorType.port|isset}
+						{if $errorField == 'port'}
 							<p class="innerError">
-								{if $errorType.port == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
-								{if $errorType.port == 'notValid'}{lang}cp.acp.vhostContainer.port.notValid{/lang}{/if}
+								{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
+								{if $errorType == 'notValid'}{lang}cp.acp.vhostContainer.port.notValid{/lang}{/if}
 							</p>
 						{/if}
 					</div>
@@ -92,16 +92,16 @@
 					inlineHelp.register('port');
 				//]]></script>
 				
-				<div class="formElement{if $errorType.vhostType|isset} formError{/if}" id="vhostTypeDiv">
+				<div class="formElement{if $errorField == 'vhostType'} formError{/if}" id="vhostTypeDiv">
 					<div class="formFieldLabel">
 						<label for="vhostType">{lang}cp.acp.vhostContainer.vhostType{/lang}</label>
 					</div>
 					<div class="formField">
 						{htmlOptions options=$vhostTypes selected=$vhostType id=vhostType name=vhostType}
-						{if $errorType.vhostType|isset}
+						{if $errorField == 'vhostType'}
 							<p class="innerError">
-								{if $errorType.vhostType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
-								{if $errorType.vhostType == 'notValid'}{lang}cp.acp.vhostContainer.vhostType.notValid{/lang}{/if}
+								{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
+								{if $errorType == 'notValid'}{lang}cp.acp.vhostContainer.vhostType.notValid{/lang}{/if}
 							</p>
 						{/if}
 					</div>

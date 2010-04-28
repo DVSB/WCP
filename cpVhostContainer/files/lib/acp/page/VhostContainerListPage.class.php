@@ -113,4 +113,3 @@ class VhostContainerListPage extends SortablePage
 	}
 }
 ?>
-?>

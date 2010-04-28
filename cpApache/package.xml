@@ -3,9 +3,9 @@
 <package name="com.toby.cp.apache">
 
 	<packageInformation>
-		<packageName>WCF Controlpanel Apache Modul</packageName>
-		<packageDescription>Erstellt/Editiert Apache-Vhosts</packageDescription>
-		<version>0.0.1-alpha1</version>
+		<packageName>WCF Controlpanel Apache2 Modul</packageName>
+		<packageDescription>Erstellt/Editiert Apache2-Vhosts</packageDescription>
+		<version>0.0.1-alpha2</version>
 		<plugin>com.toby.cp</plugin>
 		<date>2010-04-23</date>
 	</packageInformation>
@@ -26,8 +26,7 @@
 		<languages languagecode="de">de.xml</languages>
 		<options>options.xml</options>
 		<files>files.tar</files>
-		<groupoptions>groupoptions.xml</groupoptions>
-		<domainoptions>domainoptions.xml</domainoptions>
+
 	</instructions>
 
 </package>
