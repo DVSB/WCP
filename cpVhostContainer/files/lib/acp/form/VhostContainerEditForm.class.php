@@ -102,7 +102,7 @@ class VhostContainerEditForm extends VhostContainerAddForm
 		$this->additionalFields['sslCertChainFile'] = $this->sslCertChainFile;
 		$this->vhostContainer->update($this->vhostName, $this->ipAddress, $this->port, $this->vhostType, $this->additionalFields);
 		
-		JobhandlerUtils :: addJob('updateVhosts', 0, array('vhostContainerID' => $this->vhostContainerID), 'asap');
+		JobhandlerUtils :: addJob('updateVhost', 0, array('vhostContainerID' => $this->vhostContainerID), 'asap');
 		
 		$this->saved();
 		

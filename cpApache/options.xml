@@ -3,7 +3,7 @@
 <data>
 	<import>
 		<categories>
-			<category name="cpvhostcontainer.ContainerApache2">
+			<category name="cpvhostcontainer.containerApache2">
 				<parent>cpvhostcontainer</parent>
 				<permissions>admin.cp.canEditVhostContainer</permissions>
 			</category>
@@ -11,55 +11,70 @@
 		
 		<options>
 			<option name="apache2vhostpath">
-				<categoryname>cpvhostcontainer.ContainerApache2</categoryname>
+				<categoryname>cpvhostcontainer.containerApache2</categoryname>
 				<optiontype>text</optiontype>
 				<defaultvalue>/etc/apache2/sites-enabled</defaultvalue>
 				<permissions>admin.cp.canEditVhostContainer</permissions>
 			</option> 
 			
 			<option name="apache2template">
-				<categoryname>cpvhostcontainer.ContainerApache2</categoryname>
+				<categoryname>cpvhostcontainer.containerApache2</categoryname>
 				<optiontype>textarea</optiontype>
-				<defaultvalue><![CDATA[<VirtualHost {IPADDRESS}:{PORT}>
-  ServerName {DOMAINNAME}
-  ServerAlias www.{DOMAINNAME}
-  ServerAdmin webmaster@{DOMAINNAME}
-  SuexecUserGroup {USERNAME} {USERNAME}
-  DocumentRoot "{DOCUMENTROOT}"
-  Alias /webalizer "{HOMEDIR_PREFIX}/{USERNAME}/webalizer/{DOMAINNAME}"
-  ErrorLog "/var/log/syscp/{USERNAME}/{DOMAINNAME}-error.log"
-  CustomLog "/var/log/syscp/{USERNAME}/{DOMAINNAME}-access.log" combined
+				<defaultvalue><![CDATA[<VirtualHost $ipAddress:$port>
+  ServerName $domainname
+  #if $wwwServerAlias
+  ServerAlias www.$domainname
+  #end if
   
-  {SSLCONFIG}
-</VirtualHost>]]></defaultvalue>
-				<permissions>admin.cp.canEditVhostContainer</permissions>
-			</option> 
-			
-			<option name="apache2ssltemplate">
-				<categoryname>cpvhostcontainer.ContainerApache2</categoryname>
-				<optiontype>textarea</optiontype>
-				<defaultvalue><![CDATA[<IfModule mod_ssl.c>
+  #if $isWildcardDomain
+  ServerAlias *.$domainname
+  #end if
+  
+  ServerAdmin webmaster@$domainname
+  
+  SuexecUserGroup $username $username
+  
+  DocumentRoot "$documentroot"
+  
+  Alias /webalizer "$HOMEDIR_PREFIX/$username/webalizer/$domainname"
+  
+  ErrorLog "$LOGPATH/$username/$domainname-error.log"
+  CustomLog "$LOGPATH/$username/$domainname-access.log" combined
+  
+  #if $isSSL
+  <IfModule mod_ssl.c>
       SSLEngine on
       SSLCipherSuite ALL:!ADH:!EXP56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP:+eNULL
-      SSLCertificateFile {SSLCERTFILE}
-      SSLCertificateKeyFile {SSLCERTKEYFILE}
-      SSLCertificateChainFile {SSLCERTCHAINFILE}
+      SSLCertificateFile $sslCertFile
+      SSLCertificateKeyFile $sslCertKeyFile
+      SSLCertificateChainFile $sslCertChainFile
 
       <Files ~ "\.(cgi|shtml)$">
         SSLOptions +StdEnvVars
       </Files>
 
       SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl_unclean-shutdown
- </IfModule>]]></defaultvalue>
- 				<permissions>admin.cp.canEditVhostContainer</permissions>
+ </IfModule>
+ #end if
+</VirtualHost>]]></defaultvalue>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
 			</option> 
+
 		</options>
 		
 		<option name="apache2reloadcommand">
-				<categoryname>cpvhostcontainer.ContainerApache2</categoryname>
-				<optiontype>text</optiontype>
-				<defaultvalue>/etc/init.d/apache2 restart</defaultvalue>
-			</option> 
+			<categoryname>cpvhostcontainer.containerApache2</categoryname>
+			<optiontype>text</optiontype>
+			<defaultvalue>/etc/init.d/apache2 restart</defaultvalue>
+			<permissions>admin.cp.canEditVhostContainer</permissions>
+		</option>
+		
+		<option name="apache2logpath">
+			<categoryname>cpvhostcontainer.containerApache2</categoryname>
+			<optiontype>text</optiontype>
+			<defaultvalue>/var/log/webcp/</defaultvalue>
+			<permissions>admin.cp.canEditVhostContainer</permissions>
+		</option>
 		
 	</import>
 </data>

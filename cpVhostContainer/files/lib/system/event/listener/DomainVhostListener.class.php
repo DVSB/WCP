@@ -43,11 +43,11 @@ class DomainVhostListener implements EventListener
 			break;
 			
 			case 'DomainEnableAction':
-				JobhandlerUtils :: addJob('enableVhost', 0, array('domainID' => $eventObj->domainID));
+				JobhandlerUtils :: addJob('createVhost', 0, array('domainID' => $eventObj->domainID));
 			break;
 			
 			case 'DomainDisableAction':
-				JobhandlerUtils :: addJob('disableVhost', 0, array('domainID' => $eventObj->domainID));
+				JobhandlerUtils :: addJob('deleteVhost', 0, array('domainID' => $eventObj->domainID));
 			break;
 		}
 	}
