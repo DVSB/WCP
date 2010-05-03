@@ -38,8 +38,8 @@
   
   Alias /webalizer "$HOMEDIR_PREFIX/$username/webalizer/$domainname"
   
-  ErrorLog "$LOGPATH/$username/$domainname-error.log"
-  CustomLog "$LOGPATH/$username/$domainname-access.log" combined
+  ErrorLog "$apache2logpath/$username/$domainname-error.log"
+  CustomLog "$apache2logpath/$username/$domainname-access.log" combined
   
   #if $isSSL
   <IfModule mod_ssl.c>
