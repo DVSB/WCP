@@ -36,8 +36,6 @@ class jobhandler(object):
                                        ORDER BY priority DESC, jobhandlerTaskID ASC")
         
     def firePendingJobs(self):
-        self.findPendingJobs()
-        
         for job in self.jobs:
             #try:
                 module = self.loadModule(job['jobhandler'])
@@ -67,12 +65,12 @@ class jobhandler(object):
     def loadModule(self, name):                
         # Fast path: see if the module has already been imported.
         
-        name = "modules/" + name
-        
         try:
             return sys.modules[name]
         except KeyError:
             pass
+        
+        name = "modules/" + name
 
         # If any of the following calls raises an exception,
         # there's a problem we can't handle -- let the caller handle it.
