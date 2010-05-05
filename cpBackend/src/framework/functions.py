@@ -1,6 +1,4 @@
-import os
 import os.path
-import sys
 from grp import getgrnam
 from pwd import getpwnam
 from re import *

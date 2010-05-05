@@ -5,12 +5,11 @@ from modules.basishandler import *
 
 class jobhandler(object):
     
-    def __init__ (self, db, config):
-        self.db = db
-        self.config = config
+    def __init__ (self, env):
+        self.env = env
         
     def findPendingJobs(self):
-        lastRun = localtime(self.config.get("last_run_backend"))
+        lastRun = localtime(self.env.config.get("last_run_backend"))
         currentTime = localtime()
         
         triggers = ['asap']
@@ -30,8 +29,8 @@ class jobhandler(object):
         if lastRun.tm_year != currentTime.tm_year:
             triggers.append('yearchange')
         
-        self.jobs = self.db.queryDict("SELECT * \
-                                       FROM     cp" + self.db.cpnr + "_jobhandler_task jt \
+        self.jobs = self.env.db.queryDict("SELECT * \
+                                       FROM     cp" + self.env.cpnr + "_jobhandler_task jt \
                                        WHERE    nextExec IN ('" + "','".join(triggers) + "')\
                                        ORDER BY priority DESC, jobhandlerTaskID ASC")
         
@@ -40,7 +39,7 @@ class jobhandler(object):
             #try:
                 module = self.loadModule(job['jobhandler'])
                 func = getattr(module, job['jobhandler'])
-                obj = func(job['data'], self.db, self.config)
+                obj = func(job['data'], self.env)
                 job['retVar'] = obj.run()
             #except Exception, e:
                 #job['retVar'] = e
@@ -53,14 +52,14 @@ class jobhandler(object):
                 print job
             else:
                 if job['volatile'] == 1:
-                    self.db.query("DELETE FROM cp" + self.db.cpnr + "_jobhandler_task \
+                    self.env.db.query("DELETE FROM cp" + self.env.cpnr + "_jobhandler_task \
                                    WHERE jobhandlerTaskID = " + str(job['jobhandlerTaskID']))
                 else:
-                    self.db.query("UPDATE cp" + self.db.cpnr + "_jobhandler_task \
+                    self.env.db.query("UPDATE cp" + self.env.cpnr + "_jobhandler_task \
                                    SET lastExec = UNIX_TIMESTAMP() \
                                    WHERE jobhandlerTaskID = " + str(job['jobhandlerTaskID']))
                       
-        self.config.set("last_run_backend", int(time()))
+        self.env.config.set("last_run_backend", int(time()))
 
     def loadModule(self, name):                
         # Fast path: see if the module has already been imported.

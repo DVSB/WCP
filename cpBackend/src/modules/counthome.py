@@ -1,17 +1,15 @@
-from framework.basishandler import *
-from framework.functions import *
-import os
-import os.path
+from framework.basishandler import basishandler
+from framework.functions import os, parseUser, parseOptions, getUserOptions, getActiveUsers
 import glob
 
 class counthome(basishandler):
     
     def run(self):  
-        users = getActiveUsers(self.config)
+        users = getActiveUsers(self.env.config)
         
-        dirsDB = self.config.getSection('cp.backendpaths.countpaths')
+        dirsDB = self.env.config.getSection('cp.backendpaths.countpaths')
         
-        option = getUserOptions(self.config, ['diskspaceUsed'])[0][0]
+        option = getUserOptions(self.env.config, ['diskspaceUsed'])[0][0]
         
         odirs = ''
         for dir in dirsDB:
@@ -19,7 +17,7 @@ class counthome(basishandler):
                 odirs += dirsDB[dir][1]
         
         # parse dirs with options
-        odirs = parseOptions(odirs, self.config)        
+        odirs = parseOptions(odirs, self.env.config)        
         
         for user in users:   
             # parse dirs with userdata
@@ -45,7 +43,7 @@ class counthome(basishandler):
             bytes /= 1024*1024 
 
             # update user
-            self.db.query("UPDATE  wcf" + self.db.wcfnr + "_user_option_value \
+            self.env.db.query("UPDATE  wcf" + self.env.wcfnr + "_user_option_value \
                            SET     userOption" + str(option) + " = '" + str(bytes) + "' \
                            WHERE   userID = " + str(user["userID"]))      
                     

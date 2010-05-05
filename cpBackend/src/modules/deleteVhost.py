@@ -3,8 +3,9 @@ Created on 02.05.2010
 
 @author: toby
 '''
-from framework.basishandler import *
-from vhostContainer.vhostHandler import *
+
+from framework.basishandler import basishandler
+from vhostContainer.vhostHandler import vhostHandler
 
 class deleteVhost(basishandler):
     '''
@@ -17,6 +18,11 @@ class deleteVhost(basishandler):
         #delete this domain
         if self.data.has_key('domainID'):
             self.vhandler.addDomain(self.data['domainID'])
+            
+        #delete this domains
+        elif self.data.has_key('domainIDs'):
+            for d in self.data['domainIDs']:
+                self.vhandler.addDomain(d)
         
         #delete all domains with this vhosts
         elif self.data.has_key('vhostID'):
