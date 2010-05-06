@@ -19,21 +19,21 @@ l:{APACHE2LOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{APACHE2USER}.{APACHE2USE
 </defaultvalue>
 		    	</option>
 		
-			<option name="apache2vhostpath">
+			<option name="containerApache2vhostpath">
 				<categoryname>cpvhostcontainer.containerApache2</categoryname>
 				<optiontype>text</optiontype>
 				<defaultvalue>/etc/apache2/sites-enabled</defaultvalue>
 				<permissions>admin.cp.canEditVhostContainer</permissions>
 			</option> 
 			
-			<option name="apache2fileprefix">
+			<option name="containerApache2fileprefix">
 				<categoryname>cpvhostcontainer.containerApache2</categoryname>
 				<optiontype>text</optiontype>
 				<defaultvalue>20_webcp_normal_vhost</defaultvalue>
 				<permissions>admin.cp.canEditVhostContainer</permissions>
 			</option> 
 			
-			<option name="apache2template">
+			<option name="containerApache2template">
 				<categoryname>cpvhostcontainer.containerApache2</categoryname>
 				<optiontype>textarea</optiontype>
 				<defaultvalue><![CDATA[<VirtualHost $ipAddress:$port>
@@ -54,8 +54,8 @@ l:{APACHE2LOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{APACHE2USER}.{APACHE2USE
   
   Alias /webalizer "$homeDir/webalizer/$domainname"
   
-  ErrorLog "$LOGPATH_ERROR"
-  CustomLog "$LOGPATH_ACCESS" combined
+  ErrorLog "$logpath.error"
+  CustomLog "$logpath.access" combined
   
   #if $isSSL
   <IfModule mod_ssl.c>
@@ -78,28 +78,28 @@ l:{APACHE2LOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{APACHE2USER}.{APACHE2USE
 
 		</options>
 		
-		<option name="apache2reloadcommand">
+		<option name="containerApache2reloadcommand">
 			<categoryname>cpvhostcontainer.containerApache2</categoryname>
 			<optiontype>text</optiontype>
 			<defaultvalue>/etc/init.d/apache2 restart</defaultvalue>
 			<permissions>admin.cp.canEditVhostContainer</permissions>
 		</option>
 		
-		<option name="apache2logerror">
+		<option name="containerApache2logerror">
 			<categoryname>cpvhostcontainer.containerApache2</categoryname>
 			<optiontype>text</optiontype>
 			<defaultvalue>/var/log/webcp/{username}/{domainname}-error.log</defaultvalue>
 			<permissions>admin.cp.canEditVhostContainer</permissions>
 		</option>
 		
-		<option name="apache2logaccess">
+		<option name="containerApache2logaccess">
 			<categoryname>cpvhostcontainer.containerApache2</categoryname>
 			<optiontype>text</optiontype>
 			<defaultvalue>/var/log/webcp/{username}/{domainname}-access.log</defaultvalue>
 			<permissions>admin.cp.canEditVhostContainer</permissions>
 		</option>
 		
-		<option name="apache2user">
+		<option name="containerApache2user">
 			<categoryname>cpvhostcontainer.containerApache2</categoryname>
 			<optiontype>text</optiontype>
 			<defaultvalue>www-data</defaultvalue>
