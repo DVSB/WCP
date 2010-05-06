@@ -5,7 +5,9 @@ Created on 03.05.2010
 '''
 import imp
 import sys
+import os
 from vhostContainer import domain
+from basisFileContainer import basisFileContainer
 
 class vhostHandler(object):
     '''
@@ -51,23 +53,26 @@ class vhostHandler(object):
             vc = self.callContainer(domain.getVhostContainerOption('vhostType'), domain)
             vc.delete()
         
-    def callContainer(self, vhostType):
-        try:
-            module = self.loadModule(vhostType)
-            func = getattr(module, vhostType)
-            return func(domain, self.env)
-        except Exception, e:
-            return "error"
+    def callContainer(self, vhostType, domain):
+        if os.access('vhostContainer/container/' + vhostType + '.py', os.F_OK):
+            try:
+                container = self.loadContainer(vhostType)
+                func = getattr(container, vhostType)
+                return func(domain, self.env, vhostType)
+            except Exception, e:
+                return "error"
+        else:
+            return basisFileContainer(domain, self.env, vhostType)
         
     def loadContainer(self, name):                
         # Fast path: see if the module has already been imported.
-        
-        name = "vhostContainer/container/" + name
         
         try:
             return sys.modules[name]
         except KeyError:
             pass
+        
+        name = "vhostContainer/container/" + name
 
         # If any of the following calls raises an exception,
         # there's a problem we can't handle -- let the caller handle it.

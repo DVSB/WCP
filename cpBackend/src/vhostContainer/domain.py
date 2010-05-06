@@ -4,6 +4,8 @@ Created on 03.05.2010
 @author: toby
 '''
 
+from framework.user import user
+
 class domain(object):
     '''
     classdocs
@@ -14,21 +16,39 @@ class domain(object):
         self.domainID = domainID
         self.loadDomain()
         self.getVhostContainer()
+        self.getUser()
        
     def loadDomain(self):
         self.domain = self.env.db.queryDict("SELECT    * \
-                                           FROM      cp" + self.env.cpnr + "_domain domain \
-                                           JOIN      cp" + self.env.cpnr + "_domain_option_values domain_option \
+                                             FROM      cp" + self.env.cpnr + "_domain domain \
+                                             JOIN      cp" + self.env.cpnr + "_domain_option_values domain_option \
                                                     ON (domain_option.domainID = domain.domainID) \
-                                           WHERE     domain.domainID = " + self.domainID 
-                                         )
+                                             WHERE     domain.domainID = " + self.domainID 
+                                           )
         
         options = self.env.db.query("SELECT      optionName, optionID, optionType \
-                                 FROM        cp" + self.env.cpnr + "_domain_option \
-                                 ORDER BY    showOrder")
-        self.options = {}
-        for c in options:
-            self.options[c[0]] = [c[1],c[2]]
+                                     FROM        cp" + self.env.cpnr + "_domain_option \
+                                     ORDER BY    showOrder")
+        
+        for o in options:
+            optionName = 'domainOption' + str(o[1])
+            if o[2] == 'boolean':
+                if int(self.domain[optionName]) == 1:
+                    var = True
+                else:
+                    var = False
+            elif o[2] == 'integer':
+                if (self.domain[optionName] == ''):
+                    var = 0
+                else:
+                    var = int(self.domain[optionName])
+            elif o[2] == 'float':
+                var = float(self.domain[optionName])
+            else:
+                var = self.domain[optionName]
+            
+            self.domain[o[0]] = var
+            del self.domain[optionName]
             
         #TODO: load data from parentdomain, if given, and merge it with data of this domain
         #empty fields should be filled with data from parent
@@ -36,23 +56,6 @@ class domain(object):
     def get(self, option):
         if self.domain.has_key(option):
             return self.domain[option]
-        
-        if self.options.has_key(option):
-            o = self.options[option]
-            optionName = 'domainOption' + str(o[0])
-            if o[1] == 'boolean':
-                if int(self.domain[optionName]) == 1:
-                    return True
-                else:
-                    return False
-            elif o[1] == 'integer':
-                if (self.domain[optionName] == ''):
-                    return 0
-                return int(self.domain[optionName])
-            elif o[1] == 'float':
-                return float(self.domain[optionName])
-            else:
-                return self.domain[optionName]
         else:
             return None
         
@@ -61,8 +64,11 @@ class domain(object):
         self.vhostContainer = self.env.db.queryDict("SELECT    * \
                                                  FROM      cp" + self.env.cpnr + "_vhostContainer \
                                                  WHERE     vhostContainerID = " + str(self.vhostContainerID)
-                                               )
+                                               )[0]
         
     def getVhostContainerOption(self, option):
         if self.vhostContainer.has_key(option):
             return self.vhostContainer[option]
+        
+    def getUser(self):
+        self.user = user(self.get('userID'), self.env)

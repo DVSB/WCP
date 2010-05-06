@@ -3,12 +3,12 @@ _TRUE_VALUES = ('yes', 'true', 'enabled', 'on', 'aye', '1', 1, True)
 
 class configuration(object):
 
-	def __init__ (self, db, wcfconfig):
+	def __init__(self, db, wcfconfig):
 		self.db = db
 		self.wcf = wcfconfig
 		self.read()
 
-	def read (self):
+	def read(self):
 		packages = self.db.query('SELECT          optionID\
                         		  FROM            wcf'+ self.db.wcfnr +'_option acp_option,\
                                         		  wcf'+ self.db.wcfnr +'_package_dependency package_dependency\
