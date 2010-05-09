@@ -1,6 +1,6 @@
 {include file="documentHeader"}
 <head>
-	<title>{lang}cp.mysql.add{/lang} - {lang}wcf.user.usercp{/lang} - {lang}{PAGE_TITLE}{/lang}</title>
+	<title>{lang}cp.mysql.{@$action}{/lang} - {lang}wcf.user.usercp{/lang} - {lang}{PAGE_TITLE}{/lang}</title>
 	{include file='headInclude' sandbox=false}
 </head>
 <body{if $templateName|isset} id="tpl{$templateName|ucfirst}"{/if}>
@@ -18,14 +18,14 @@
 		<div class="border tabMenuContent">
 			<div class="container-1">
 				<fieldset>
-					<legend><label for="password">{lang}cp.mysql.create{/lang}</label></legend>
+					<legend><label for="password">{lang}cp.mysql.{@$action}{/lang}</label></legend>
 
 					<div class="formElement{if $errorField == 'password'} formError{/if}">
 						<div class="formFieldLabel">
-							<label for="password">{lang}cp.mysql.password{/lang}</label>
+							<label for="dbpassword">{lang}cp.mysql.password{/lang}</label>
 						</div>
 						<div class="formField">
-							<input type="password" class="inputText" name="password" value="{$password}" id="password" />
+							<input type="password" class="inputText" name="dbpassword" value="{$password}" id="dbpassword" />
 
 							{if $errorField == 'password'}
 								<p class="innerError">

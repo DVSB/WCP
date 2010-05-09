@@ -2,4 +2,52 @@
 <!DOCTYPE language SYSTEM "http://www.woltlab.com/DTDs/language.dtd">
 <language languagecode="de">
 
+ 	<category name="wcf.user.option">
+ 		<item name="wcf.user.option.mysqls"><![CDATA[Datenbanken (benutzt/verfügbar)]]></item>
+ 	</category>
+ 	
+ 	<category name="wcf.acp.option">
+ 		<item name="wcf.acp.option.category.cpmysql"><![CDATA[WCP - MySQL-Datenbank]]></item>
+ 		<item name="wcf.acp.option.category.cpmysql.description"><![CDATA[Einstellungen für die MySQL-Datenbank]]></item>
+ 		<item name="wcf.acp.option.category.cpmysql.global"><![CDATA[Globale Einstellungen]]></item>
+ 		<item name="wcf.acp.option.category.cpmysql.global.description"><![CDATA[]]></item>
+ 		<item name="wcf.acp.option.mysql_postfix"><![CDATA[Datenbank-Namenspostfix]]></item>
+ 		<item name="wcf.acp.option.mysql_postfix.description"><![CDATA[Dieser Wert wird an den Benutzernamen angefügt, um den Datenbanknamen zu erstellen. Das sieht dann z.B. so aus: mmustermann_sql4]]></item>
+		<item name="wcf.acp.option.mysql_access_host"><![CDATA[Adresse des MySQL-Servers]]></item>
+		<item name="wcf.acp.option.mysql_access_host.description"><![CDATA[Die Adresse auf der der MySQL-Server läuft, idR localhost]]></item>
+ 	</category>
+ 	
+	<category name="cp.mysql">
+		<item name="cp.mysql.add"><![CDATA[Datenbank hinzufügen]]></item>
+		<item name="cp.mysql.edit"><![CDATA[Datenbank editieren]]></item>
+		<item name="cp.mysql.password"><![CDATA[Datenbank-Passwort]]></item>
+		<item name="cp.mysql.description"><![CDATA[Notizen]]></item>
+		<item name="cp.mysql.list"><![CDATA[Angelegte Datenbanken]]></item>
+		<item name="cp.mysql.mysqlID"><![CDATA[]]></item>
+		<item name="cp.mysql.mysqlname"><![CDATA[Name der Datenbank]]></item>
+		<item name="cp.mysql.delete"><![CDATA[Datenbank löschen]]></item>
+	</category>
+
+	<category name="cp.acp.mysql">
+		<item name="cp.acp.mysql.list"><![CDATA[Kann Benutzer werden]]></item>
+	</category>
+
+	<category name="cp.header.menu">
+		<item name="cp.header.menu.mysql"><![CDATA[Datenbanken]]></item>
+	</category>
+	
+	<category name="cp.acp.menu">
+		<item name="cp.acp.menu.link.databaseroot"><![CDATA[Datenbanken]]></item>
+		<item name="cp.acp.menu.link.databaseroot.mysql"><![CDATA[MySQL]]></item>
+	</category>
+	
+	<category name="cp.acp.mysql">
+		<item name="cp.acp.mysql.dbrootdata"><![CDATA[Root-Zugangsdaten für MySQL]]></item>
+		<item name="cp.acp.mysql.userdata"><![CDATA[Benutzerdaten]]></item>
+		<item name="cp.acp.mysql.rootUser"><![CDATA[Root-Benutzer]]></item>
+		<item name="cp.acp.mysql.rootUser.description"><![CDATA[Der Benutzername eines privilegierten Benutzers der Datenbank, er muss zumindest Datenbanken und andere Benutzer anlegen dürfen.]]></item>
+		<item name="cp.acp.mysql.rootPassword"><![CDATA[Root-Passwort]]></item>
+		<item name="cp.acp.mysql.rootPassword.description"><![CDATA[Das Passwort des obigen Benutzers.]]></item>
+	</category>
+
 </language>

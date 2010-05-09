@@ -12,7 +12,7 @@ require_once (CP_DIR . 'lib/form/MySQLAddForm.class.php');
 
 class MySQLEditForm extends MySQLAddForm
 {
-	public $neededPermissions = array('cp.mysql.canEditMySQL', 'cp.mysql.canAddMySQL', 'cp.mysql.canListMySQL');
+	public $neededPermissions = array('cp.mysql.canAddMySQL', 'cp.mysql.canListMySQL');
 	
 	/**
 	 * @see Page::readData()

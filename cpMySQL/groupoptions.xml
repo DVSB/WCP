@@ -22,12 +22,6 @@
 				<defaultvalue>1</defaultvalue>
 			</option>
 			
-			<option name="cp.mysql.canEditMySQL">
-				<categoryname>cp.mysql</categoryname>
-				<optiontype>boolean</optiontype>
-				<defaultvalue>1</defaultvalue>
-			</option>
-			
 			<option name="cp.mysql.canListMySQL">
 				<categoryname>cp.mysql</categoryname>
 				<optiontype>boolean</optiontype>

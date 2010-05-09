@@ -1,6 +1,6 @@
 {include file="documentHeader"}
 <head>
-	<title>{lang}cp.index.title{/lang} - {PAGE_TITLE}</title>
+	<title>{lang}cp.mysql.list{/lang} - {PAGE_TITLE}</title>
 
 	{include file='headInclude' sandbox=false}
 </head>
@@ -12,7 +12,7 @@
 	<div class="mainHeadline">
 		<img src="{icon}mysqlL.png{/icon}" alt="" />
 		<div class="headlineContainer">
-			<h2>{lang}cp.acp.mysql.list{/lang}</h2>
+			<h2>{lang}cp.mysql.list{/lang}</h2>
 		</div>
 	</div>
 

@@ -38,8 +38,8 @@ class MySQLAddForm extends AbstractSecureForm
 	{
 		parent :: readFormParameters();
 
-		if (isset($_POST['password']))
-			$this->password = StringUtil :: trim($_POST['password']);
+		if (isset($_POST['dbpassword']))
+			$this->password = StringUtil :: trim($_POST['dbpassword']);
 
 		if (isset($_POST['description']))
 			$this->description = StringUtil :: trim($_POST['description']);

@@ -8,9 +8,6 @@
 			<category name="cpmysql.global">
 				<parent>cpmysql</parent>	
 			</category>
-			<category name="cpmysql.link">
-				<parent>cpmysql</parent>	
-			</category>
 
 		</categories>
 
@@ -27,12 +24,6 @@
 		        <categoryname>cpmysql.global</categoryname>
 				<optiontype>text</optiontype>
 		        <defaultvalue>localhost</defaultvalue>
-		    </option>
-
-		    <option name="phpmyadmin_url">
-		        <categoryname>cpmysql.link</categoryname>
-				<optiontype>text</optiontype>
-		        <defaultvalue></defaultvalue>
 		    </option>
 
 		</options>
