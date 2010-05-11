@@ -11,7 +11,6 @@
 			<icon>icon/vhostContainerM.png</icon>
 			<link>index.php?page=vhostContainerList</link>
 			<parent>cp.acp.menu.link.vhostcontainer</parent>
-			<permissions>admin.cp.canSeeVhostContainer</permissions>
 			<showorder>1</showorder>
 		</acpmenuitem>
 

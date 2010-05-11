@@ -23,6 +23,8 @@ class VhostContainerListPage extends SortablePage
 	public $defaultSortField = 'vhostName';
 	public $defaultSortOrder = 'ASC';
 	
+	public $deleted = null;
+	
 	/**
 	 * vhostContainerList object
 	 *
@@ -38,6 +40,9 @@ class VhostContainerListPage extends SortablePage
 		parent :: readParameters();
 		
 		$this->vhostList = new VhostContainerList();
+		
+		if (isset($_REQUEST['deleted']))
+			$this->deleted = StringUtil::trim($_REQUEST['deleted']);
 	}
 
 	/**
@@ -94,7 +99,7 @@ class VhostContainerListPage extends SortablePage
 		
 		WCF :: getTPL()->assign(array (
 			'vhosts' => $this->vhostList->getObjects(), 
-			'deletedVhosts' => '',
+			'deletedVhosts' => $this->deleted,
 		));
 	}
 
@@ -105,9 +110,6 @@ class VhostContainerListPage extends SortablePage
 	{
 		// set active menu item
 		WCFACP :: getMenu()->setActiveMenuItem('cp.acp.menu.link.vhostcontainer.list');
-		
-		// check permission
-		WCF :: getUser()->checkPermission('admin.cp.canSeeVhostContainer');
 		
 		parent :: show();
 	}

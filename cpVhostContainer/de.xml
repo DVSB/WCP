@@ -1,5 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language SYSTEM "http://www.woltlab.com/DTDs/language.dtd">
 <language languagecode="de">
+	
+	<category name="cp.acp.vhostContainer">
+		<item name="cp.acp.vhostContainer.add"><![CDATA[Container hinzufügen]]></item>
+		<item name="cp.acp.vhostContainer.add.success"><![CDATA[Container erfolgreich angelegt]]></item>
+		<item name="cp.acp.vhostContainer.edit"><![CDATA[Container bearbeiten]]></item>
+		<item name="cp.acp.vhostContainer.edit.success"><![CDATA[Container erfolgreich gespeichert]]></item>
+		<item name="cp.acp.vhostContainer.vhostName"><![CDATA[Containername]]></item>
+		<item name="cp.acp.vhostContainer.vhostName.description"><![CDATA[Ein eindeutiger Bezeichner für diesen Container]]></item>
+		<item name="cp.acp.vhostContainer.ipAddress"><![CDATA[IP-Adresse]]></item>
+		<item name="cp.acp.vhostContainer.ipAddress.description"><![CDATA[Die IP-Adresse dieses Containers]]></item>
+		<item name="cp.acp.vhostContainer.ipAddress.notValid"><![CDATA[Ungültige IP-Adresse]]></item>
+		<item name="cp.acp.vhostContainer.port"><![CDATA[Port]]></item>
+		<item name="cp.acp.vhostContainer.port.description"><![CDATA[Der Port dieses Containers, gewöhnlich 80 oder 443 für SSL]]></item>
+		<item name="cp.acp.vhostContainer.port.notValid"><![CDATA[Ungültiger Port - muss zwischen 0 und 65535 liegen]]></item>
+		<item name="cp.acp.vhostContainer.vhostType"><![CDATA[Containertyp]]></item>
+		<item name="cp.acp.vhostContainer.vhostType.description"><![CDATA[Für welchen Webserver soll dieser Container angelegt werden?]]></item>
+		<item name="cp.acp.vhostContainer.vhostType.notValid"><![CDATA[Ungültiger Typ]]></item>
+		<item name="cp.acp.vhostContainer.settings"><![CDATA[Einstellungen]]></item>
+		<item name="cp.acp.vhostContainer.isContainer"><![CDATA[Container ist aktiv und kann benutzt werden]]></item>
+		<item name="cp.acp.vhostContainer.isIPv6"><![CDATA[IP-Adresse ist IPv6]]></item>
+		<item name="cp.acp.vhostContainer.addListenStatement"><![CDATA[Füge Listen-Statement für diesen Container hinzu]]></item>
+		<item name="cp.acp.vhostContainer.addNameStatement"><![CDATA[Füge Name-Statement für diesen Container hinzu]]></item>
+		<item name="cp.acp.vhostContainer.addServerName"><![CDATA[Füge Server-Name für diesen Container hinzu]]></item>
+		<item name="cp.acp.vhostContainer.template"><![CDATA[Template]]></item>
+		<item name="cp.acp.vhostContainer.overwriteTemplate"><![CDATA[Template überschreiben]]></item>
+		<item name="cp.acp.vhostContainer.overwriteTemplate.description"><![CDATA[Falls aktiviert wird das Template des Containertyps mit dem hier vorgegebenen ersetzt.]]></item>
+		<item name="cp.acp.vhostContainer.vhostTemplate"><![CDATA[Template]]></item>
+		<item name="cp.acp.vhostContainer.vhostTemplate.description"><![CDATA[Dieses Template wird an das Containertemplate angefügt, bzw. ersetzt dieses, falls die "Template überschreiben" ausgewählt wurde.]]></item>
+		<item name="cp.acp.vhostContainer.ssl"><![CDATA[SSL]]></item>
+		<item name="cp.acp.vhostContainer.isSSL"><![CDATA[SSL aktivieren]]></item>
+		<item name="cp.acp.vhostContainer.sslCertFile"><![CDATA[SSL Certificate File]]></item>
+		<item name="cp.acp.vhostContainer.sslCertFile.description"><![CDATA[Pfad zum Server-Zertifikat]]></item>
+		<item name="cp.acp.vhostContainer.sslCertKeyFile"><![CDATA[SSL Certificate Key File]]></item>
+		<item name="cp.acp.vhostContainer.sslCertKeyFile.description"><![CDATA[Pfad zum privaten Keys des Servers]]></item>
+		<item name="cp.acp.vhostContainer.sslCertChainFile"><![CDATA[SSL Certificate Chain File]]></item>
+		<item name="cp.acp.vhostContainer.sslCertChainFile.description"><![CDATA[Pfad zur Datei die den gesamten Zertifizierungspfad enthält]]></item>
+		<item name="cp.acp.vhostContainer.vhostComments"><![CDATA[Notizen]]></item>
+		<item name="cp.acp.vhostContainer.list"><![CDATA[Container auflisten]]></item>
+		<item name="cp.acp.vhostContainer.delete.success"><![CDATA[Container erfolgreich gelöscht]]></item>
+		<item name="cp.acp.vhostContainer.delete.failed"><![CDATA[Container konnte nicht gelöscht werden - sind noch Domains mit ihm verknüpft?]]></item>
+		<item name="cp.acp.vhostContainers.listdata"><![CDATA[{$vhosts|count} VhostContainer vorhanden]]></item>
+		<item name="cp.acp.vhostContainer.vhostContainerID"><![CDATA[ID]]></item>
+		<item name="cp.acp.vhostContainer.ipAddressPort"><![CDATA[IP-Adresse:Port]]></item>
+		<item name="cp.acp.vhostContainer.delete.sure"><![CDATA[Sind Sie sicher, das Sie diesen Container löschen wollen? Dies ist nur möglich, wenn diesem Container keine Domains mehr zugeordnet sind!]]></item>
+		<item name="cp.acp.vhostContainer.delete"><![CDATA[Container löschen]]></item>
+	</category>
+	
+	<category name="cp.acp.menu">
+		<item name="cp.acp.menu.link.vhostContainers.list"><![CDATA[Vhost-Container auflisten]]></item>
+		<item name="cp.acp.menu.link.vhostContainers.add"><![CDATA[Vhost-Container hinzufügen]]></item>
+	</category>
+	
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.category.cpvhostcontainer"><![CDATA[WCP - VhostContainer-Typen]]></item>
+	</category>
+	
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.category.admin.cp.vhostContainer"><![CDATA[Vhost-Container-Verwaltung]]></item>
+		<item name="wcf.acp.group.option.category.admin.cp.vhostContainer.description"><![CDATA[]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canAddVhostContainer"><![CDATA[Kann VhostContainer erstellen]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canAddVhostContainer.description"><![CDATA[Mitglieder dieser Gruppe können VhostContainer erstellen]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canEditVhostContainer"><![CDATA[Kann VhostContainer bearbeiten]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canEditVhostContainer.description"><![CDATA[Mitglieder dieser Gruppe können VhostContainer bearbeiten]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canDeleteVhostContainer"><![CDATA[Kann VhostContainer löschen]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canDeleteVhostContainer.description"><![CDATA[Mitglieder dieser Gruppe können VhostContainer löschen]]></item>
+	</category>
 
 </language>

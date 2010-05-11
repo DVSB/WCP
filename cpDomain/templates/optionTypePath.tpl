@@ -7,7 +7,7 @@
 <script type="text/javascript">
 	//<![CDATA[
 	{$optionData.optionName}.enableMultiple(false);
-	{$optionData.optionName}.source = 'index.php?page=PathSuggest'+SID_ARG_2ND{if IS_ACP|defined}+'&amp;showFullPath=1'{/if};
+	{$optionData.optionName}.source = 'index.php?page=PathSuggest'+SID_ARG_2ND;
 	{$optionData.optionName}.init('{$optionData.optionName}');
 	// add event listeners
 	var element = document.getElementById('{$optionData.optionName}'); 

@@ -14,7 +14,8 @@ class DomainOptionTypeVhostContainer extends DomainOptionTypeSelect
 			$optionData['optionValue'] = false;
 			
 		$sql = "SELECT 	vhostContainerID, vhostName 
-				FROM	cp" . CP_N . "_vhostContainer";
+				FROM	cp" . CP_N . "_vhostContainer
+				WHERE 	isContainer = 1";
 		
 		$result = WCF :: getDB()->sendQuery($sql);
 		

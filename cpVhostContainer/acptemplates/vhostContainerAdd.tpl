@@ -28,7 +28,7 @@
 	<div class="border content">
 		<div class="container-1">
 			<fieldset id="data">
-				<legend>{lang}cp.acp.vhostContainer.data{/lang}</legend>
+				<legend>{lang}cp.acp.vhostContainer.{@$action}{/lang}</legend>
 				
 				<div class="formElement{if $errorField == 'vhostName'} formError{/if}" id="vhostNameDiv">
 					<div class="formFieldLabel">

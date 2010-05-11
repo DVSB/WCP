@@ -9,7 +9,11 @@
 </div>
 
 {if $deletedVhosts}
-	<p class="success">{lang}cp.acp.vhostContainer.delete.success{/lang}</p>	
+	{if $deletedVhosts == 'success'}
+		<p class="success">{lang}cp.acp.vhostContainer.delete.success{/lang}</p>
+	{else}
+		<p class="error">{lang}cp.acp.vhostContainer.delete.failed{/lang}</p>
+	{/if}	
 {/if}
 
 <div class="contentHeader">
@@ -24,7 +28,7 @@
 
 {if $vhosts|count}
 	<div class="border titleBarPanel">
-		<div class="containerHead"><h3>{lang}cp.acp.vhostContainers.list.data{/lang}</h3></div>
+		<div class="containerHead"><h3>{lang}cp.acp.vhostContainers.listdata{/lang}</h3></div>
 	</div>
 	<div class="border borderMarginRemove">
 		<table class="tableList">
@@ -45,12 +49,12 @@
 						{if $this->user->getPermission('admin.cp.canEditVhostContainer')}
 							<a href="index.php?form=vhostContainerEdit&amp;vhostContainerID={$vhostContainer->vhostContainerID}{@SID_ARG_2ND}"><img src="{@RELATIVE_WCF_DIR}icon/editS.png" alt="" title="{lang}cp.acp.vhostContainer.edit{/lang}" /></a>
 						{else}
-							<img src="{@RELATIVE_WCF_DIR}icon/editDisabledS.png" alt="" title="{lang}wcf.acp.vhostContainer.edit{/lang}" />
+							<img src="{@RELATIVE_WCF_DIR}icon/editDisabledS.png" alt="" title="{lang}cp.acp.vhostContainer.edit{/lang}" />
 						{/if}
 						{if $this->user->getPermission('admin.cp.canDeleteVhostContainer')}
 							<a onclick="return confirm('{lang}cp.acp.vhostContainer.delete.sure{/lang}')" href="index.php?action=vhostContainerDelete&amp;vhostContainerID={@$vhostContainer->vhostContainerID}{@SID_ARG_2ND}"><img src="{@RELATIVE_WCF_DIR}icon/deleteS.png" alt="" title="{lang}cp.acp.vhostContainer.delete{/lang}" /></a>
 						{else}
-							<img src="{@RELATIVE_WCF_DIR}icon/deleteDisabledS.png" alt="" title="{lang}wcf.acp.vhostContainer.delete{/lang}" />
+							<img src="{@RELATIVE_WCF_DIR}icon/deleteDisabledS.png" alt="" title="{lang}cp.acp.vhostContainer.delete{/lang}" />
 						{/if}
 						
 						{if $additionalButtons[$vhostContainer->vhostContainerID]|isset}{@$additionalButtons[$vhostContainer->vhostContainerID]}{/if}

@@ -26,6 +26,7 @@
 			<option name="documentroot">
 				<categoryname>web.definitions</categoryname>
 				<optiontype>path</optiontype>
+				<editable>1</editable>
 			</option>
 			
 			<option name="specialSettings">
@@ -44,36 +45,42 @@ redirect:cp.domain.alias.redirect]]></selectoptions>
 				<enableoptions><![CDATA[none:!redirectDomain,!aliasDomainID
 alias:!redirectDomain,aliasDomainID
 redirect:redirectDomain,!aliasDomainID]]></enableoptions>
+				<editable>1</editable>
 			</option>
 
 			<option name="aliasDomainID">
 				<categoryname>web.definitions</categoryname>
 				<optiontype>text</optiontype>
 				<defaultvalue>0</defaultvalue>
+				<editable>1</editable>
 			</option>
 
 			<option name="redirectDomain">
 				<categoryname>web.definitions</categoryname>
 				<optiontype>text</optiontype>
 				<defaultvalue></defaultvalue>
+				<editable>1</editable>
 			</option>
 
 			<option name="isWildcardDomain">
 				<categoryname>web.settings</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>0</defaultvalue>
+				<editable>1</editable>
 			</option>
 
 			<option name="wwwServerAlias">
 				<categoryname>web.settings</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
+				<editable>1</editable>
 			</option>
 
 			<option name="noWebDomain">
 				<categoryname>web.settings</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>0</defaultvalue>
+				<editable>1</editable>
 			</option>
 
 		</options>

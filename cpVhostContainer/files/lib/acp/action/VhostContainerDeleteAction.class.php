@@ -22,12 +22,18 @@ class VhostContainerDeleteAction extends AbstractAction
 		
 		$existCount = WCF :: getDB()->getFirstRow($sql);
 
+		$url = 'index.php?page=VhostContainerList&'.SID_ARG_2ND_NOT_ENCODED;
+		
 		if (WCF :: getUser()->getPermission('admin.cp.canDeleteVhostContainer') && $existCount['count'] == 0)
 		{
 			$vhost->delete();
+			$url .= '&deleted=success';
+		}
+		else
+		{
+			$url .= 'deleted=failed';
 		}
 		
-		$url = 'index.php?page=VhostContainerList&packageID='.PACKAGE_ID.SID_ARG_2ND_NOT_ENCODED;
 		HeaderUtil::redirect($url);
 	}
 }
