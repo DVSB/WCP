@@ -10,6 +10,8 @@ class EmailDeleteAction extends AbstractSecureAction
 	 */
 	public function execute()
 	{
+		WCF::getUser()->checkPermission('cp.email.canDeleteAddresses');
+		
 		parent :: execute();
 
 		$email = new EmailEditor($_REQUEST['mailID']);

@@ -29,7 +29,7 @@ class EmailListPage extends SortablePage
 	public $itemsPerPage = 20;
 	public $defaultSortField = 'emailaddress';
 	public $defaultSortOrder = 'ASC';
-	//public $neededPermissions = 'name.der.berechtigung';
+	public $neededPermissions = 'cp.email.canSeeList';
 
 	/**
 	 * email list object

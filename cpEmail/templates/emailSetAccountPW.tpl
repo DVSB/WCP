@@ -1,6 +1,6 @@
 {include file="documentHeader"}
 <head>
-	<title>{lang}cp.email.addAccount{/lang} - {lang}wcf.user.usercp{/lang} - {lang}{PAGE_TITLE}{/lang}</title>
+	<title>{lang}{lang}cp.email.account.{if $isUpdate}pwchange{else}addAccount{/if}{/lang} - {lang}{PAGE_TITLE}{/lang}</title>
 	{include file='headInclude' sandbox=false}
 	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/AjaxRequest.class.js"></script>
 	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/Suggestion.class.js"></script>
@@ -9,6 +9,19 @@
 {include file='header' sandbox=false}
 
 <div id="main">
+
+	<ul class="breadCrumbs">
+		<li><a href="index.php{@SID_ARG_1ST}"><img alt="" src="{icon}wcpS.png{/icon}"> <span>{lang}cp.header.menu.start{/lang}</span></a> &raquo;</li>
+		<li><a href="index.php?page=EmailList{@SID_ARG_2ND}"><img alt="" src="{icon}emailS.png{/icon}"> <span>{lang}cp.header.menu.email{/lang}</span></a> &raquo;</li>
+		<li><a href="index.php?page=EmailDetail&amp;mailID={@$mailID}{@SID_ARG_2ND}"><img alt="" src="{icon}emailS.png{/icon}"> <span>{lang}cp.email.details{/lang}</span></a> &raquo;</li>
+	</ul>	
+	
+	<div class="mainHeadline">
+		<img src="{icon}emailL.png{/icon}" alt="" />
+		<div class="headlineContainer">
+			<h2>{lang}cp.email.account.{if $isUpdate}pwchange{else}addAccount{/if}{/lang}</h2>
+		</div>
+	</div>
 
 	{capture append=userMessages}
 		{if $errorField}
@@ -20,7 +33,7 @@
 		<div class="border tabMenuContent">
 			<div class="container-1">
 				<fieldset>
-					<legend><label for="password">{lang}cp.email.addAccount{/lang} {$emailaddress_full}</label></legend>
+					<legend><label for="password">{lang}cp.email.account.{if $isUpdate}pwchange{else}addAccount{/if}{/lang} {$emailaddress_full}</label></legend>
 
 					<div class="formElement{if $errorField == 'password'} formError{/if}">
 						<div class="formFieldLabel">
@@ -32,22 +45,6 @@
 							{if $errorField == 'password'}
 								<p class="innerError">
 									{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
-								</p>
-							{/if}
-						</div>
-					</div>
-					
-					<div class="formElement{if $errorField == 'passwordcheck'} formError{/if}">
-						<div class="formFieldLabel">
-							<label for="password">{lang}cp.email.account.passwordcheck{/lang}</label>
-						</div>
-						<div class="formField">
-							<input type="password" class="inputText" name="passwordcheck" value="" id="passwordcheck" />
-
-							{if $errorField == 'password'}
-								<p class="innerError">
-									{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
-									{if $errorType == 'noMatch'}{lang}cp.email.account.pwnomatch{/lang}{/if}
 								</p>
 							{/if}
 						</div>

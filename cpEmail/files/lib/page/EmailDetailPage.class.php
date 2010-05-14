@@ -14,6 +14,7 @@ require_once (CP_DIR . 'lib/data/email/EmailEditor.class.php');
 class EmailDetailPage extends AbstractPage
 {
 	public $templateName = 'emailDetail';
+	public $neededPermissions = 'cp.email.canSeeList';
 	
 	/**
 	 * @see Page::readParameters()

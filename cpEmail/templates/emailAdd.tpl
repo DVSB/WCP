@@ -1,6 +1,6 @@
 {include file="documentHeader"}
 <head>
-	<title>{lang}cp.email.{@$action}Address{/lang} - {lang}wcf.user.usercp{/lang} - {lang}{PAGE_TITLE}{/lang}</title>
+	<title>{lang}cp.email.addAddress{/lang} - {lang}wcf.user.usercp{/lang} - {lang}{PAGE_TITLE}{/lang}</title>
 	{include file='headInclude' sandbox=false}
 	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/AjaxRequest.class.js"></script>
 	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/Suggestion.class.js"></script>
@@ -10,17 +10,29 @@
 
 <div id="main">
 
+	<ul class="breadCrumbs">
+		<li><a href="index.php{@SID_ARG_1ST}"><img alt="" src="{icon}wcpS.png{/icon}"> <span>{lang}cp.header.menu.start{/lang}</span></a> &raquo;</li>
+		<li><a href="index.php?page=EmailList{@SID_ARG_2ND}"><img alt="" src="{icon}emailS.png{/icon}"> <span>{lang}cp.header.menu.email{/lang}</span></a> &raquo;</li>
+	</ul>	
+	
+	<div class="mainHeadline">
+		<img src="{icon}emailL.png{/icon}" alt="" />
+		<div class="headlineContainer">
+			<h2>{lang}cp.email.addAddress{/lang}</h2>
+		</div>
+	</div>
+
 	{capture append=userMessages}
 		{if $errorField}
 			<p class="error">{lang}wcf.global.form.error{/lang}</p>
 		{/if}
 	{/capture}
 
-	<form method="post" action="index.php?form=Email{@$action|ucfirst}">
+	<form method="post" action="index.php?form=EmailAdd">
 		<div class="border tabMenuContent">
 			<div class="container-1">
 				<fieldset>
-					<legend>{lang}cp.email.{@$action}Address{/lang}</legend>
+					<legend>{lang}cp.email.addAddress{/lang}</legend>
 
 					<div class="formElement{if $errorField == 'emailaddress'} formError{/if}">
 						<div class="formFieldLabel">
@@ -75,7 +87,6 @@
 		<div class="formSubmit">
 			{@SID_INPUT_TAG}
 			{@SECURITY_TOKEN_INPUT_TAG}
-			{if $ftpUserID|isset}<input type="hidden" name="ftpUserID" value="{@$ftpUserID}" />{/if}
 			<input type="submit" accesskey="s" value="{lang}wcf.global.button.submit{/lang}" />
 			<input type="reset" accesskey="r" value="{lang}wcf.global.button.reset{/lang}" />
 		</div>

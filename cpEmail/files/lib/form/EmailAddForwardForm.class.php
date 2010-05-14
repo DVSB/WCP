@@ -8,6 +8,8 @@ class EmailAddForwardForm extends AbstractSecureForm
 	 * @see AbstractPage::$templateName
 	 */
 	public $templateName = 'emailAddForward';
+	
+	public $neededPermissions = array('cp.email.canAddAddress', 'cp.email.canAddForward');
 
 	public $forward = '';
 	

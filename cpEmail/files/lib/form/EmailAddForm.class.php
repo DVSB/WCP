@@ -9,6 +9,8 @@ class EmailAddForm extends AbstractSecureForm
 	 */
 	public $templateName = 'emailAdd';
 	
+	public $neededPermissions = 'cp.email.canAddAddress';
+	
 	public $emailaddress = '';
 	
 	public $isCatchall = 0;

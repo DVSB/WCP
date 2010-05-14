@@ -4,11 +4,60 @@
 	<import>
 
 		<categories>
-
+			<category name="cp.email">
+				<parent>cp</parent>
+			</category>
 		</categories>
 
 		<options>
-
+		
+			<option name="cp.email.canSeeList">
+				<categoryname>cp.email</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</option>
+			
+			<option name="cp.email.canAddAddress">
+				<categoryname>cp.email</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</option>
+			
+			<option name="cp.email.canAddForward">
+				<categoryname>cp.email</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</option>
+			
+			<option name="cp.email.canAddAccount">
+				<categoryname>cp.email</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</option>
+			
+			<option name="cp.email.canUseCatchall">
+				<categoryname>cp.email</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</option>
+			
+			<option name="cp.email.canDeleteAddresses">
+				<categoryname>cp.email</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</option>
+			
+			<option name="cp.email.canDeleteForwards">
+				<categoryname>cp.email</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</option>
+			
+			<option name="cp.email.canDeleteAccounts">
+				<categoryname>cp.email</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</option>
 		</options>
 
 	</import>

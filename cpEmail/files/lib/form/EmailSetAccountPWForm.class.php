@@ -8,9 +8,10 @@ class EmailSetAccountPWForm extends AbstractSecureForm
 	 * @see AbstractPage::$templateName
 	 */
 	public $templateName = 'emailSetAccountPW';
+	
+	public $neededPermissions = array('cp.email.canAddAddress', 'cp.email.canAddAccount');
 
 	public $password = '';
-	public $passwordcheck = '';
 	
 	public $email;
 
@@ -44,9 +45,6 @@ class EmailSetAccountPWForm extends AbstractSecureForm
 
 		if (isset($_POST['password']))
 			$this->password = StringUtil :: trim($_POST['password']);
-			
-		if (isset($_POST['passwordcheck']))
-			$this->passwordcheck = StringUtil :: trim($_POST['passwordcheck']);
 	}
 
 	/**
@@ -58,12 +56,6 @@ class EmailSetAccountPWForm extends AbstractSecureForm
 
 		if (empty($this->password))
 			throw new UserInputException('password', 'notempty');
-			
-		if (empty($this->passwordcheck))
-			throw new UserInputException('passwordcheck', 'notempty');
-			
-		if ($this->password != $this->passwordcheck)
-			throw new UserInputException('passwordcheck', 'noMatch');
 	}
 
 	/**
@@ -76,6 +68,7 @@ class EmailSetAccountPWForm extends AbstractSecureForm
 		WCF :: getTPL()->assign(array (
 			'mailID' => $this->email->mailID,
 			'emailaddress_full' => $this->email->emailaddress_full,
+			'isUpdate' => (bool) $this->email->accountID,
 		));
 	}
 

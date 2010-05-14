@@ -7,20 +7,12 @@
 			<category name="cpemail.quota">
 				<parent>cpemail</parent>
 			</category>
-			<category name="cpemail.link">
-				<parent>cpemail</parent>
-			</category>
 			<category name="cpemail.parameters">
 				<parent>cpemail</parent>
 			</category>
 		</categories>
 
 		<options>
-		    <option name="webmail_url">
-		        <categoryname>cpemail.link</categoryname>
-		        <optiontype>text</optiontype>
-		        <defaultvalue></defaultvalue>
-		    </option>
 
 		    <option name="mail_quota_enabled">
 		        <categoryname>cpemail.quota</categoryname>

@@ -10,6 +10,8 @@ class EmailToggleCatchallAction extends AbstractSecureAction
 	 */
 	public function execute()
 	{
+		WCF::getUser()->checkPermission('cp.email.canUseCatchall');
+		
 		parent :: execute();
 
 		$email = new EmailEditor($_REQUEST['mailID']);

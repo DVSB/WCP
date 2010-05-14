@@ -1,5 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language SYSTEM "http://www.woltlab.com/DTDs/language.dtd">
 <language languagecode="de">
+	
+	<category name="cp.email">
+		<item name="cp.email.addForward"><![CDATA[Weiterleitung hinzufügen]]></item>
+		<item name="cp.email.details"><![CDATA[Email-Details]]></item>
+		<item name="cp.email.forward"><![CDATA[Email-Weiterleitung]]></item>
+		<item name="cp.email.forward.notvalid"><![CDATA[Weiterleitung nicht gültig]]></item>
+		<item name="cp.email.addAddress"><![CDATA[Emailadresse hinzufügen]]></item>
+		<item name="cp.email.emailaddress"><![CDATA[Emailadresse]]></item>
+		<item name="cp.email.emailaddress.notvalid"><![CDATA[Adresse nicht gültig]]></item>
+		<item name="cp.email.domain"><![CDATA[Domain]]></item>
+		<item name="cp.email.domain.notvalid"><![CDATA[Domain nicht gültig]]></item>
+		<item name="cp.email.isCatchall"><![CDATA[Ist Catchall-Adresse]]></item>
+		<item name="cp.email.isCatchall.notvalid"><![CDATA[Für diese Domain ist bereits ein Catchall gesetzt]]></item>
+		<item name="cp.email.account"><![CDATA[Emailkonto]]></item>
+		<item name="cp.email.account.pwchange"><![CDATA[Passwort ändern]]></item>
+		<item name="cp.email.account.addAccount"><![CDATA[Emailkonto erstellen]]></item>
+		<item name="cp.email.account.delete"><![CDATA[Emailkonto löschen]]></item>
+		<item name="cp.email.isCatchall.deactivate"><![CDATA[Catchall deaktivieren]]></item>
+		<item name="cp.email.isCatchall.activate"><![CDATA[Catchall aktivieren]]></item>
+		<item name="cp.email.forwards"><![CDATA[Weiterleitungen]]></item>
+		<item name="cp.email.deleteForward"><![CDATA[Weiterleitung löschen]]></item>
+		<item name="cp.email.list"><![CDATA[Emailliste]]></item>
+		<item name="cp.email.mailID"><![CDATA[]]></item>
+		<item name="cp.email.deleteEmailaddress"><![CDATA[Emailadresse löschen]]></item>
+		<item name="cp.email.account.password"><![CDATA[Passwort]]></item>
+	</category>
+
+	<category name="cp.header.menu">
+		<item name="cp.header.menu.email"><![CDATA[Emails]]></item>
+	</category>
+	
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.category.cpemail"><![CDATA[WCP - Email]]></item>
+		<item name="wcf.acp.option.category.cpemail.description"><![CDATA[Einstellungen für Emails]]></item>
+		<item name="wcf.acp.option.category.cpemail.quota"><![CDATA[Email-Quota]]></item>
+		<item name="wcf.acp.option.category.cpemail.quota.description"><![CDATA[Quota pro Mailbox]]></item>
+		<item name="wcf.acp.option.mail_quota_enabled"><![CDATA[Quota aktivieren]]></item>
+		<item name="wcf.acp.option.mail_quota_enabled.description"><![CDATA[]]></item>
+		<item name="wcf.acp.option.mail_quota"><![CDATA[Quota pro Mailbox]]></item>
+		<item name="wcf.acp.option.mail_quota.description"><![CDATA[Quota in MB das pro Mailbox verfügbar ist]]></item>
+		<item name="wcf.acp.option.category.cpemail.parameters"><![CDATA[Einstellungen]]></item>
+		<item name="wcf.acp.option.category.cpemail.parameters.description"><![CDATA[]]></item>
+		<item name="wcf.acp.option.mail_store_plain_password"><![CDATA[Passwörter unverschlüsselt speichern]]></item>
+		<item name="wcf.acp.option.mail_store_plain_password.description"><![CDATA[Speichert die Passwörter für Emailkonten zusätzlich auch unverschlüsselt in der Datenbank. Nur so sind Verfahren wie CRAM-MD5 usw. möglich. Allerdings stellt dies ein Sicherheitsrisiko dar, falls die Datenbank kompromitiert wird.]]></item>
+		<item name="wcf.acp.option.mail_homedir"><![CDATA[Heimatverzeichnis]]></item>
+		<item name="wcf.acp.option.mail_homedir.description"><![CDATA[Das Heimatverzeichnis für alle Mailkonten]]></item>
+		<item name="wcf.acp.option.mail_uid"><![CDATA[UID]]></item>
+		<item name="wcf.acp.option.mail_uid.description"><![CDATA[Die UID des Mailservers, mit dieser UID werden alle Mailkonten angelegt.]]></item>
+		<item name="wcf.acp.option.mail_gid"><![CDATA[GID]]></item>
+		<item name="wcf.acp.option.mail_gid.description"><![CDATA[Die GID des Mailservers, mit dieser GID werden alle Mailkonten angelegt.]]></item>
+	</category>
 
 </language>

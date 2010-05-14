@@ -3,8 +3,9 @@
 <data>
 	<import>
 		<pagemenuitem name="cp.header.menu.email">
-			<icon>icon/portalM.png</icon>
+			<icon>emailM.png</icon>
 			<link>index.php?page=EmailList</link>
+			<permissions>cp.email.canSeeList</permissions>
 		</pagemenuitem>
 	</import>
 </data>

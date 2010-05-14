@@ -10,6 +10,19 @@
 
 <div id="main">
 
+	<ul class="breadCrumbs">
+		<li><a href="index.php{@SID_ARG_1ST}"><img alt="" src="{icon}wcpS.png{/icon}"> <span>{lang}cp.header.menu.start{/lang}</span></a> &raquo;</li>
+		<li><a href="index.php?page=EmailList{@SID_ARG_2ND}"><img alt="" src="{icon}emailS.png{/icon}"> <span>{lang}cp.header.menu.email{/lang}</span></a> &raquo;</li>
+		<li><a href="index.php?page=EmailDetail&amp;mailID={@$mailID}{@SID_ARG_2ND}"><img alt="" src="{icon}emailS.png{/icon}"> <span>{lang}cp.email.details{/lang}</span></a> &raquo;</li>
+	</ul>	
+	
+	<div class="mainHeadline">
+		<img src="{icon}emailL.png{/icon}" alt="" />
+		<div class="headlineContainer">
+			<h2>{lang}cp.email.addForward{/lang}</h2>
+		</div>
+	</div>
+
 	{capture append=userMessages}
 		{if $errorField}
 			<p class="error">{lang}wcf.global.form.error{/lang}</p>
@@ -32,7 +45,7 @@
 							{if $errorField == 'forward'}
 								<p class="innerError">
 									{if $errorType == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
-									{if $errorType == 'notValid'}{lang}cp.email.error.notvalid{/lang}{/if}
+									{if $errorType == 'notValid'}{lang}cp.email.forward.notvalid{/lang}{/if}
 								</p>
 							{/if}
 						</div>
