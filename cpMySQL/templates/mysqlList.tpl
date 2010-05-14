@@ -9,6 +9,10 @@
 
 <div id="main">
 	
+	<ul class="breadCrumbs">
+		<li><a href="index.php{@SID_ARG_1ST}"><img alt="" src="{icon}wcpS.png{/icon}"> <span>{lang}cp.header.menu.start{/lang}</span></a> &raquo;</li>
+	</ul>	
+	
 	<div class="mainHeadline">
 		<img src="{icon}mysqlL.png{/icon}" alt="" />
 		<div class="headlineContainer">
@@ -18,7 +22,7 @@
 
 	<div class="contentHeader">
 		{pages print=true assign=pagesLinks link="index.php?page=MySQLList&pageNo=%d&sortField=$sortField&sortOrder=$sortOrder"|concat:SID_ARG_2ND_NOT_ENCODED}
-		{if $this->user->mysqls > $this->user->mysqlsUsed}
+		{if $this->user->mysqls > $this->user->mysqlsUsed && $this->user->getPermission('cp.mysql.canAddMySQL')}
 		<div class="largeButtons">
 			<ul>
 				<li><a href="index.php?form=MySQLAdd{@SID_ARG_2ND}">
@@ -46,7 +50,7 @@
 			<tbody>
 			{foreach from=$mysqls item=mysql}
 				<tr class="{cycle values="container-1,container-2"}">
-					<td class="columnMySQLID columnID"><a href="index.php?action=MySQLDelete&amp;mysqlID={@$mysql->mysqlID}{@SID_ARG_2ND}"><img src="{icon}deleteS.png{/icon}" alt="" title="{lang}cp.mysql.delete{/lang}" /></a></td>
+					<td class="columnMySQLID columnID">{if $this->user->getPermission('cp.mysql.canDeleteMySQL')}<a href="index.php?action=MySQLDelete&amp;mysqlID={@$mysql->mysqlID}{@SID_ARG_2ND}"><img src="{icon}deleteS.png{/icon}" alt="" title="{lang}cp.mysql.delete{/lang}" /></a>{else}<img src="{icon}deleteDisabledS.png{/icon}" alt="" title="{lang}cp.mysql.delete{/lang}" />{/if}</td>
 					<td class="columnMySQLname columnText"><a href="index.php?form=MySQLEdit&amp;mysqlID={@$mysql->mysqlID}{@SID_ARG_2ND}">{$mysql->mysqlname}</a></td>
 
 					{if $additionalColumns.$mysql->mysqlID|isset}{@$additionalColumns.$mysql->mysqlID}{/if}
