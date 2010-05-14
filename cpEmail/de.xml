@@ -52,5 +52,11 @@
 		<item name="wcf.acp.option.mail_gid"><![CDATA[GID]]></item>
 		<item name="wcf.acp.option.mail_gid.description"><![CDATA[Die GID des Mailservers, mit dieser GID werden alle Mailkonten angelegt.]]></item>
 	</category>
+	
+	<category name="wcf.user.option">
+		<item name="wcf.user.option.emailAddresses"><![CDATA[Emailadressen (benutzt/verfügbar)]]></item>
+		<item name="wcf.user.option.emailAccounts"><![CDATA[Emailkonten (benutzt/verfügbar)]]></item>
+		<item name="wcf.user.option.emailForwards"><![CDATA[Emailweiterleitungen (benutzt/verfügbar)]]></item>
+	</category>
 
 </language>

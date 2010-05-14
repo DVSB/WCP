@@ -10,6 +10,8 @@ class SubDomainDeleteAction extends AbstractSecureAction
 	 */
 	public function execute()
 	{
+		WCF::getUser()->checkPermission('cp.domain.canDeleteSubDomains');
+		
 		parent :: execute();
 
 		$domain = new DomainEditor($_REQUEST['domainID']);

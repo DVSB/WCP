@@ -16,7 +16,7 @@ require_once (CP_DIR . 'lib/form/SubDomainAddForm.class.php');
 class DomainEditForm extends SubDomainAddForm
 {
 	public $templateName = 'domainEdit';
-	public $neededPermissions = ''; //admin.domain.canEditDomain';
+	public $neededPermissions = 'cp.domain.canEditDomain';
 
 	/**
 	 * @see Page::readParameters()

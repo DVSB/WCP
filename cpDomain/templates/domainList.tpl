@@ -30,7 +30,7 @@
 	
 	<div class="contentHeader">
 		{pages print=true assign=pagesLinks link="index.php?page=DomainList&pageNo=%d&sortField=$sortField&sortOrder=$sortOrder&packageID="|concat:PACKAGE_ID:SID_ARG_2ND_NOT_ENCODED}
-		{if $this->user->subdomains > $this->user->subdomainsUsed}
+		{if $this->user->subdomains > $this->user->subdomainsUsed && $this->user->getPermission('cp.domain.canAddSubDomain')}
 		<div class="largeButtons">
 			<ul>
 				<li><a href="index.php?form=SubDomainAdd{@SID_ARG_2ND}" title="{lang}cp.domain.subDomainAdd{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/groupAddM.png" alt="" /> <span>{lang}wcf.acp.domain.add{/lang}</span></a></li>
@@ -60,8 +60,8 @@
 			<tbody>
 			{foreach from=$domains item=domain}
 				<tr class="{cycle values="container-1,container-2"}">
-					<td class="columnDomainID columnID">{if $domain->parentDomainID != 0}<a href="index.php?action=SubDomainDelete&amp;domainID={@$domain->domainID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}" onclick="return confirm(LANG_DELETE_CONFIRM);"><img src="{icon}deleteS.png{/icon}" alt="" title="{lang}cp.domain.deleteSubDomain{/lang}" /></a>{else}<img src="{icon}deleteDisabledS.png{/icon}" alt="" title="{lang}cp.domain.deleteSubDomain{/lang}" />{/if}{if $domain->deactivated == '1'}<a href="index.php?action=DomainEnable&amp;domainID={@$domain->domainID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}"><img src="{icon}disabledS.png{/icon}" alt="" title="{lang}cp.domain.disableDomain{/lang}" /></a>{else}<a href="index.php?action=DomainDisable&amp;domainID={@$domain->domainID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}"><img src="{icon}enabledS.png{/icon}" alt="" title="{lang}cp.domain.enableDomain{/lang}" /></a>{/if}</td>
-					<td class="columnDomainname columnText">{if $domain->canEditDomain}<a title="{lang}wcf.acp.group.edit{/lang}" href="index.php?form={if $domain->parentDomainID != 0}Sub{/if}DomainEdit&amp;domainID={@$domain->domainID}{@SID_ARG_2ND}">{$domain->domainname}</a>{else}{$domain->domainname}{/if}</td>
+					<td class="columnDomainID columnID">{if $domain->parentDomainID != 0 && $this->user->getPermission('cp.domain.canDeleteSubDomains')}<a href="index.php?action=SubDomainDelete&amp;domainID={@$domain->domainID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}" onclick="return confirm(LANG_DELETE_CONFIRM);"><img src="{icon}deleteS.png{/icon}" alt="" title="{lang}cp.domain.deleteSubDomain{/lang}" /></a>{else}<img src="{icon}deleteDisabledS.png{/icon}" alt="" title="{lang}cp.domain.deleteSubDomain{/lang}" />{/if}{if $domain->deactivated == '1'}<a href="index.php?action=DomainEnable&amp;domainID={@$domain->domainID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}"><img src="{icon}disabledS.png{/icon}" alt="" title="{lang}cp.domain.disableDomain{/lang}" /></a>{else}<a href="index.php?action=DomainDisable&amp;domainID={@$domain->domainID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}"><img src="{icon}enabledS.png{/icon}" alt="" title="{lang}cp.domain.enableDomain{/lang}" /></a>{/if}</td>
+					<td class="columnDomainname columnText">{if $this->user->getPermission('cp.domain.canEditDomain') && $domain->parentDomainID == 0 || $this->user->getPermission('cp.domain.canEditSubDomain') && $domain->parentDomainID != 0}<a title="{lang}wcf.acp.group.edit{/lang}" href="index.php?form={if $domain->parentDomainID != 0}Sub{/if}DomainEdit&amp;domainID={@$domain->domainID}{@SID_ARG_2ND}">{$domain->domainname}</a>{else}{$domain->domainname}{/if}</td>
 					<td class="columnParentDomain columnText">{$domain->parentDomainName}</td>
 					<td class="columnRegistrationDateDomain columnText">{if $domain->registrationDate != 0}{@$domain->registrationDate|date}{/if}</td>
 					<td class="columnAddDate columnText">{@$domain->addDate|date}</td>

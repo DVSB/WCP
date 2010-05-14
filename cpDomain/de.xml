@@ -61,5 +61,14 @@
 		<item name="cp.acp.domain.username.description"><![CDATA[Der Benutzer, dem diese Domain zugeordnet ist.]]></item>
 		<item name="cp.acp.domain.adminname"><![CDATA[Administrator]]></item>
 	</category>
+	
+	<category name="wcf.user.option">
+		<item name="wcf.user.option.domains"><![CDATA[Domains]]></item>
+		<item name="wcf.user.option.subdomains"><![CDATA[Subdomains (benutzt/verfügbar)]]></item>
+	</category>
+	
+	<category name="cp.header.menu">
+		<item name="cp.header.menu.domain"><![CDATA[Domains]]></item>
+	</category>
 
 </language>

@@ -23,6 +23,7 @@ class DomainListPage extends SortablePage
 	
 	public $defaultSortField = 'domainname';
 	public $defaultSortOrder = 'ASC';
+	public $neededPermissions = 'cp.domain.canSeeDomains';
 	
 	/**
 	 * domainlist object

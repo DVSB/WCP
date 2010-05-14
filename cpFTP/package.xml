@@ -3,11 +3,11 @@
 <package name="com.toby.cp.ftp">
 
 	<packageInformation>
-		<packageName>WCF Controlpanel FTP Modul</packageName>
+		<packageName>Web ControlPanel FTP Modul</packageName>
 		<packageDescription>Ermöglicht FTP-Zugriff auf den Server</packageDescription>
-		<version>0.0.2-alpha</version>
+		<version>0.6.0-beta1</version>
 		<plugin>com.toby.cp</plugin>
-		<date>2009-04-04</date>
+		<date>2010-05-14</date>
 	</packageInformation>
 
 	<authorInformation>
@@ -33,7 +33,7 @@
 		<useroptions>useroptions.xml</useroptions>
 	</instructions>
 
-	<instructions type="update" fromversion="0.0.*">
+	<instructions type="update" fromversion="0.*">
 		<languages languagecode="de">de.xml</languages>
 		<options>options.xml</options>
 		<files>files.tar</files>

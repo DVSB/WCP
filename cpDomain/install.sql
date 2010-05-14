@@ -6,7 +6,6 @@ CREATE TABLE cp1_1_domain (
 	adminID int(10) unsigned NOT NULL default '0',
 	addDate int(11) NOT NULL,
 	registrationDate INT(11) NOT NULL,
-	canEditDomain tinyint(1) NOT NULL default '1',
 	parentDomainID int(10) unsigned NOT NULL default '0',
 	deactivated tinyint(1) NOT NULL default '0',
 	PRIMARY KEY  (domainID),

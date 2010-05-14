@@ -3,11 +3,11 @@
 <package name="com.toby.cp.domain">
 
 	<packageInformation>
-		<packageName>WCF Controlpanel Domain Modul</packageName>
+		<packageName>Web ControlPanel Domain Modul</packageName>
 		<packageDescription>Basismodul zur Domainverwaltung</packageDescription>
-		<version>0.5.0-beta4</version>
+		<version>0.6.0-beta1</version>
 		<plugin>com.toby.cp</plugin>
-		<date>2010-04-11</date>
+		<date>2010-05-14</date>
 	</packageInformation>
 
 	<authorInformation>

@@ -10,6 +10,8 @@ class DomainDeleteAction extends AbstractAction
 	 */
 	public function execute()
 	{
+		WCF::getUser()->checkPermission('admin.cp.canDeleteDomains');
+		
 		parent :: execute();
 
 		$domain = new DomainEditor($_REQUEST['domainID']);

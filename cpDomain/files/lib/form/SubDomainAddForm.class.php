@@ -16,7 +16,7 @@ require_once (CP_DIR . 'lib/data/user/CPUser.class.php');
 class SubDomainAddForm extends DynamicDomainOptionListForm
 {
 	public $templateName = 'subDomainAdd';
-	public $neededPermissions = ''; //admin.cp.canAddDomain';
+	public $neededPermissions = 'cp.domain.canAddSubDomain'; 
 	
 	public $additionalFields = array();
 	public $domain;
