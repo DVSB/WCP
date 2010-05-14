@@ -1,6 +1,6 @@
 {include file="documentHeader"}
 <head>
-	<title>{lang}cp.domain.list{/lang} - {PAGE_TITLE}</title>
+	<title>{lang}cp.domain.{@$action}{/lang} - {PAGE_TITLE}</title>
 
 	{include file='headInclude' sandbox=false}
 
@@ -19,10 +19,15 @@
 
 <div id="main">
 
+	<ul class="breadCrumbs">
+		<li><a href="index.php{@SID_ARG_1ST}"><img alt="" src="{icon}wcpS.png{/icon}"> <span>{lang}cp.header.menu.start{/lang}</span></a> &raquo;</li>
+		<li><a href="index.php?page=DomainList{@SID_ARG_2ND}"><img alt="" src="{icon}domainS.png{/icon}"> <span>{lang}cp.header.menu.domain{/lang}</span></a> &raquo;</li>
+	</ul>
+
 	<div class="mainHeadline">
 		<img src="{@RELATIVE_WCF_DIR}icon/domain{@$action|ucfirst}L.png" alt="" />
 		<div class="headlineContainer">
-			<h2>{lang}cp.acp.domain.{@$action}{/lang}</h2>
+			<h2>{lang}cp.domain.{@$action}{/lang}</h2>
 		</div>
 	</div>
 	
@@ -31,18 +36,18 @@
 	{/if}
 	
 	{if $success|isset}
-		<p class="success">{lang}cp.acp.domain.{@$action}.success{/lang}</p>	
+		<p class="success">{lang}cp.domain.{@$action}.success{/lang}</p>	
 	{/if}
 	
 	<form method="post" action="index.php?form=SubDomain{@$action|ucfirst}">
 		<div class="border content">
 			<div class="container-1">
 				<fieldset>
-					<legend>{lang}cp.acp.domain.data{/lang}</legend>
+					<legend>{lang}cp.domain.data{/lang}</legend>
 					
 					<div class="formElement{if $errorType.domainname|isset} formError{/if}" id="domainnameDiv">
 						<div class="formFieldLabel">
-							<label for="domainname">{lang}cp.acp.domain.domainname{/lang}</label>
+							<label for="domainname">{lang}cp.domain.domainname{/lang}</label>
 						</div>
 						<div class="formField">
 							<input type="text" class="inputText" id="domainname" name="domainname" value="{$domainname}" />
@@ -52,17 +57,14 @@
 								</p>
 							{/if}
 						</div>
-						<div class="formFieldDesc hidden" id="domainnameHelpMessage">
-							<p>{lang}cp.acp.domain.domainname.description{/lang}</p>
+						<div class="formFieldDesc">
+							<p>{lang}cp.domain.domainname.description{/lang}</p>
 						</div>
 					</div>
-					<script type="text/javascript">//<![CDATA[
-						inlineHelp.register('domainname');
-					//]]></script>
 					
 					<div class="formElement{if $errorType.parentDomain|isset} formError{/if}" id="parentDomainDiv">
 						<div class="formFieldLabel">
-							<label for="parentDomain">{lang}cp.acp.domain.parentDomain{/lang}</label>
+							<label for="parentDomain">{lang}cp.domain.parentDomain{/lang}</label>
 						</div>
 						<div class="formField">
 							{htmlOptions options=$parentDomains selected=$parentDomainID id=parentDomains name=parentDomainID}
@@ -72,13 +74,10 @@
 								</p>
 							{/if}
 						</div>
-						<div class="formFieldDesc hidden" id="parentDomainHelpMessage">
-							<p>{lang}cp.acp.domain.parentDomain.description{/lang}</p>
+						<div class="formFieldDesc">
+							<p>{lang}cp.domain.parentDomain.description{/lang}</p>
 						</div>
 					</div>
-					<script type="text/javascript">//<![CDATA[
-						inlineHelp.register('parentDomain');
-					//]]></script>
 					
 					{if $additionalFields|isset}{@$additionalFields}{/if}
 				</fieldset>

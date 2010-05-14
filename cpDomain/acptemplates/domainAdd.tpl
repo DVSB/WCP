@@ -28,7 +28,7 @@
 <div class="contentHeader">
 	<div class="largeButtons">
 		<ul>
-			<li><a href="index.php?page=DomainList&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}cp.acp.menu.link.domains.list{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/groupM.png" alt="" /> <span>{lang}cp.acp.menu.link.domains.list{/lang}</span></a></li>
+			<li><a href="index.php?page=DomainList&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}cp.acp.domain.list{/lang}"><img src="{icon}domainM.png{/icon}" alt="" /> <span>{lang}cp.acp.domain.list{/lang}</span></a></li>
 			{if $additionalLargeButtons|isset}{@$additionalLargeButtons}{/if}
 		</ul>
 	</div>

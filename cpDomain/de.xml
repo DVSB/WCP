@@ -2,4 +2,64 @@
 <!DOCTYPE language SYSTEM "http://www.woltlab.com/DTDs/language.dtd">
 <language languagecode="de">
 
+	<category name="cp.domain">
+		<item name="cp.domain.add"><![CDATA[Domain hinzufügen]]></item>
+		<item name="cp.domain.add.success"><![CDATA[Domain erfolgreich gespeichert]]></item>
+		<item name="cp.domain.edit"><![CDATA[Domain bearbeiten]]></item>
+		<item name="cp.domain.edit.success"><![CDATA[Domain erfolgreich gespeichert]]></item>
+		<item name="cp.domain.data"><![CDATA[Daten]]></item>
+		<item name="cp.domain.list"><![CDATA[Domainliste]]></item>
+		<item name="cp.domain.delete.success"><![CDATA[Domain erfolgreich gelöscht]]></item>
+		<item name="cp.domain.disabled.success"><![CDATA[Domain erfolgreich deaktiviert]]></item>
+		<item name="cp.domain.subDomainAdd"><![CDATA[Subdomain hinzufügen]]></item>
+		<item name="cp.domain.domainID"><![CDATA[]]></item>
+		<item name="cp.domain.parentDomainName"><![CDATA[Elterndomain]]></item>
+		<item name="cp.domain.registrationDate"><![CDATA[Registrierdatum]]></item>
+		<item name="cp.domain.addDate"><![CDATA[Erstellungsdatum]]></item>
+		<item name="cp.domain.deleteSubDomain"><![CDATA[Subdomain löschen]]></item>
+		<item name="cp.domain.enableDomain"><![CDATA[Domain aktivieren]]></item>
+		<item name="cp.domain.disableDomain"><![CDATA[Domain deaktivieren]]></item>
+		<item name="cp.domain.domainname"><![CDATA[Domainname]]></item>
+		<item name="cp.domain.domainname.description"><![CDATA[Der Name der Domain, hier wird nur der Teil vor dem Punkt benötigt (für foo.bar.org also nur foo).]]></item>
+		<item name="cp.domain.parentDomain"><![CDATA[Elterndomain]]></item>
+		<item name="cp.domain.parentDomain.description"><![CDATA[Hier wählen Sie aus, zu welcher Domain Sie diese Subdomain anlegen wollen. Der Name wird dann automatisch vervollständigt.]]></item>
+	</category>
+	
+	<category name="cp.domain.option">
+		<item name="cp.domain.option.category.default"><![CDATA[Standardeinstellungen]]></item>
+		<item name="cp.domain.option.category.default.comments"><![CDATA[Notizen]]></item>
+		<item name="cp.domain.option.comments"><![CDATA[Notizen]]></item>
+		<item name="cp.domain.option.comments.description"><![CDATA[Hier können Sie sich Notizen zu dieser Domain machen.]]></item>
+		<item name="cp.domain.option.admincomments"><![CDATA[Adminnotizen]]></item>
+		<item name="cp.domain.option.admincomments.description"><![CDATA[Hier können Sie sich Notizen zu dieser Domain machen. In diesem Feld sind sie nur für Administratoren sichtbar.]]></item>
+	</category>
+	
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.category.cpdomains"><![CDATA[WCP - Domain]]></item>
+		<item name="wcf.acp.option.category.cpdomains.description"><![CDATA[Einstellungen zu Domains]]></item>
+		<item name="wcf.acp.option.category.cpdomains.global"><![CDATA[Global]]></item>
+		<item name="wcf.acp.option.category.cpdomains.global.description"><![CDATA[]]></item>
+		<item name="wcf.acp.option.domains_defaultdomain"><![CDATA[Defaultdomain]]></item>
+		<item name="wcf.acp.option.domains_defaultdomain.description"><![CDATA[Die Domain in der Standardsubdomains angelegt werden, falls ein Benutzer keine eigenen Domains besitzt. Derzeit noch ohne Funktion.]]></item>
+	</category>
+	
+	<category name="cp.acp.domain">
+		<item name="cp.acp.domain.add"><![CDATA[Domain hinzufügen]]></item>
+		<item name="cp.acp.domain.add.success"><![CDATA[Domain erfolgreich gespeichert]]></item>
+		<item name="cp.acp.domain.edit"><![CDATA[Domain bearbeiten]]></item>
+		<item name="cp.acp.domain.edit.success"><![CDATA[Domain erfolgreich gespeichert]]></item>
+		<item name="cp.acp.domain.data"><![CDATA[Daten]]></item>
+		<item name="cp.acp.domain.list"><![CDATA[Domainliste]]></item>
+		<item name="cp.acp.domain.delete.success"><![CDATA[Domain erfolgreich gelöscht]]></item>
+		<item name="cp.acp.domain.domainID"><![CDATA[]]></item>
+		<item name="cp.acp.domain.parentDomainName"><![CDATA[Elterndomain]]></item>
+		<item name="cp.acp.domain.registrationDate"><![CDATA[Registrierdatum]]></item>
+		<item name="cp.acp.domain.addDate"><![CDATA[Erstellungsdatum]]></item>
+		<item name="cp.acp.domain.domainname"><![CDATA[Domainname]]></item>
+		<item name="cp.acp.domain.domainname.description"><![CDATA[Der Name der Domain, hier wird nur der Teil vor dem Punkt benötigt (für foo.bar.org also nur foo).]]></item>
+		<item name="cp.acp.domain.username"><![CDATA[Benutzername]]></item>
+		<item name="cp.acp.domain.username.description"><![CDATA[Der Benutzer, dem diese Domain zugeordnet ist.]]></item>
+		<item name="cp.acp.domain.adminname"><![CDATA[Administrator]]></item>
+	</category>
+
 </language>

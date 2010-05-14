@@ -37,7 +37,9 @@ l:{APACHE2LOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{APACHE2USER}.{APACHE2USE
 				<categoryname>cpvhostcontainer.containerApache2</categoryname>
 				<optiontype>textarea</optiontype>
 				<defaultvalue><![CDATA[<VirtualHost $ipAddress:$port>
+  #if $addServerName
   ServerName $domainname
+  #end if
   #if $wwwServerAlias
   ServerAlias www.$domainname
   #end if
@@ -72,6 +74,12 @@ l:{APACHE2LOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{APACHE2USER}.{APACHE2USE
       SetEnvIf User-Agent ".*MSIE.*" nokeepalive ssl_unclean-shutdown
  </IfModule>
  #end if
+ 
+ # vhostTemplate
+ $vhostTemplate 
+ 
+ # specialSettings
+ $specialSettings
 </VirtualHost>]]></defaultvalue>
 				<permissions>admin.cp.canEditVhostContainer</permissions>
 			</option> 

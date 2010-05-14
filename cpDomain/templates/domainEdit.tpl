@@ -1,6 +1,6 @@
 {include file="documentHeader"}
 <head>
-	<title>{lang}cp.domain.list{/lang} - {PAGE_TITLE}</title>
+	<title>{lang}cp.domain.edit{/lang} - {PAGE_TITLE}</title>
 
 	{include file='headInclude' sandbox=false}
 
@@ -19,10 +19,15 @@
 
 <div id="main">
 
+	<ul class="breadCrumbs">
+		<li><a href="index.php{@SID_ARG_1ST}"><img alt="" src="{icon}wcpS.png{/icon}"> <span>{lang}cp.header.menu.start{/lang}</span></a> &raquo;</li>
+		<li><a href="index.php?page=DomainList{@SID_ARG_2ND}"><img alt="" src="{icon}domainS.png{/icon}"> <span>{lang}cp.header.menu.domain{/lang}</span></a> &raquo;</li>
+	</ul>	
+
 	<div class="mainHeadline">
-		<img src="{@RELATIVE_WCF_DIR}icon/domain{@$action|ucfirst}L.png" alt="" />
+		<img src="{icon}domain{@$action|ucfirst}L.png{/icon}" alt="" />
 		<div class="headlineContainer">
-			<h2>{lang}cp.acp.domain.{@$action}{/lang}</h2>
+			<h2>{lang}cp.domain.edit}{/lang}</h2>
 		</div>
 	</div>
 	
@@ -31,26 +36,18 @@
 	{/if}
 	
 	{if $success|isset}
-		<p class="success">{lang}cp.acp.domain.{@$action}.success{/lang}</p>	
+		<p class="success">{lang}cp.domain.edit.success{/lang}</p>	
 	{/if}
 	
-	<div class="contentHeader">
-		<div class="largeButtons">
-			<ul>
-				<li><a href="index.php?page=DomainList&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}cp.acp.menu.link.domains.list{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/groupM.png" alt="" /> <span>{lang}cp.acp.menu.link.domains.list{/lang}</span></a></li>
-				{if $additionalLargeButtons|isset}{@$additionalLargeButtons}{/if}
-			</ul>
-		</div>
-	</div>
 	<form method="post" action="index.php?form=Domain{@$action|ucfirst}">
 		<div class="border content">
 			<div class="container-1">
 				<fieldset>
-					<legend>{lang}cp.acp.domain.data{/lang}</legend>
+					<legend>{lang}cp.domain.data{/lang}</legend>
 					
 					<div class="formElement{if $errorType.domainname|isset} formError{/if}" id="domainnameDiv">
 						<div class="formFieldLabel">
-							<label for="domainname">{lang}cp.acp.domain.domainname{/lang}</label>
+							<label for="domainname">{lang}cp.domain.domainname{/lang}</label>
 						</div>
 						<div class="formField">
 							{$domainname}

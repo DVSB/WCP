@@ -11,9 +11,6 @@
 {if $deletedDomains}
 	<p class="success">{lang}cp.acp.domain.delete.success{/lang}</p>	
 {/if}
-{if $disabledDomains}
-	<p class="success">{lang}cp.acp.domain.disabled.success{/lang}</p>	
-{/if}
 
 <div class="contentHeader">
 	{pages print=true assign=pagesLinks link="index.php?page=DomainList&pageNo=%d&sortField=$sortField&sortOrder=$sortOrder&packageID="|concat:PACKAGE_ID:SID_ARG_2ND_NOT_ENCODED}
@@ -27,7 +24,7 @@
 
 {if $domains|count}
 	<div class="border titleBarPanel">
-		<div class="containerHead"><h3>{lang}cp.acp.domains.list.data{/lang}</h3></div>
+		<div class="containerHead"><h3>{lang}cp.acp.domain.list{/lang}</h3></div>
 	</div>
 	<div class="border borderMarginRemove">
 		<table class="tableList">

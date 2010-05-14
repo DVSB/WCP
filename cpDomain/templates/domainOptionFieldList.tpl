@@ -85,11 +85,9 @@
 				</div>
 			{/if}
 			
-			{if !$hideDescription|isset}
-				<div class="formFieldDesc">
-					<p>{lang}cp.domain.option.{$option.optionName}.description{/lang}</p>
-				</div>
-			{/if}
+			<div class="formFieldDesc">
+				<p>{lang}cp.domain.option.{$option.optionName}.description{/lang}</p>
+			</div>
 		</div>
 	{/if}
 	
