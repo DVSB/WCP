@@ -29,7 +29,7 @@ class FTPListPage extends SortablePage
 	public $itemsPerPage = 20;
 	public $defaultSortField = 'username';
 	public $defaultSortOrder = 'ASC';
-	//public $neededPermissions = 'name.der.berechtigung';
+	public $neededPermissions = 'cp.ftp.canListFTPAccounts';
 
 	/**
 	 * ftp ist object
@@ -74,7 +74,7 @@ class FTPListPage extends SortablePage
 		{
 			case 'username':
 			case 'lastLogin':
-			case 'homedir':
+			case 'path':
 			case 'loginCount':
 			break;
 			default:

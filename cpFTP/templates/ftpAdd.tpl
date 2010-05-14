@@ -10,6 +10,18 @@
 
 <div id="main">
 
+	<ul class="breadCrumbs">
+		<li><a href="index.php{@SID_ARG_1ST}"><img alt="" src="{icon}wcpS.png{/icon}"> <span>{lang}cp.header.menu.start{/lang}</span></a> &raquo;</li>
+		<li><a href="index.php?page=FTPList{@SID_ARG_2ND}"><img alt="" src="{icon}ftpS.png{/icon}"> <span>{lang}cp.header.menu.ftp{/lang}</span></a> &raquo;</li>
+	</ul>	
+	
+	<div class="mainHeadline">
+		<img src="{icon}ftpL.png{/icon}" alt="" />
+		<div class="headlineContainer">
+			<h2>{lang}cp.ftp.{@$action}Account{/lang}</h2>
+		</div>
+	</div>
+
 	{capture append=userMessages}
 		{if $errorField}
 			<p class="error">{lang}wcf.global.form.error{/lang}</p>
@@ -20,7 +32,7 @@
 		<div class="border tabMenuContent">
 			<div class="container-1">
 				<fieldset>
-					<legend><label for="password">{lang}cp.ftp.createAccount{/lang}</label></legend>
+					<legend><label for="password">{lang}cp.ftp.{@$action}Account{/lang}</label></legend>
 
 					<div class="formElement{if $errorField == 'password'} formError{/if}">
 						<div class="formFieldLabel">
@@ -56,6 +68,9 @@
 									{if $errorType == 'invalid'}{lang}cp.ftp.invalidPath{/lang}{/if}
 								</p>
 							{/if}
+						</div>
+						<div class="formFieldDesc">
+							<p>{lang}cp.ftp.path.description{/lang}</p>
 						</div>
 					</div>
 

@@ -14,6 +14,8 @@ class FTPAddForm extends AbstractSecureForm
 	public $path = '';
 
 	public $description = '';
+	
+	public $neededPermissions = array('cp.ftp.canAddFTPAccount', 'cp.ftp.canListFTPAccounts');
 
 	public $ftpAccount;
 

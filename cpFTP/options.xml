@@ -4,22 +4,14 @@
 	<import>
 		<categories>
 			<category name="cpftp"></category>
-			<category name="cpftp.postfix">
-				<parent>cpftp</parent>
-			</category>
-			<category name="cpftp.link">
+			<category name="cpftp.global">
 				<parent>cpftp</parent>
 			</category>
 		</categories>
 
 		<options>
-		    <option name="ftp_weburl">
-		        <categoryname>cpftp.link</categoryname>
-				<optiontype>text</optiontype>
-		        <defaultvalue></defaultvalue>
-		    </option>
 		    <option name="ftp_postfix">
-		        <categoryname>cpftp.postfix</categoryname>
+		        <categoryname>cpftp.global</categoryname>
 				<optiontype>text</optiontype>
 		        <defaultvalue>_ftp</defaultvalue>
 		        <validationpattern>.+</validationpattern>

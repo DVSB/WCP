@@ -10,6 +10,8 @@ class FTPDeleteAction extends AbstractAction
 	 */
 	public function execute()
 	{
+		WCF::getUser()->checkPermission('cp.ftp.canDeleteFTPAccounts');
+		
 		parent :: execute();
 
 		$ftpAccount = new FTPUserEditor($_REQUEST['ftpUserID']);

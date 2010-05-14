@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE language SYSTEM "http://www.woltlab.com/DTDs/language.dtd">
 <language languagecode="de">
+	
+	<category name="cp.ftp">
+		<item name="cp.ftp.addAccount"><![CDATA[FTP-Zugang hinzufügen]]></item>
+		<item name="cp.ftp.editAccount"><![CDATA[FTP-Zugang editieren]]></item>
+		<item name="cp.ftp.password"><![CDATA[Login-Passwort]]></item>
+		<item name="cp.ftp.path"><![CDATA[Pfad]]></item>
+		<item name="cp.ftp.path.description"><![CDATA[Der Pfad definiert, auf welchen Ordner (inklusive aller Unterordner) dieser FPT-Zugang Zugriff hat.]]></item>
+		<item name="cp.ftp.invalidPath"><![CDATA[Ungültiger Pfad]]></item>
+		<item name="cp.ftp.list"><![CDATA[Zugangsliste]]></item>
+		<item name="cp.ftp.ftpUserID"><![CDATA[]]></item>
+		<item name="cp.ftp.username"><![CDATA[Loginname]]></item>
+		<item name="cp.ftp.loginCount"><![CDATA[Loginzähler]]></item>
+		<item name="cp.ftp.lastLogin"><![CDATA[Letzter Login]]></item>
+		<item name="cp.ftp.deleteAccount"><![CDATA[FTP-Zugang löschen]]></item>
+		<item name="cp.ftp.enableAccount"><![CDATA[FTP-Zugang aktivieren]]></item>
+		<item name="cp.ftp.disableAccount"><![CDATA[FTP-Zugang deaktivieren]]></item>
+		<item name="cp.ftp.description"><![CDATA[Notizen]]></item>
+	</category>
+	
+	<category name="cp.header.menu">
+		<item name="cp.header.menu.ftp"><![CDATA[FTP-Zugänge]]></item>
+	</category>
+	
+	<category name="wcf.user.option">
+ 		<item name="wcf.user.option.ftpaccounts"><![CDATA[FTP-Zugänge (benutzt/verfügbar)]]></item>
+ 	</category>
+ 	
+ 	<category name="wcf.acp.option">
+ 		<item name="wcf.acp.option.category.cpftp"><![CDATA[WCP - FTP Zugänge]]></item>
+ 		<item name="wcf.acp.option.category.cpftp.description"><![CDATA[Einstellungen für FTP-Zugänge]]></item>
+ 		<item name="wcf.acp.option.category.cpftp.global"><![CDATA[Globale Einstellungen]]></item>
+ 		<item name="wcf.acp.option.category.cpftp.global.description"><![CDATA[]]></item>
+ 		<item name="wcf.acp.option.ftp_postfix"><![CDATA[FTP-Zugang-Namenspostfix]]></item>
+ 		<item name="wcf.acp.option.ftp_postfix.description"><![CDATA[Dieser Wert wird an den Benutzernamen angefügt, um den Loginnamen zu erstellen. Das sieht dann z.B. so aus: mmustermann_ftp4]]></item>
+ 	</category>
 
 </language>
+
+
+
+
+
