@@ -1,0 +1,1 @@
+../../../../cpBackend/src/modules/deleteVhost.py
