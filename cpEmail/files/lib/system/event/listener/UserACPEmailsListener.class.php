@@ -3,7 +3,7 @@
 require_once (WCF_DIR . 'lib/system/event/EventListener.class.php');
 require_once (CP_DIR . 'lib/data/ftp/FTPUserEditor.class.php');
 
-class UserACPFTPListener implements EventListener
+class UserACPEmailsListener implements EventListener
 {
 	/**
 	 * @see EventListener::execute()

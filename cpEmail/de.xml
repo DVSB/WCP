@@ -54,9 +54,36 @@
 	</category>
 	
 	<category name="wcf.user.option">
+		<item name="wcf.user.option.category.account.email"><![CDATA[Emails]]></item>
 		<item name="wcf.user.option.emailAddresses"><![CDATA[Emailadressen (benutzt/verfügbar)]]></item>
+		<item name="wcf.user.option.emailAddresses.description"><![CDATA[Wieviele Emailadressen stehen zur Verfügung?]]></item>
 		<item name="wcf.user.option.emailAccounts"><![CDATA[Emailkonten (benutzt/verfügbar)]]></item>
+		<item name="wcf.user.option.emailAccounts.description"><![CDATA[Wieviele Weiterleitungen stehen zur Verfügung?]]></item>
 		<item name="wcf.user.option.emailForwards"><![CDATA[Emailweiterleitungen (benutzt/verfügbar)]]></item>
+		<item name="wcf.user.option.emailForwards.description"><![CDATA[Wieviele Konten stehen zur Verfügung?]]></item>
+		<item name="wcf.user.option.emailIMAPenabled"><![CDATA[IMAP aktivieren]]></item>
+		<item name="wcf.user.option.emailIMAPenabled.description"><![CDATA[Darf dieser Benutzer IMAP benutzen?]]></item>
+		<item name="wcf.user.option.emailPOP3enabled"><![CDATA[POP3 aktivieren]]></item>
+		<item name="wcf.user.option.emailPOP3enabled.description"><![CDATA[Darf dieser Benutzer POP3 benutzen?]]></item>
+	</category>
+
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.category.cp.email"><![CDATA[Email]]></item>
+		<item name="wcf.acp.group.option.category.cp.email.description"><![CDATA[]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddAddress"><![CDATA[Darf Email-Adressen erstellen]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddAddress.description"><![CDATA[Mitglieder dieser Gruppe dürfen Email-Adressen erstellen.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddForward"><![CDATA[Darf Email-Weiterleitungen erstellen]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddForward.description"><![CDATA[Mitglieder dieser Gruppe dürfen Email-Weiterleitungen erstellen.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddAccount"><![CDATA[Darf Email-Konten erstellen]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddAccount.description"><![CDATA[Mitglieder dieser Gruppe dürfen Email-Konten erstellen.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canUseCatchall"><![CDATA[Darf Catchall-Adressen erstellen]]></item>
+		<item name="wcf.acp.group.option.cp.email.canUseCatchall.description"><![CDATA[Mitglieder dieser Gruppe dürfen pro Domain eine Catchall-Adresse erstellen.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteAddresses"><![CDATA[Darf Email-Adressen löschen]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteAddresses.description"><![CDATA[Mitglieder dieser Gruppe dürfen Email-Adressen löschen.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteForwards"><![CDATA[Darf Email-Weiterleitungen löschen]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteForwards.description"><![CDATA[Mitglieder dieser Gruppe dürfen Email-Weiterleitungen löschen.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteAccounts"><![CDATA[Darf Email-Konten löschen]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteAccounts.description"><![CDATA[Mitglieder dieser Gruppe dürfen Email-Konten löschen.]]></item>
 	</category>
 
 </language>

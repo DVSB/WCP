@@ -36,6 +36,17 @@
  		<item name="wcf.acp.option.ftp_postfix"><![CDATA[FTP-Zugang-Namenspostfix]]></item>
  		<item name="wcf.acp.option.ftp_postfix.description"><![CDATA[Dieser Wert wird an den Benutzernamen angefügt, um den Loginnamen zu erstellen. Das sieht dann z.B. so aus: mmustermann_ftp4]]></item>
  	</category>
+ 	
+ 	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.category.cp.ftp"><![CDATA[FTP]]></item>
+		<item name="wcf.acp.group.option.category.cp.ftp.description"><![CDATA[]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canAddFTPAccount"><![CDATA[Darf FTP-Zugänge erstellen]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canAddFTPAccount.description"><![CDATA[Mitglieder dieser Gruppe dürfen FTP-Zugänge erstellen.]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canListFTPAccounts"><![CDATA[Darf FTP-Zugänge sehen]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canListFTPAccounts.description"><![CDATA[Mitglieder dieser Gruppe dürfen die Liste der FTP-Zugänge sehen.]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canDeleteFTPAccounts"><![CDATA[Darf FTP-Zugänge löschen]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canDeleteFTPAccounts.description"><![CDATA[Mitglieder dieser Gruppe dürfen FTP-Zugänge löschen.]]></item>
+	</category>
 
 </language>
 

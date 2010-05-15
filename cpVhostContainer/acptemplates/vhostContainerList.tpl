@@ -20,7 +20,7 @@
 	{pages print=true assign=pagesLinks link="index.php?page=vhostContainerList&pageNo=%d&sortField=$sortField&sortOrder=$sortOrder&packageID="|concat:PACKAGE_ID:SID_ARG_2ND_NOT_ENCODED}
 	<div class="largeButtons">
 		<ul>
-			<li><a href="index.php?form=vhostContainerAdd&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}cp.acp.vhostContainer.add{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/vhostContainerAddM.png" alt="" /> <span>{lang}cp.acp.vhostContainer.add{/lang}</span></a></li>
+			{if $this->user->getPermission('admin.cp.canAddVhostContainer')}<li><a href="index.php?form=vhostContainerAdd&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}cp.acp.vhostContainer.add{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/vhostContainerAddM.png" alt="" /> <span>{lang}cp.acp.vhostContainer.add{/lang}</span></a></li>{/li}
 			{if $additionalLargeButtons|isset}{@$additionalLargeButtons}{/if}			
 		</ul>
 	</div>
@@ -71,15 +71,5 @@
 		</table>
 	</div>
 {/if}
-
-<div class="contentFooter">
-	{@$pagesLinks}
-	<div class="largeButtons">
-		<ul>
-			<li><a href="index.php?form=vhostContainerAdd&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}cp.acp.vhostContainer.add{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/vhostContainerAddM.png" alt="" /> <span>{lang}cp.acp.vhostContainer.add{/lang}</span></a></li>
-			{if $additionalLargeButtons|isset}{@$additionalLargeButtons}{/if}
-		</ul>
-	</div>
-</div>
 
 {include file='footer'}

@@ -7,7 +7,7 @@
 			<category name="admin.cp.domains">
 				<parent>admin.cp</parent>
 			</category>
-			<category name="cp.domain">
+			<category name="cp.domains">
 				<parent>cp</parent>
 			</category>
 		</categories>
@@ -44,19 +44,19 @@
 			</option>
 			
 			<option name="cp.domain.canAddSubDomain">
-				<categoryname>admin.cp.domains</categoryname>
+				<categoryname>cp.domains</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
 			</option>
 			
 			<option name="cp.domain.canDeleteSubDomain">
-				<categoryname>admin.cp.domains</categoryname>
+				<categoryname>cp.domains</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
 			</option>
 			
 			<option name="cp.domain.canEditDomains">
-				<categoryname>admin.cp.domains</categoryname>
+				<categoryname>cp.domains</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>
 			</option>

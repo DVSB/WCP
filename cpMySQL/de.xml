@@ -3,7 +3,9 @@
 <language languagecode="de">
 
  	<category name="wcf.user.option">
+ 		<item name="wcf.user.option.category.account.mysql"><![CDATA[MySQL]]></item>
  		<item name="wcf.user.option.mysqls"><![CDATA[Datenbanken (benutzt/verfügbar)]]></item>
+ 		<item name="wcf.user.option.mysqls.description"><![CDATA[Wieviele MySQL-Datenbanken stehen zur Verfügung?]]></item>
  	</category>
  	
  	<category name="wcf.acp.option">
@@ -48,6 +50,19 @@
 		<item name="cp.acp.mysql.rootUser.description"><![CDATA[Der Benutzername eines privilegierten Benutzers der Datenbank, er muss zumindest Datenbanken und andere Benutzer anlegen dürfen.]]></item>
 		<item name="cp.acp.mysql.rootPassword"><![CDATA[Root-Passwort]]></item>
 		<item name="cp.acp.mysql.rootPassword.description"><![CDATA[Das Passwort des obigen Benutzers.]]></item>
+	</category>
+	
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.admin.cp.canEditMySQLPW"><![CDATA[Darf MySQL-Rootpasswort setzen]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canEditMySQLPW.description"><![CDATA[Mitglieder dieser Gruppe dürfen das MySQL-Rootpasswort setzen.]]></item>
+		<item name="wcf.acp.group.option.category.cp.mysql"><![CDATA[MySQL]]></item>
+		<item name="wcf.acp.group.option.category.cp.mysql.description"><![CDATA[]]></item>
+		<item name="wcf.acp.group.option.cp.mysql.canAddMySQL"><![CDATA[Darf MySQL-Datenbanken erstellen]]></item>
+		<item name="wcf.acp.group.option.cp.mysql.canAddMySQL.description"><![CDATA[Mitglieder dieser Gruppe dürfen MySQL-Datenbanken erstellen.]]></item>
+		<item name="wcf.acp.group.option.cp.mysql.canListMySQL"><![CDATA[Darf MySQL-Datenbanken sehen]]></item>
+		<item name="wcf.acp.group.option.cp.mysql.canListMySQL.description"><![CDATA[Mitglieder dieser Gruppe dürfen die Liste der MySQL-Datenbanken sehen.]]></item>
+		<item name="wcf.acp.group.option.cp.mysql.canDeleteMySQL"><![CDATA[Darf MySQL-Datenbanken löschen]]></item>
+		<item name="wcf.acp.group.option.cp.mysql.canDeleteMySQL.description"><![CDATA[Mitglieder dieser Gruppe dürfen MySQL-Datenbanken löschen.]]></item>
 	</category>
 
 </language>

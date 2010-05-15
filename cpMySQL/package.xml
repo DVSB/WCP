@@ -3,7 +3,7 @@
 <package name="com.toby.cp.mysql">
 
 	<packageInformation>
-		<packageName>Web-ControlPanel MySQL Modul</packageName>
+		<packageName>Web ControlPanel MySQL Modul</packageName>
 		<packageDescription>Ermöglicht die Anlage von MySQL-Datenbanken</packageDescription>
 		<version>0.6.0-beta1</version>
 		<plugin>com.toby.cp</plugin>

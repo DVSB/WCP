@@ -49,8 +49,9 @@
 	</category>
 	
 	<category name="cp.acp.menu">
-		<item name="cp.acp.menu.link.vhostContainers.list"><![CDATA[Vhost-Container auflisten]]></item>
-		<item name="cp.acp.menu.link.vhostContainers.add"><![CDATA[Vhost-Container hinzufügen]]></item>
+		<item name="cp.acp.menu.link.vhostcontainer"><![CDATA[Vhost-Container]]></item>
+		<item name="cp.acp.menu.link.vhostcontainer.list"><![CDATA[Vhost-Container auflisten]]></item>
+		<item name="cp.acp.menu.link.vhostcontainer.add"><![CDATA[Vhost-Container hinzufügen]]></item>
 	</category>
 	
 	<category name="wcf.acp.option">
