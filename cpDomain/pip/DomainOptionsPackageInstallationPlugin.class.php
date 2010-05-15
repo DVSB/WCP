@@ -1,7 +1,6 @@
 <?php
 // wcf imports
 require_once (WCF_DIR . 'lib/acp/package/plugin/AbstractXMLPackageInstallationPlugin.class.php');
-require_once (CP_DIR . 'lib/data/domain/DomainOptionEditor.class.php');
 
 /**
  * Adds Options to Domaintable
@@ -37,11 +36,33 @@ class DomainOptionsPackageInstallationPlugin extends AbstractXMLPackageInstallat
 		'cdata'
 	);
 
+	public function setParamsForInstall()
+	{
+		if ($this->installation->getPackage()->getPackage() == 'com.toby.cp.domain' && $this->installation->getAction() == 'install')
+		{
+			$standalonePackage = $this->installation->getPackage()->getParentPackage();
+			
+			$tablePrefix = WCF_N . '_' . $standalonePackage->getInstanceNo() . '_';
+			$pathPrefix = WCF_DIR . $standalonePackage->getDir() . '/';
+		}	
+		else
+		{
+			$tablePrefix = CP_N;
+			$pathPrefix = CP_DIR;
+		}
+		
+		$this->tableName = $tablePrefix . $this->tableName;
+		
+		require_once ($pathPrefix . 'lib/data/domain/DomainOptionEditor.class.php');
+	}
+	
 	/**
 	 * Installs option categories and options.
 	 */
 	public function install()
 	{
+		$this->setParamsForInstall();
+		
 		parent :: install();
 		
 		if (!$xml = $this->getXML())
@@ -115,7 +136,7 @@ class DomainOptionsPackageInstallationPlugin extends AbstractXMLPackageInstallat
 								if ($parentCategoryName != '')
 								{
 									$sql = "SELECT	COUNT(categoryID) AS count
-											FROM	cp" . CP_N . "_" . $this->tableName . "_category
+											FROM	cp" . $this->tableName . "_category
 											WHERE	categoryName = '" . escapeString($parentCategoryName) . "'";
 									$parentCategoryCount = WCF :: getDB()->getFirstRow($sql);
 									
@@ -238,7 +259,7 @@ class DomainOptionsPackageInstallationPlugin extends AbstractXMLPackageInstallat
 	 */
 	protected function saveCategory($category, $categoryXML = null)
 	{
-		$sql = "INSERT INTO		cp" . CP_N . "_" . $this->tableName . "_category
+		$sql = "INSERT INTO		cp" . $this->tableName . "_category
 								(packageID, categoryName, parentCategoryName" . ($category['showOrder'] !== null ? ", showOrder" : "") . ", permissions, options)
 				VALUES			(" . $this->installation->getPackageID() . ", 
 								'" . escapeString($category['categoryName']) . "', 
@@ -323,7 +344,7 @@ class DomainOptionsPackageInstallationPlugin extends AbstractXMLPackageInstallat
 		
 		// get optionID if it was installed by this package already
 		$sql = "SELECT	*
-				FROM 	cp" . CP_N . "_" . $this->tableName . "
+				FROM 	cp" . $this->tableName . "
 				WHERE 	optionName = '" . escapeString($optionName) . "'
 					AND	packageID = " . $this->installation->getPackageID();
 		$result = WCF :: getDB()->getFirstRow($sql);
@@ -356,7 +377,7 @@ class DomainOptionsPackageInstallationPlugin extends AbstractXMLPackageInstallat
 		{
 			// get greatest showOrder value
 			$sql = "SELECT	MAX(showOrder) AS showOrder
-			  		FROM	cp" . CP_N . "_" . $this->tableName . $tableNameExtension . " 
+			  		FROM	cp" . $this->tableName . $tableNameExtension . " 
 					" . ($columnName !== null ? "WHERE " . $columnName . " = '" . escapeString($parentName) . "'" : "");
 			$maxShowOrder = WCF :: getDB()->getFirstRow($sql);
 			if (is_array($maxShowOrder) && isset($maxShowOrder['showOrder']))
@@ -371,7 +392,7 @@ class DomainOptionsPackageInstallationPlugin extends AbstractXMLPackageInstallat
 		else
 		{
 			// increase all showOrder values which are >= $showOrder
-			$sql = "UPDATE	cp" . CP_N . "_" . $this->tableName . $tableNameExtension . "
+			$sql = "UPDATE	cp" . $this->tableName . $tableNameExtension . "
 					SET	showOrder = showOrder+1
 					WHERE	showOrder >= " . $showOrder . " 
 					" . ($columnName !== null ? "AND " . $columnName . " = '" . escapeString($parentName) . "'" : "");
@@ -386,15 +407,17 @@ class DomainOptionsPackageInstallationPlugin extends AbstractXMLPackageInstallat
 	 */
 	public function hasUninstall()
 	{
+		$this->setParamsForInstall();
+		
 		EventHandler :: fireAction($this, 'hasUninstall');
 		
 		$sql = "SELECT	COUNT(*) AS count
-				FROM	cp" . CP_N . "_" . $this->tableName . "
+				FROM	cp" . $this->tableName . "
 				WHERE	packageID = " . $this->installation->getPackageID();
 		$optionCount = WCF :: getDB()->getFirstRow($sql);
 		
 		$sql = "SELECT 	COUNT(categoryID) AS count
-				FROM 	cp" . CP_N . "_" . $this->tableName . "_category
+				FROM 	cp" . $this->tableName . "_category
 				WHERE	packageID = " . $this->installation->getPackageID();
 		$categoryCount = WCF :: getDB()->getFirstRow($sql);
 		
@@ -407,9 +430,11 @@ class DomainOptionsPackageInstallationPlugin extends AbstractXMLPackageInstallat
 	 */
 	public function uninstall()
 	{
+		$this->setParamsForInstall();
+		
 		// get optionsIDs from package
 		$sql = "SELECT	optionID
-				FROM 	cp" . CP_N . "_" . $this->tableName . "
+				FROM 	cp" . $this->tableName . "
 				WHERE	packageID = " . $this->installation->getPackageID();
 		
 		$result = WCF :: getDB()->sendQuery($sql);
@@ -425,7 +450,7 @@ class DomainOptionsPackageInstallationPlugin extends AbstractXMLPackageInstallat
 		// call uninstall event
 		EventHandler :: fireAction($this, 'uninstall');
 		
-		$sql = "DELETE FROM	cp" . CP_N . "_" . $this->tableName . "
+		$sql = "DELETE FROM	cp" . $this->tableName . "
 				WHERE		packageID = " . $this->installation->getPackageID();
 		WCF :: getDB()->sendQuery($sql);
 	}
@@ -439,7 +464,7 @@ class DomainOptionsPackageInstallationPlugin extends AbstractXMLPackageInstallat
 	protected function deleteOptions($optionNames)
 	{
 		$sql = "SELECT	optionID
-				FROM 	cp" . CP_N . "_" . $this->tableName . "
+				FROM 	cp" . $this->tableName . "
 				WHERE	optionName IN (" . $optionNames . ")
 				AND 	packageID = " . $this->installation->getPackageID();
 		$result = WCF :: getDB()->sendQuery($sql);
@@ -451,7 +476,7 @@ class DomainOptionsPackageInstallationPlugin extends AbstractXMLPackageInstallat
 		$this->dropColumns($optionIDs);
 		
 		// delete options
-		$sql = "DELETE FROM	cp" . CP_N . "_" . $this->tableName . "
+		$sql = "DELETE FROM	cp" . $this->tableName . "
 				WHERE		optionName IN (" . $optionNames . ")
 				AND 		packageID = " . $this->installation->getPackageID();
 		WCF :: getDB()->sendQuery($sql);
@@ -466,7 +491,7 @@ class DomainOptionsPackageInstallationPlugin extends AbstractXMLPackageInstallat
 	protected function deleteCategories($categoryNames)
 	{
 		$sql = "SELECT	optionID
-				FROM 	cp" . CP_N . "_" . $this->tableName . "
+				FROM 	cp" . $this->tableName . "
 				WHERE	categoryName IN (" . $categoryNames . ")
 				AND 	packageID = " . $this->installation->getPackageID();
 		$result = WCF :: getDB()->sendQuery($sql);
@@ -478,12 +503,12 @@ class DomainOptionsPackageInstallationPlugin extends AbstractXMLPackageInstallat
 		$this->dropColumns($optionIDs);
 		
 		// delete options from the categories
-		$sql = "DELETE FROM	cp" . CP_N . "_" . $this->tableName . "
+		$sql = "DELETE FROM	cp" . $this->tableName . "
 				WHERE		categoryName IN (" . $categoryNames . ")";
 		WCF :: getDB()->sendQuery($sql);
 		
 		// delete categories
-		$sql = "DELETE FROM	cp" . CP_N . "_" . $this->tableName . "_category
+		$sql = "DELETE FROM	cp" . $this->tableName . "_category
 				WHERE		categoryName IN (" . $categoryNames . ")
 				AND 		packageID = " . $this->installation->getPackageID();
 		WCF :: getDB()->sendQuery($sql);
@@ -498,7 +523,7 @@ class DomainOptionsPackageInstallationPlugin extends AbstractXMLPackageInstallat
 	{
 		foreach ($optionIDs as $optionID)
 		{
-			$sql = "ALTER TABLE 	cp" . CP_N . "_" . $this->tableName . "_value
+			$sql = "ALTER TABLE 	cp" . $this->tableName . "_value
 					DROP COLUMN	domainOption" . $optionID;
 			WCF :: getDB()->sendQuery($sql);
 		}
