@@ -2,7 +2,7 @@
 <script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/MultiPagesLinks.class.js"></script>
 
 <div class="mainHeadline">
-	<img src="{@RELATIVE_WCF_DIR}icon/groupL.png" alt="" />
+	<img src="{@RELATIVE_CP_DIR}icon/domainL.png" alt="" />
 	<div class="headlineContainer">
 		<h2>{lang}cp.acp.domain.list{/lang}</h2>
 	</div>
@@ -16,7 +16,7 @@
 	{pages print=true assign=pagesLinks link="index.php?page=DomainList&pageNo=%d&sortField=$sortField&sortOrder=$sortOrder&packageID="|concat:PACKAGE_ID:SID_ARG_2ND_NOT_ENCODED}
 	<div class="largeButtons">
 		<ul>
-			<li><a href="index.php?form=DomainAdd&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}wcf.acp.group.add{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/groupAddM.png" alt="" /> <span>{lang}wcf.acp.domain.add{/lang}</span></a></li>
+			<li><a href="index.php?form=DomainAdd&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}cp.acp.domain.add{/lang}"><img src="{@RELATIVE_CP_DIR}icon/domainAddM.png" alt="" /> <span>{lang}cp.acp.domain.add{/lang}</span></a></li>
 			{if $additionalLargeButtons|isset}{@$additionalLargeButtons}{/if}			
 		</ul>
 	</div>
@@ -73,15 +73,5 @@
 		</table>
 	</div>
 {/if}
-
-<div class="contentFooter">
-	{@$pagesLinks}
-	<div class="largeButtons">
-		<ul>
-			<li><a href="index.php?form=DomainAdd&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}wcf.acp.group.add{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/groupAddM.png" alt="" /> <span>{lang}wcf.acp.domain.add{/lang}</span></a></li>
-			{if $additionalLargeButtons|isset}{@$additionalLargeButtons}{/if}
-		</ul>
-	</div>
-</div>
 
 {include file='footer'}

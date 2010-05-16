@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE package SYSTEM "DTD/package.dtd">
-<package name="com.toby.cp.apache">
+<package name="com.toby.cp.apache2">
 
 	<packageInformation>
 		<packageName>Web ControlPanel Apache2 Modul</packageName>
 		<packageDescription>Erstellt/Editiert Apache2-Vhosts</packageDescription>
 		<version>0.5.0-beta1</version>
 		<plugin>com.toby.cp</plugin>
-		<date>2010-04-23</date>
+		<date>2010-05-16</date>
 	</packageInformation>
 
 	<authorInformation>
@@ -20,6 +20,7 @@
 		<requiredpackage minversion="1.1.0 Alpha 1">com.woltlab.wcf</requiredpackage>
 		<requiredpackage>com.toby.cp</requiredpackage>
 		<requiredpackage file="requirements/com.toby.cp.vhostcontainer.tar">com.toby.cp.vhostcontainer</requiredpackage>
+		<requiredpackage>com.toby.backendhandler</requiredpackage>
 	</requiredpackages>
 
 	<instructions type="install">

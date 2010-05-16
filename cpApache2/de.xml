@@ -4,6 +4,7 @@
 
 	<category name="wcf.acp.option">
 		<item name="wcf.acp.option.category.cpvhostcontainer.containerApache2"><![CDATA[Apache2 Container]]></item>
+		<item name="wcf.acp.option.category.cpvhostcontainer.containerApache2.description"><![CDATA[Einstellungen für Apache2]]></item>
 		<item name="wcf.acp.option.apache2_create_paths"><![CDATA[Apache2-Pfade]]></item>
 		<item name="wcf.acp.option.apache2_create_paths.description"><![CDATA[Diese Pfade werden für Apache2-Domains erstellt.]]></item>
 		<item name="wcf.acp.option.containerApache2vhostpath"><![CDATA[Vhost-Pfad]]></item>

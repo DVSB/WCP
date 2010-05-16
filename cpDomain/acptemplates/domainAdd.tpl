@@ -11,7 +11,7 @@
 </script>
 
 <div class="mainHeadline">
-	<img src="{@RELATIVE_WCF_DIR}icon/group{@$action|ucfirst}L.png" alt="" />
+	<img src="{@RELATIVE_CP_DIR}icon/domain{@$action|ucfirst}L.png" alt="" />
 	<div class="headlineContainer">
 		<h2>{lang}cp.acp.domain.{@$action}{/lang}</h2>
 	</div>
@@ -28,7 +28,7 @@
 <div class="contentHeader">
 	<div class="largeButtons">
 		<ul>
-			<li><a href="index.php?page=DomainList&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}cp.acp.domain.list{/lang}"><img src="{icon}domainM.png{/icon}" alt="" /> <span>{lang}cp.acp.domain.list{/lang}</span></a></li>
+			<li><a href="index.php?page=DomainList&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}cp.acp.domain.list{/lang}"><img src="{@RELATIVE_CP_DIR}icon/domainM.png" alt="" /> <span>{lang}cp.acp.domain.list{/lang}</span></a></li>
 			{if $additionalLargeButtons|isset}{@$additionalLargeButtons}{/if}
 		</ul>
 	</div>

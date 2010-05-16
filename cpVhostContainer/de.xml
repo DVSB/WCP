@@ -56,6 +56,7 @@
 	
 	<category name="wcf.acp.option">
 		<item name="wcf.acp.option.category.cpvhostcontainer"><![CDATA[WCP - VhostContainer-Typen]]></item>
+		<item name="wcf.acp.option.category.cpvhostcontainer.description"><![CDATA[Alle Vhost-Containern werden hier definiert.]]></item>
 	</category>
 	
 	<category name="wcf.acp.group">

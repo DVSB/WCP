@@ -33,7 +33,7 @@
 		{if $this->user->subdomains > $this->user->subdomainsUsed && $this->user->getPermission('cp.domain.canAddSubDomain')}
 		<div class="largeButtons">
 			<ul>
-				<li><a href="index.php?form=SubDomainAdd{@SID_ARG_2ND}" title="{lang}cp.domain.subDomainAdd{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/groupAddM.png" alt="" /> <span>{lang}wcf.acp.domain.add{/lang}</span></a></li>
+				<li><a href="index.php?form=SubDomainAdd{@SID_ARG_2ND}" title="{lang}cp.domain.subDomainAdd{/lang}"><img src="{icon}domainAddM.png{/icon}" alt="" /> <span>{lang}cp.domain.subDomainAdd{/lang}</span></a></li>
 				{if $additionalLargeButtons|isset}{@$additionalLargeButtons}{/if}			
 			</ul>
 		</div>
@@ -42,7 +42,7 @@
 	
 	{if $domains|count}
 	<div class="border">
-		<div class="containerHead"><h3>{lang}wcf.acp.domains.list.data{/lang}</h3></div>
+		<div class="containerHead"><h3>{lang}cp.domain.list{/lang}</h3></div>
 	</div>
 	<div class="border borderMarginRemove">
 		<table class="tableList">

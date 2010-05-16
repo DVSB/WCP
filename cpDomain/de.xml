@@ -53,6 +53,12 @@
 		<item name="cp.acp.domain.adminname"><![CDATA[Administrator]]></item>
 	</category>
 	
+	<category name="cp.acp.menu">
+		<item name="cp.acp.menu.link.domains"><![CDATA[Domains]]></item>
+		<item name="cp.acp.menu.link.domains.list"><![CDATA[Domains auflisten]]></item>
+		<item name="cp.acp.menu.link.domains.add"><![CDATA[Domain hinzufügen]]></item>
+	</category>
+	
 	<category name="cp.header.menu">
 		<item name="cp.header.menu.domain"><![CDATA[Domains]]></item>
 	</category>

@@ -34,6 +34,7 @@
 			<option name="mail_homedir">
 				<categoryname>cpemail.parameters</categoryname>
 		        <optiontype>text</optiontype>
+		        <defaultvalue>/home/vmail/</defaultvalue>
 			</option>
 			<option name="mail_uid">
 				<categoryname>cpemail.parameters</categoryname>

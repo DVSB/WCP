@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE package SYSTEM "DTD/package.dtd">
+<package name="com.toby.backendhandler">
+
+	<packageInformation>
+		<packageName>Web ControlPanel Backendhandler</packageName>
+		<packageDescription>Behandelt alle Aktionen die mit Rootrechten auf dem Webserver ausgeführt werden müssen</packageDescription>
+		<version>0.5.0-beta1</version>
+		<date>2010-05-16</date>
+	</packageInformation>
+
+	<authorInformation>
+		<author>Tobias Friebel</author>
+		<authorURL>http://dev.hugin-hosting.de/</authorURL>
+		<license>GPL</license>
+	</authorInformation>
+
+	<requiredpackages>
+		<requiredpackage minversion="1.1.0">com.woltlab.wcf</requiredpackage>
+	</requiredpackages>
+
+	<instructions type="install">
+		<files>files.tar</files>
+	</instructions>
+	
+	<instructions type="update" fromversion="0.*">
+		<files>files.tar</files>
+	</instructions>
+
+</package>
