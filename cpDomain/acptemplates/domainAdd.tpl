@@ -45,9 +45,11 @@
 					</div>
 					<div class="formField">
 						<input type="text" class="inputText" id="domainname" name="domainname" value="{$domainname}" />
-						{if $errorType.domainname|isset}
+						{if $errorField == 'domainname'}
 							<p class="innerError">
 								{if $errorType.domainname == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
+								{if $errorType.domainname == 'notValid'}{lang}cp.acp.domain.domainname.notValid{/lang}{/if}
+								{if $errorType.domainname == 'notUnique'}{lang}cp.acp.domain.domainname.notUnique{/lang}{/if}
 							</p>
 						{/if}
 					</div>
@@ -59,7 +61,7 @@
 					inlineHelp.register('domainname');
 				//]]></script>
 				
-				<div class="formElement{if $errorType.user|isset} formError{/if}" id="usernameDiv">
+				<div class="formElement{if $errorType.username|isset} formError{/if}" id="usernameDiv">
 					<div class="formFieldLabel">
 						<label for="username">{lang}cp.acp.domain.username{/lang}</label>
 					</div>
@@ -76,6 +78,9 @@
 						{if $errorType.username|isset}
 							<p class="innerError">
 								{if $errorType.username == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
+								{if $errorType.username == 'notFound'}{lang}cp.acp.domain.username.notFound{/lang}{/if}
+								{if $errorType.username == 'invalidUser'}{lang}cp.acp.domain.username.invalidUser{/lang}{/if}
+								{if $errorType.username == 'noCustomer'}{lang}cp.acp.domain.username.noCustomer{/lang}{/if}
 							</p>
 						{/if}
 					</div>

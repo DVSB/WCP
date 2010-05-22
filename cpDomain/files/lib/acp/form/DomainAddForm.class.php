@@ -89,6 +89,11 @@ class DomainAddForm extends DynamicDomainOptionListForm
 		
 		try 
 		{
+			if (empty($this->username))
+			{
+				throw new UserInputException('username');
+			}
+			
 			// get user
 			$user = new CPUser(null, null, $this->username);
 			if (!$user->userID) 
@@ -111,11 +116,8 @@ class DomainAddForm extends DynamicDomainOptionListForm
 		}
 		catch (UserInputException $e) 
 		{
-			$this->errorType[$e->getType()] = $e->getType();
+			$this->errorType[$e->getField()] = $e->getType();
 		}
-
-		if ($this->registrationDate <= 0)
-			$this->errorType['registrationDate'] = 'invalid';
 		
 		// validate dynamic options
 		parent :: validate();

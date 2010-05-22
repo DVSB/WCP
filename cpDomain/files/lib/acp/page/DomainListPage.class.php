@@ -51,6 +51,9 @@ class DomainListPage extends SortablePage
 		parent :: readData();
 		
 		// read objects
+		if (!WCF::getUser()->getPermission('admin.general.isSuperAdmin'))
+			$this->domainList->sqlConditions = 'domain.adminID = ' . WCF :: getUser()->userID;
+			
 		$this->domainList->sqlOffset = ($this->pageNo - 1) * $this->itemsPerPage;
 		$this->domainList->sqlLimit = $this->itemsPerPage;
 		$this->domainList->sqlOrderBy = 'domain.' . $this->sortField . ' ' . $this->sortOrder;
@@ -99,10 +102,6 @@ class DomainListPage extends SortablePage
 		
 		WCF :: getTPL()->assign(array (
 			'domains' => $this->domainList->getObjects(), 
-//			'markedDomains' => count($this->markedDomains), 
-//			'url' => $this->url, 
-//			'columnHeads' => $this->columnHeads, 
-//			'columnValues' => $this->columnValues,
 			'deletedDomains' => '',
 			'disabledDomains' => '',
 		));

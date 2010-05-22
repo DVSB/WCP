@@ -23,6 +23,8 @@
 </div>
 
 {if $domains|count}
+	{assign var="canEdit" value=$this->user->getPermission('admin.cp.canEditDomain')}
+	{assign var="canDelete" value=$this->user->getPermission('admin.cp.canDeleteDomain')}
 	<div class="border titleBarPanel">
 		<div class="containerHead"><h3>{lang}cp.acp.domain.list{/lang}</h3></div>
 	</div>
@@ -45,21 +47,21 @@
 			{foreach from=$domains item=domain}
 				<tr class="{cycle values="container-1,container-2"}">
 					<td class="columnIcon">
-						{if $domain->canEditDomain}
+						{if $canEdit}
 							<a href="index.php?form=DomainEdit&amp;domainID={$domain->domainID}{@SID_ARG_2ND}"><img src="{@RELATIVE_WCF_DIR}icon/editS.png" alt="" title="{lang}wcf.acp.domain.edit{/lang}" /></a>
 						{else}
-							<img src="{@RELATIVE_WCF_DIR}icon/editDisabledS.png" alt="" title="{lang}wcf.acp.domain.edit{/lang}" />
+							<img src="{@RELATIVE_WCF_DIR}icon/editDisabledS.png" alt="" title="{lang}cp.acp.domain.edit{/lang}" />
 						{/if}
-						{if $domain->canEditDomain}
-							<a onclick="return confirm('{lang}wcf.acp.domain.delete.sure{/lang}')" href="index.php?action=DomainDelete&amp;domainID={@$domain->domainID}{@SID_ARG_2ND}"><img src="{@RELATIVE_WCF_DIR}icon/deleteS.png" alt="" title="{lang}wcf.acp.domain.delete{/lang}" /></a>
+						{if $canDelete}
+							<a onclick="return confirm('{lang}cp.acp.domain.delete.sure{/lang}')" href="index.php?action=DomainDelete&amp;domainID={@$domain->domainID}{@SID_ARG_2ND}"><img src="{@RELATIVE_WCF_DIR}icon/deleteS.png" alt="" title="{lang}cp.acp.domain.delete{/lang}" /></a>
 						{else}
-							<img src="{@RELATIVE_WCF_DIR}icon/deleteDisabledS.png" alt="" title="{lang}wcf.acp.domain.delete{/lang}" />
+							<img src="{@RELATIVE_WCF_DIR}icon/deleteDisabledS.png" alt="" title="{lang}cp.acp.domain.delete{/lang}" />
 						{/if}
 						
 						{if $additionalButtons[$domain->domainID]|isset}{@$additionalButtons[$domain->domainID]}{/if}
 					</td>
 					<td class="columnDomainID columnID">{@$domain->domainID}</td>
-					<td class="columnDomainname columnText">{if $domain->canEditDomain}<a title="{lang}wcf.acp.group.edit{/lang}" href="index.php?form=DomainEdit&amp;domainID={@$domain->domainID}{@SID_ARG_2ND}">{$domain->domainname}</a>{else}{$domain->domainname}{/if}</td>
+					<td class="columnDomainname columnText">{if $canEdit}<a title="{lang}wcf.acp.group.edit{/lang}" href="index.php?form=DomainEdit&amp;domainID={@$domain->domainID}{@SID_ARG_2ND}">{$domain->domainname}</a>{else}{$domain->domainname}{/if}</td>
 					<td class="columnParentDomain columnText">{$domain->parentDomainName}</td>
 					<td class="columnUsernameDomain columnText"><a title="{lang}wcf.acp.group.showMembers{/lang}" href="index.php?form=UserEdit&amp;userID={@$domain->userID}{@SID_ARG_2ND}">{$domain->username}</a></td>
 					<td class="columnAdminnameDomain columnText">{$domain->adminname}</td>

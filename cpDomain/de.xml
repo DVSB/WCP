@@ -41,6 +41,7 @@
 		<item name="cp.acp.domain.edit.success"><![CDATA[Domain erfolgreich gespeichert]]></item>
 		<item name="cp.acp.domain.data"><![CDATA[Daten]]></item>
 		<item name="cp.acp.domain.list"><![CDATA[Domainliste]]></item>
+		<item name="cp.acp.domain.delete"><![CDATA[Domain löschen]]></item>
 		<item name="cp.acp.domain.delete.success"><![CDATA[Domain erfolgreich gelöscht]]></item>
 		<item name="cp.acp.domain.domainID"><![CDATA[]]></item>
 		<item name="cp.acp.domain.parentDomainName"><![CDATA[Elterndomain]]></item>
@@ -51,6 +52,11 @@
 		<item name="cp.acp.domain.username"><![CDATA[Benutzername]]></item>
 		<item name="cp.acp.domain.username.description"><![CDATA[Der Benutzer, dem diese Domain zugeordnet ist.]]></item>
 		<item name="cp.acp.domain.adminname"><![CDATA[Administrator]]></item>
+		<item name="cp.acp.domain.domainname.notValid"><![CDATA[Dieser Domainname ist ungültig!]]></item>
+		<item name="cp.acp.domain.domainname.notUnique"><![CDATA[Dieser Domainname ist im System bereits vorhanden!]]></item>
+		<item name="cp.acp.domain.username.notFound"><![CDATA[Dieser Benutzer wurde nicht gefunden!]]></item>
+		<item name="cp.acp.domain.username.invalidUser"><![CDATA[Sie haben keinen Zugriff auf diesen Benutzer!]]></item>
+		<item name="cp.acp.domain.username.noCustomer"><![CDATA[Dieser Benutzer ist kein Kunde!]]></item>
 	</category>
 	
 	<category name="cp.acp.menu">
