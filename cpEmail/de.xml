@@ -70,6 +70,8 @@
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.category.cp.email"><![CDATA[Email]]></item>
 		<item name="wcf.acp.group.option.category.cp.email.description"><![CDATA[]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canSeeList"><![CDATA[Darf Emails sehen]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canSeeList.description"><![CDATA[Mitglieder dieser Gruppe können sich Email-Adressen anzeigen lassen.]]></item>
 		<item name="wcf.acp.group.option.cp.email.canAddAddress"><![CDATA[Darf Email-Adressen erstellen]]></item>
 		<item name="wcf.acp.group.option.cp.email.canAddAddress.description"><![CDATA[Mitglieder dieser Gruppe dürfen Email-Adressen erstellen.]]></item>
 		<item name="wcf.acp.group.option.cp.email.canAddForward"><![CDATA[Darf Email-Weiterleitungen erstellen]]></item>

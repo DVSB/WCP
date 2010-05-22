@@ -20,7 +20,7 @@
 		<item name="cp.domain.enableDomain"><![CDATA[Domain aktivieren]]></item>
 		<item name="cp.domain.disableDomain"><![CDATA[Domain deaktivieren]]></item>
 		<item name="cp.domain.domainname"><![CDATA[Domainname]]></item>
-		<item name="cp.domain.domainname.description"><![CDATA[Der Name der Domain, hier wird nur der Teil vor dem Punkt benötigt (für foo.bar.org also nur foo).]]></item>
+		<item name="cp.domain.domainname.description"><![CDATA[Der Name der Domain.]]></item>
 		<item name="cp.domain.parentDomain"><![CDATA[Elterndomain]]></item>
 		<item name="cp.domain.parentDomain.description"><![CDATA[Hier wählen Sie aus, zu welcher Domain Sie diese Subdomain anlegen wollen. Der Name wird dann automatisch vervollständigt.]]></item>
 	</category>
@@ -95,12 +95,14 @@
 		
 		<item name="wcf.acp.group.option.category.cp.domains"><![CDATA[Domains]]></item>
 		<item name="wcf.acp.group.option.category.cp.domains.description"><![CDATA[]]></item>
-		<item name="wcf.acp.group.option.admin.cp.canAddSubDomain"><![CDATA[Kann SubDomains hinzufügen]]></item>
-		<item name="wcf.acp.group.option.admin.cp.canAddSubDomain.description"><![CDATA[Mitglieder dieser Gruppe können SubDomains erstellen]]></item>
-		<item name="wcf.acp.group.option.admin.cp.canEditDomains"><![CDATA[Kann Domains bearbeiten]]></item>
-		<item name="wcf.acp.group.option.admin.cp.canEditDomains.description"><![CDATA[Mitglieder dieser Gruppe können Domains bearbeiten]]></item>
-		<item name="wcf.acp.group.option.admin.cp.canDeleteSubDomains"><![CDATA[Kann SubDomains löschen]]></item>
-		<item name="wcf.acp.group.option.admin.cp.canDeleteSubDomains.description"><![CDATA[Mitglieder dieser Gruppe können SubDomains löschen]]></item>
+		<item name="wcf.acp.group.option.cp.canSeeDomains"><![CDATA[Darf Domains sehen]]></item>
+		<item name="wcf.acp.group.option.cp.canSeeDomains.description"><![CDATA[Mitglieder dieser Gruppe können sich Domains anzeigen lassen]]></item>
+		<item name="wcf.acp.group.option.cp.canAddSubDomain"><![CDATA[Kann SubDomains hinzufügen]]></item>
+		<item name="wcf.acp.group.option.cp.canAddSubDomain.description"><![CDATA[Mitglieder dieser Gruppe können SubDomains erstellen]]></item>
+		<item name="wcf.acp.group.option.cp.canEditDomains"><![CDATA[Kann Domains bearbeiten]]></item>
+		<item name="wcf.acp.group.option.cp.canEditDomains.description"><![CDATA[Mitglieder dieser Gruppe können Domains bearbeiten]]></item>
+		<item name="wcf.acp.group.option.cp.canDeleteSubDomains"><![CDATA[Kann SubDomains löschen]]></item>
+		<item name="wcf.acp.group.option.cp.canDeleteSubDomains.description"><![CDATA[Mitglieder dieser Gruppe können SubDomains löschen]]></item>
 	</category>
 
 </language>

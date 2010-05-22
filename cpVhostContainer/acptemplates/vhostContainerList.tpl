@@ -20,7 +20,7 @@
 	{pages print=true assign=pagesLinks link="index.php?page=vhostContainerList&pageNo=%d&sortField=$sortField&sortOrder=$sortOrder&packageID="|concat:PACKAGE_ID:SID_ARG_2ND_NOT_ENCODED}
 	<div class="largeButtons">
 		<ul>
-			{if $this->user->getPermission('admin.cp.canAddVhostContainer')}<li><a href="index.php?form=vhostContainerAdd&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}cp.acp.vhostContainer.add{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/vhostContainerAddM.png" alt="" /> <span>{lang}cp.acp.vhostContainer.add{/lang}</span></a></li>{/li}
+			{if $this->user->getPermission('admin.cp.canAddVhostContainer')}<li><a href="index.php?form=vhostContainerAdd&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}cp.acp.vhostContainer.add{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/vhostContainerAddM.png" alt="" /> <span>{lang}cp.acp.vhostContainer.add{/lang}</span></a></li>{/if}
 			{if $additionalLargeButtons|isset}{@$additionalLargeButtons}{/if}			
 		</ul>
 	</div>
@@ -60,7 +60,7 @@
 						{if $additionalButtons[$vhostContainer->vhostContainerID]|isset}{@$additionalButtons[$vhostContainer->vhostContainerID]}{/if}
 					</td>
 					<td class="columnvhostContainerID columnID">{@$vhostContainer->vhostContainerID}</td>
-					<td class="columnvhostName columnText">{if $vhostContainer->canEditvhostContainer}<a title="{lang}cp.acp.vhostContainer.edit{/lang}" href="index.php?form=vhostContainerEdit&amp;vhostContainerID={@$vhostContainer->vhostContainerID}{@SID_ARG_2ND}">{$vhostContainer->vhostName}</a>{else}{$vhostContainer->vhostName}{/if}</td>
+					<td class="columnvhostName columnText">{if $this->user->getPermission('admin.cp.canEditVhostContainer')}<a title="{lang}cp.acp.vhostContainer.edit{/lang}" href="index.php?form=vhostContainerEdit&amp;vhostContainerID={@$vhostContainer->vhostContainerID}{@SID_ARG_2ND}">{$vhostContainer->vhostName}</a>{else}{$vhostContainer->vhostName}{/if}</td>
 					<td class="columnipAddressPort columnText">{$vhostContainer->ipAddress}:{$vhostContainer->port}</td>
 					<td class="columnvhostType columnText">{lang}wcf.acp.option.category.cpvhostcontainer.{$vhostContainer->vhostType}{/lang}</td>
 					

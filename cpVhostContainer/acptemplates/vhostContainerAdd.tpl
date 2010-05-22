@@ -19,7 +19,7 @@
 <div class="contentHeader">
 	<div class="largeButtons">
 		<ul>
-			<li><a href="index.php?page=vhostContainerList&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}cp.acp.menu.link.vhostContainers.list{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/groupM.png" alt="" /> <span>{lang}cp.acp.menu.link.vhostContainers.list{/lang}</span></a></li>
+			<li><a href="index.php?page=vhostContainerList&amp;packageID={@PACKAGE_ID}{@SID_ARG_2ND}" title="{lang}cp.acp.menu.link.vhostContainers.list{/lang}"><img src="{@RELATIVE_WCF_DIR}icon/groupM.png" alt="" /> <span>{lang}cp.acp.menu.link.vhostcontainer.list{/lang}</span></a></li>
 			{if $additionalLargeButtons|isset}{@$additionalLargeButtons}{/if}
 		</ul>
 	</div>
