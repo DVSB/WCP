@@ -15,7 +15,7 @@ require_once (CP_DIR . 'lib/acp/form/DomainAddForm.class.php');
  */
 class DomainEditForm extends DomainAddForm
 {
-	public $permission = 'admin.cp.canEditDomain';
+	public $permission = 'admin.cp.canEditDomains';
 	
 	public $domainID = 0;
 	public $url = '';

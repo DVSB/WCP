@@ -1,7 +1,6 @@
-import imp
 import sys
 from time import *
-from modules.basishandler import *
+from functions import loadModule
 
 class jobhandler(object):
     
@@ -37,7 +36,7 @@ class jobhandler(object):
     def firePendingJobs(self):
         for job in self.jobs:
             #try:
-                module = self.loadModule(job['jobhandler'])
+                module = loadModule(job['jobhandler'], 'modules/')
                 func = getattr(module, job['jobhandler'])
                 obj = func(job['data'], self.env)
                 job['retVar'] = obj.run()
@@ -60,26 +59,5 @@ class jobhandler(object):
                                    WHERE jobhandlerTaskID = " + str(job['jobhandlerTaskID']))
                       
         self.env.config.set("last_run_backend", int(time()))
-
-    def loadModule(self, name):                
-        # Fast path: see if the module has already been imported.
-        
-        try:
-            return sys.modules[name]
-        except KeyError:
-            pass
-        
-        name = "modules/" + name
-
-        # If any of the following calls raises an exception,
-        # there's a problem we can't handle -- let the caller handle it.
-        fp, pathname, description = imp.find_module(name)
-    
-        try:
-            return imp.load_module(name, fp, pathname, description)
-        finally:
-            # Since we may exit via an exception, close fp explicitly.
-            if fp:
-                fp.close()
         
         

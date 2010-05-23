@@ -23,8 +23,8 @@
 </div>
 
 {if $domains|count}
-	{assign var="canEdit" value=$this->user->getPermission('admin.cp.canEditDomain')}
-	{assign var="canDelete" value=$this->user->getPermission('admin.cp.canDeleteDomain')}
+	{assign var="canEdit" value=$this->user->getPermission('admin.cp.canEditDomains')}
+	{assign var="canDelete" value=$this->user->getPermission('admin.cp.canDeleteDomains')}
 	<div class="border titleBarPanel">
 		<div class="containerHead"><h3>{lang}cp.acp.domain.list{/lang}</h3></div>
 	</div>

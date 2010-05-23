@@ -2,6 +2,7 @@ import os.path
 from grp import getgrnam
 from pwd import getpwnam
 from re import *
+from imp import load_module, find_module
 
 def mkPath(typ, path, mode, uid, gid):
     """
@@ -100,4 +101,24 @@ def getUserOptions(conf, getoptions):
                              FROM   wcf" + conf.db.wcfnr + "_user_option \
                              WHERE  optionName IN (" + options + ") AND packageID IN (" + conf.packages + ")") 
     return options
+
+def loadModule(name, pathprefix):                
+    # Fast path: see if the module has already been imported.
+        
+    try:
+        return sys.modules[name]
+    except KeyError:
+        pass
+        
+    name = pathprefix + name
+
+    # If any of the following calls raises an exception,
+    # there's a problem we can't handle -- let the caller handle it.
+    fp, pathname, description = imp.find_module(name)
     
+    try:
+        return imp.load_module(name, fp, pathname, description)
+    finally:
+        # Since we may exit via an exception, close fp explicitly.
+        if fp:
+            fp.close()

@@ -1,4 +1,4 @@
-from framework.basishandler import basishandler
+from modules.basishandler import basishandler
 from framework.functions import os, parseUser, parseOptions, getUserOptions, getActiveUsers
 import glob
 

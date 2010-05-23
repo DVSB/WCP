@@ -4,7 +4,7 @@ Created on 02.05.2010
 @author: toby
 '''
 
-from framework.basishandler import basishandler
+from modules.basishandler import basishandler
 from vhostContainer.vhostHandler import vhostHandler
 
 class deleteVhost(basishandler):

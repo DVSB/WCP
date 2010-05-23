@@ -1,4 +1,4 @@
-from framework.basishandler import basishandler
+from modules.basishandler import basishandler
 from framework.functions import parseOptions, parseUser, mkPath, getUID, getGID
 
 class createhome(basishandler):

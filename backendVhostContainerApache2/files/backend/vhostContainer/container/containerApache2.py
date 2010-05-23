@@ -8,66 +8,44 @@ import os, sys
 from re import *
 from Cheetah.Template import Template
 from subprocess import call
+from containerDefault import containerDefault
 
-class basisFileContainer(object):
+class containerApache2(containerDefault):
     '''
     classdocs
     '''
-    def __init__(self, domain, env, vhostType = None):
-        self.env = env
-        self.domain = domain
-        self.vhostType = vhostType
-        
-        self.vars = {}
-        self.file = None
-        self.vhostpath = None
-        self.fileprefix = None
-        self.reloadcommand = None
-        self.template = None
-        self.vars['logpath'] = {'access': None, 'error': None}
-        self.parsedTemplate = None
-        
-        self.setVars()
-        
-        #TODO: errorhandling, if vars are not set
-        
-        self.vhostpath = os.path.abspath(self.vhostpath)
-        
-        if self.file == None:
-            self.file =  self.vhostpath + '/' + self.fileprefix + '_' + self.domain.domainID + '_' + self.domain.domainname + '.conf'
-        
-        self.file = os.path.abspath(self.file)
-        
     def setVars(self):
-        self.template = self.env.config.get(self.vhostType + 'template')
-        self.vhostpath = self.env.config.get(self.vhostType + 'vhostpath')
-        self.fileprefix = self.env.config.get(self.vhostType + 'fileprefix')
-        self.reloadcommand = self.env.config.get(self.vhostType + 'reloadcommand')
+        self.template = self.env.config.get('containerApache2template')
+        self.vhostpath = os.path.abspath(self.env.config.get('containerApache2vhostpath'))
+        self.fileprefix = self.env.config.get('containerApache2fileprefix')
+        self.reloadcommand = self.env.config.get('containerApache2reloadcommand')
         
-        self.vars['logpath']['access'] = self.env.config.get(self.vhostType + 'logaccess')
-        self.vars['logpath']['error'] = self.env.config.get(self.vhostType + 'logerror')
+        self.vars['logpath']['access'] = self.env.config.get('containerApache2logaccess')
+        self.vars['logpath']['error'] = self.env.config.get('containerApache2logerror')
         self.vars.update(self.domain.vhostContainer)
         self.vars.update(self.domain.domain)
         self.vars.update(self.domain.user)
+        
+        self.file =  os.path.abspath(self.vhostpath + '/' + self.fileprefix + '_' + self.domain.domainID + '_' + self.domain.domainname + '.conf')
     
-    def parse(self):        
-        self.parsedTemplate = Template(self.template, searchList=[self.vars])
-    
-    def create(self):
+    def createDomain(self):
         self.parse()
         self.writeFile()
         self.reloadServer()
     
     #update is just the same as create
-    def update(self):
+    def updateDomain(self):
         self.create()
                 
-    def delete(self):
+    def deleteDomain(self):
         self.getFilePath()
         
         if self.file <> False:
             os.remove(self.file)
             self.reloadServer()
+            
+    def parse(self):        
+        self.parsedTemplate = Template(self.template, searchList=[self.vars])
         
     def getFilePath(self):
         if os.access(self.file, os.F_OK):
