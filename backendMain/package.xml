@@ -7,6 +7,7 @@
 		<packageDescription>Behandelt alle Aktionen die mit Rootrechten auf dem Webserver ausgeführt werden müssen</packageDescription>
 		<version>0.5.0-beta1</version>
 		<date>2010-05-16</date>
+		<plugin>com.toby.cp</plugin>
 	</packageInformation>
 
 	<authorInformation>
@@ -17,6 +18,7 @@
 
 	<requiredpackages>
 		<requiredpackage minversion="1.1.0">com.woltlab.wcf</requiredpackage>
+		<requiredpackage>com.toby.cp</requiredpackage>
 	</requiredpackages>
 
 	<instructions type="install">

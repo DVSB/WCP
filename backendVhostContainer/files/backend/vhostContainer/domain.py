@@ -11,8 +11,9 @@ class domain(object):
     classdocs
     '''
     
-    def __init__(self, domainID, env):
+    def __init__(self, domainID, vhostHandler, env):
         self.env = env
+        self.vhostHandler = vhostHandler
         self.domainID = domainID
         self.loadDomain()
         self.getVhostContainer()
@@ -61,10 +62,7 @@ class domain(object):
         
     def getVhostContainer(self):
         self.vhostContainerID = self.get('vhostContainerID')
-        self.vhostContainer = self.env.db.queryDict("SELECT    * \
-                                                 FROM      cp" + self.env.cpnr + "_vhostContainer \
-                                                 WHERE     vhostContainerID = " + str(self.vhostContainerID)
-                                               )[0]
+        self.vhostContainer = self.vhostHandler.getVhostContainer(self.vhostContainerID)
         
     def getVhostContainerOption(self, option):
         if self.vhostContainer.has_key(option):
