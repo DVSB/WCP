@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTD/options.dtd">
+<data>
+	<import>
+		<categories>
+			<category name="account.disk">
+				<parent>account</parent>
+			</category>
+		</categories>
+
+		<options>
+			<option name="diskspace">
+				<categoryname>account.disk</categoryname>
+				<optiontype>integer</optiontype>
+				<visible>0</visible>
+				<editable>3</editable>
+				<defaultvalue>500</defaultvalue>
+			</option>
+			<option name="diskspaceUsed">
+				<categoryname>account.disk</categoryname>
+				<optiontype>float</optiontype>
+				<visible>0</visible>
+				<editable>4</editable>
+			</option>
+		</options>
+	</import>
+
+</data>

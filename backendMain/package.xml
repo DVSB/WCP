@@ -22,11 +22,27 @@
 	</requiredpackages>
 
 	<instructions type="install">
+		<languages languagecode="de">de.xml</languages>
+		<options>options.xml</options>
 		<files>files.tar</files>
+		<acptemplates>acptemplates.tar</acptemplates>
+		<acpmenu>acpmenu.xml</acpmenu>
+		<sql>install.sql</sql>
+		<eventlistener>eventlistener.xml</eventlistener>
+		<useroptions>useroptions.xml</useroptions>
+	 	<packageinstallationplugins>pip.tar</packageinstallationplugins>
+		<jobhandlertask>jobhandlertasks.xml</jobhandlertask>
 	</instructions>
 	
 	<instructions type="update" fromversion="0.*">
+		<languages languagecode="de">de.xml</languages>
+		<options>options.xml</options>
 		<files>files.tar</files>
+		<acptemplates>acptemplates.tar</acptemplates>
+		<acpmenu>acpmenu.xml</acpmenu>
+		<eventlistener>eventlistener.xml</eventlistener>
+		<useroptions>useroptions.xml</useroptions>
+	 	<packageinstallationplugins>pip.tar</packageinstallationplugins>
+		<jobhandlertask>jobhandlertasks.xml</jobhandlertask>
 	</instructions>
-
 </package>

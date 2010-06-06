@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE import SYSTEM "DTD/import.dtd">
+<data>
+	<import>
+		<eventlistener>
+			<eventClassName>UserAddForm</eventClassName>
+			<eventName>saved</eventName>
+			<listenerClassFile>lib/system/event/listener/UserAddBackendMainListener.class.php</listenerClassFile>
+			<environment>admin</environment>
+			<inherit>1</inherit>
+			<nice>-127</nice>
+		</eventlistener>
+		
+		<eventlistener>
+			<eventClassName>IndexPage</eventClassName>
+			<eventName>readData</eventName>
+			<listenerClassFile>lib/system/event/listener/IndexBackendMainListener.class.php</listenerClassFile>
+		</eventlistener>
+	</import>
+</data>
