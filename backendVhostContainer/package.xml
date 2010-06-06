@@ -17,7 +17,7 @@
 
 	<requiredpackages>
 		<requiredpackage minversion="1.1.0">com.woltlab.wcf</requiredpackage>
-		<requiredpackage>com.toby.backendhandler</requiredpackage>
+		<requiredpackage file="requirements/com.toby.backendhandler.tar">com.toby.backendhandler</requiredpackage>
 	</requiredpackages>
 
 	<instructions type="install">
