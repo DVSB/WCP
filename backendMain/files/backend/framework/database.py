@@ -39,5 +39,6 @@ class database(object):
     def insert(self, query):
         c = self.connection.cursor()
 
-        return c.execute(query)
-
+        c.execute(query)
+        
+        return int(c.insert_id())

@@ -8,7 +8,7 @@ CREATE TABLE cp1_1_jobhandler_task (
 	nextExec varchar(20) NOT NULL default 'asap',
 	lastExec int(10) unsigned NOT NULL default 0,
 	priority tinyint(1) unsigned NOT NULL default 0,
-	volatile TINYINT NOT NULL default 1,
+	volatile tinyint(1) unsigned NOT NULL default 1,
 	userID int(10) unsigned NOT NULL default 0,
 	data TEXT NOT NULL,
 	packageID int(10) unsigned NOT NULL default 0,
@@ -16,4 +16,14 @@ CREATE TABLE cp1_1_jobhandler_task (
 	KEY (jobhandler),
 	KEY (packageID),
 	UNIQUE (jobhandler, nextExec, userID)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE cp1_1_jobhandler_task_log (
+	jobhandlerTaskLogID int(10) unsigned NOT NULL auto_increment,
+	execTimeStart int(10) unsigned NOT NULL default 0,
+	execTimeEnd int(10) unsigned NOT NULL default 0,
+	execJobhandler TEXT NOT NULL DEFAULT '',
+	success tinyint(1) unsigned NOT NULL default 0,
+	data TEXT NOT NULL,
+	PRIMARY KEY (jobhandlerTaskLogID),
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

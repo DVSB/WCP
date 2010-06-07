@@ -32,6 +32,7 @@ class jobhandler(object):
                                        FROM     cp" + self.env.cpnr + "_jobhandler_task jt \
                                        WHERE    nextExec IN ('" + "','".join(triggers) + "')\
                                        ORDER BY priority DESC, jobhandlerTaskID ASC")
+        self.env.writeJobs(self.jobs)
         
     def firePendingJobs(self):
         for job in self.jobs:

@@ -14,21 +14,14 @@ class JobhandlerTaskLogListPage extends SortablePage
 {
 	// system
 	public $templateName = 'jobhandlerTaskLogList';
-	public $defaultSortField = 'jobhandlerTaskID';
+	public $defaultSortField = 'jobhandlerTaskLogID';
 	
 	/**
 	 * list of jobhandlers
 	 * 
 	 * @var	array
 	 */
-	public $jobhandler = array ();
-	
-	/**
-	 * last run of backend
-	 * 
-	 * @var integer
-	 */
-	public $lastRun = 0;
+	public $logs = array ();
 
 	/**
 	 * @see Page::readData()
@@ -46,15 +39,14 @@ class JobhandlerTaskLogListPage extends SortablePage
 	protected function readJobhandlerLog()
 	{
 		$sql = "SELECT		jobhandler.*
-				FROM		cp" . CP_N . "_jobhandler_task jobhandler,
-							wcf" . WCF_N . "_package_dependency package_dependency
-				WHERE 		jobhandler.packageID = package_dependency.dependency
-				AND 		package_dependency.packageID = " . PACKAGE_ID . "
-				ORDER BY	jobhandler.".$this->sortField." ".$this->sortOrder;
+				FROM		cp" . CP_N . "_jobhandler_task_log jobhandler_log
+				ORDER BY	jobhandler_log.".$this->sortField." ".$this->sortOrder;
+		
 		$result = WCF :: getDB()->sendQuery($sql, $this->itemsPerPage, ($this->pageNo - 1) * $this->itemsPerPage);
+		
 		while ($row = WCF :: getDB()->fetchArray($result))
 		{			
-			$this->jobhandler[] = $row;
+			$this->logs[] = $row;
 		}
 	}
 
@@ -66,8 +58,7 @@ class JobhandlerTaskLogListPage extends SortablePage
 		parent :: assignVariables();
 		
 		WCF :: getTPL()->assign(array (
-			'jobhandler' => $this->jobhandler,
-			'lastRun' => $this->lastRun 
+			'logs' => $this->logs
 		));
 	}
 
@@ -80,11 +71,10 @@ class JobhandlerTaskLogListPage extends SortablePage
 		
 		// count cronjobs
 		$sql = "SELECT	COUNT(*) AS count
-				FROM	cp" . CP_N . "_jobhandler_task jobhandler,
-						wcf" . WCF_N . "_package_dependency package_dependency
-				WHERE 	jobhandler.packageID = package_dependency.dependency
-				AND 	package_dependency.packageID = ".PACKAGE_ID;
+				FROM	cp" . CP_N . "_jobhandler_task jobhandler_log";
+		
 		$row = WCF :: getDB()->getFirstRow($sql);
+		
 		return $row['count'];
 	}
 
@@ -97,12 +87,11 @@ class JobhandlerTaskLogListPage extends SortablePage
 		
 		switch ($this->sortField)
 		{
-			case 'jobhandlerTaskID':
-			case 'jobhandlerName':
-			case 'lastExec':
-			case 'nextExec':
-			case 'volatile':
-			case 'data':
+			case 'jobhandlerTaskLogID':
+			case 'execTimeStart':
+			case 'execTimeEnd':
+			case 'execJobhandler':
+			case 'success':
 			break;
 			default:
 				$this->sortField = $this->defaultSortField;
@@ -115,7 +104,7 @@ class JobhandlerTaskLogListPage extends SortablePage
 	public function show()
 	{
 		// set active menu item.
-		CPACP :: getMenu()->setActiveMenuItem('cp.acp.menu.link.jobhandler');
+		CPACP :: getMenu()->setActiveMenuItem('cp.acp.menu.link.jobhandler.log');
 		
 		parent :: show();
 	}

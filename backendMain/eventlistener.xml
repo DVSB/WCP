@@ -8,7 +8,7 @@
 			<listenerClassFile>lib/system/event/listener/UserAddBackendMainListener.class.php</listenerClassFile>
 			<environment>admin</environment>
 			<inherit>1</inherit>
-			<nice>-127</nice>
+			<nice>-100</nice>
 		</eventlistener>
 		
 		<eventlistener>
