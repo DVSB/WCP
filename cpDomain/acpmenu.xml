@@ -5,6 +5,7 @@
 
 		<acpmenuitem name="cp.acp.menu.link.domains">
 			<parent>cp.acp.menu.link</parent>
+			<permissions>admin.cp.canSeeDomains,admin.cp.canAddDomain</permissions>
 		</acpmenuitem>
 
 		<acpmenuitem name="cp.acp.menu.link.domains.list">

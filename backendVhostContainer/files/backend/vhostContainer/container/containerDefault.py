@@ -34,3 +34,6 @@ class containerDefault(object):
                 
     def deleteDomain(self):
         return "implement me"
+    
+    def finishContainer(self):
+        return "implement me"

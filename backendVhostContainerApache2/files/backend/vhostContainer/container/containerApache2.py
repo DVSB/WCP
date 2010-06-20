@@ -31,10 +31,10 @@ class containerApache2(containerDefault):
     def createDomain(self):
         self.parse()
         self.writeFile()
-        self.reloadServer()
     
-    #update is just the same as create
+    #update is nearly the same as create
     def updateDomain(self):
+        self.deleteDomain()
         self.create()
                 
     def deleteDomain(self):

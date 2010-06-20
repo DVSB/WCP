@@ -28,6 +28,17 @@
 		<item name="wcf.user.option.diskspace.values"><![CDATA[<span{if $used > $avail} class="red"{/if}>{$used|float}</span> / {$avail}]]></item>
 	</category>		
 	
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.category.admin.cp.jobhandler"><![CDATA[Hintergrund-Tasks]]></item>
+		<item name="wcf.acp.group.option.category.admin.cp.jobhandler.description"><![CDATA[]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canSeeJobhandler"><![CDATA[Kann geplante Hintergrund-Tasks sehen]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canSeeJobhandler.description"><![CDATA[Mitglieder dieser Gruppe können geplante Hintergrund-Tasks sehen]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canSeeJobhandlerLog"><![CDATA[Kann Hintergrund-Task-Log sehen]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canSeeJobhandlerLog.description"><![CDATA[Mitglieder dieser Gruppe können das Log der durchgeführten Hintergrund-Tasks sehen]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canClearJobhandlerLog"><![CDATA[Kann Hintergrund-Task-Log löschen]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canClearJobhandlerLog.description"><![CDATA[Mitglieder dieser Gruppe können das Log der durchgeführten Hintergrund-Tasks leeren]]></item>
+	</category>
+	
 	<category name="cp.acp.menu">
 		<item name="cp.acp.menu.link.jobhandler"><![CDATA[Hintergrund-Tasks]]></item>
 		<item name="cp.acp.menu.link.jobhandler.view"><![CDATA[Geplante Tasks]]></item>
@@ -50,6 +61,20 @@
 		<item name="cp.acp.jobhandler.nextExec.weekchange"><![CDATA[Wochenwechsel]]></item>
 		<item name="cp.acp.jobhandler.nextExec.monthchange"><![CDATA[Monatswechsel]]></item>
 		<item name="cp.acp.jobhandler.nextExec.yearchange"><![CDATA[Jahreswechsel]]></item>
+	</category>
+	
+	<category name="cp.acp.jobhandlerLog">
+		<item name="cp.acp.jobhandlerLog.list"><![CDATA[Geloggte Hintergrund-Tasks]]></item>
+		<item name="cp.acp.jobhandlerLog.listcount"><![CDATA[{$logs|count} mitgeloggte Hintergrund-Tasks]]></item>
+		<item name="cp.acp.jobhandlerLog.jobhandlerTaskLogID"><![CDATA[LogID]]></item>
+		<item name="cp.acp.jobhandlerLog.execTimeStart"><![CDATA[Start Ausführung]]></item>
+		<item name="cp.acp.jobhandlerLog.execTimeEnd"><![CDATA[Ende Ausführung]]></item>
+		<item name="cp.acp.jobhandlerLog.execJobhandler"><![CDATA[Ausgeführte Tasks]]></item>
+		<item name="cp.acp.jobhandlerLog.success"><![CDATA[Erfolgreich]]></item>
+		<item name="cp.acp.jobhandlerLog.data"><![CDATA[Ausgabe]]></item>
+		<item name="cp.acp.jobhandlerLog.clear"><![CDATA[Log leeren]]></item>
+		<item name="cp.acp.jobhandlerLog.clearConfirm"><![CDATA[Wollen Sie wirklich das Log leeren?]]></item>
+		<item name="cp.acp.jobhandlerLog.detail"><![CDATA[Log-Details]]></item>
 	</category>
 
 </language>

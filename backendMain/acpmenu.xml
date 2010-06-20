@@ -6,18 +6,21 @@
 		<acpmenuitem name="cp.acp.menu.link.jobhandler">
 			<parent>cp.acp.menu.link</parent>
 			<showorder>1</showorder>
+			<permissions>admin.cp.canSeeJobhandler,admin.cp.canSeeJobhandlerLog</permissions>
 		</acpmenuitem>
 		
 		<acpmenuitem name="cp.acp.menu.link.jobhandler.view">
 			<parent>cp.acp.menu.link.jobhandler</parent>
 			<link>index.php?page=JobhandlerTaskList</link>
 			<showorder>1</showorder>
+			<permissions>admin.cp.canSeeJobhandler</permissions>
 		</acpmenuitem>
 		
 		<acpmenuitem name="cp.acp.menu.link.jobhandler.log">
 			<parent>cp.acp.menu.link.jobhandler</parent>
 			<link>index.php?page=JobhandlerTaskLogList</link>
 			<showorder>2</showorder>
+			<permissions>admin.cp.canSeeJobhandlerLog</permissions>
 		</acpmenuitem>
 	
 	</import>

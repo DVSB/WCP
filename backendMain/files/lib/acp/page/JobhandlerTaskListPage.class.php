@@ -15,6 +15,7 @@ class JobhandlerTaskListPage extends SortablePage
 	// system
 	public $templateName = 'jobhandlerTaskList';
 	public $defaultSortField = 'jobhandlerTaskID';
+	public $neededPermissions = 'admin.cp.canSeeJobhandler';
 	
 	/**
 	 * list of jobhandlers

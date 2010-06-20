@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/cronjobs.dtd">
+<data>
+	<import>
+		<cronjob>
+			<classpath>lib/system/cronjob/CleanUpJobhandlerLogCronjob.class.php</classpath>
+			<description>Remove old entries from jobhandler_task_log</description>
+			<startminute>0</startminute>
+			<starthour>2</starthour>
+			<startdom>*/2</startdom>
+			<startmonth>*</startmonth>
+			<startdow>*</startdow>
+			<execmultiple>0</execmultiple>
+			<active>1</active>
+			<canBeEdited>1</canBeEdited>
+			<canBeDisabled>1</canBeDisabled>
+		</cronjob>
+	</import>
+</data>

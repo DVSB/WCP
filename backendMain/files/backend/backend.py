@@ -19,4 +19,4 @@ jh.firePendingJobs()
 
 success = jh.finishJobs()
 
-env.logger.close(success)
+env.close(success)

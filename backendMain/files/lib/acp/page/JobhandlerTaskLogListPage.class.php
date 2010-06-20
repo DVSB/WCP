@@ -15,6 +15,7 @@ class JobhandlerTaskLogListPage extends SortablePage
 	// system
 	public $templateName = 'jobhandlerTaskLogList';
 	public $defaultSortField = 'jobhandlerTaskLogID';
+	public $neededPermissions = 'admin.cp.canSeeJobhandlerLog';
 	
 	/**
 	 * list of jobhandlers
@@ -38,7 +39,7 @@ class JobhandlerTaskLogListPage extends SortablePage
 	 */
 	protected function readJobhandlerLog()
 	{
-		$sql = "SELECT		jobhandler.*
+		$sql = "SELECT		jobhandler_log.*
 				FROM		cp" . CP_N . "_jobhandler_task_log jobhandler_log
 				ORDER BY	jobhandler_log.".$this->sortField." ".$this->sortOrder;
 		
@@ -71,7 +72,7 @@ class JobhandlerTaskLogListPage extends SortablePage
 		
 		// count cronjobs
 		$sql = "SELECT	COUNT(*) AS count
-				FROM	cp" . CP_N . "_jobhandler_task jobhandler_log";
+				FROM	cp" . CP_N . "_jobhandler_task_log";
 		
 		$row = WCF :: getDB()->getFirstRow($sql);
 		
