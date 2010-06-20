@@ -26,7 +26,6 @@
 					<th class="columnExecTimeEnd{if $sortField == 'execTimeEnd'} active{/if}"><div><a href="index.php?page=JobhandlerTaskLogList&amp;pageNo={@$pageNo}&amp;sortField=execTimeEnd&amp;sortOrder={if $sortField == 'execTimeEnd' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.acp.jobhandlerLog.execTimeEnd{/lang}{if $sortField == 'execTimeEnd'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
 					<th class="columnExecJobhandler{if $sortField == 'execJobhandler'} active{/if}"><div><a href="index.php?page=JobhandlerTaskLogList&amp;pageNo={@$pageNo}&amp;sortField=execJobhandler&amp;sortOrder={if $sortField == 'execJobhandler' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.acp.jobhandlerLog.execJobhandler{/lang}{if $sortField == 'execJobhandler'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
 					<th class="columnSuccess{if $sortField == 'success'} active{/if}"><div><a href="index.php?page=JobhandlerTaskLogList&amp;pageNo={@$pageNo}&amp;sortField=success&amp;sortOrder={if $sortField == 'success' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.acp.jobhandlerLog.success{/lang}{if $sortField == 'success'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
-					<th class="columnData{if $sortField == 'data'} active{/if}"><div>{lang}cp.acp.jobhandler.data{/lang}</div></th>
 					
 					{if $additionalColumns|isset}{@$additionalColumns}{/if}
 				</tr>
@@ -45,8 +44,7 @@
 							{lang}cp.global.no{/lang}
 						{/if}
 					</td>
-					<td class="columnData">{$log.data|truncate:50:' ...'}</td>
-	
+						
 					{if $log.additionalColumns|isset}{@$log.additionalColumns}{/if}
 				</tr>
 			{/foreach}
