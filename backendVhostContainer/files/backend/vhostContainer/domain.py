@@ -16,7 +16,6 @@ class domain(object):
         self.vhostHandler = vhostHandler
         self.domainID = domainID
         self.loadDomain()
-        self.getVhostContainer()
         self.getUser()
        
     def loadDomain(self):
@@ -59,14 +58,6 @@ class domain(object):
             return self.domain[option]
         else:
             return None
-        
-    def getVhostContainer(self):
-        self.vhostContainerID = self.get('vhostContainerID')
-        self.vhostContainer = self.vhostHandler.getVhostContainer(self.vhostContainerID)
-        
-    def getVhostContainerOption(self, option):
-        if self.vhostContainer.has_key(option):
-            return self.vhostContainer[option]
         
     def getUser(self):
         self.user = user(self.get('userID'), self.env)

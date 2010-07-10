@@ -18,6 +18,7 @@ class containerApache2(containerDefault):
         self.template = self.env.config.get('containerApache2template')
         self.vhostpath = os.path.abspath(self.env.config.get('containerApache2vhostpath'))
         self.fileprefix = self.env.config.get('containerApache2fileprefix')
+        self.ipandportprefix = self.env.config.get('containerApache2ipandportprefix')
         self.reloadcommand = self.env.config.get('containerApache2reloadcommand')
         
         self.vars['logpath']['access'] = self.env.config.get('containerApache2logaccess')
@@ -66,12 +67,32 @@ class containerApache2(containerDefault):
             file.write(self.parsedTemplate)
             file.close()
             
+    def finishContainer(self):
+        self.writeIPandPort()    
+        self.reloadServer()
+        
+    def writeIPandPort(self):
+        ipAndPort = ""
+        if self.get('addListenStatement'):
+            ipAndPort += "Listen " + self.get('ipAddress') + ":" + self.get('port')
+            
+        if self.get('addNameStatement'):
+            ipAndPort += "NameVirtualHost " + self.get('ipAddress') + ":" + self.get('port')
+            
+        if ipAndPort:
+            file = file(os.path.abspath(self.vhostpath + '/' + self.ipandportprefix + '_' + self.get('ipAddress') + "." + self.get('port') + '.conf'), 'w')
+            file.write(ipAndPort)
+            file.close()
+            
     def reloadServer(self):
         try:
             retcode = call(self.reloadcommand, shell=True)
             if retcode <> 0:
-                return "restart failed"
+                self.env.logger.append("restart apache2 failed")
+                return False
             else:
-                return "ok"
+                self.env.logger.append("restart apache2 ok")
+                return True
         except OSError, e:
-            return "restart failed"
+            elf.env.logger.append("restart apache2 failed")
+            return False

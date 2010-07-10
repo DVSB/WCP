@@ -33,6 +33,13 @@ l:{APACHE2LOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{APACHE2USER}.{APACHE2USE
 				<permissions>admin.cp.canEditVhostContainer</permissions>
 			</option> 
 			
+			<option name="containerApache2ipandportprefix">
+				<categoryname>cpvhostcontainer.containerApache2</categoryname>
+				<optiontype>text</optiontype>
+				<defaultvalue>10_webcp_ipandport</defaultvalue>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</option>
+			
 			<option name="containerApache2template">
 				<categoryname>cpvhostcontainer.containerApache2</categoryname>
 				<optiontype>textarea</optiontype>
