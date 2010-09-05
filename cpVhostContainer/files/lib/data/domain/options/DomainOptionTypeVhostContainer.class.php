@@ -4,7 +4,6 @@ require_once (CP_DIR . 'lib/data/domain/options/DomainOptionTypeSelect.class.php
 
 class DomainOptionTypeVhostContainer extends DomainOptionTypeSelect
 {
-
 	/**
 	 * @see OptionType::getFormElement()
 	 */
@@ -32,6 +31,26 @@ class DomainOptionTypeVhostContainer extends DomainOptionTypeSelect
 			'options' => $options
 		));
 		return WCF :: getTPL()->fetch('optionTypeSelect');
+	}
+	
+	/**
+	 * @see OptionType::validate()
+	 */
+	public function validate($optionData, $newValue) 
+	{
+		if (!empty($newValue)) 
+		{
+			$sql = "SELECT 	count(*) AS c 
+					FROM	cp" . CP_N . "_vhostContainer
+					WHERE 	isContainer = 1 AND vhostContainerID = " . intval($newValue);
+		
+			$result = WCF :: getDB()->getFirstRow($sql);
+			
+			if ($result['c'] != 1) 
+			{
+				throw new UserInputException($optionData['optionName'], 'validationFailed');
+			}
+		}
 	}
 }
 ?>

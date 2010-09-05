@@ -37,7 +37,7 @@
 			
 			<option name="isAliasDomain">
 				<categoryname>web.definitions</categoryname>
-				<optiontype>radiobuttons</optiontype>
+				<optiontype>AliasRadiobuttons</optiontype>
 				<defaultvalue>none</defaultvalue>
 				<selectoptions><![CDATA[none:cp.domain.alias.none
 alias:cp.domain.alias.alias
@@ -50,8 +50,7 @@ redirect:redirectDomain,!aliasDomainID]]></enableoptions>
 
 			<option name="aliasDomainID">
 				<categoryname>web.definitions</categoryname>
-				<optiontype>text</optiontype>
-				<defaultvalue>0</defaultvalue>
+				<optiontype>DNoAliases</optiontype>
 				<editable>1</editable>
 			</option>
 
