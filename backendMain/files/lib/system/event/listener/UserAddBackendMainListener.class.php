@@ -17,7 +17,7 @@ class UserAddBackendMainListener implements EventListener
 	 */
 	public function execute($eventObj, $className, $eventName)
 	{
-		if (!$eventObj->cpUser->homedir)
+		if (!isset($eventObj->cpUser->homedir))
 		{
 			// create cp user record
 			$sql = "UPDATE	cp" . CP_N . "_user

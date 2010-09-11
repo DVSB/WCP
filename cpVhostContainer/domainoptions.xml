@@ -50,7 +50,7 @@ redirect:redirectDomain,!aliasDomainID]]></enableoptions>
 
 			<option name="aliasDomainID">
 				<categoryname>web.definitions</categoryname>
-				<optiontype>DNoAliases</optiontype>
+				<optiontype>NoAliases</optiontype>
 				<editable>1</editable>
 			</option>
 
