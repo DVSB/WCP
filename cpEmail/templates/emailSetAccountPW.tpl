@@ -1,6 +1,6 @@
 {include file="documentHeader"}
 <head>
-	<title>{lang}{lang}cp.email.account.{if $isUpdate}pwchange{else}addAccount{/if}{/lang} - {lang}{PAGE_TITLE}{/lang}</title>
+	<title>{lang}cp.email.account.{if $isUpdate}pwchange{else}addAccount{/if}{/lang} - {lang}{PAGE_TITLE}{/lang}</title>
 	{include file='headInclude' sandbox=false}
 	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/AjaxRequest.class.js"></script>
 	<script type="text/javascript" src="{@RELATIVE_WCF_DIR}js/Suggestion.class.js"></script>

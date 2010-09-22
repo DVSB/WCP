@@ -1,6 +1,7 @@
 <?php
 // wcf imports
 require_once (CP_DIR . 'lib/data/domain/options/DomainOptionTypeSelect.class.php');
+require_once (CP_DIR . 'lib/data/domain/Domain.class.php');
 
 class DomainOptionTypeNoAliases extends DomainOptionTypeSelect
 {
