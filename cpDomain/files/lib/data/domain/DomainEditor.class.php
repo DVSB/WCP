@@ -25,6 +25,7 @@ class DomainEditor extends Domain
 	 * @param	string		$documentroot
 	 * @param	int			$userID
 	 * @param	int 		$adminID
+	 * @param	int			$parentDomainID (if not 0 this is a subdomain!)
 	 * @param	array		$domainOptions
 	 * @param	array		$additionalFields
 	 * 
@@ -35,7 +36,7 @@ class DomainEditor extends Domain
 		// insert main data
 		$domainID = self :: insert($domainame, $userID, $adminID, $parentDomainID, $additionalFields);
 		
-		// insert user options
+		// insert domain options
 		self :: insertDomainOptions($domainID, $domainOptions);
 		
 		$domain = new DomainEditor($domainID);
@@ -50,6 +51,7 @@ class DomainEditor extends Domain
 	 * @param 	string 		$documentroot
 	 * @param	int			$userID
 	 * @param	int 		$adminID
+	 * @param	int			$parentDomainID (if not 0 this is a subdomain!)
 	 * @param	array		$additionalFields
 	 * 
 	 * @return 	integer		new domainID
@@ -76,6 +78,13 @@ class DomainEditor extends Domain
 						" . intval($parentDomainID) . "
 						" . $additionalColumnValues . ")";
 		WCF :: getDB()->sendQuery($sql);
+		
+		if ($parentDomainID != 0)
+		{
+			$user = new CPUser($userID);
+			$user->getEditor()->updateOptions(array('subdomainsUsed' => ++$user->subdomainsUsed));
+		}
+		
 		return WCF :: getDB()->getInsertID();
 	}
 
@@ -278,32 +287,52 @@ class DomainEditor extends Domain
 	{
 		
 	}
+	
+	/**
+	 * Get an array with all domainIDs for given userID
+	 * 
+	 * @param int $userID
+	 * 
+	 * @return array
+	 */
+	protected static function getIDsForUser($userID)
+	{
+		$sql = "SELECT domainID 
+				FROM cp" . CP_N . "_domain
+				WHERE userID = " . intval($userID);
+		
+		$result = WCF :: getDB()->sendQuery($sql);
+		
+		$domainIDsStr = array();
+		while ($row = WCF :: getDB()->fetchArray($result))
+		{
+			$domainIDsStr[] = $row['domainID'];
+		}
+
+		return $domainIDsStr;
+	}
 
 	/**
-	 * Deletes domains.
-	 * Returns the number of deleted domains.
+	 * Deletes all domains for given user
 	 *
-	 * @param	array		$domainIDs
-	 * @return	integer
+	 * @param	int		$userID
 	 */
-	public static function deleteDomains($domainIDs)
+	public static function deleteAll($userID)
 	{
-		if (count($domainIDs) == 0)
-			return 0;
-		
-		$domainIDsStr = implode(',', $domainIDs);
+		$domainIDsStr = implode(',', self :: getIDsForUser($userID));
 		
 		// delete options for this domain
 		$sql = "DELETE 	FROM cp" . CP_N . "_domain_option_value
 				WHERE 	domainID IN (" . $domainIDsStr . ")";
 		WCF :: getDB()->sendQuery($sql);
-		
+			
 		// delete domain from domain table
 		$sql = "DELETE 	FROM cp" . CP_N . "_domain
 				WHERE 	domainID IN (" . $domainIDsStr . ")";
 		WCF :: getDB()->sendQuery($sql);
 		
-		return count($domainIDs);
+		$user = new CPUser($userID);
+		$user->getEditor()->updateOptions(array('subdomainsUsed' => 0));
 	}
 	
 	/**
@@ -320,6 +349,12 @@ class DomainEditor extends Domain
 		$sql = "DELETE 	FROM cp" . CP_N . "_domain
 				WHERE 	domainID = " . $this->domainID;
 		WCF :: getDB()->sendQuery($sql);
+		
+		if ($this->parentDomainID != 0)
+		{
+			$user = new CPUser($this->userID);
+			$user->getEditor()->updateOptions(array('subdomainsUsed' => --$user->subdomainsUsed));
+		}
 	}
 	
 	/**
@@ -351,12 +386,9 @@ class DomainEditor extends Domain
 	 * @param	array		$domainIDs
 	 * @return	integer
 	 */
-	public static function disableAll($domainIDs)
+	public static function disableAll($userID)
 	{
-		if (count($domainIDs) == 0)
-			return 0;
-		
-		$domainIDsStr = implode(',', $domainIDs);
+		$domainIDsStr = implode(',', self :: getIDsForUser($userID));
 
 		$sql = "UPDATE 	cp" . CP_N . "_domain
 				SET		deactivated = 1
@@ -367,18 +399,15 @@ class DomainEditor extends Domain
 	}
 	
 	/**
-	 * enable domains.
+	 * enable domains for user
 	 * Returns the number of enabled domains.
 	 *
-	 * @param	array		$domainIDs
+	 * @param	int		$userID
 	 * @return	integer
 	 */
-	public static function enableAll($domainIDs)
+	public static function enableAll($userID)
 	{
-		if (count($domainIDs) == 0)
-			return 0;
-		
-		$domainIDsStr = implode(',', $domainIDs);
+		$domainIDsStr = implode(',', self :: getIDsForUser($userID));
 
 		$sql = "UPDATE 	cp" . CP_N . "_domain
 				SET		deactivated = 0
