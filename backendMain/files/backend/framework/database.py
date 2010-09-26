@@ -41,4 +41,4 @@ class database(object):
 
         c.execute(query)
         
-        return int(c.insert_id())
+        return int(self.connection.insert_id())

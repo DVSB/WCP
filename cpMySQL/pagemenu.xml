@@ -3,7 +3,7 @@
 <data>
 	<import>
 		<pagemenuitem name="cp.header.menu.mysql">
-			<icon>databaseM.png</icon>
+			<icon>databaseS.png</icon>
 			<link>index.php?page=MySQLList</link>
 			<showorder>5</showorder>
 			<permissions>cp.mysql.canListMySQL</permissions>

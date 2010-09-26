@@ -32,10 +32,11 @@ class jobhandler(object):
                                        FROM     cp" + self.env.cpnr + "_jobhandler_task jt \
                                        WHERE    nextExec IN ('" + "','".join(triggers) + "')\
                                        ORDER BY priority DESC, jobhandlerTaskID ASC")
-        self.env.writeJobs(self.jobs)
+        self.env.logger.writeJobs(self.jobs)
         
     def firePendingJobs(self):
         for job in self.jobs:
+            #TODO: ENABLE BACK!
             #try:
                 module = loadModule(job['jobhandler'], 'modules/')
                 func = getattr(module, job['jobhandler'])

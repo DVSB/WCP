@@ -3,7 +3,7 @@
 <data>
 	<import>
 		<pagemenuitem name="cp.header.menu.ftp">
-			<icon>ftpM.png</icon>
+			<icon>ftpS.png</icon>
 			<link>index.php?page=FTPList</link>
 			<showorder>4</showorder>
 			<permissions>cp.ftp.canListFTPAccounts</permissions>

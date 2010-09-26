@@ -12,10 +12,10 @@ class env(object):
     
     def __init__(self, path):
         self.wcfconfig = wcfconfig(path)
-        
-        self.db = database(wcfconfig)
-        self.config = configuration(db, wcfconfig) 
-        self.logger = logger(db)
+
+        self.db = database(self.wcfconfig)
+        self.config = configuration(self.db, self.wcfconfig) 
+        self.logger = logger(self.db)
         
         self.cpnr = self.db.cpnr
         self.wcfnr = self.db.wcfnr
