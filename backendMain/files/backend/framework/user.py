@@ -14,11 +14,11 @@ class user(object):
                                                      ON (cp_user.userID = user.userID) \
                                              LEFT JOIN wcf" + self.env.wcfnr + "_user_option_value user_option \
                                                      ON (user_option.userID = user.userID) \
-                                             WHERE     user.userID = " + self.userID 
-                                           )
+                                             WHERE     user.userID = " + str(self.userID) 
+                                           )[0]
         
         options = self.env.db.query("SELECT      optionName, optionID, optionType \
-                                     FROM        cp" + self.env.wcfnr + "_user_option \
+                                     FROM        wcf" + self.env.wcfnr + "_user_option \
                                      ORDER BY    showOrder")
         
         for o in options:

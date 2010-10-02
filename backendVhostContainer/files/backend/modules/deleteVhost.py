@@ -13,7 +13,7 @@ class deleteVhost(basishandler):
     '''
     
     def run(self):
-        self.vhandler = vhostHandler(self.db, self.config)
+        self.vhandler = vhostHandler(self.env)
         
         #delete this domain
         if self.data.has_key('domainID'):

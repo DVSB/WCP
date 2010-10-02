@@ -36,21 +36,19 @@ class jobhandler(object):
         
     def firePendingJobs(self):
         for job in self.jobs:
-            #TODO: ENABLE BACK!
-            #try:
+            try:
                 module = loadModule(job['jobhandler'], 'modules/')
                 func = getattr(module, job['jobhandler'])
                 obj = func(job['data'], self.env)
                 job['retVar'] = obj.run()
-            #except Exception, e:
-                #job['retVar'] = e
+            except Exception, e:
+                job['retVar'] = e
         
     def finishJobs(self):
         for job in self.jobs:
             if job['retVar'] != 'success':
-                #do something here
-                print "error ocurred"
-                print job
+                self.env.logger.append(str(job))
+                return "error ocurred"
             else:
                 if job['volatile'] == 1:
                     self.env.db.query("DELETE FROM cp" + self.env.cpnr + "_jobhandler_task \
@@ -61,5 +59,7 @@ class jobhandler(object):
                                    WHERE jobhandlerTaskID = " + str(job['jobhandlerTaskID']))
                       
         self.env.config.set("last_run_backend", int(time()))
+        
+        return "success"
         
         

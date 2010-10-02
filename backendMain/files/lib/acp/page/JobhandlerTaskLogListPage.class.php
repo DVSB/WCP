@@ -92,7 +92,6 @@ class JobhandlerTaskLogListPage extends SortablePage
 			case 'execTimeStart':
 			case 'execTimeEnd':
 			case 'execJobhandler':
-			case 'success':
 			break;
 			default:
 				$this->sortField = $this->defaultSortField;

@@ -13,7 +13,7 @@ class updateVhost(basishandler):
     '''
     
     def run(self):
-        self.vhandler = vhostHandler(self.db, self.config)
+        self.vhandler = vhostHandler(self.env)
         
         #update this domain
         if self.data.has_key('domainID'):

@@ -16,9 +16,10 @@ class createhome(basishandler):
             if dirsDB[dir][0] == 'textarea':
                 dirs += dirsDB[dir][1]
         
+        dirs = dirs.strip()
         dirs = parseOptions(dirs, self.env.config)
         dirs = parseUser(dirs, user)
-        dirs = dirs.split("\r\n")
+        dirs = dirs.splitlines()
         
         for dir in dirs:
             dir = dir.split(":")

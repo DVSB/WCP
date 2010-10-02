@@ -36,9 +36,47 @@ class database(object):
 
         return c.fetchone()
 
-    def insert(self, query):
+    def update(self, table, params, where):
         c = self.connection.cursor()
 
-        c.execute(query)
+        query = "UPDATE " + table + " \
+                 SET "
+        
+        vars = []    
+        for p in params:
+            if params[p] == "nativefunc":
+                query += p + ", "
+            else:
+                query += p + " = '%s', "
+                vars.append(params[p])
+        
+        query = query.rstrip(", ")
+
+        if where != "":
+            query += " WHERE "
+            for w in where:
+                query += w +" = %s AND "
+                vars.append(where[w])
+        
+        query = query.rstrip("AND ")
+
+        c.execute(query, vars)
+
+    def insert(self, table, params):
+        c = self.connection.cursor()
+        
+        query = "INSERT INTO " + table + " SET "
+        
+        vars = []     
+        for p in params:
+            if params[p] == "nativefunc":
+                query += p
+            else:
+                query += p + " = '%s', "
+                vars.append(params[p])
+                
+        query = query.rstrip(", ")
+
+        c.execute(query, vars)
         
         return int(self.connection.insert_id())

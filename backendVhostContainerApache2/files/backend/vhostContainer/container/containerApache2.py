@@ -8,7 +8,7 @@ import os, sys
 from re import *
 from Cheetah.Template import Template
 from subprocess import call
-from containerDefault import containerDefault
+from vhostContainer.container.containerDefault import containerDefault
 
 class containerApache2(containerDefault):
     '''
@@ -21,13 +21,12 @@ class containerApache2(containerDefault):
         self.ipandportprefix = self.env.config.get('containerApache2ipandportprefix')
         self.reloadcommand = self.env.config.get('containerApache2reloadcommand')
         
-        self.vars['logpath']['access'] = self.env.config.get('containerApache2logaccess')
-        self.vars['logpath']['error'] = self.env.config.get('containerApache2logerror')
-        self.vars.update(self.domain.vhostContainer)
+        self.vars['logpath'] = self.env.config.get('containerApache2logPath')
+        self.vars.update(self.domain.vhostContainer.vhost)
         self.vars.update(self.domain.domain)
-        self.vars.update(self.domain.user)
+        self.vars.update(self.domain.user.user)
         
-        self.file =  os.path.abspath(self.vhostpath + '/' + self.fileprefix + '_' + self.domain.domainID + '_' + self.domain.domainname + '.conf')
+        self.file =  os.path.abspath(self.vhostpath + '/' + self.fileprefix + '_' + self.domain.domainID + '_' + self.domain.get("domainname") + '.conf')
     
     def createDomain(self):
         self.parse()
@@ -63,9 +62,9 @@ class containerApache2(containerDefault):
         
     def writeFile(self):
         if self.parsedTemplate <> None:
-            file = file(self.file, 'w')
-            file.write(self.parsedTemplate)
-            file.close()
+            f = file(self.file, 'w')
+            f.write(str(self.parsedTemplate))
+            f.close()
             
     def finishContainer(self):
         self.writeIPandPort()    
@@ -73,16 +72,16 @@ class containerApache2(containerDefault):
         
     def writeIPandPort(self):
         ipAndPort = ""
-        if self.get('addListenStatement'):
-            ipAndPort += "Listen " + self.get('ipAddress') + ":" + self.get('port')
+        if self.domain.vhostContainer.get('addListenStatement'):
+            ipAndPort += "Listen " + str(self.domain.vhostContainer.get('ipAddress')) + ":" + str(self.domain.vhostContainer.get('port')) + "\n"
             
-        if self.get('addNameStatement'):
-            ipAndPort += "NameVirtualHost " + self.get('ipAddress') + ":" + self.get('port')
+        if self.domain.vhostContainer.get('addNameStatement'):
+            ipAndPort += "NameVirtualHost " + str(self.domain.vhostContainer.get('ipAddress')) + ":" + str(self.domain.vhostContainer.get('port')) + "\n"
             
         if ipAndPort:
-            file = file(os.path.abspath(self.vhostpath + '/' + self.ipandportprefix + '_' + self.get('ipAddress') + "." + self.get('port') + '.conf'), 'w')
-            file.write(ipAndPort)
-            file.close()
+            f = file(os.path.abspath(self.vhostpath + '/' + self.ipandportprefix + '_' + str(self.domain.vhostContainer.get('ipAddress')) + "." + str(self.domain.vhostContainer.get('port')) + '.conf'), 'w')
+            f.write(ipAndPort)
+            f.close()
             
     def reloadServer(self):
         try:

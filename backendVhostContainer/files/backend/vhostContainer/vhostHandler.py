@@ -6,7 +6,8 @@ Created on 03.05.2010
 import imp
 import sys
 import os
-from vhostContainer import domain, vhostContainer
+from vhostContainer import vhostContainer
+from domain import domain
 
 class vhostHandler(object):
     '''
@@ -16,11 +17,11 @@ class vhostHandler(object):
         self.env = env
         self.domains = []
         self.vhostContainer = []
-        vhostContainer = self.env.db.queryDict("SELECT      * \
+        vhostContainers = self.env.db.queryDict("SELECT      * \
                                                 FROM        cp" + self.env.cpnr + "_vhostContainer \
                                                 WHERE       isContainer = 1")
-        for v in vhostContainer:
-            self.vhostContainer.append(vhostContainer(v))
+        for v in vhostContainers:
+            self.vhostContainer.append(vhostContainer(v, self.env))
             
     def addDomainToVhost(self, domain):
         for v in self.vhostContainer:
@@ -28,14 +29,14 @@ class vhostHandler(object):
                 v.addDomain(domain)
         
     def addDomain(self, domainID):
-        self.addDomainToVhost(domain(domainID, self, self.env))
+        self.addDomainToVhost(domain(domainID, self.env))
         
     def addDomainsForUser(self, userID):
         domains = self.env.db.query("SELECT      domainID \
                                      FROM        cp" + self.env.cpnr + "_domain \
                                      WHERE       userID = " + userID)
         for d in domains:
-            self.addDomainToVhost(domain(d[0], self, self.env))
+            self.addDomainToVhost(domain(d[0], self.env))
         
     def addDomainsForVhost(self, vhostID):
         vhostField = self.env.db.querySingle("SELECT      optionID \
@@ -46,17 +47,16 @@ class vhostHandler(object):
                                      FROM        cp" + self.db.cpnr + "_domain_option_value \
                                      WHERE       domainOption" + str(vhostField[0]) + " = " + vhostID)
         for d in domains:
-            self.addDomainToVhost(domain(d[0], self, self.env))
+            self.addDomainToVhost(domain(d[0], self.env))
             
     def createVhosts(self):
         for v in self.vhostContainer:
-            v.createDomains()
+            v.createVhosts()
         
     def updateVhosts(self):
         for v in self.vhostContainer:
-            vc.updateDomains()
+            v.updateVhosts()
         
     def deleteVhosts(self):
         for v in self.vhostContainer:
-            v.deleteDomains()
-        
+            v.deleteVhosts()

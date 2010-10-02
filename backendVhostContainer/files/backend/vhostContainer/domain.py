@@ -21,10 +21,10 @@ class domain(object):
     def loadDomain(self):
         self.domain = self.env.db.queryDict("SELECT    * \
                                              FROM      cp" + self.env.cpnr + "_domain domain \
-                                             JOIN      cp" + self.env.cpnr + "_domain_option_values domain_option \
+                                             JOIN      cp" + self.env.cpnr + "_domain_option_value domain_option \
                                                     ON (domain_option.domainID = domain.domainID) \
-                                             WHERE     domain.domainID = " + self.domainID 
-                                           )
+                                             WHERE     domain.domainID = " + str(self.domainID) 
+                                           )[0]
         
         options = self.env.db.query("SELECT      optionName, optionID, optionType \
                                      FROM        cp" + self.env.cpnr + "_domain_option \

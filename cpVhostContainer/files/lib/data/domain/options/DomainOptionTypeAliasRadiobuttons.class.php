@@ -11,7 +11,7 @@ class DomainOptionTypeAliasRadiobuttons extends DomainOptionTypeRadiobuttons
 	{
 		//TODO: Get Parameters and search for aliasdomains
 		
-		return parent :: getFormElement(&$optionData);
+		return parent :: getFormElement($optionData);
 	}
 	
 	/**

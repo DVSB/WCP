@@ -27,7 +27,7 @@
 			<option name="default_create_paths">
 				<categoryname>cp.backendpaths.createpaths</categoryname>
 				<optiontype>textarea</optiontype>
-				<defaultvalue>d:{HOMEDIR_PREFIX}/{USERNAME}:0555:{GUID}.{GUID}
+				<defaultvalue>d:{HOMEDIR}:0555:{GUID}.{GUID}
 d:{HOMEDIR}/tmp:0777:{GUID}.{GUID}
 d:{HOMEDIR}/files:0777:{GUID}.{GUID}</defaultvalue>
 			</option>

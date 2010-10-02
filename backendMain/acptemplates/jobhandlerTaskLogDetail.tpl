@@ -25,10 +25,12 @@
 	<div class="formElement">
 		<p class="formFieldLabel">{lang}cp.acp.jobhandlerLog.success{/lang}</p>
 		<p class="formField">
-				{if $log.success == 1}
+				{if $log.success == "success"}
 					{lang}cp.global.yes{/lang}
+				{elseif $log.success == "running"}
+					{lang}cp.acp.jobhandlerLog.running{/lang}
 				{else}
-					{lang}cp.global.no{/lang}
+					{$log.success|nl2br}
 				{/if}
 		</p>
 	</div>

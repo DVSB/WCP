@@ -14,8 +14,8 @@
 		        	<categoryname>cp.backendpaths.createpaths</categoryname>
 					<optiontype>textarea</optiontype>
 		        	<defaultvalue>d:{HOMEDIR}/webalizer:0555:{GUID}.{GUID}
-d:{HOMEDIR}/logfiles:0750:{APACHE2USER}.{GUID}
-l:{APACHE2LOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{APACHE2USER}.{APACHE2USER}
+d:{HOMEDIR}/logfiles:0750:{CONTAINERAPACHE2USER}.{GUID}
+l:{CONTAINERAPACHE2LOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{CONTAINERAPACHE2USER}.{CONTAINERAPACHE2USER}
 </defaultvalue>
 		    	</option>
 		
@@ -63,8 +63,8 @@ l:{APACHE2LOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{APACHE2USER}.{APACHE2USE
   
   Alias /webalizer "$homeDir/webalizer/$domainname"
   
-  ErrorLog "$logpath.error"
-  CustomLog "$logpath.access" combined
+  ErrorLog "$containerApache2logpath/$username/$domainname-error.log"
+  CustomLog "$containerApache2logpath/$username/$domainname-access.log" combined
   
   #if $isSSL
   <IfModule mod_ssl.c>
@@ -91,35 +91,27 @@ l:{APACHE2LOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{APACHE2USER}.{APACHE2USE
 				<permissions>admin.cp.canEditVhostContainer</permissions>
 			</option> 
 
+			<option name="containerApache2reloadcommand">
+				<categoryname>cpvhostcontainer.containerApache2</categoryname>
+				<optiontype>text</optiontype>
+				<defaultvalue>/etc/init.d/apache2 restart</defaultvalue>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</option>
+			
+			<option name="containerApache2logpath">
+				<categoryname>cpvhostcontainer.containerApache2</categoryname>
+				<optiontype>text</optiontype>
+				<defaultvalue>/var/log/webcp/{username}</defaultvalue>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</option>
+			
+			<option name="containerApache2user">
+				<categoryname>cpvhostcontainer.containerApache2</categoryname>
+				<optiontype>text</optiontype>
+				<defaultvalue>www-data</defaultvalue>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</option>
+
 		</options>
-		
-		<option name="containerApache2reloadcommand">
-			<categoryname>cpvhostcontainer.containerApache2</categoryname>
-			<optiontype>text</optiontype>
-			<defaultvalue>/etc/init.d/apache2 restart</defaultvalue>
-			<permissions>admin.cp.canEditVhostContainer</permissions>
-		</option>
-		
-		<option name="containerApache2logerror">
-			<categoryname>cpvhostcontainer.containerApache2</categoryname>
-			<optiontype>text</optiontype>
-			<defaultvalue>/var/log/webcp/{username}/{domainname}-error.log</defaultvalue>
-			<permissions>admin.cp.canEditVhostContainer</permissions>
-		</option>
-		
-		<option name="containerApache2logaccess">
-			<categoryname>cpvhostcontainer.containerApache2</categoryname>
-			<optiontype>text</optiontype>
-			<defaultvalue>/var/log/webcp/{username}/{domainname}-access.log</defaultvalue>
-			<permissions>admin.cp.canEditVhostContainer</permissions>
-		</option>
-		
-		<option name="containerApache2user">
-			<categoryname>cpvhostcontainer.containerApache2</categoryname>
-			<optiontype>text</optiontype>
-			<defaultvalue>www-data</defaultvalue>
-			<permissions>admin.cp.canEditVhostContainer</permissions>
-		</option>
-		
 	</import>
 </data>

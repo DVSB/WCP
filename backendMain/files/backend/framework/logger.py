@@ -13,25 +13,29 @@ class logger(object):
         self.db = db
         self.log = []
         
-        self.sessionID = self.db.insert("INSERT INTO cp" + self.db.cpnr + "_jobhandler_task_log \
-                                        SET execTimeStart = UNIX_TIMESTAMP()")
+        self.sessionID = self.db.insert("cp" + self.db.cpnr + "_jobhandler_task_log", 
+                                        {'execTimeStart = UNIX_TIMESTAMP()': 'nativefunc'})
         
     def append(self, text):
         self.log.append(text)
         
     def writeJobs(self, jobs):
-        self.db.query("UPDATE cp" + self.db.cpnr + "_jobhandler_task_log \
-                        SET execJobhandler = '" + ", ".join(jobs) + "' \
-                        WHERE jobhandlerTaskLogID = " + self.sessionID)
+        jobString = ""
+        for job in jobs:
+            jobString += job['jobhandler'] + "\n"
+        
+        self.db.update("cp" + self.db.cpnr + "_jobhandler_task_log", 
+                       {"execJobhandler": jobString.strip()},
+                       {"jobhandlerTaskLogID": self.sessionID})
         
     def write(self):
-        self.db.query("UPDATE cp" + self.db.cpnr + "_jobhandler_task_log \
-                        SET data = '" + "\n".join(self.log) + "' \
-                        WHERE jobhandlerTaskLogID = " + self.sessionID)
+        self.db.update("cp" + self.db.cpnr + "_jobhandler_task_log",
+                        {"data": "\n".join(self.log)},
+                        {"jobhandlerTaskLogID": self.sessionID})
         
     def close(self, success):
-        self.db.query("UPDATE cp" + self.db.cpnr + "_jobhandler_task_log \
-                        SET data = '" + "\n".join(self.log) + "', \
-                            success = " + int(success) + ", \
-                            execTimeEnd = UNIX_TIMESTAMP() \
-                        WHERE jobhandlerTaskLogID = " + self.sessionID)
+        self.db.update("cp" + self.db.cpnr + "_jobhandler_task_log",
+                        {'data': "\n".join(self.log), 
+                         'success': str(success), 
+                         'execTimeEnd = UNIX_TIMESTAMP()': 'nativefunc'},
+                        {'jobhandlerTaskLogID': self.sessionID})

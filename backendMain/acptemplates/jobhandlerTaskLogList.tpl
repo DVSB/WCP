@@ -21,11 +21,11 @@
 		<table class="tableList">
 			<thead>
 				<tr class="tableHead">
-					<th class="columnJobhandlerTaskLogID{if $sortField == 'jobhandlerTaskLogID'} active{/if}"><div><a href="index.php?page=JobhandlerTaskLogList&amp;pageNo={@$pageNo}&amp;sortField=jobhandlerTaskLogID&amp;sortOrder={if $sortField == 'jobhandlerTaskID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.acp.jobhandlerLog.jobhandlerTaskLogID{/lang}{if $sortField == 'jobhandlerTaskLogID'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
+					<th class="columnJobhandlerTaskLogID{if $sortField == 'jobhandlerTaskLogID'} active{/if}"><div><a href="index.php?page=JobhandlerTaskLogList&amp;pageNo={@$pageNo}&amp;sortField=jobhandlerTaskLogID&amp;sortOrder={if $sortField == 'jobhandlerTaskLogID' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.acp.jobhandlerLog.jobhandlerTaskLogID{/lang}{if $sortField == 'jobhandlerTaskLogID'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
 					<th class="columnExecTimeStart{if $sortField == 'execTimeStart'} active{/if}"><div><a href="index.php?page=JobhandlerTaskLogList&amp;pageNo={@$pageNo}&amp;sortField=execTimeStart&amp;sortOrder={if $sortField == 'execTimeStart' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.acp.jobhandlerLog.execTimeStart{/lang}{if $sortField == 'execTimeStart'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
 					<th class="columnExecTimeEnd{if $sortField == 'execTimeEnd'} active{/if}"><div><a href="index.php?page=JobhandlerTaskLogList&amp;pageNo={@$pageNo}&amp;sortField=execTimeEnd&amp;sortOrder={if $sortField == 'execTimeEnd' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.acp.jobhandlerLog.execTimeEnd{/lang}{if $sortField == 'execTimeEnd'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
 					<th class="columnExecJobhandler{if $sortField == 'execJobhandler'} active{/if}"><div><a href="index.php?page=JobhandlerTaskLogList&amp;pageNo={@$pageNo}&amp;sortField=execJobhandler&amp;sortOrder={if $sortField == 'execJobhandler' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.acp.jobhandlerLog.execJobhandler{/lang}{if $sortField == 'execJobhandler'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
-					<th class="columnSuccess{if $sortField == 'success'} active{/if}"><div><a href="index.php?page=JobhandlerTaskLogList&amp;pageNo={@$pageNo}&amp;sortField=success&amp;sortOrder={if $sortField == 'success' && $sortOrder == 'ASC'}DESC{else}ASC{/if}{@SID_ARG_2ND}">{lang}cp.acp.jobhandlerLog.success{/lang}{if $sortField == 'success'} <img src="{@RELATIVE_WCF_DIR}icon/sort{@$sortOrder}S.png" alt="" />{/if}</a></div></th>
+					<th class="columnSuccess"><div>{lang}cp.acp.jobhandlerLog.success{/lang}</div></th>
 					
 					{if $additionalColumns|isset}{@$additionalColumns}{/if}
 				</tr>
@@ -38,10 +38,12 @@
 					<td class="columnExecTimeEnd">{@$log.execTimeEnd|shorttime}</td>
 					<td class="columnExecJobhandler">{$log.execJobhandler|truncate:50:' ...'}</td>
 					<td class="columnSuccess">
-						{if $log.success == 1}
+						{if $log.success == "success"}
 							{lang}cp.global.yes{/lang}
+						{elseif $log.success == "running"}
+							{lang}cp.acp.jobhandlerLog.running{/lang}
 						{else}
-							{lang}cp.global.no{/lang}
+							{$log.success|truncate:50:' ...'}
 						{/if}
 					</td>
 						

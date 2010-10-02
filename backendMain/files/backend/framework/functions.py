@@ -1,4 +1,4 @@
-import os.path
+import os.path, sys
 from grp import getgrnam
 from pwd import getpwnam
 from re import *
@@ -114,10 +114,10 @@ def loadModule(name, pathprefix):
 
     # If any of the following calls raises an exception,
     # there's a problem we can't handle -- let the caller handle it.
-    fp, pathname, description = imp.find_module(name)
+    fp, pathname, description = find_module(name)
     
     try:
-        return imp.load_module(name, fp, pathname, description)
+        return load_module(name, fp, pathname, description)
     finally:
         # Since we may exit via an exception, close fp explicitly.
         if fp:

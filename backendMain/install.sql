@@ -23,7 +23,7 @@ CREATE TABLE cp1_1_jobhandler_task_log (
 	execTimeStart int(10) unsigned NOT NULL default 0,
 	execTimeEnd int(10) unsigned NOT NULL default 0,
 	execJobhandler TEXT NOT NULL DEFAULT '',
-	success tinyint(1) unsigned NOT NULL default 0,
-	data TEXT NOT NULL,
+	success varchar(200) NOT NULL default 'running',
+	data TEXT NULL,
 	PRIMARY KEY (jobhandlerTaskLogID)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

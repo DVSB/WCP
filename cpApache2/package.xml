@@ -5,7 +5,7 @@
 	<packageInformation>
 		<packageName>Web ControlPanel Apache2 Modul</packageName>
 		<packageDescription>Erstellt/Editiert Apache2-Vhosts</packageDescription>
-		<version>0.5.0-beta1</version>
+		<version>0.5.0-beta3</version>
 		<plugin>com.toby.cp</plugin>
 		<date>2010-05-16</date>
 	</packageInformation>
@@ -28,7 +28,12 @@
 		<languages languagecode="de">de.xml</languages>
 		<options>options.xml</options>
 		<files>files.tar</files>
-
+	</instructions>
+	
+	<instructions type="update" fromversion="0.*">
+		<languages languagecode="de">de.xml</languages>
+		<options>options.xml</options>
+		<files>files.tar</files>
 	</instructions>
 
 </package>

@@ -20,5 +20,5 @@ class env(object):
         self.cpnr = self.db.cpnr
         self.wcfnr = self.db.wcfnr
         
-    def close(self):
-        self.logger.close()
+    def close(self, success):
+        self.logger.close(success)
