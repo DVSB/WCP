@@ -17,12 +17,12 @@ class counthome(basishandler):
                 odirs += dir[1]
         
         # parse dirs with options
-        odirs = parseOptions(odirs, self.env.config)        
+        odirs = parseOptions(odirs, self.env.config)     
         
         for user in users:   
             # parse dirs with userdata
             dirs = parseUser(odirs, user)
-            dirs = dirs.split("\r\n")
+            dirs = dirs.splitlines()
             
             bytes = 0.0
             

@@ -16,6 +16,7 @@ class JobhandlerTaskLogListPage extends SortablePage
 	public $templateName = 'jobhandlerTaskLogList';
 	public $defaultSortField = 'jobhandlerTaskLogID';
 	public $neededPermissions = 'admin.cp.canSeeJobhandlerLog';
+	public $defaultSortOrder = 'DESC';
 	
 	/**
 	 * list of jobhandlers

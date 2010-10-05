@@ -36,11 +36,11 @@
 	</div>
 	<div class="formElement">
 		<p class="formFieldLabel">{lang}cp.acp.jobhandlerLog.execTimeStart{/lang}</p>
-		<p class="formField">{$log.execTimeStart|fulldate}</p>
+		<p class="formField">{$log.execTimeStart|date:"%Y-%m-%d %H:%I:%S"}</p>
 	</div>
 	<div class="formElement">
 		<p class="formFieldLabel">{lang}cp.acp.jobhandlerLog.execTimeEnd{/lang}</p>
-		<p class="formField">{$log.execTimeEnd|fulldate}</p>
+		<p class="formField">{if $log.execTimeEnd > 0}{$log.execTimeEnd|t:"%Y-%m-%d %H:%I:%S"}{/if}</p>
 	</div>
 	<div class="formElement">
 		<p class="formFieldLabel">{lang}cp.acp.jobhandlerLog.execJobhandler{/lang}</p>
