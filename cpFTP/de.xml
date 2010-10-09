@@ -7,7 +7,7 @@
 		<item name="cp.ftp.editAccount"><![CDATA[FTP-Zugang editieren]]></item>
 		<item name="cp.ftp.password"><![CDATA[Login-Passwort]]></item>
 		<item name="cp.ftp.path"><![CDATA[Pfad]]></item>
-		<item name="cp.ftp.path.description"><![CDATA[Der Pfad definiert, auf welchen Ordner (inklusive aller Unterordner) dieser FPT-Zugang Zugriff hat.]]></item>
+		<item name="cp.ftp.path.description"><![CDATA[Der Pfad definiert, auf welchen Ordner (inklusive aller Unterordner) dieser FTP-Zugang Zugriff hat.]]></item>
 		<item name="cp.ftp.invalidPath"><![CDATA[Ungültiger Pfad]]></item>
 		<item name="cp.ftp.list"><![CDATA[Zugangsliste]]></item>
 		<item name="cp.ftp.ftpUserID"><![CDATA[]]></item>
@@ -18,6 +18,7 @@
 		<item name="cp.ftp.enableAccount"><![CDATA[FTP-Zugang aktivieren]]></item>
 		<item name="cp.ftp.disableAccount"><![CDATA[FTP-Zugang deaktivieren]]></item>
 		<item name="cp.ftp.description"><![CDATA[Notizen]]></item>
+		<item name="cp.ftp.defaultaccount"><![CDATA[Dies ist ein automatisch angelegter FTP-Account. Er wurde inital mit der Erstellung des Benutzers mit dem gleichen Passwort angelegt. Mit diesem Account ist ein Zugriff auf alle Verzeichnisse und Dateien möglich.]]></item>
 	</category>
 	
 	<category name="cp.header.menu">

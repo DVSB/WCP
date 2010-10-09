@@ -7,33 +7,33 @@
 			<eventName>readData</eventName>
 			<listenerClassFile>lib/system/event/listener/IndexEmailsListener.class.php</listenerClassFile>
 		</eventlistener>
-		<eventlistener>
-			<eventClassName>UserAddForm</eventClassName>
-			<eventName>saved</eventName>
-			<listenerClassFile>lib/system/event/listener/UserACPEmailsListener.class.php</listenerClassFile>
-			<environment>admin</environment>
-			<inherit>1</inherit>
-			<nice>10</nice>
-		</eventlistener>
+		
 		<eventlistener>
 			<eventClassName>UserBanForm</eventClassName>
 			<eventName>saved</eventName>
 			<listenerClassFile>lib/system/event/listener/UserACPEmailsListener.class.php</listenerClassFile>
+			<environment>admin</environment>
 		</eventlistener>
+		
 		<eventlistener>
 			<eventClassName>UserBanAction</eventClassName>
 			<eventName>executed</eventName>
 			<listenerClassFile>lib/system/event/listener/UserACPEmailsListener.class.php</listenerClassFile>
+			<environment>admin</environment>
 		</eventlistener>
+		
 		<eventlistener>
 			<eventClassName>UserUnbanAction</eventClassName>
 			<eventName>executed</eventName>
 			<listenerClassFile>lib/system/event/listener/UserACPEmailsListener.class.php</listenerClassFile>
+			<environment>admin</environment>
 		</eventlistener>
+		
 		<eventlistener>
 			<eventClassName>UserDeleteAction</eventClassName>
 			<eventName>executed</eventName>
 			<listenerClassFile>lib/system/event/listener/UserACPEmailsListener.class.php</listenerClassFile>
+			<environment>admin</environment>
 		</eventlistener>
 	</import>
 </data>

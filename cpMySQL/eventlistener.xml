@@ -7,10 +7,12 @@
 			<eventName>readData</eventName>
 			<listenerClassFile>lib/system/event/listener/IndexMySQLListener.class.php</listenerClassFile>
 		</eventlistener>
+		
 		<eventlistener>
 			<eventClassName>UserDeleteAction</eventClassName>
 			<eventName>executed</eventName>
 			<listenerClassFile>lib/system/event/listener/UserACPMySQLListener.class.php</listenerClassFile>
+			<environment>admin</environment>
 		</eventlistener>
 	</import>
 </data>

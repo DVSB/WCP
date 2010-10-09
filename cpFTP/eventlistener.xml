@@ -19,21 +19,25 @@
 			<eventClassName>UserBanForm</eventClassName>
 			<eventName>saved</eventName>
 			<listenerClassFile>lib/system/event/listener/UserACPFTPListener.class.php</listenerClassFile>
+			<environment>admin</environment>
 		</eventlistener>
 		<eventlistener>
 			<eventClassName>UserBanAction</eventClassName>
 			<eventName>executed</eventName>
 			<listenerClassFile>lib/system/event/listener/UserACPFTPListener.class.php</listenerClassFile>
+			<environment>admin</environment>
 		</eventlistener>
 		<eventlistener>
 			<eventClassName>UserUnbanAction</eventClassName>
 			<eventName>executed</eventName>
 			<listenerClassFile>lib/system/event/listener/UserACPFTPListener.class.php</listenerClassFile>
+			<environment>admin</environment>
 		</eventlistener>
 		<eventlistener>
 			<eventClassName>UserDeleteAction</eventClassName>
 			<eventName>executed</eventName>
 			<listenerClassFile>lib/system/event/listener/UserACPFTPListener.class.php</listenerClassFile>
+			<environment>admin</environment>
 		</eventlistener>
 	</import>
 </data>
