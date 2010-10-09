@@ -6,7 +6,7 @@ if (!defined('NO_IMPORTS'))
 }
 
 /**
- * Domain class defines all functions to "get" the information (data) of a vhost. It is a reading class only.
+ * VhostContainer class defines all functions to "get" the information (data) of a vhost. It is a reading class only.
  *
  * This class provides all necessary functions to "read" all possible vhostdata. 
  * This includes required data and optional data. To set this vhostdata read 
@@ -43,14 +43,14 @@ class VhostContainer extends DatabaseObject
 	}
 
 	/**
-	 * Returns a VhostContainerEditor object to edit this user.
+	 * Returns a VhostContainerEditor object to edit this vhostContainer.
 	 * 
 	 * @return	VhostContainerEditor
 	 */
 	public function getEditor()
 	{
 		require_once (CP_DIR . 'lib/data/domain/VhostContainerEditor.class.php');
-		return new VhostContainerEditor($this->domainID);
+		return new VhostContainerEditor($this->vhostContainerID);
 	}
 }
 ?>
