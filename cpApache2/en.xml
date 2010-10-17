@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "http://www.woltlab.com/DTDs/language.dtd">
+<language languagecode="en">
+
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.category.cpvhostcontainer.containerApache2"><![CDATA[Apache2 Container]]></item>
+		<item name="wcf.acp.option.category.cpvhostcontainer.containerApache2.description"><![CDATA[Settings for Apache2]]></item>
+		<item name="wcf.acp.option.apache2_create_paths"><![CDATA[Apache2-Paths]]></item>
+		<item name="wcf.acp.option.apache2_create_paths.description"><![CDATA[This paths will created for Apache2-Domains.]]></item>
+		<item name="wcf.acp.option.containerApache2vhostpath"><![CDATA[Vhost-Paths]]></item>
+		<item name="wcf.acp.option.containerApache2fileprefix"><![CDATA[File-Prefix]]></item>
+		<item name="wcf.acp.option.containerApache2ipandportprefix"><![CDATA[IP and Port-Prefix]]></item>
+		<item name="wcf.acp.option.containerApache2template"><![CDATA[Vhost-Template]]></item>
+		<item name="wcf.acp.option.containerApache2reloadcommand"><![CDATA[Apache2-Reloadcommando]]></item>
+		<item name="wcf.acp.option.containerApache2logerror"><![CDATA[Error-Logpath]]></item>
+		<item name="wcf.acp.option.containerApache2logaccess"><![CDATA[Access-Logpath]]></item>
+		<item name="wcf.acp.option.containerApache2user"><![CDATA[Apache2-User]]></item>
+		<item name="wcf.acp.option.containerApache2vhostpath.description"><![CDATA[In this directory are stored the created Vhost-Files.]]></item>
+		<item name="wcf.acp.option.containerApache2fileprefix.description"><![CDATA[With this prefix will begin all created Vhost-Files.]]></item>
+		<item name="wcf.acp.option.containerApache2ipandportprefix.description"><![CDATA[With this prefix will begin all Files for IP and Port definations. This value must are alphabetically before the file prefix!]]></item>
+		<item name="wcf.acp.option.containerApache2template.description"><![CDATA[This template defined the basic structure of the Vhosts.]]></item>
+		<item name="wcf.acp.option.containerApache2reloadcommand.description"><![CDATA[With this commando the Apache2-Server will be restarted.]]></item>
+		<item name="wcf.acp.option.containerApache2logerror.description"><![CDATA[Defined the default path for errorlog-files, default variables could be used.]]></item>
+		<item name="wcf.acp.option.containerApache2logaccess.description"><![CDATA[Defined the default path for accesslog-files, default variables could be used.]]></item>
+		<item name="wcf.acp.option.containerApache2user.description"><![CDATA[Webserver is running at this user.]]></item>
+	</category>
+	
+</language>
