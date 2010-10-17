@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "http://www.woltlab.com/DTDs/language.dtd">
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com/XSD/language.xsd" languagecode="en">
+	
+	<category name="wcf.acp.option">
+		<!-- CP -->
+		<item name="wcf.acp.option.homedir_prefix"><![CDATA[Home directory prefix]]></item>
+		<item name="wcf.acp.option.homedir_prefix.description"><![CDATA[This determines which path the user directories to be the front attached. With /home/ the paths look like so: /home/mmustermann]]></item>
+		<item name="wcf.acp.option.category.cp.backendpaths"><![CDATA[Paths]]></item>
+		<item name="wcf.acp.option.category.cp.backendpaths.description"><![CDATA[Here are all file system paths are defined that are used by background tasks.]]></item>
+		<item name="wcf.acp.option.category.cp.backendpaths.createpaths"><![CDATA[Path building]]></item>
+		<item name="wcf.acp.option.category.cp.backendpaths.createpaths.description"><![CDATA[This file system paths are created when a new user is activated as a customer. This is the format "Path Type:Path:Rights:Owner.Group". Path type can be d for a directory or l for a link. The path can be all, the rights are ever given octal, owner and group as name or number. It can also be used variables, for example &#123;HOMEDIR&#125; for the directory of the user to be created or &#123;GUID&#125; for the user/group-ID the user to be created.]]></item>
+		<item name="wcf.acp.option.default_create_paths"><![CDATA[Standard-Paths]]></item>
+		<item name="wcf.acp.option.default_create_paths.description"><![CDATA[This paths will created for every new user.]]></item>
+		<item name="wcf.acp.option.category.cp.backendpaths.countpaths"><![CDATA[Paths for space calculation]]></item>
+		<item name="wcf.acp.option.category.cp.backendpaths.countpaths.description"><![CDATA[This paths will considered, if calculated, how much space every user has consumed. This is the format "Path:exclude paths (comma separated)"]]></item>
+		<item name="wcf.acp.option.default_count_paths"><![CDATA[Standard-Paths]]></item>
+		<item name="wcf.acp.option.default_count_paths.description"><![CDATA[This paths will evaluated daily for every user.]]></item>
+	</category>
+	
+	<category name="wcf.user.option">
+		<item name="wcf.user.option.category.account.disk"><![CDATA[Space]]></item>
+		<item name="wcf.user.option.diskspace"><![CDATA[Space (used/unused)]]></item>
+		<item name="wcf.user.option.diskspace.description"><![CDATA[How much space is for this user available?]]></item>
+	</category>
+	
+	<category name="wcf.user.option">
+		<item name="wcf.user.option.diskspace.values"><![CDATA[<span{if $used > $avail} class="red"{/if}>{$used|float}</span> / {$avail}]]></item>
+	</category>		
+	
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.category.admin.cp.jobhandler"><![CDATA[Background-Tasks]]></item>
+		<item name="wcf.acp.group.option.category.admin.cp.jobhandler.description"><![CDATA[]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canSeeJobhandler"><![CDATA[Can see sheduled Background-Tasks]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canSeeJobhandler.description"><![CDATA[Members of this group can see sheduled Background-Tasks]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canSeeJobhandlerLog"><![CDATA[Can see Background-Task-Log]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canSeeJobhandlerLog.description"><![CDATA[Members of this group can see the Log of the conducted Background-Tasks]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canClearJobhandlerLog"><![CDATA[Can delete Background-Task-Log]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canClearJobhandlerLog.description"><![CDATA[Members of this group can clear the Log of the conducted Background-Tasks]]></item>
+	</category>
+	
+	<category name="cp.acp.menu">
+		<item name="cp.acp.menu.link.jobhandler"><![CDATA[Background-Tasks]]></item>
+		<item name="cp.acp.menu.link.jobhandler.view"><![CDATA[Sheduled Tasks]]></item>
+		<item name="cp.acp.menu.link.jobhandler.log"><![CDATA[Task-Logs]]></item>
+	</category>
+
+	<category name="cp.acp.jobhandler">
+		<item name="cp.acp.jobhandler.list"><![CDATA[Active Background-Tasks]]></item>
+		<item name="cp.acp.jobhandler.lastRun"><![CDATA[Last run: {$lastRun|shorttime}]]></item>
+		<item name="cp.acp.jobhandler.listcount"><![CDATA[{$jobhandler|count} active Background-Tasks]]></item>
+		<item name="cp.acp.jobhandler.jobhandlerTaskID"><![CDATA[TaskID]]></item>
+		<item name="cp.acp.jobhandler.jobhandler"><![CDATA[Task-Name]]></item>
+		<item name="cp.acp.jobhandler.lastExec"><![CDATA[Last execute]]></item>
+		<item name="cp.acp.jobhandler.nextExec"><![CDATA[Next execute]]></item>
+		<item name="cp.acp.jobhandler.volatile"><![CDATA[Transient]]></item>
+		<item name="cp.acp.jobhandler.data"><![CDATA[Parameter]]></item>
+		<item name="cp.acp.jobhandler.nextExec.asap"><![CDATA[Soon as possible]]></item>
+		<item name="cp.acp.jobhandler.nextExec.hourchange"><![CDATA[Hour change]]></item>
+		<item name="cp.acp.jobhandler.nextExec.daychange"><![CDATA[Day change]]></item>
+		<item name="cp.acp.jobhandler.nextExec.weekchange"><![CDATA[Week change]]></item>
+		<item name="cp.acp.jobhandler.nextExec.monthchange"><![CDATA[Month change]]></item>
+		<item name="cp.acp.jobhandler.nextExec.yearchange"><![CDATA[Year change]]></item>
+	</category>
+	
+	<category name="cp.acp.jobhandlerLog">
+		<item name="cp.acp.jobhandlerLog.list"><![CDATA[Logged Background-Tasks]]></item>
+		<item name="cp.acp.jobhandlerLog.listcount"><![CDATA[{$logs|count} mlogged Background-Tasks]]></item>
+		<item name="cp.acp.jobhandlerLog.jobhandlerTaskLogID"><![CDATA[LogID]]></item>
+		<item name="cp.acp.jobhandlerLog.execTimeStart"><![CDATA[Start Execute]]></item>
+		<item name="cp.acp.jobhandlerLog.execTimeEnd"><![CDATA[End Execute]]></item>
+		<item name="cp.acp.jobhandlerLog.execJobhandler"><![CDATA[Execute Tasks]]></item>
+		<item name="cp.acp.jobhandlerLog.success"><![CDATA[Successfully]]></item>
+		<item name="cp.acp.jobhandlerLog.data"><![CDATA[Output]]></item>
+		<item name="cp.acp.jobhandlerLog.clear"><![CDATA[Clear log]]></item>
+		<item name="cp.acp.jobhandlerLog.clearConfirm"><![CDATA[Do you really want to clear the log?]]></item>
+		<item name="cp.acp.jobhandlerLog.detail"><![CDATA[Log-Details]]></item>
+	</category>
+
+</language>
