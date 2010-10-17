@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "http://www.woltlab.com/DTDs/language.dtd">
+<language languagecode="en">
+
+	<category name="cp.domain">
+		<item name="cp.domain.add"><![CDATA[Add domain]]></item>
+		<item name="cp.domain.add.success"><![CDATA[Saved domain successfully]]></item>
+		<item name="cp.domain.edit"><![CDATA[Edit domain]]></item>
+		<item name="cp.domain.edit.success"><![CDATA[Saved domain successfully]]></item>
+		<item name="cp.domain.data"><![CDATA[Data]]></item>
+		<item name="cp.domain.list"><![CDATA[Domainlist]]></item>
+		<item name="cp.domain.delete.success"><![CDATA[Deleted domain successfully]]></item>
+		<item name="cp.domain.disabled.success"><![CDATA[Deactivated domain successfully]]></item>
+		<item name="cp.domain.subDomainAdd"><![CDATA[Add subdomainn]]></item>
+		<item name="cp.domain.domainID"><![CDATA[]]></item>
+		<item name="cp.domain.parentDomainName"><![CDATA[Parents domain name]]></item>
+		<item name="cp.domain.registrationDate"><![CDATA[Date of registration]]></item>
+		<item name="cp.domain.addDate"><![CDATA[Date of creation]]></item>
+		<item name="cp.domain.deleteSubDomain"><![CDATA[Delete subdomain]]></item>
+		<item name="cp.domain.enableDomain"><![CDATA[Activate domain]]></item>
+		<item name="cp.domain.disableDomain"><![CDATA[Deactivate domain]]></item>
+		<item name="cp.domain.domainname"><![CDATA[Domainname]]></item>
+		<item name="cp.domain.domainname.description"><![CDATA[Name of the domain]]></item>
+		<item name="cp.domain.parentDomain"><![CDATA[Parent domain]]></item>
+		<item name="cp.domain.parentDomain.description"><![CDATA[Here you can assign a subdomain of a domain. The name will completed automatically.]]></item>
+	</category>
+	
+	<category name="cp.domain.option">
+		<item name="cp.domain.option.category.default"><![CDATA[Default settings]]></item>
+		<item name="cp.domain.option.category.default.comments"><![CDATA[Notes]]></item>
+		<item name="cp.domain.option.comments"><![CDATA[Notes]]></item>
+		<item name="cp.domain.option.comments.description"><![CDATA[You can make notes on this domain.]]></item>
+		<item name="cp.domain.option.admincomments"><![CDATA[Adminnotes]]></item>
+		<item name="cp.domain.option.admincomments.description"><![CDATA[You can make notes on this domain. Field is visible for admins only.]]></item>
+	</category>
+	
+	<category name="cp.acp.domain">
+		<item name="cp.acp.domain.add"><![CDATA[Add domain]]></item>
+		<item name="cp.acp.domain.add.success"><![CDATA[Saved domain successfully]]></item>
+		<item name="cp.acp.domain.edit"><![CDATA[Edit domain]]></item>
+		<item name="cp.acp.domain.edit.success"><![CDATA[Saved domain successfully]]></item>
+		<item name="cp.acp.domain.data"><![CDATA[Data]]></item>
+		<item name="cp.acp.domain.list"><![CDATA[Domainlist]]></item>
+		<item name="cp.acp.domain.delete"><![CDATA[Delete domain]]></item>
+		<item name="cp.acp.domain.delete.success"><![CDATA[Deleted domain successfully]]></item>
+		<item name="cp.acp.domain.domainID"><![CDATA[]]></item>
+		<item name="cp.acp.domain.parentDomainName"><![CDATA[Parents domain name]]></item>
+		<item name="cp.acp.domain.registrationDate"><![CDATA[Date of registration]]></item>
+		<item name="cp.acp.domain.addDate"><![CDATA[Date of creation]]></item>
+		<item name="cp.acp.domain.domainname"><![CDATA[Domainname]]></item>
+		<item name="cp.acp.domain.domainname.description"><![CDATA[Name of domain, here is only the part needed before the point (for foo.bar.org only foo).]]></item>
+		<item name="cp.acp.domain.username"><![CDATA[Username]]></item>
+		<item name="cp.acp.domain.username.description"><![CDATA[The user which this domain is associated.]]></item>
+		<item name="cp.acp.domain.adminname"><![CDATA[Administrator]]></item>
+		<item name="cp.acp.domain.domainname.notValid"><![CDATA[This domainname ist invalid!]]></item>
+		<item name="cp.acp.domain.domainname.notUnique"><![CDATA[This domainname does already exist in system!]]></item>
+		<item name="cp.acp.domain.username.notFound"><![CDATA[User not found!]]></item>
+		<item name="cp.acp.domain.username.invalidUser"><![CDATA[You don´t have access to this user!]]></item>
+		<item name="cp.acp.domain.username.noCustomer"><![CDATA[This user isn´t a customer!]]></item>
+	</category>
+	
+	<category name="cp.acp.menu">
+		<item name="cp.acp.menu.link.domains"><![CDATA[Domains]]></item>
+		<item name="cp.acp.menu.link.domains.list"><![CDATA[List domains]]></item>
+		<item name="cp.acp.menu.link.domains.add"><![CDATA[Add domain]]></item>
+	</category>
+	
+	<category name="cp.header.menu">
+		<item name="cp.header.menu.domain"><![CDATA[Domains]]></item>
+	</category>
+	
+	<category name="wcf.user.option">
+		<item name="wcf.user.option.category.account.domain"><![CDATA[Domains]]></item>
+		<item name="wcf.user.option.addDefaultSubdomain"><![CDATA[Add default subdomain?]]></item>
+		<item name="wcf.user.option.addDefaultSubdomain.description"><![CDATA[Add for this user a subdomain to a default domain (not implemented yet).]]></item>
+		<item name="wcf.user.option.domains"><![CDATA[Domains]]></item>
+		<item name="wcf.user.option.subdomains"><![CDATA[Subdomains (used/unused)]]></item>
+		<item name="wcf.user.option.subdomains.description"><![CDATA[How much subdomains are available?]]></item>
+	</category>
+	
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.category.cpdomains"><![CDATA[WCP - Domain]]></item>
+		<item name="wcf.acp.option.category.cpdomains.description"><![CDATA[Settings for domains]]></item>
+		<item name="wcf.acp.option.category.cpdomains.global"><![CDATA[Global]]></item>
+		<item name="wcf.acp.option.category.cpdomains.global.description"><![CDATA[]]></item>
+		<item name="wcf.acp.option.domains_defaultdomain"><![CDATA[Default domain]]></item>
+		<item name="wcf.acp.option.domains_defaultdomain.description"><![CDATA[This is the default domain for subdomains if a user didn´t own domains. Without function yet.]]></item>
+	</category>
+	
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.category.admin.cp.domains"><![CDATA[Domains]]></item>
+		<item name="wcf.acp.group.option.category.admin.cp.domains.description"><![CDATA[]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canSeeDomains"><![CDATA[Can see domains]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canSeeDomains.description"><![CDATA[Members of this group can see domains]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canAddDomain"><![CDATA[Can add domains]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canAddDomain.description"><![CDATA[Members of this group can add domains]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canEditDomains"><![CDATA[Can edit domains]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canEditDomains.description"><![CDATA[Members of this group can edit domains]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canDeleteDomains"><![CDATA[Can delete domains]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canDeleteDomains.description"><![CDATA[Members of this group can delete domains]]></item>
+		
+		<item name="wcf.acp.group.option.category.cp.domains"><![CDATA[Domains]]></item>
+		<item name="wcf.acp.group.option.category.cp.domains.description"><![CDATA[]]></item>
+		<item name="wcf.acp.group.option.cp.domain.canSeeDomains"><![CDATA[Can see domains]]></item>
+		<item name="wcf.acp.group.option.cp.domain.canSeeDomains.description"><![CDATA[Members of this group can see domains]]></item>
+		<item name="wcf.acp.group.option.cp.domain.canAddSubDomain"><![CDATA[Can add subdomains]]></item>
+		<item name="wcf.acp.group.option.cp.domain.canAddSubDomain.description"><![CDATA[Members of this group can add subdomains]]></item>
+		<item name="wcf.acp.group.option.cp.domain.canEditDomains"><![CDATA[Can edit domains]]></item>
+		<item name="wcf.acp.group.option.cp.domain.canEditDomains.description"><![CDATA[Members of this group can edit domains]]></item>
+		<item name="wcf.acp.group.option.cp.domain.canDeleteSubDomains"><![CDATA[Can delete subdomains]]></item>
+		<item name="wcf.acp.group.option.cp.domain.canDeleteSubDomains.description"><![CDATA[Members of this group can delete subdomains]]></item>
+	</category>
+
+</language>
