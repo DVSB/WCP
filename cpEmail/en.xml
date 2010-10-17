@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "http://www.woltlab.com/DTDs/language.dtd">
+<language languagecode="en">
+	
+	<category name="cp.email">
+		<item name="cp.email.addForward"><![CDATA[Add relegation]]></item>
+		<item name="cp.email.details"><![CDATA[Email-Details]]></item>
+		<item name="cp.email.forward"><![CDATA[Email-Relegation]]></item>
+		<item name="cp.email.forward.notvalid"><![CDATA[Relegation invalid]]></item>
+		<item name="cp.email.addAddress"><![CDATA[Add Email Adress]]></item>
+		<item name="cp.email.emailaddress"><![CDATA[Email Adress]]></item>
+		<item name="cp.email.emailaddress.notvalid"><![CDATA[Adress invalid]]></item>
+		<item name="cp.email.domain"><![CDATA[Domain]]></item>
+		<item name="cp.email.domain.notvalid"><![CDATA[Domain invalid]]></item>
+		<item name="cp.email.isCatchall"><![CDATA[Is Catchall Adress]]></item>
+		<item name="cp.email.isCatchall.notvalid"><![CDATA[For this domain is Catchall set]]></item>
+		<item name="cp.email.account"><![CDATA[Email Account]]></item>
+		<item name="cp.email.account.pwchange"><![CDATA[Change Password]]></item>
+		<item name="cp.email.account.addAccount"><![CDATA[Create Email Account]]></item>
+		<item name="cp.email.account.delete"><![CDATA[Delete Email Account]]></item>
+		<item name="cp.email.isCatchall.deactivate"><![CDATA[Deactivate Catchall]]></item>
+		<item name="cp.email.isCatchall.activate"><![CDATA[Activate Catchall]]></item>
+		<item name="cp.email.forwards"><![CDATA[Relegations]]></item>
+		<item name="cp.email.deleteForward"><![CDATA[Delete relegations]]></item>
+		<item name="cp.email.list"><![CDATA[Email List]]></item>
+		<item name="cp.email.mailID"><![CDATA[]]></item>
+		<item name="cp.email.deleteEmailaddress"><![CDATA[Delete Email Adress]]></item>
+		<item name="cp.email.account.password"><![CDATA[Password]]></item>
+	</category>
+
+	<category name="cp.header.menu">
+		<item name="cp.header.menu.email"><![CDATA[Emails]]></item>
+	</category>
+	
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.category.cpemail"><![CDATA[WCP - Email]]></item>
+		<item name="wcf.acp.option.category.cpemail.description"><![CDATA[Settings for Emails]]></item>
+		<item name="wcf.acp.option.category.cpemail.quota"><![CDATA[Email-Quota]]></item>
+		<item name="wcf.acp.option.category.cpemail.quota.description"><![CDATA[Quota per Mailbox]]></item>
+		<item name="wcf.acp.option.mail_quota_enabled"><![CDATA[Activate Quota]]></item>
+		<item name="wcf.acp.option.mail_quota_enabled.description"><![CDATA[]]></item>
+		<item name="wcf.acp.option.mail_quota"><![CDATA[Quota per Mailbox]]></item>
+		<item name="wcf.acp.option.mail_quota.description"><![CDATA[Quota in MB that is available per Mailbox]]></item>
+		<item name="wcf.acp.option.category.cpemail.parameters"><![CDATA[Settings]]></item>
+		<item name="wcf.acp.option.category.cpemail.parameters.description"><![CDATA[]]></item>
+		<item name="wcf.acp.option.mail_store_plain_password"><![CDATA[Saves Passwords unencrypted]]></item>
+		<item name="wcf.acp.option.mail_store_plain_password.description"><![CDATA[Saves Passwords for Email Accounts unencrypted in der Database. Only this enables methodes like CRAM-MD5. However, this presents a security risk if the database is compromised.]]></item>
+		<item name="wcf.acp.option.mail_homedir"><![CDATA[Heimatverzeichnis]]></item>
+		<item name="wcf.acp.option.mail_homedir.description"><![CDATA[Home Directory for all Mail Accounts]]></item>
+		<item name="wcf.acp.option.mail_uid"><![CDATA[UID]]></item>
+		<item name="wcf.acp.option.mail_uid.description"><![CDATA[The UID of the Mail Server. With this UID, all Mail Accounts are created.]]></item>
+		<item name="wcf.acp.option.mail_gid"><![CDATA[GID]]></item>
+		<item name="wcf.acp.option.mail_gid.description"><![CDATA[The GID of the Mail Server. With this GID, all Mail Accounts are created.]]></item>
+	</category>
+	
+	<category name="wcf.user.option">
+		<item name="wcf.user.option.category.account.email"><![CDATA[Emails]]></item>
+		<item name="wcf.user.option.emailAddresses"><![CDATA[Email Adresses (used/unused)]]></item>
+		<item name="wcf.user.option.emailAddresses.description"><![CDATA[How much Email Adresses are available?]]></item>
+		<item name="wcf.user.option.emailAccounts"><![CDATA[Email Accounts (used/unused)]]></item>
+		<item name="wcf.user.option.emailAccounts.description"><![CDATA[How much relegations are available?]]></item>
+		<item name="wcf.user.option.emailForwards"><![CDATA[Email Relegations (used/unused)]]></item>
+		<item name="wcf.user.option.emailForwards.description"><![CDATA[How much Accounts are available?]]></item>
+		<item name="wcf.user.option.emailIMAPenabled"><![CDATA[Activate IMAP]]></item>
+		<item name="wcf.user.option.emailIMAPenabled.description"><![CDATA[Can this user use IMAP?]]></item>
+		<item name="wcf.user.option.emailPOP3enabled"><![CDATA[Activate POP3]]></item>
+		<item name="wcf.user.option.emailPOP3enabled.description"><![CDATA[Can this user use POP3?]]></item>
+	</category>
+
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.category.cp.email"><![CDATA[Email]]></item>
+		<item name="wcf.acp.group.option.category.cp.email.description"><![CDATA[]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canSeeList"><![CDATA[Can see Emails]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canSeeList.description"><![CDATA[Members of this group can see Email Adresses.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddAddress"><![CDATA[Can add Email Adresses]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddAddress.description"><![CDATA[Members of this group can add Email Adresses.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddForward"><![CDATA[Can add Email Relegations]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddForward.description"><![CDATA[Members of this group can add Email Relegations.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddAccount"><![CDATA[Can add Email Accounts]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddAccount.description"><![CDATA[Members of this group can add Email Accounts.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canUseCatchall"><![CDATA[Can add Catchall Adresses]]></item>
+		<item name="wcf.acp.group.option.cp.email.canUseCatchall.description"><![CDATA[Members of this group can add a Catchall Adress at this domain.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteAddresses"><![CDATA[Can delete Email Adresses]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteAddresses.description"><![CDATA[Members of this group can delete Email Adresses.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteForwards"><![CDATA[Can delete Email Relegations]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteForwards.description"><![CDATA[Members of this group can delete Email Relegations.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteAccounts"><![CDATA[Can delete Email Accounts]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteAccounts.description"><![CDATA[Members of this group can delete Email Accounts.]]></item>
+	</category>
+
+</language>
