@@ -6,6 +6,7 @@
 			<icon>emailS.png</icon>
 			<link>index.php?page=EmailList</link>
 			<permissions>cp.email.canSeeList</permissions>
+			<showorder>4</showorder>
 		</pagemenuitem>
 	</import>
 </data>

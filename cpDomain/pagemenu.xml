@@ -5,6 +5,7 @@
 		<pagemenuitem name="cp.header.menu.domain">
 			<icon>domainS.png</icon>
 			<link>index.php?page=DomainList</link>
+			<showorder>3</showorder>
 		</pagemenuitem>
 	</import>
 </data>
