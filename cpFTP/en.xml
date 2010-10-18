@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "http://www.woltlab.com/DTDs/language.dtd">
+<language languagecode="en">
+	
+	<category name="cp.ftp">
+		<item name="cp.ftp.addAccount"><![CDATA[Add FTP-Account]]></item>
+		<item name="cp.ftp.editAccount"><![CDATA[Edit FTP-Account]]></item>
+		<item name="cp.ftp.password"><![CDATA[Login-Password]]></item>
+		<item name="cp.ftp.path"><![CDATA[Path]]></item>
+		<item name="cp.ftp.path.description"><![CDATA[Path defines on which folder (all subfolder inclusive) this FTP-Accounts access is granted.]]></item>
+		<item name="cp.ftp.invalidPath"><![CDATA[Path invalid]]></item>
+		<item name="cp.ftp.list"><![CDATA[Account List]]></item>
+		<item name="cp.ftp.ftpUserID"><![CDATA[]]></item>
+		<item name="cp.ftp.username"><![CDATA[Login Name]]></item>
+		<item name="cp.ftp.loginCount"><![CDATA[Login Counter]]></item>
+		<item name="cp.ftp.lastLogin"><![CDATA[Last Login]]></item>
+		<item name="cp.ftp.deleteAccount"><![CDATA[Delete FTP-Account]]></item>
+		<item name="cp.ftp.enableAccount"><![CDATA[Activate FTP-Account]]></item>
+		<item name="cp.ftp.disableAccount"><![CDATA[Deactivate FTP-Account]]></item>
+		<item name="cp.ftp.description"><![CDATA[Notes]]></item>
+		<item name="cp.ftp.defaultaccount"><![CDATA[This is an automatically generated FTP-Account. It is created with the same password as the user. With this Account is access granted to all folders and files.]]></item>
+	</category>
+	
+	<category name="cp.header.menu">
+		<item name="cp.header.menu.ftp"><![CDATA[FTP-Accounts]]></item>
+	</category>
+	
+	<category name="wcf.user.option">
+ 		<item name="wcf.user.option.ftpaccounts"><![CDATA[FTP-Accounts (used/unused)]]></item>
+ 	</category>
+ 	
+ 	<category name="wcf.acp.option">
+ 		<item name="wcf.acp.option.category.cpftp"><![CDATA[WCP - FTP Accounts]]></item>
+ 		<item name="wcf.acp.option.category.cpftp.description"><![CDATA[Settings for FTP-Accounts]]></item>
+ 		<item name="wcf.acp.option.category.cpftp.global"><![CDATA[Global Settings]]></item>
+ 		<item name="wcf.acp.option.category.cpftp.global.description"><![CDATA[]]></item>
+ 		<item name="wcf.acp.option.ftp_postfix"><![CDATA[FTP-Account-Namepostfix]]></item>
+ 		<item name="wcf.acp.option.ftp_postfix.description"><![CDATA[This value will added to the user name to create the login name. It looks like: mmustermann_ftp4]]></item>
+ 	</category>
+ 	
+ 	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.category.cp.ftp"><![CDATA[FTP]]></item>
+		<item name="wcf.acp.group.option.category.cp.ftp.description"><![CDATA[]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canAddFTPAccount"><![CDATA[Can add FTP-Accounts]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canAddFTPAccount.description"><![CDATA[Members of this group can add FTP-Accounts.]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canListFTPAccounts"><![CDATA[Can see FTP-Accounts]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canListFTPAccounts.description"><![CDATA[Members of this group can see the list of FTP-Accounts.]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canDeleteFTPAccounts"><![CDATA[Can delete FTP-Accounts]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canDeleteFTPAccounts.description"><![CDATA[Members of this group can delete FTP-Accounts.]]></item>
+	</category>
+
+</language>
+
+
+
+
+
