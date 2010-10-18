@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "DTD/language.dtd">
+
+<language languagecode="en">
+    <category name="wcf.advancedpagemenu">
+	<item name="wcf.advancedpagemenu.guest"><![CDATA[Gast]]></item>
+    </category>
+    <category name="wcf.acp.pageMenuItem">
+                <item name="wcf.acp.pageMenuItem.warning.isNative"><![CDATA[This menu item belong to a Plugin or Standalone Application. If you edit or delete this menu item pluginfunctions could be invalid.]]></item>
+                <item name="wcf.acp.pageMenuItem.permissions"><![CDATA[Permissions]]></item>
+                <item name="wcf.acp.pageMenuItem.groupPermissions"><![CDATA[Group permissions]]></item>
+                <item name="wcf.acp.pageMenuItem.groupPermissions.description"><![CDATA[Choose the usergroup permissions to see this item. Multiple tags can be selected by pressing the button &raquo;Strg/Ctrl&laquo; (Windows) or &raquo;Befehl/Command&laquo; (Mac OS).]]></item>
+                <item name="wcf.acp.pageMenuItem.groupIDs"><![CDATA[Group membership]]></item>
+                <item name="wcf.acp.pageMenuItem.groupIDs.description"><![CDATA[Choose the group the user must be a member of to see the item.]]></item>
+                <item name="wcf.acp.pageMenuItem.parentMenuItem"><![CDATA[Parent item]]></item>
+                <item name="wcf.acp.pageMenuItem.parentMenuItem.description"><![CDATA[Choose a parent item to create a complex menu. All items that dependent on another item are shown in a Javascript Dropdown.]]></item>
+                <item name="wcf.acp.pageMenuItem.import"><![CDATA[Import menu items]]></item>
+                <item name="wcf.acp.pageMenuItem.import.success"><![CDATA[The Menu items are imported successfully. You should proof the menu structure now.]]></item>
+                <item name="wcf.acp.pageMenuItem.import.upload"><![CDATA[File]]></item>
+                <item name="wcf.acp.pageMenuItem.import.upload.description"><![CDATA[Choose a local XML Export from an old Headermenu-Plugin version.]]></item>
+	</category>	
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.category.advancedPageMenu"><![CDATA[Extended Menu]]></item>
+		<item name="wcf.acp.option.category.advancedPageMenu.description"><![CDATA[Settings for the extended side menus]]></item>
+		<item name="wcf.acp.option.category.advancedPageMenu.settings"><![CDATA[Settings]]></item>
+		<item name="wcf.acp.option.category.advancedPageMenu.settings.description"><![CDATA[The setting options known from version 1.0.x are now available in the stileditor per stil.]]></item>
+		<item name="wcf.acp.option.advanced_page_menu_hide_delay"><![CDATA[Stow delay (ms)]]></item>
+		<item name="wcf.acp.option.advanced_page_menu_hide_delay.description"><![CDATA[Geben Sie die Zeit an, die verstreichen soll bevor sich das Menü selbststädnig wieder einklappt.]]></item>
+		<item name="wcf.acp.option.advanced_page_menu_slide_time"><![CDATA[Ein-/Ausfahrzeit (ms)]]></item>
+		<item name="wcf.acp.option.advanced_page_menu_slide_time.description"><![CDATA[Enter the time to elapse before you want the menu collapses automatically again.]]></item>
+	</category>	
+	<category name="wcf.acp.menu">		
+		<item name="wcf.acp.menu.link.pageMenuItem.import"><![CDATA[Import menu items]]></item>
+	</category>
+        <category name="wcf.acp.style">
+		<item name="wcf.acp.style.editor.menu.advancedPageMenu"><![CDATA[Extended side menu]]></item>
+                <item name="wcf.acp.style.editor.menu.advancedPageMenu.description"><![CDATA[Here you can change the appearance of the trans-menus. Note that incorporate menu items of the trans-menus all CSS properties of the normal menu items.]]></item>
+                <item name="wcf.acp.style.editor.menu.advancedPageMenu.general"><![CDATA[General]]></item>
+                <item name="wcf.acp.style.editor.menu.advancedPageMenu.general.description"><![CDATA[]]></item>
+                <item name="wcf.acp.style.editor.padding.menu"><![CDATA[Menu padding]]></item>
+                <item name="wcf.acp.style.editor.padding.item"><![CDATA[Item padding]]></item>
+                <item name="wcf.acp.style.editor.menu.advancedPageMenu.shadow"><![CDATA[Shadows]]></item>
+                <item name="wcf.acp.style.editor.menu.advancedPageMenu.shadow.description"><![CDATA[]]></item>
+                <item name="wcf.acp.style.editor.offset"><![CDATA[Offset]]></item>
+                <item name="wcf.acp.style.editor.shadow.size"><![CDATA[Size]]></item>
+                <item name="wcf.acp.style.editor.shadow.offset"><![CDATA[Offset]]></item>
+	</category>
+	<category name="wcf.acp.package">
+		<item name="wcf.acp.package.step.install.AdvancedPageMenuPackageInstallationPlugin"><![CDATA[Installing menu items ...]]></item>
+		<item name="wcf.acp.package.step.uninstall.AdvancedPageMenuPackageInstallationPlugin"><![CDATA[Deinstalling menu items ...]]></item>
+		<item name="wcf.acp.package.step.update.AdvancedPageMenuPackageInstallationPlugin"><![CDATA[Update menu items ...]]></item>
+	</category>
+</language>
