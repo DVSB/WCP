@@ -48,6 +48,6 @@
 	<category name="wcf.acp.package">
 		<item name="wcf.acp.package.step.install.AdvancedPageMenuPackageInstallationPlugin"><![CDATA[Installing menu items ...]]></item>
 		<item name="wcf.acp.package.step.uninstall.AdvancedPageMenuPackageInstallationPlugin"><![CDATA[Deinstalling menu items ...]]></item>
-		<item name="wcf.acp.package.step.update.AdvancedPageMenuPackageInstallationPlugin"><![CDATA[Update menu items ...]]></item>
+		<item name="wcf.acp.package.step.update.AdvancedPageMenuPackageInstallationPlugin"><![CDATA[Updating menu items ...]]></item>
 	</category>
 </language>
