@@ -5,7 +5,7 @@
 	<packageInformation>
 		<packageName>Web ControlPanel MySQL Modul</packageName>
 		<packageDescription>Ermöglicht die Anlage von MySQL-Datenbanken</packageDescription>
-		<version>0.6.0-beta1</version>
+		<version>1.0.0 RC1</version>
 		<plugin>com.toby.cp</plugin>
 		<date>2010-05-14</date>
 	</packageInformation>
@@ -17,7 +17,7 @@
 	</authorInformation>
 
 	<requiredpackages>
-		<requiredpackage minversion="1.1.0 Alpha 1">com.woltlab.wcf</requiredpackage>
+		<requiredpackage minversion="1.1.0">com.woltlab.wcf</requiredpackage>
 		<requiredpackage>com.toby.cp</requiredpackage>
 	</requiredpackages>
 

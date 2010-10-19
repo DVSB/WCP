@@ -5,8 +5,8 @@
 	<packageInformation>
 		<packageName>Web ControlPanel Backendhandler VhostContainer Apache2 Modul</packageName>
 		<packageDescription>Modul zur Anlage von Apache2-VhostContainern</packageDescription>
-		<version>0.3.0-alpha2</version>
-		<date>2010-09-25</date>
+		<version>1.0.0 RC1</version>
+		<date>2010-10-19</date>
 		<plugin>com.toby.cp</plugin>
 	</packageInformation>
 

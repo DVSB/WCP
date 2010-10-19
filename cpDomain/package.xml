@@ -5,7 +5,7 @@
 	<packageInformation>
 		<packageName>Web ControlPanel Domain Modul</packageName>
 		<packageDescription>Basismodul zur Domainverwaltung</packageDescription>
-		<version>0.6.0-beta1</version>
+		<version>1.0.0 RC1</version>
 		<plugin>com.toby.cp</plugin>
 		<date>2010-05-14</date>
 	</packageInformation>
@@ -23,6 +23,7 @@
 
 	<instructions type="install">
 		<languages languagecode="de">de.xml</languages>
+		<languages languagecode="en">en.xml</languages>
 		<options>options.xml</options>
 		<files>files.tar</files>
 		<templates>templates.tar</templates>
@@ -39,6 +40,7 @@
 
 	<instructions type="update" fromversion="0.*">
 		<languages languagecode="de">de.xml</languages>
+		<languages languagecode="en">en.xml</languages>
 		<options>options.xml</options>
 		<files>files.tar</files>
 		<templates>templates.tar</templates>

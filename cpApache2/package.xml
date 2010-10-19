@@ -5,7 +5,7 @@
 	<packageInformation>
 		<packageName>Web ControlPanel Apache2 Modul</packageName>
 		<packageDescription>Erstellt/Editiert Apache2-Vhosts</packageDescription>
-		<version>0.5.0-beta3</version>
+		<version>1.0.0 RC1</version>
 		<plugin>com.toby.cp</plugin>
 		<date>2010-05-16</date>
 	</packageInformation>
@@ -17,7 +17,7 @@
 	</authorInformation>
 
 	<requiredpackages>
-		<requiredpackage minversion="1.1.0 Alpha 1">com.woltlab.wcf</requiredpackage>
+		<requiredpackage minversion="1.1.0">com.woltlab.wcf</requiredpackage>
 		<requiredpackage>com.toby.cp</requiredpackage>
 		<requiredpackage file="requirements/com.toby.backendhandler.tar">com.toby.backendhandler</requiredpackage>
 		<requiredpackage file="requirements/com.toby.cp.vhostcontainer.tar">com.toby.cp.vhostcontainer</requiredpackage>
@@ -26,12 +26,14 @@
 
 	<instructions type="install">
 		<languages languagecode="de">de.xml</languages>
+		<languages languagecode="en">en.xml</languages>
 		<options>options.xml</options>
 		<files>files.tar</files>
 	</instructions>
 	
 	<instructions type="update" fromversion="0.*">
 		<languages languagecode="de">de.xml</languages>
+		<languages languagecode="en">en.xml</languages>
 		<options>options.xml</options>
 		<files>files.tar</files>
 	</instructions>
