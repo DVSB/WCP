@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "http://www.woltlab.com/DTDs/language.dtd">
+<language languagecode="en">
+
+ 	<category name="wcf.user.option">
+ 		<item name="wcf.user.option.category.account.mysql"><![CDATA[MySQL]]></item>
+ 		<item name="wcf.user.option.mysqls"><![CDATA[Databases (used/unused)]]></item>
+ 		<item name="wcf.user.option.mysqls.description"><![CDATA[How much MySQL-Databases are available?]]></item>
+ 	</category>
+ 	
+ 	<category name="wcf.acp.option">
+ 		<item name="wcf.acp.option.category.cpmysql"><![CDATA[WCP - MySQL-Database]]></item>
+ 		<item name="wcf.acp.option.category.cpmysql.description"><![CDATA[Settings for MySQL-Database]]></item>
+ 		<item name="wcf.acp.option.category.cpmysql.global"><![CDATA[Global settings]]></item>
+ 		<item name="wcf.acp.option.category.cpmysql.global.description"><![CDATA[]]></item>
+ 		<item name="wcf.acp.option.mysql_postfix"><![CDATA[Database-Namepostfix]]></item>
+ 		<item name="wcf.acp.option.mysql_postfix.description"><![CDATA[This value is added to the user name to create the database name. It looks like: mmustermann_sql4]]></item>
+		<item name="wcf.acp.option.mysql_access_host"><![CDATA[Adress of MySQL-Servers]]></item>
+		<item name="wcf.acp.option.mysql_access_host.description"><![CDATA[The Adress on which the MySQL-Server is running, normally localhost]]></item>
+ 	</category>
+ 	
+	<category name="cp.mysql">
+		<item name="cp.mysql.add"><![CDATA[Add database]]></item>
+		<item name="cp.mysql.edit"><![CDATA[Edit database]]></item>
+		<item name="cp.mysql.password"><![CDATA[Database-Password]]></item>
+		<item name="cp.mysql.description"><![CDATA[Notes]]></item>
+		<item name="cp.mysql.list"><![CDATA[List databases]]></item>
+		<item name="cp.mysql.mysqlID"><![CDATA[]]></item>
+		<item name="cp.mysql.mysqlname"><![CDATA[Name of database]]></item>
+		<item name="cp.mysql.delete"><![CDATA[Delete database]]></item>
+	</category>
+
+	<category name="cp.acp.mysql">
+		<item name="cp.acp.mysql.list"><![CDATA[Can be user]]></item>
+	</category>
+
+	<category name="cp.header.menu">
+		<item name="cp.header.menu.mysql"><![CDATA[Databases]]></item>
+	</category>
+	
+	<category name="cp.acp.menu">
+		<item name="cp.acp.menu.link.databaseroot"><![CDATA[Databases]]></item>
+		<item name="cp.acp.menu.link.databaseroot.mysql"><![CDATA[MySQL]]></item>
+	</category>
+	
+	<category name="cp.acp.mysql">
+		<item name="cp.acp.mysql.dbrootdata"><![CDATA[Root-Access data für MySQL]]></item>
+		<item name="cp.acp.mysql.userdata"><![CDATA[User data]]></item>
+		<item name="cp.acp.mysql.rootUser"><![CDATA[Root-User]]></item>
+		<item name="cp.acp.mysql.rootUser.description"><![CDATA[The username of a privileged user of the database. It must be allowed to invest at least databases and other users.]]></item>
+		<item name="cp.acp.mysql.rootPassword"><![CDATA[Root-Password]]></item>
+		<item name="cp.acp.mysql.rootPassword.description"><![CDATA[The password of the user.]]></item>
+	</category>
+	
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.admin.cp.canEditMySQLPW"><![CDATA[Can set MySQL-Rootpassword]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canEditMySQLPW.description"><![CDATA[Members of this group can set the MySQL-Rootpassword.]]></item>
+		<item name="wcf.acp.group.option.category.cp.mysql"><![CDATA[MySQL]]></item>
+		<item name="wcf.acp.group.option.category.cp.mysql.description"><![CDATA[]]></item>
+		<item name="wcf.acp.group.option.cp.mysql.canAddMySQL"><![CDATA[Can create MySQL-Databases]]></item>
+		<item name="wcf.acp.group.option.cp.mysql.canAddMySQL.description"><![CDATA[Members of this group can create MySQL-Databases.]]></item>
+		<item name="wcf.acp.group.option.cp.mysql.canListMySQL"><![CDATA[Can see MySQL-Databases]]></item>
+		<item name="wcf.acp.group.option.cp.mysql.canListMySQL.description"><![CDATA[Members of this group can see the list of MySQL-Databases.]]></item>
+		<item name="wcf.acp.group.option.cp.mysql.canDeleteMySQL"><![CDATA[Can delete MySQL-Databases]]></item>
+		<item name="wcf.acp.group.option.cp.mysql.canDeleteMySQL.description"><![CDATA[Members of this group can delete MySQL-Databases.]]></item>
+	</category>
+
+</language>
