@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/options.dtd">
+<data>
+	<import>
+		<categories>
+			<category name="cpvhostcontainer.containerNginx">
+				<parent>cpvhostcontainer</parent>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</category>
+		</categories>
+		
+		<options>
+			<option name="nginx_create_paths">
+		        	<categoryname>cp.backendpaths.createpaths</categoryname>
+					<optiontype>textarea</optiontype>
+		        	<defaultvalue>d:{HOMEDIR}/webalizer:0555:{GUID}.{GUID}
+d:{HOMEDIR}/logfiles:0750:{CONTAINERNGINXUSER}.{GUID}
+l:{CONTAINERNGINXLOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{CONTAINERNGINXUSER}.{CONTAINERNGINXUSER}
+</defaultvalue>
+		    	</option>
+		
+			<option name="containerNginxvhostpath">
+				<categoryname>cpvhostcontainer.containerNginx</categoryname>
+				<optiontype>text</optiontype>
+				<defaultvalue>/etc/nginx/sites-enabled</defaultvalue>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</option> 
+			
+			<option name="containerNginxfileprefix">
+				<categoryname>cpvhostcontainer.containerNginx</categoryname>
+				<optiontype>text</optiontype>
+				<defaultvalue>20_webcp_normal_vhost</defaultvalue>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</option> 
+			
+			<option name="containerNginxipandportprefix">
+				<categoryname>cpvhostcontainer.containerNginx</categoryname>
+				<optiontype>text</optiontype>
+				<defaultvalue>10_webcp_ipandport</defaultvalue>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</option>
+			
+			<option name="containerNginxtemplate">
+				<categoryname>cpvhostcontainer.containerNginx</categoryname>
+				<optiontype>textarea</optiontype>
+				<defaultvalue><![CDATA[server {
+  listen       $port;
+  
+  #if $addServerName
+  server_name $domainname;
+  #end if
+  
+  #if $wwwServerAlias
+  server_name www.$domainname;
+  #end if
+  
+  #if $isWildcardDomain
+  server_name *.$domainname;
+  #end if
+  error_log  $containerNginxlogpath/$username/$domainname-error.log  main;
+  access_log  $containerNginxlogpath/$username/$domainname-access.log  main;
+  #charset koi8-r;
+
+  location / {
+      root   $homeDir/htdocs;
+      index  index.php;
+      $specialSettings
+  }
+
+  #error_page  404              /404.html;
+
+  # redirect server error pages to the static page /50x.html
+  #
+  error_page   404 500 502 503 504  /50x.html;
+  location = /50x.html {
+      root   html;
+  }
+
+  # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+  #
+  location ~ \.php$ {
+      fastcgi_pass   127.0.0.1:9000;
+      fastcgi_index  index.php;
+      fastcgi_param  SCRIPT_FILENAME  $homeDir/htdocs$fastcgi_script_name;
+      include        /etc/nginx/fastcgi.conf;
+  }
+
+  # deny access to .htaccess files, if Apache's document root
+  # concurs with nginx's one
+  #
+  location ~ /\.ht {
+      deny  all;
+  }
+}
+$vhostTemplate]]></defaultvalue>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</option> 
+
+			<option name="containerNginxreloadcommand">
+				<categoryname>cpvhostcontainer.containerNginx</categoryname>
+				<optiontype>text</optiontype>
+				<defaultvalue>/usr/sbin/nginx -s reload</defaultvalue>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</option>
+			
+			<option name="containerNginxlogpath">
+				<categoryname>cpvhostcontainer.containerNginx</categoryname>
+				<optiontype>text</optiontype>
+				<defaultvalue>/var/log/webcp/{username}</defaultvalue>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</option>
+			
+			<option name="containerNginxuser">
+				<categoryname>cpvhostcontainer.containerNginx</categoryname>
+				<optiontype>text</optiontype>
+				<defaultvalue>www-data</defaultvalue>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</option>
+
+		</options>
+	</import>
+</data>

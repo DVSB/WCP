@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE package SYSTEM "DTD/package.dtd">
+<package name="com.toby.cp.nginx">
+
+	<packageInformation>
+		<packageName>Web ControlPanel Nginx Modul</packageName>
+		<packageDescription>Erstellt/Editiert Nginx-Vhosts</packageDescription>
+		<version>1.0.0 Beta1</version>
+		<plugin>com.toby.cp</plugin>
+		<date>2010-10-24</date>
+	</packageInformation>
+
+	<authorInformation>
+		<author>Rico Peters</author>
+		<authorURL>http://www.wcfdev.net/</authorURL>
+		<license>GPL</license>
+	</authorInformation>
+
+	<requiredpackages>
+		<requiredpackage minversion="1.1.0">com.woltlab.wcf</requiredpackage>
+		<requiredpackage>com.toby.cp</requiredpackage>
+		<requiredpackage file="requirements/com.toby.backendhandler.tar">com.toby.backendhandler</requiredpackage>
+		<requiredpackage file="requirements/com.toby.cp.vhostcontainer.tar">com.toby.cp.vhostcontainer</requiredpackage>
+		<requiredpackage file="requirements/com.toby.backend.vhostcontainer.nginx.tar">com.toby.backend.vhostcontainer.nginx</requiredpackage>	
+	</requiredpackages>
+
+	<instructions type="install">
+		<languages languagecode="de">de.xml</languages>
+		<languages languagecode="en">en.xml</languages>
+		<options>options.xml</options>
+		<files>files.tar</files>
+	</instructions>
+	
+	<instructions type="update" fromversion="0.*">
+		<languages languagecode="de">de.xml</languages>
+		<languages languagecode="en">en.xml</languages>
+		<options>options.xml</options>
+		<files>files.tar</files>
+	</instructions>
+
+</package>

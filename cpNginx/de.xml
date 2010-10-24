@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "http://www.woltlab.com/DTDs/language.dtd">
+<language languagecode="de">
+
+	<category name="wcf.acp.option">
+		<item name="wcf.acp.option.category.cpvhostcontainer.containerNginx"><![CDATA[Nginx Container]]></item>
+		<item name="wcf.acp.option.category.cpvhostcontainer.containerNginx.description"><![CDATA[Einstellungen für Nginx]]></item>
+		<item name="wcf.acp.option.nginx_create_paths"><![CDATA[Nginx-Pfade]]></item>
+		<item name="wcf.acp.option.nginx_create_paths.description"><![CDATA[Diese Pfade werden für Nginx-Domains erstellt.]]></item>
+		<item name="wcf.acp.option.containerNginxvhostpath"><![CDATA[Vhost-Pfad]]></item>
+		<item name="wcf.acp.option.containerNginxfileprefix"><![CDATA[Datei-Prefix]]></item>
+		<item name="wcf.acp.option.containerNginxipandportprefix"><![CDATA[IP und Port-Prefix]]></item>
+		<item name="wcf.acp.option.containerNginxtemplate"><![CDATA[Vhost-Template]]></item>
+		<item name="wcf.acp.option.containerNginxreloadcommand"><![CDATA[Nginx-Reloadkommando]]></item>
+		<item name="wcf.acp.option.containerNginxlogerror"><![CDATA[Error-Logpfad]]></item>
+		<item name="wcf.acp.option.containerNginxlogaccess"><![CDATA[Access-Logpfad]]></item>
+		<item name="wcf.acp.option.containerNginxuser"><![CDATA[Nginx-User]]></item>
+		<item name="wcf.acp.option.containerNginxvhostpath.description"><![CDATA[In diesem Verzeichnis werden die erstellten Vhost-Dateien abgelegt.]]></item>
+		<item name="wcf.acp.option.containerNginxfileprefix.description"><![CDATA[Mit diesem Prefix werden alle erstellten Vhost-Dateien beginnen.]]></item>
+		<item name="wcf.acp.option.containerNginxipandportprefix.description"><![CDATA[Mit diesem Prefix werden die Dateien für IP und Port Definitionen beginnen. Dieser Wert muss alphabetisch vor dem Datei-Prefix liegen!]]></item>
+		<item name="wcf.acp.option.containerNginxtemplate.description"><![CDATA[Dieses Template definiert den grundlegenden Aufbau der Vhosts.]]></item>
+		<item name="wcf.acp.option.containerNginxreloadcommand.description"><![CDATA[Mit diesem Befehl wird der Nginx-Server neu gestartet.]]></item>
+		<item name="wcf.acp.option.containerNginxlogerror.description"><![CDATA[Definiert den Standardpfad für Errorlog-Dateien, die Standard-Variablen können benutzt werden.]]></item>
+		<item name="wcf.acp.option.containerNginxlogaccess.description"><![CDATA[Definiert den Standardpfad für Accesslog-Dateien, die Standard-Variablen können benutzt werden.]]></item>
+		<item name="wcf.acp.option.containerNginxuser.description"><![CDATA[Unter diesem Benutzer läuft der Webserver.]]></item>
+	</category>
+	
+</language>
