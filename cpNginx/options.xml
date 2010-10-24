@@ -106,7 +106,7 @@ $vhostTemplate]]></defaultvalue>
 			<option name="containerNginxlogpath">
 				<categoryname>cpvhostcontainer.containerNginx</categoryname>
 				<optiontype>text</optiontype>
-				<defaultvalue>/var/log/webcp/{username}</defaultvalue>
+				<defaultvalue>/var/log/webcp</defaultvalue>
 				<permissions>admin.cp.canEditVhostContainer</permissions>
 			</option>
 			

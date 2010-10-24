@@ -101,7 +101,7 @@ l:{CONTAINERAPACHE2LOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{CONTAINERAPACHE
 			<option name="containerApache2logpath">
 				<categoryname>cpvhostcontainer.containerApache2</categoryname>
 				<optiontype>text</optiontype>
-				<defaultvalue>/var/log/webcp/{username}</defaultvalue>
+				<defaultvalue>/var/log/webcp</defaultvalue>
 				<permissions>admin.cp.canEditVhostContainer</permissions>
 			</option>
 			
