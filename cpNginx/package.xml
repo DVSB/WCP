@@ -37,5 +37,12 @@
 		<options>options.xml</options>
 		<files>files.tar</files>
 	</instructions>
+	
+	<instructions type="update" fromversion="1.*">
+		<languages languagecode="de">de.xml</languages>
+		<languages languagecode="en">en.xml</languages>
+		<options>options.xml</options>
+		<files>files.tar</files>
+	</instructions>
 
 </package>
