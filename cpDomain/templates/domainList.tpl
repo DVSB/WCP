@@ -41,10 +41,10 @@
 	</div>
 	
 	{if $domains|count}
-	<div class="border">
+	<div class="subTabMenu">
 		<div class="containerHead"><h3>{lang}cp.domain.list{/lang}</h3></div>
 	</div>
-	<div class="border borderMarginRemove">
+	<div class="border tabMenuContent">
 		<table class="tableList">
 			<thead>
 				<tr class="tableHead">

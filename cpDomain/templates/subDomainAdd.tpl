@@ -40,7 +40,7 @@
 	{/if}
 	
 	<form method="post" action="index.php?form=SubDomain{@$action|ucfirst}">
-		<div class="border content">
+		<div class="border tabMenuContent">
 			<div class="container-1">
 				<fieldset>
 					<legend>{lang}cp.domain.data{/lang}</legend>
