@@ -13,12 +13,16 @@ class createhome(basishandler):
         
         dirs = ''
         for dir in dirsDB:
-            if dirsDB[dir][0] == 'textarea':
-                dirs += dirsDB[dir][1]
+            d = dir.values()[0]
+            if d[0] == 'textarea':
+                dirs += d[1].strip() + "\n"
         
         dirs = dirs.strip()
         dirs = parseOptions(dirs, self.env.config)
         dirs = parseUser(dirs, user)
+        
+        self.env.logger.append('creating homedir for ' + self.data['userID'] + ': ' + dirs)
+        
         dirs = dirs.splitlines()
         
         for dir in dirs:

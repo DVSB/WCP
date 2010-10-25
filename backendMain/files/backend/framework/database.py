@@ -47,7 +47,7 @@ class database(object):
             if params[p] == "nativefunc":
                 query += p + ", "
             else:
-                query += p + " = '%s', "
+                query += p + " = %s, "
                 vars.append(params[p])
         
         query = query.rstrip(", ")
@@ -72,7 +72,7 @@ class database(object):
             if params[p] == "nativefunc":
                 query += p
             else:
-                query += p + " = '%s', "
+                query += p + " = %s, "
                 vars.append(params[p])
                 
         query = query.rstrip(", ")

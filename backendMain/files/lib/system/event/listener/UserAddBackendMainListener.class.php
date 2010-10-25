@@ -17,12 +17,13 @@ class UserAddBackendMainListener implements EventListener
 	 */
 	public function execute($eventObj, $className, $eventName)
 	{
-		if (!isset($eventObj->cpUser->homedir))
+		if (empty($eventObj->cpUser->homedir))
 		{
 			// create cp user record
 			$sql = "UPDATE	cp" . CP_N . "_user
 					SET 	homedir = '" . CPUtils :: getHomeDir($eventObj->user->username) . "',
-							guid = " . CPUtils :: getNewGUID();
+							guid = " . CPUtils :: getNewGUID() . "
+					WHERE	userID = " . $eventObj->cpUser->userID;
 			WCF :: getDB()->sendQuery($sql);
 				
 			if ($eventObj->user->isCustomer)

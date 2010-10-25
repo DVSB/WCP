@@ -13,8 +13,9 @@ class counthome(basishandler):
         
         odirs = ''
         for dir in dirsDB:
-            if dir[0] == 'textarea':
-                odirs += dir[1]
+           d = dir.values()[0]
+           if d[0] == 'textarea':
+               odirs += d[1].strip() + "\n"
         
         # parse dirs with options
         odirs = parseOptions(odirs, self.env.config)     

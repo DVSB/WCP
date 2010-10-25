@@ -40,7 +40,7 @@
 	</div>
 	<div class="formElement">
 		<p class="formFieldLabel">{lang}cp.acp.jobhandlerLog.execTimeEnd{/lang}</p>
-		<p class="formField">{if $log.execTimeEnd > 0}{$log.execTimeEnd|t:"%Y-%m-%d %H:%I:%S"}{/if}</p>
+		<p class="formField">{if $log.execTimeEnd > 0}{$log.execTimeEnd|date:"%Y-%m-%d %H:%I:%S"}{/if}</p>
 	</div>
 	<div class="formElement">
 		<p class="formFieldLabel">{lang}cp.acp.jobhandlerLog.execJobhandler{/lang}</p>

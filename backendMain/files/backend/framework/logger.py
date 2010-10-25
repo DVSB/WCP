@@ -35,7 +35,7 @@ class logger(object):
         
     def close(self, success):
         self.db.update("cp" + self.db.cpnr + "_jobhandler_task_log",
-                        {'data': "\n".join(self.log), 
+                        {'data': "\n-------\n".join(self.log), 
                          'success': str(success), 
                          'execTimeEnd = UNIX_TIMESTAMP()': 'nativefunc'},
                         {'jobhandlerTaskLogID': self.sessionID})
