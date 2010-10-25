@@ -5,8 +5,8 @@
 	<packageInformation>
 		<packageName>Web ControlPanel Backendhandler</packageName>
 		<packageDescription>Behandelt alle Aktionen die mit Rootrechten auf dem Webserver ausgeführt werden müssen</packageDescription>
-		<version>1.0.0 RC1</version>
-		<date>2010-10-19</date>
+		<version>1.0.0 RC2</version>
+		<date>2010-10-25</date>
 		<plugin>com.toby.cp</plugin>
 	</packageInformation>
 
@@ -37,6 +37,20 @@
 	</instructions>
 	
 	<instructions type="update" fromversion="0.*">
+		<languages languagecode="de">de.xml</languages>
+		<options>options.xml</options>
+		<files>files.tar</files>
+		<acptemplates>acptemplates.tar</acptemplates>
+		<acpmenu>acpmenu.xml</acpmenu>
+		<eventlistener>eventlistener.xml</eventlistener>
+		<useroptions>useroptions.xml</useroptions>
+	 	<packageinstallationplugins>pip.tar</packageinstallationplugins>
+		<jobhandlertask>jobhandlertasks.xml</jobhandlertask>
+		<groupoptions>groupoptions.xml</groupoptions>
+		<cronjobs>cronjobs.xml</cronjobs>
+	</instructions>
+	
+	<instructions type="update" fromversion="1.*">
 		<languages languagecode="de">de.xml</languages>
 		<options>options.xml</options>
 		<files>files.tar</files>
