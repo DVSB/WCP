@@ -38,27 +38,33 @@ def mkPath(typ, path, mode, uid, gid):
 
 def getUID(uid):
     """
-    will get uid from given string
+    will get uid from given string, returns nobody on error
     @guid: string
     """
     
     try:
         uid = int(uid)
     except:
-        uid = getpwnam(uid).pw_uid
+        try:
+            uid = getpwnam(uid).pw_uid
+        except:
+            uid = 65534
 
     return int(uid)
 
 def getGID(gid):
     """
-    will get gid from given string
+    will get gid from given string, returns nogroup on error
     @guid: string
     """
     
     try:
         gid = int(gid)
     except:
-        gid = getgrnam(gid).gr_gid
+        try:
+            gid = getgrnam(gid).gr_gid
+        except:
+            gid = 65534
 
     return int(gid)
 
