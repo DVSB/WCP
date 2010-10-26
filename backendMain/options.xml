@@ -34,7 +34,7 @@ d:{HOMEDIR}/files:0777:{GUID}.{GUID}</defaultvalue>
 			<option name="default_count_paths">
 				<categoryname>cp.backendpaths.countpaths</categoryname>
 				<optiontype>textarea</optiontype>
-				<defaultvalue>{HOMEDIR_PREFIX}/{USERNAME}:logfiles,tmp</defaultvalue>
+				<defaultvalue>{HOMEDIR}:logfiles,tmp</defaultvalue>
 			</option>
 			<!-- cp -->
 		</options>

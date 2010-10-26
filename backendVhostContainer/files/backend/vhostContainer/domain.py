@@ -11,10 +11,10 @@ class domain(object):
     classdocs
     '''
     
-    def __init__(self, domainID, vhostHandler, env):
+    def __init__(self, domainID, env):
         self.env = env
-        self.vhostHandler = vhostHandler
         self.domainID = domainID
+        self.vhostContainer = None
         self.loadDomain()
         self.getUser()
        

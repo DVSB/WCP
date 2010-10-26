@@ -57,8 +57,8 @@ l:{CONTAINERNGINXLOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{CONTAINERNGINXUSE
   #if $isWildcardDomain
   server_name *.$domainname;
   #end if
-  error_log  $containerNginxlogpath/$username/$domainname-error.log  main;
-  access_log  $containerNginxlogpath/$username/$domainname-access.log  main;
+  error_log  $logpath/$username/$domainname-error.log  main;
+  access_log  $logpath/$username/$domainname-access.log  main;
   #charset koi8-r;
 
   location / {

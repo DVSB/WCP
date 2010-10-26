@@ -25,7 +25,7 @@ class vhostHandler(object):
             
     def addDomainToVhost(self, domain):
         for v in self.vhostContainer:
-            if v.get('vhostContainerID') == domain.get('vhostContainerID'):
+            if int(v.get('vhostContainerID')) == int(domain.get('vhostContainerID')):
                 v.addDomain(domain)
         
     def addDomain(self, domainID):

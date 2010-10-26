@@ -63,8 +63,8 @@ l:{CONTAINERAPACHE2LOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{CONTAINERAPACHE
   
   Alias /webalizer "$homeDir/webalizer/$domainname"
   
-  ErrorLog "$containerApache2logpath/$username/$domainname-error.log"
-  CustomLog "$containerApache2logpath/$username/$domainname-access.log" combined
+  ErrorLog "$logpath/$username/$domainname-error.log"
+  CustomLog "$logpath/$username/$domainname-access.log" combined
   
   #if $isSSL
   <IfModule mod_ssl.c>
