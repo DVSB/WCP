@@ -34,8 +34,8 @@
 			{foreach from=$logs item=log}
 				<tr class="{cycle values="container-1,container-2"}">
 					<td class="columnJobhandlerTaskLogID"><a href="index.php?page=JobhandlerTaskLogDetail&amp;logID={@$log.jobhandlerTaskLogID}{@SID_ARG_2ND}">{@$log.jobhandlerTaskLogID}</a></td>
-					<td class="columnExecTimeStart">{@$log.execTimeStart|date:"%Y-%m-%d %H:%I:%S"}</td>
-					<td class="columnExecTimeEnd">{if $log.execTimeEnd > 0}{@$log.execTimeEnd|date:"%Y-%m-%d %H:%I:%S"}{/if}</td>
+					<td class="columnExecTimeStart">{@$log.execTimeStart|date:"%Y-%m-%d %H:%M:%S"}</td>
+					<td class="columnExecTimeEnd">{if $log.execTimeEnd > 0}{@$log.execTimeEnd|date:"%Y-%m-%d %H:%M:%S"}{/if}</td>
 					<td class="columnExecJobhandler">{$log.execJobhandler|truncate:50:' ...'}</td>
 					<td class="columnSuccess">
 						{if $log.success == "success"}
