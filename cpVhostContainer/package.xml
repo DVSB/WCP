@@ -46,5 +46,16 @@
 		<domainoptions>domainoptions.xml</domainoptions>
 		<eventlistener>eventlistener.xml</eventlistener>
 	</instructions>
+	
+	<instructions type="update" fromversion="1.*">
+		<languages languagecode="de">de.xml</languages>
+		<options>options.xml</options>
+		<files>files.tar</files>
+		<acptemplates>acptemplates.tar</acptemplates>
+		<groupoptions>groupoptions.xml</groupoptions>
+		<acpmenu>acpmenu.xml</acpmenu>
+		<domainoptions>domainoptions.xml</domainoptions>
+		<eventlistener>eventlistener.xml</eventlistener>
+	</instructions>
 
 </package>
