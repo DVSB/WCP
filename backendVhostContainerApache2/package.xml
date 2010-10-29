@@ -29,5 +29,9 @@
 	<instructions type="update" fromversion="0.*">
 		<files>files.tar</files>
 	</instructions>
+	
+	<instructions type="update" fromversion="1.*">
+		<files>files.tar</files>
+	</instructions>
 
 </package>
