@@ -55,8 +55,8 @@ class vhostContainer(object):
         
     def getContainer(self, vhostType):
         try:
-            container = loadModule(self.myType, 'vhostContainer/container/')
-            return getattr(container, self.myType)
+            container = loadModule(vhostType, 'vhostContainer/container/')
+            return getattr(container, vhostType)
         except Exception, e:
             self.env.logger.append(str(e))
             return "error"

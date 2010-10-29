@@ -6,11 +6,11 @@ class counthome(basishandler):
     
     def run(self):  
         users = getActiveUsers(self.env.config)
-        
+
         dirsDB = self.env.config.getSection('cp.backendpaths.countpaths')
         
         option = getUserOptions(self.env.config, ['diskspaceUsed'])[0][0]
-        
+
         odirs = ''
         for dir in dirsDB:
            d = dir.values()[0]
@@ -18,13 +18,13 @@ class counthome(basishandler):
                odirs += d[1].strip() + "\n"
         
         # parse dirs with options
-        odirs = parseOptions(odirs, self.env.config)     
+        odirs = parseOptions(odirs, self.env.config)
         
         for user in users:   
             # parse dirs with userdata
             dirs = parseUser(odirs, user)
             dirs = dirs.splitlines()
-            
+
             bytes = 0.0
             
             for dir in dirs:
