@@ -5,7 +5,7 @@
 	<packageInformation>
 		<packageName>Web ControlPanel FTP Modul</packageName>
 		<packageDescription>Ermöglicht FTP-Zugriff auf den Server</packageDescription>
-		<version>1.0.0-RC1</version>
+		<version>1.0.0 RC2</version>
 		<plugin>com.toby.cp</plugin>
 		<date>2010-05-14</date>
 	</packageInformation>
