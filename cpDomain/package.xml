@@ -53,4 +53,18 @@
 		<packageinstallationplugins>pip.tar</packageinstallationplugins>
 	</instructions>
 
+	<instructions type="update" fromversion="1.*">
+		<languages languagecode="de">de.xml</languages>
+		<languages languagecode="en">en.xml</languages>
+		<options>options.xml</options>
+		<files>files.tar</files>
+		<templates>templates.tar</templates>
+		<acptemplates>acptemplates.tar</acptemplates>
+		<groupoptions>groupoptions.xml</groupoptions>
+		<pagemenu>pagemenu.xml</pagemenu>
+		<eventlistener>eventlistener.xml</eventlistener>
+		<useroptions>useroptions.xml</useroptions>
+		<domainoptions>domainoptions.xml</domainoptions>
+		<packageinstallationplugins>pip.tar</packageinstallationplugins>
+	</instructions>
 </package>
