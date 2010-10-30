@@ -24,14 +24,7 @@
 			<environment>user</environment>
 			<inherit>1</inherit>
 		</eventlistener>
-		
-		<eventlistener>
-			<eventClassName>SubDomainEditForm</eventClassName>
-			<eventName>assignVariables</eventName>
-			<listenerClassFile>lib/system/event/listener/DomainVhostListener.class.php</listenerClassFile>
-			<environment>user</environment>
-		</eventlistener>
-		
+	
 		<eventlistener>
 			<eventClassName>SubDomainDeleteAction</eventClassName>
 			<eventName>domainDeleted</eventName>
