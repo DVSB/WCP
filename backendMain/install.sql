@@ -14,8 +14,7 @@ CREATE TABLE cp1_1_jobhandler_task (
 	packageID int(10) unsigned NOT NULL default 0,
 	PRIMARY KEY (jobhandlerTaskID),
 	KEY (jobhandler),
-	KEY (packageID),
-	UNIQUE (jobhandler, nextExec, userID)
+	KEY (packageID)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE cp1_1_jobhandler_task_log (

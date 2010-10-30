@@ -31,15 +31,19 @@ class DomainVhostListener implements EventListener
 			break;
 			
 			case 'DomainDeleteAction':
-				JobhandlerUtils :: addJob('deleteVhost', 0, array('domainID' => $eventObj->domainID));
+				JobhandlerUtils :: addJob('deleteVhost', 0, array('domainID' => $eventObj->domainID), 'asap', 99);
 			break;
 			
 			case 'SubDomainAddForm':
 				JobhandlerUtils :: addJob('createVhost', $eventObj->domain->userID, array('domainID' => $eventObj->domain->domainID));
 			break;
 			
+			case 'SubDomainEditForm':
+				JobhandlerUtils :: addJob('updateVhost', $eventObj->domain->userID, array('domainID' => $eventObj->domainID));
+			break;
+			
 			case 'SubDomainDeleteAction':
-				JobhandlerUtils :: addJob('deleteVhost', $eventObj->domain->userID, array('domainID' => $eventObj->domainID));
+				JobhandlerUtils :: addJob('deleteVhost', $eventObj->domain->userID, array('domainID' => $eventObj->domainID), 'asap', 99);
 			break;
 			
 			case 'DomainEnableAction':
@@ -47,7 +51,7 @@ class DomainVhostListener implements EventListener
 			break;
 			
 			case 'DomainDisableAction':
-				JobhandlerUtils :: addJob('deleteVhost', 0, array('domainID' => $eventObj->domainID));
+				JobhandlerUtils :: addJob('deleteVhost', 0, array('domainID' => $eventObj->domainID), 'asap', 99);
 			break;
 		}
 	}

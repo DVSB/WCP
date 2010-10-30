@@ -9,6 +9,7 @@
 		<item name="wcf.acp.option.apache2_create_paths.description"><![CDATA[Diese Pfade werden für Apache2-Domains erstellt.]]></item>
 		<item name="wcf.acp.option.containerApache2vhostpath"><![CDATA[Vhost-Pfad]]></item>
 		<item name="wcf.acp.option.containerApache2fileprefix"><![CDATA[Datei-Prefix]]></item>
+		<item name="wcf.acp.option.containerApache2filewildcardprefix"><![CDATA[Datei-Prefix für Wildcard-Domains]]></item>
 		<item name="wcf.acp.option.containerApache2ipandportprefix"><![CDATA[IP und Port-Prefix]]></item>
 		<item name="wcf.acp.option.containerApache2template"><![CDATA[Vhost-Template]]></item>
 		<item name="wcf.acp.option.containerApache2reloadcommand"><![CDATA[Apache2-Reloadkommando]]></item>
@@ -17,6 +18,7 @@
 		<item name="wcf.acp.option.containerApache2user"><![CDATA[Apache2-User]]></item>
 		<item name="wcf.acp.option.containerApache2vhostpath.description"><![CDATA[In diesem Verzeichnis werden die erstellten Vhost-Dateien abgelegt.]]></item>
 		<item name="wcf.acp.option.containerApache2fileprefix.description"><![CDATA[Mit diesem Prefix werden alle erstellten Vhost-Dateien beginnen.]]></item>
+		<item name="wcf.acp.option.containerApache2filewildcardprefix.description"><![CDATA[Mit diesem Prefix werden alle erstellten Vhost-Dateien beginnen, die auf Wildcard-Domains verweisen.]]></item>
 		<item name="wcf.acp.option.containerApache2ipandportprefix.description"><![CDATA[Mit diesem Prefix werden die Dateien für IP und Port Definitionen beginnen. Dieser Wert muss alphabetisch vor dem Datei-Prefix liegen!]]></item>
 		<item name="wcf.acp.option.containerApache2template.description"><![CDATA[Dieses Template definiert den grundlegenden Aufbau der Vhosts.]]></item>
 		<item name="wcf.acp.option.containerApache2reloadcommand.description"><![CDATA[Mit diesem Befehl wird der Apache2-Server neu gestartet.]]></item>

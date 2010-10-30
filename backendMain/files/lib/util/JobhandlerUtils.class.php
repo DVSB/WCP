@@ -43,9 +43,9 @@ class JobhandlerUtils
 			throw new SystemException('Unknown "'.$nextExec.'" nextExec, allowed are: asap, hourchange, daychange, weekchange, monthchange, yearchange');
 		
 		if (empty($data))
-			$data['userID'] = $userID;	
+			$data['userID'] = $userID;
 		
-		$sql = "INSERT IGNORE INTO cp" . CP_N . "_jobhandler_task 
+		$sql = "INSERT INTO cp" . CP_N . "_jobhandler_task 
 				(jobhandler, data, nextExec, userID, priority)
 				VALUES ('" . escapeString($jobhandler) . "',
 						'" . escapeString(serialize($data)) . "',
@@ -54,6 +54,37 @@ class JobhandlerUtils
 						" . intval($priority) . ")";
 		
 		WCF :: getDB()->sendQuery($sql);
+	}
+	
+	/**
+	 * check if an job is defined
+	 *
+	 * @param string/array $jobhandler
+	 * @param integer $userID
+	 * 
+	 * @return boolean
+	 */
+	public static function getJobs($jobhandler, $userID, $data = array())
+	{
+		if (!is_array($jobhandler))
+			$jobhandler = array($jobhandler);
+			
+		foreach ($jobhandler as $key => $val) 
+		{
+			$jobhandler[$key] = escapeString($val);
+		}
+		
+		$sql = "SELECT COUNT(*) AS count 
+				FROM cp" . CP_N . "_jobhandler_task 
+				WHERE userID = " . intval($userID) . "
+					AND	jobhandler IN ('" . implode("','", $jobhandler) . "')";
+		
+		if (!empty($data))
+			$sql .= " AND data = '" . escapeString(serialize($data)) . "'";
+		
+		$existCount = WCF :: getDB()->getFirstRow($sql);
+		
+		return $existCount['count'] == 0;
 	}
 }
 

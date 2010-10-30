@@ -31,7 +31,14 @@ l:{CONTAINERAPACHE2LOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{CONTAINERAPACHE
 				<optiontype>text</optiontype>
 				<defaultvalue>20_webcp_normal_vhost</defaultvalue>
 				<permissions>admin.cp.canEditVhostContainer</permissions>
-			</option> 
+			</option>
+			
+			<option name="containerApache2filewildcardprefix">
+				<categoryname>cpvhostcontainer.containerApache2</categoryname>
+				<optiontype>text</optiontype>
+				<defaultvalue>99_webcp_wildcard_vhost</defaultvalue>
+				<permissions>admin.cp.canEditVhostContainer</permissions>
+			</option>
 			
 			<option name="containerApache2ipandportprefix">
 				<categoryname>cpvhostcontainer.containerApache2</categoryname>
@@ -51,7 +58,7 @@ l:{CONTAINERAPACHE2LOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{CONTAINERAPACHE
   ServerAlias www.$domainname
   #end if
   
-  #if $isWildcardDomain
+  #if $isWildcardDomain and $isWildCardTemplate 
   ServerAlias *.$domainname
   #end if
   

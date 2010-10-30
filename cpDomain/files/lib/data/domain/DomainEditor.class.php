@@ -78,6 +78,7 @@ class DomainEditor extends Domain
 						" . intval($parentDomainID) . "
 						" . $additionalColumnValues . ")";
 		WCF :: getDB()->sendQuery($sql);
+		$domainID = WCF :: getDB()->getInsertID();
 		
 		if ($parentDomainID != 0)
 		{
@@ -85,7 +86,7 @@ class DomainEditor extends Domain
 			$user->getEditor()->updateOptions(array('subdomainsUsed' => ++$user->subdomainsUsed));
 		}
 		
-		return WCF :: getDB()->getInsertID();
+		return $domainID;
 	}
 
 	/**
