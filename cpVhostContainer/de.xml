@@ -87,6 +87,7 @@
 		<item name="cp.domain.option.wwwServerAlias"><![CDATA[www-Prefix anfügen]]></item>
 		<item name="cp.domain.option.wwwServerAlias.description"><![CDATA[Für diese Domain wird automatisch ein www.-Alias erzeugt.]]></item>
 		<item name="cp.domain.option.noWebDomain"><![CDATA[Ist keine Webdomain]]></item>
+		<item name="cp.domain.option.noWebDomain.description"><![CDATA[Ist keine Webdomain, wird nicht als solche angelegt.]]></item>
 		<item name="cp.domain.alias.none"><![CDATA[Kein Alias]]></item>
 		<item name="cp.domain.alias.alias"><![CDATA[Alias-Domain]]></item>
 		<item name="cp.domain.alias.redirect"><![CDATA[Weiterleitungs-Domain]]></item>
