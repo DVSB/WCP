@@ -32,7 +32,7 @@ class DomainVhostListener implements EventListener
 			case 'DomainEditForm':
 			case 'SubDomainEditForm':
 				if (!$eventObj->domain->noWebDomain)
-					JobhandlerUtils :: addJob('updateVhost', $eventObj->userID, array('domainID' => $eventObj->domainID));
+					JobhandlerUtils :: addJob('updateVhost', $eventObj->domain->userID, array('domainID' => $eventObj->domainID));
 				else
 					JobhandlerUtils :: addJob('deleteVhost', WCF :: getUser()->userID, array('domainID' => $eventObj->domainID), 'asap', 99);
 			break;
