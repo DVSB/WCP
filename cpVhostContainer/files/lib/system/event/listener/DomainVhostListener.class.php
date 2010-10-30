@@ -23,35 +23,24 @@ class DomainVhostListener implements EventListener
 		switch ($className)
 		{
 			case 'DomainAddForm':
-				JobhandlerUtils :: addJob('createVhost', $eventObj->userID, array('domainID' => $eventObj->domain->domainID));
+			case 'SubDomainAddForm':
+			case 'DomainEnableAction':
+				if (!$eventObj->domain->noWebDomain)
+					JobhandlerUtils :: addJob('createVhost', $eventObj->domain->userID, array('domainID' => $eventObj->domain->domainID));
 			break;
 
 			case 'DomainEditForm':
-				JobhandlerUtils :: addJob('updateVhost', $eventObj->userID, array('domainID' => $eventObj->domainID));
-			break;
-			
-			case 'DomainDeleteAction':
-				JobhandlerUtils :: addJob('deleteVhost', 0, array('domainID' => $eventObj->domainID), 'asap', 99);
-			break;
-			
-			case 'SubDomainAddForm':
-				JobhandlerUtils :: addJob('createVhost', $eventObj->domain->userID, array('domainID' => $eventObj->domain->domainID));
-			break;
-			
 			case 'SubDomainEditForm':
-				JobhandlerUtils :: addJob('updateVhost', $eventObj->domain->userID, array('domainID' => $eventObj->domainID));
+				if (!$eventObj->domain->noWebDomain)
+					JobhandlerUtils :: addJob('updateVhost', $eventObj->userID, array('domainID' => $eventObj->domainID));
+				else
+					JobhandlerUtils :: addJob('deleteVhost', WCF :: getUser()->userID, array('domainID' => $eventObj->domainID), 'asap', 99);
 			break;
-			
+
+			case 'DomainDeleteAction':
 			case 'SubDomainDeleteAction':
-				JobhandlerUtils :: addJob('deleteVhost', $eventObj->domain->userID, array('domainID' => $eventObj->domainID), 'asap', 99);
-			break;
-			
-			case 'DomainEnableAction':
-				JobhandlerUtils :: addJob('createVhost', 0, array('domainID' => $eventObj->domainID));
-			break;
-			
 			case 'DomainDisableAction':
-				JobhandlerUtils :: addJob('deleteVhost', 0, array('domainID' => $eventObj->domainID), 'asap', 99);
+				JobhandlerUtils :: addJob('deleteVhost', WCF :: getUser()->userID, array('domainID' => $eventObj->domainID), 'asap', 99);
 			break;
 		}
 	}

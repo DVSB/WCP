@@ -16,12 +16,77 @@ class DomainOptionTypePath extends DomainOptionTypeText
 			else
 				$optionData['optionValue'] = '';
 		}
-		
+
+		switch (get_class($this->form))
+		{
+			case 'DomainEditForm':
+			case 'SubDomainEditForm':
+				$this->user = new CPUser($this->form->domain->userID);
+			break;
+
+			case 'DomainAddForm':
+				$this->user = new CPUser($this->form->userID);
+			break;
+
+			case 'SubDomainAddForm':
+			default:
+				$this->user = WCF :: getUser();
+		}
+
+		$optionData['optionValue'] = str_replace($this->user->homeDir, '', $optionData['optionValue']);
+
 		WCF :: getTPL()->assign(array (
-			'optionData' => $optionData, 
+			'optionData' => $optionData,
 			'inputType' => $this->inputType
 		));
 		return WCF :: getTPL()->fetch('optionTypePath');
+	}
+
+	/**
+	 * @see OptionType::getData()
+	 */
+	public function getData($optionData, $newValue)
+	{
+		if (!empty($newValue))
+		{
+			switch (get_class($this->form))
+			{
+				case 'DomainEditForm':
+				case 'SubDomainEditForm':
+					$this->user = new CPUser($this->form->domain->userID);
+				break;
+
+				case 'DomainAddForm':
+					$this->user = new CPUser($this->form->userID);
+				break;
+
+				case 'SubDomainAddForm':
+				default:
+					$this->user = WCF :: getUser();
+			}
+
+			if (strpos($newValue, $this->user->homeDir) !== 0)
+				$newValue = FileUtil :: getRealPath($this->user->homeDir . $newValue);
+		}
+
+		return $newValue;
+	}
+
+	/**
+	 * @see OptionType::validate()
+	 */
+	public function validate($optionData, $newValue)
+	{
+		if (!empty($newValue))
+		{
+			$newValue = FileUtil :: getRealPath($this->user->homeDir . $newValue);
+
+			if ($newValue == $this->user->homeDir)
+				throw new UserInputException($optionData['optionName'], 'notValid');
+
+			if (strpos($newValue, $this->user->homeDir) !== 0)
+				throw new UserInputException($optionData['optionName'], 'notValid');
+		}
 	}
 }
 ?>

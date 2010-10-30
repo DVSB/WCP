@@ -52,6 +52,10 @@ class domain(object):
             
         #TODO: load data from parentdomain, if given, and merge it with data of this domain
         #empty fields should be filled with data from parent
+        if self.domain['parentDomainID'] != 0:
+            parent = domain(self.domain['parentDomainID'], self.env)
+            self.domain['vhostContainerID'] = parent.get('vhostContainerID')
+            self.domain['domainname'] += '.' + parent.get('domainname')
         
     def get(self, option):
         if self.domain.has_key(option):

@@ -12,15 +12,14 @@ class DomainDisableAction extends AbstractSecureAction
 	{
 		parent :: execute();
 
-		$domain = new DomainEditor($_REQUEST['domainID']);
+		$this->domain = new DomainEditor($_REQUEST['domainID']);
 
-		if ($domain->userID == WCF :: getUser()->userID)
+		if ($this->domain->userID == WCF :: getUser()->userID)
 		{
-			$this->domainID = $domain->domainID;
-			$domain->disable();
+			$this->domain->disable();
 			EventHandler :: fireAction($this, 'domainDisabled');
 		}
-		
+
 		$url = 'index.php?page=DomainList'. SID_ARG_2ND_NOT_ENCODED;
 		HeaderUtil::redirect($url);
 	}

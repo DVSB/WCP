@@ -69,5 +69,25 @@
 		<item name="wcf.acp.group.option.admin.cp.canDeleteVhostContainer"><![CDATA[Kann VhostContainer löschen]]></item>
 		<item name="wcf.acp.group.option.admin.cp.canDeleteVhostContainer.description"><![CDATA[Mitglieder dieser Gruppe können VhostContainer löschen]]></item>
 	</category>
+	
+	<category name="cp.domain.option">
+		<item name="cp.domain.option.category.web"><![CDATA[Web-Einstellungen]]></item>
+		<item name="cp.domain.option.category.web.definitions"><![CDATA[Vhost-Container-Verwaltung]]></item>
+		<item name="cp.domain.option.category.web.settings"><![CDATA[Vhost-Container-Verwaltung]]></item>
+		<item name="cp.domain.option.documentroot"><![CDATA[Dokumentenverzeichnis]]></item>
+		<item name="cp.domain.option.documentroot.description"><![CDATA[Pfad zum Verzeichnis das für diese Domain angezeigt werden soll]]></item>
+		<item name="cp.domain.option.isAliasDomain"><![CDATA[Ist Alias-Domain]]></item>
+		<item name="cp.domain.option.isAliasDomain.description"><![CDATA[Diese Domain ist eine Aliasdomain]]></item>
+		<item name="cp.domain.option.aliasDomainID"><![CDATA[Alias-Domain]]></item>
+		<item name="cp.domain.option.aliasDomainID.description"><![CDATA[Diese Domain wird ein Alias für die hier ausgewählte Domain.]]></item>
+		<item name="cp.domain.option.redirectDomain"><![CDATA[Weiterleitungs-Domain]]></item>
+		<item name="cp.domain.option.redirectDomain.description"><![CDATA[Diese Domain leitet auf die hier eingetragene Domain weiter.]]></item>
+		<item name="cp.domain.option.isWildcardDomain"><![CDATA[Ist Wildcard-Domain]]></item>
+		<item name="cp.domain.option.isWildcardDomain.description"><![CDATA[Diese Domain wird auf alle Anfragen reagieren, für die es nicht eine eigene Subdomain gibt.]]></item>
+		<item name="cp.domain.option.wwwServerAlias"><![CDATA[www-Prefix anfügen]]></item>
+		<item name="cp.domain.option.wwwServerAlias.description"><![CDATA[Für diese Domain wird automatisch ein www.-Alias erzeugt.]]></item>
+		<item name="cp.domain.option.noWebDomain"><![CDATA[Ist keine Webdomain]]></item>
+		<item name="cp.domain.option.noWebDomain.description"><![CDATA[Ist keine Webdomain, wird nicht als solche angelegt.]]></item>
+	</category>
 
 </language>

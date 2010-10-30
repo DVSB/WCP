@@ -58,7 +58,7 @@ l:{CONTAINERAPACHE2LOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{CONTAINERAPACHE
   ServerAlias www.$domainname
   #end if
   
-  #if $isWildcardDomain and $isWildCardTemplate 
+  #if $isWildcardDomain and $isWildCardTemplate == True
   ServerAlias *.$domainname
   #end if
   

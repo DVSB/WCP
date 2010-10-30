@@ -27,6 +27,7 @@
 				<categoryname>web.definitions</categoryname>
 				<optiontype>path</optiontype>
 				<editable>1</editable>
+				<required>1</required>
 			</option>
 			
 			<option name="specialSettings">
@@ -80,6 +81,7 @@ redirect:redirectDomain,!aliasDomainID]]></enableoptions>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>0</defaultvalue>
 				<editable>1</editable>
+				<enableoptions><![CDATA[!documentroot]]></enableoptions>
 			</option>
 
 		</options>

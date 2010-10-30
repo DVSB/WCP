@@ -10,8 +10,8 @@ class SubDomainDeleteAction extends AbstractSecureAction
 	 */
 	public function execute()
 	{
-		WCF::getUser()->checkPermission('cp.domain.canDeleteSubDomains');
-		
+		WCF::getUser()->checkPermission('cp.domain.canDeleteSubDomain');
+
 		parent :: execute();
 
 		$domain = new DomainEditor($_REQUEST['domainID']);
@@ -22,7 +22,7 @@ class SubDomainDeleteAction extends AbstractSecureAction
 			$domain->delete();
 			EventHandler :: fireAction($this, 'domainDeleted');
 		}
-		
+
 		$url = 'index.php?page=DomainList'. SID_ARG_2ND_NOT_ENCODED;
 		HeaderUtil::redirect($url);
 	}
