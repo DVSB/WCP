@@ -5,8 +5,7 @@ Created on 03.05.2010
 '''
 
 import os, sys
-from re import *
-from Cheetah.Template import Template
+from re import *    
 from subprocess import call
 from time import strftime
 
@@ -61,7 +60,12 @@ class containerDefault(object):
             os.remove(self.file)
             self.reloadServer()
             
-    def parse(self):        
+    def parse(self):    
+        try:
+            from Cheetah.Template import Template
+        except ImportError:
+            self.env.logger.append("Cheetah-Template seems not to be installed! Please install python-cheetah")
+            raise
         self.parsedTemplate = Template(self.template, searchList=[self.vars])
         
     def getFilePath(self):
