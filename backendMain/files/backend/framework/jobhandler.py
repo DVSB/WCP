@@ -56,7 +56,8 @@ class jobhandler(object):
     def firePendingJobs(self):
         for job in self.jobs:
             self.env.logger.append('Start task: ' + job)
-            #try:
+            #try: 
+            #TODO: Enable back for Release!
             module = loadModule(job, 'modules/')
             func = getattr(module, job)
             obj = func(self.jobs[job]['data'], self.env)
