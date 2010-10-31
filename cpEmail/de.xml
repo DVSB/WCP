@@ -87,5 +87,12 @@
 		<item name="wcf.acp.group.option.cp.email.canDeleteAccounts"><![CDATA[Darf Email-Konten löschen]]></item>
 		<item name="wcf.acp.group.option.cp.email.canDeleteAccounts.description"><![CDATA[Mitglieder dieser Gruppe dürfen Email-Konten löschen.]]></item>
 	</category>
+	
+	<category name="cp.domain.option">
+		<item name="cp.domain.option.category.email"><![CDATA[Email-Einstellungen]]></item>
+		<item name="cp.domain.option.category.email.settings"><![CDATA[Einstellungen]]></item>
+		<item name="cp.domain.option.email.isEmailDomain"><![CDATA[Ist Email-Domain]]></item>
+		<item name="cp.domain.option.email.isEmailDomain.description"><![CDATA[Dieser Schalter kontrolliert, ob Sie Email-Adressen für diese Domain erstellen können und ob Emails für diese Domain zugestellt werden können. Wenn Sie diesen Schalter deaktivieren werden alle bereits für diese Domain angelegten Email-Konten keine Emails mehr empfangen können!]]></item>
+	</category>
 
 </language>
