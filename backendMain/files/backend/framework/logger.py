@@ -22,7 +22,7 @@ class logger(object):
     def writeJobs(self, jobs):
         jobString = ""
         for job in jobs:
-            jobString += job['jobhandler'] + "\n"
+            jobString += job + "\n"
         
         self.db.update("cp" + self.db.cpnr + "_jobhandler_task_log", 
                        {"execJobhandler": jobString.strip()},

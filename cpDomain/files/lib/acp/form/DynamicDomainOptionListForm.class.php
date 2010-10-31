@@ -119,7 +119,39 @@ abstract class DynamicDomainOptionListForm extends DynamicOptionListForm
 
 		if ($option['required'] && empty($this->activeOptions[$key]['optionValue']))
 		{
-			throw new UserInputException($option['optionName']);
+			$required = true;
+
+			//check if this option is disabled by another option
+			foreach ($this->activeOptions as $key => $search)
+			{
+				if (!isset($this->values[$search['optionName']]))
+					continue;
+
+				if (isset($search['enableOptions']) && !empty($search['enableOptions']))
+				{
+					$enables = OptionUtil::parseMultipleEnableOptions($search['enableOptions']);
+
+					if (count($enables) > 1)
+					{
+						if (strpos($enables[$this->values[$search['optionName']]], '!' . $option['optionName']) !== false)
+						{
+							$required = false;
+							break;
+						}
+					}
+					else
+					{
+						if (strpos('!' . $option['optionName'], $enables[0]) !== false)
+						{
+							$required = false;
+							break;
+						}
+					}
+				}
+			}
+
+			if ($required)
+				throw new UserInputException($option['optionName']);
 		}
 	}
 }

@@ -15,26 +15,27 @@ class deleteVhost(basishandler):
     def run(self):
         self.vhandler = vhostHandler(self.env)
         
-        #delete this domain
-        if self.data.has_key('domainID'):
-            self.vhandler.addDomain(self.data['domainID'])
+        for data in self.data:
+            #delete this domain
+            if data.has_key('domainID'):
+                self.vhandler.addDomain(data['domainID'])
+                
+            #delete this domains
+            elif data.has_key('domainIDs'):
+                for d in data['domainIDs']:
+                    self.vhandler.addDomain(d)
             
-        #delete this domains
-        elif self.data.has_key('domainIDs'):
-            for d in self.data['domainIDs']:
-                self.vhandler.addDomain(d)
-        
-        #delete all domains with this vhosts
-        elif self.data.has_key('vhostID'):
-            self.vhandler.addDomainsForVhost(self.data['vhostID'])
-        
-        #delete all domains of this user
-        elif self.data.has_key('userID'):
-            self.vhandler.addDomainsForUser(self.data['userID'])
+            #delete all domains with this vhosts
+            elif data.has_key('vhostID'):
+                self.vhandler.addDomainsForVhost(data['vhostID'])
             
-        else:
-            return 'invalid'
-        
+            #delete all domains of this user
+            elif data.has_key('userID'):
+                self.vhandler.addDomainsForUser(data['userID'])
+                
+            else:
+                return 'invalid'
+            
         self.vhandler.deleteVhosts()
         
         return 'success'

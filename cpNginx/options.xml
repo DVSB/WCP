@@ -50,11 +50,13 @@ l:{CONTAINERNGINXLOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{CONTAINERNGINXUSE
   server_name $domainname;
   #end if
   
-  #if $wwwServerAlias
-  server_name www.$domainname;
+  #if $aliases
+  	#for $alias in $aliases
+  	server_name $alias
+  	#end for
   #end if
   
-  #if $isWildcardDomain
+  #if $isWildcardDomain and $isWildCardTemplate == True
   server_name *.$domainname;
   #end if
   error_log  $logpath/$username/$domainname-error.log  main;

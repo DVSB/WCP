@@ -4,7 +4,7 @@
 	<import>
 		<categories>
 			<category name="web">
-				<showorder>100</showorder>
+				<showorder>1</showorder>
 			</category>
 			
 			<category name="web.definitions">
@@ -38,11 +38,11 @@
 			
 			<option name="isAliasDomain">
 				<categoryname>web.definitions</categoryname>
-				<optiontype>AliasRadiobuttons</optiontype>
+				<optiontype>Radiobuttons</optiontype>
 				<defaultvalue>none</defaultvalue>
-				<selectoptions><![CDATA[none:cp.domain.alias.none
-alias:cp.domain.alias.alias
-redirect:cp.domain.alias.redirect]]></selectoptions>
+				<selectoptions><![CDATA[none:cp.domain.option.alias.none
+alias:cp.domain.option.alias.alias
+redirect:cp.domain.option.alias.redirect]]></selectoptions>
 				<enableoptions><![CDATA[none:!redirectDomain,!aliasDomainID
 alias:!redirectDomain,aliasDomainID
 redirect:redirectDomain,!aliasDomainID]]></enableoptions>
@@ -51,8 +51,9 @@ redirect:redirectDomain,!aliasDomainID]]></enableoptions>
 
 			<option name="aliasDomainID">
 				<categoryname>web.definitions</categoryname>
-				<optiontype>NoAliases</optiontype>
+				<optiontype>SelectAliasDomain</optiontype>
 				<editable>1</editable>
+				<required>1</required>
 			</option>
 
 			<option name="redirectDomain">
@@ -60,6 +61,8 @@ redirect:redirectDomain,!aliasDomainID]]></enableoptions>
 				<optiontype>text</optiontype>
 				<defaultvalue></defaultvalue>
 				<editable>1</editable>
+				<validationpattern>^$|(^((http(s?))\://)(www.|[a-zA-Z].)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,}(\:[0-9]+)*.*)</validationpattern>
+				<required>1</required>
 			</option>
 
 			<option name="isWildcardDomain">

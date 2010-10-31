@@ -55,7 +55,7 @@
 				<defaultvalue>1</defaultvalue>
 			</option>
 			
-			<option name="cp.domain.canEditDomains">
+			<option name="cp.domain.canEditDomain">
 				<categoryname>cp.domains</categoryname>
 				<optiontype>boolean</optiontype>
 				<defaultvalue>1</defaultvalue>

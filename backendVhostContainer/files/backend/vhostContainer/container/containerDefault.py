@@ -25,13 +25,15 @@ class containerDefault(object):
         self.filewildcardprefix = None
         self.reloadcommand = None
         self.template = None
-        self.vars['logpath'] = {'access': None, 'error': None}
+        self.vars['logpath'] = ''
         self.vars['isWildCardTemplate'] = False
+        self.vars['aliases'] = []
         self.parsedTemplate = None
         self.parsedWildCardTemplate = None
         
         self.setVars()
         
+    #set vars for this domain and do some funky stuff with it
     def setVars(self):
         self.template = self.env.config.get('container' + self.myName + 'template')
         self.vhostpath = os.path.abspath(self.env.config.get('container' + self.myName + 'vhostpath'))
@@ -45,31 +47,42 @@ class containerDefault(object):
         self.vars.update(self.domain.domain)
         self.vars.update(self.domain.user.user)
         
-        self.file =  os.path.abspath(self.vhostpath + '/' + self.fileprefix + '_' + str(self.domain.domainID) + '_' + self.domain.get("domainname") + '.conf')
-        self.wildcardfile =  os.path.abspath(self.vhostpath + '/' + self.filewildcardprefix + '_' + str(self.domain.domainID) + '_' + self.domain.get("domainname") + '.conf')
+        self.domain.getAliasDomains()
+        
+        self.file = os.path.abspath(self.vhostpath + '/' + self.fileprefix + '_' + str(self.domain.domainID) + '_' + self.domain.get("domainname") + '.conf')
+        self.wildcardfile = os.path.abspath(self.vhostpath + '/' + self.filewildcardprefix + '_' + str(self.domain.domainID) + '_' + self.domain.get("domainname") + '.conf')
     
+    #create a domain
     def createDomain(self):
-        self.parse()
+        self.deleteDomain()
+
+        if self.domain.get('isAliasDomain') == 'alias' and self.domain.get('aliasDomainID') != 0:
+            self.env.logger.append('Domain ' + self.domain.get('domainname') + ' is aliasDomain => wont create Domain!')
+            return
+        
+        if self.domain.get('noWebDomain') == True:
+            self.env.logger.append('Domain ' + self.domain.get('domainname') + ' is noWebDomain => wont create Domain!')
+            return
+        
+        self.createTemplates()
         self.createPath()
+        self.parseVars()
         self.writeFile()
     
-    #update is nearly the same as create
-    def updateDomain(self):
-        self.deleteDomain()
-        self.createDomain()
-                
+    #delete all files for this domain
     def deleteDomain(self):
-        file = self.getFilePath()
+        f = self.getFilePath(self.file, self.fileprefix, self.domain.domainID)
         
-        if file <> False:
-            os.remove(file)
+        if f <> False:
+            os.remove(f)
             
-        file = self.getWildCardFilePath()
+        f = self.getFilePath(self.wildcardfile, self.filewildcardprefix, self.domain.domainID)
         
-        if file <> False:
-            os.remove(file)
-            
-    def parse(self):    
+        if f <> False:
+            os.remove(f)
+    
+    #create templateobjects, nothing really done here...
+    def createTemplates(self):    
         try:
             from Cheetah.Template import Template
         except ImportError:
@@ -78,35 +91,39 @@ class containerDefault(object):
         
         self.parsedTemplate = Template(self.template, searchList=[self.vars])
         
-        if self.domain.get('isWildcardDomain'):
+        if self.domain.get('isWildcardDomain') == True:
             self.parsedWildCardTemplate = Template(self.template, searchList=[self.vars])
+            
+    #last change to manipulate some vars
+    def parseVars(self):
+        if self.domain.get('wwwServerAlias') == True:
+            self.vars['aliases'].append('www.' + self.domain.get('domainname'))
         
-    def getFilePath(self):
-        if os.access(self.file, os.F_OK):
-            return self.file
+        if len(self.domain.aliases) > 0:
+            for alias in self.domain.aliases:
+                if alias.get('noWebDomain') == True:
+                    continue
+                
+                self.vars['aliases'].append(alias.get('domainname'))
+
+                if alias.get('wwwServerAlias') == True:
+                    self.vars['aliases'].append('www.' + alias.get('domainname'))
+    
+    #get filepath for vhostfile
+    def getFilePath(self, file, fileprefix, domainID):
+        if os.access(file, os.F_OK):
+            return file
         else:
             #maybe renamed, domainname is wrong?
             files = os.listdir(self.vhostpath)
             
             for file in files:
-                if search(self.fileprefix + '_' + str(self.domain.domainID) + '_.*', file) <> None:
+                if search(fileprefix + '_' + str(domainID) + '_.*', file) <> None:
                     return self.vhostpath + '/' + file
                 
         return False
     
-    def getWildCardFilePath(self):
-        if os.access(self.wildcardfile, os.F_OK):
-            return self.wildcardfile
-        else:
-            #maybe renamed, domainname is wrong?
-            files = os.listdir(self.vhostpath)
-            
-            for file in files:
-                if search(self.filewildcardprefix + '_' + str(self.domain.domainID) + '_.*', file) <> None:
-                    return self.vhostpath + '/' + file
-                
-        return False
-    
+    #create recursive path to documentroot and give it to domainowner
     def createPath(self):
         path = os.path.normcase(self.domain.get('documentroot'))
         if os.path.exists(path) == False:
@@ -119,7 +136,8 @@ class containerDefault(object):
                     os.mkdir(wpath)
                     gid = int(self.domain.user.get('guid'))
                     os.chown(wpath, gid, gid)
-        
+    
+    #write (both, if wildcard) vhostfiles
     def writeFile(self):
         if self.parsedTemplate <> None:
             f = file(self.file, 'w')
@@ -135,11 +153,13 @@ class containerDefault(object):
             f.write("# DO NOT CHANGE MANUALLY, ALL CHANGES WILL BE LOST NEXT TIME THIS FILE IS GENERATED!\n")
             f.write(str(self.parsedWildCardTemplate))
             f.close()
-            
+    
+    #called if all domain for this vhost are done
     def finishContainer(self):
         self.writeIPandPort()    
         self.reloadServer()
-        
+    
+    #create a file with additional data for webserver
     def writeIPandPort(self):
         ipAndPort = ""
         if self.domain.vhostContainer.get('addListenStatement'):
@@ -152,7 +172,8 @@ class containerDefault(object):
             f = file(os.path.abspath(self.vhostpath + '/' + self.ipandportprefix + '_' + str(self.domain.vhostContainer.get('ipAddress')) + "." + str(self.domain.vhostContainer.get('port')) + '.conf'), 'w')
             f.write(ipAndPort)
             f.close()
-            
+    
+    #finally reload the server and hope for the best ;)
     def reloadServer(self):
         try:
             retcode = call(self.reloadcommand, shell=True)

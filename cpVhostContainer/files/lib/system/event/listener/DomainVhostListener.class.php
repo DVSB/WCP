@@ -25,24 +25,34 @@ class DomainVhostListener implements EventListener
 			case 'DomainAddForm':
 			case 'SubDomainAddForm':
 			case 'DomainEnableAction':
-				if (!$eventObj->domain->noWebDomain)
-					JobhandlerUtils :: addJob('createVhost', $eventObj->domain->userID, array('domainID' => $eventObj->domain->domainID));
-			break;
-
 			case 'DomainEditForm':
 			case 'SubDomainEditForm':
-				if (!$eventObj->domain->noWebDomain)
-					JobhandlerUtils :: addJob('updateVhost', $eventObj->domain->userID, array('domainID' => $eventObj->domainID));
-				else
-					JobhandlerUtils :: addJob('deleteVhost', WCF :: getUser()->userID, array('domainID' => $eventObj->domainID), 'asap', 99);
+				$this->createJob($eventObj->domain);
 			break;
 
 			case 'DomainDeleteAction':
 			case 'SubDomainDeleteAction':
 			case 'DomainDisableAction':
-				JobhandlerUtils :: addJob('deleteVhost', WCF :: getUser()->userID, array('domainID' => $eventObj->domainID), 'asap', 99);
+				JobhandlerUtils :: addJob('deleteVhost', WCF :: getUser()->userID, array('domainID' => $eventObj->domainID));
 			break;
 		}
+	}
+
+	public function createJob($domain)
+	{
+		if ($domain->isAliasDomain == 'alias' && $domain->aliasDomainID != 0)
+		{
+			JobhandlerUtils :: addJob('createVhost', $domain->userID, array('domainID' => $domain->aliasDomainID));
+			return;
+		}
+
+		if ($domain->noWebDomain == 1)
+		{
+			JobhandlerUtils :: addJob('deleteVhost', $domain->userID, array('domainID' => $domain->domainID));
+			return;
+		}
+
+		JobhandlerUtils :: addJob('createVhost', $domain->userID, array('domainID' => $domain->domainID));
 	}
 }
 ?>

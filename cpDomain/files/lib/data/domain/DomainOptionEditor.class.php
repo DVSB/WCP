@@ -30,7 +30,7 @@ class DomainOptionEditor extends DomainOption
 		$sql = "DELETE FROM	cp" . CP_N . "_domain_option
 				WHERE		optionID = " . $this->optionID;
 		WCF :: getDB()->sendQuery($sql);
-		
+
 		$sql = "ALTER TABLE	cp" . CP_N . "_domain_option_value
 				DROP 		domainOption" . $this->optionID;
 		WCF :: getDB()->sendQuery($sql);
@@ -52,8 +52,8 @@ class DomainOptionEditor extends DomainOption
 	 * @param 	integer 	$packageID
 	 * @return 	string
 	 */
-	public static function create($optionName, $categoryName, $optionType, $defaultValue, $validationPattern, 
-									$selectOptions, $enableOptions, $required, $editable, $showOrder, 
+	public static function create($optionName, $categoryName, $optionType, $defaultValue, $validationPattern,
+									$selectOptions, $enableOptions, $required, $editable, $showOrder,
 									$disabled, $permissions, $options, $additionalData, $packageID = PACKAGE_ID)
 	{
 		// insert new option
@@ -61,19 +61,19 @@ class DomainOptionEditor extends DomainOption
 				(packageID, optionName, categoryName, optionType, defaultValue,
 				 validationPattern, selectOptions, enableOptions, required, editable,
 				 showOrder, disabled, permissions, options, additionalData)
-				VALUES		
+				VALUES
 				(" . $packageID . ", '" . escapeString($optionName) . "', '" . escapeString($categoryName) . "', '" . escapeString($optionType) . "', '" . escapeString($defaultValue) . "',
 					'" . escapeString($validationPattern) . "', '" . escapeString($selectOptions) . "', '" . escapeString($enableOptions) . "', " . $required . ", " . $editable . ",
 					" . $showOrder . ", " . $disabled . ", '" . escapeString($permissions) . "', '" . escapeString($options) . "', '" . escapeString(serialize($additionalData)) . "')";
 		WCF :: getDB()->sendQuery($sql);
-		
+
 		$optionID = WCF::getDB()->getInsertID();
-		
-		// add new option to table "cp".CP_N."_domain_option_value" 
+
+		// add new option to table "cp".CP_N."_domain_option_value"
 		$sql = "ALTER TABLE 	cp" . CP_N . "_domain_option_value
 				ADD COLUMN	domainOption" . $optionID . " " . self :: getColumnType($optionType);
 		WCF :: getDB()->sendQuery($sql);
-		
+
 		// add the default value to this column
 		if ($defaultValue)
 		{
@@ -81,18 +81,23 @@ class DomainOptionEditor extends DomainOption
 					SET 	domainOption" . $optionID . " = '" . escapeString($defaultValue) . "'";
 			WCF :: getDB()->sendQuery($sql);
 		}
-		
+
 		return $optionName;
 	}
 
 	/**
 	 * Determines the needed sql column type for a user option.
-	 * 
+	 *
 	 * @param	string		$optionType
 	 * @return	string		column type
 	 */
 	public static function getColumnType($optionType)
 	{
+		//small trick for optionTypes which are IDs, but need own name
+		//asume everything with ID at the end is an integer
+		if (stripos($optionType, 'ID') == (strlen($optionType) - 2))
+			$optionType = 'integer';
+
 		switch ($optionType)
 		{
 			case 'boolean':
@@ -130,8 +135,8 @@ class DomainOptionEditor extends DomainOption
 	 * @param	string		$options
 	 * @param	array		$addionalData
 	 */
-	public function update($optionName, $categoryName, $optionType, $defaultValue, $validationPattern, 
-							$selectOptions, $enableOptions, $required, $editable, $showOrder, $disabled = 0, 
+	public function update($optionName, $categoryName, $optionType, $defaultValue, $validationPattern,
+							$selectOptions, $enableOptions, $required, $editable, $showOrder, $disabled = 0,
 							$permissions = '', $options = '', $additionalData = null)
 	{
 		$sql = "UPDATE 	cp" . CP_N . "_domain_option
@@ -151,7 +156,7 @@ class DomainOptionEditor extends DomainOption
 						".($additionalData !== null ? ", additionalData = '".escapeString(serialize($additionalData))."'" : "")."
 				WHERE 	optionID = " . $this->optionID;
 		WCF :: getDB()->sendQuery($sql);
-		
+
 		// alter the table "wcf".WCF_N."_user_option_value" with this new option
 		$sql = "ALTER TABLE cp" . CP_N . "_domain_option_value
 				CHANGE		domainOption" . $this->optionID . "

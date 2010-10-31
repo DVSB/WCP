@@ -4,10 +4,14 @@ from framework.functions import parseOptions, parseUser, mkPath, getUID, getGID
 class createhome(basishandler):
     
     def run(self):  
+        for data in self.data:
+            self.createHome(data['userID'])
+        
+    def createHome(self, userID):
         user = self.env.db.queryDict('SELECT * \
                                   FROM wcf' + self.env.wcfnr + '_user user \
                                   JOIN cp' + self.env.cpnr + '_user cpuser ON (user.userID = cpuser.userID) \
-                                  WHERE user.userID = ' + self.data['userID'])[0]      
+                                  WHERE user.userID = ' + userID)[0]      
         
         dirsDB = self.env.config.getSection('cp.backendpaths.createpaths')
         
@@ -21,7 +25,7 @@ class createhome(basishandler):
         dirs = parseOptions(dirs, self.env.config)
         dirs = parseUser(dirs, user)
         
-        self.env.logger.append('creating homedir for ' + self.data['userID'] + ': ' + dirs)
+        self.env.logger.append('creating homedir for ' + userID + ': ' + dirs)
         
         dirs = dirs.splitlines()
         

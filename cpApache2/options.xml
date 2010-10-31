@@ -54,12 +54,16 @@ l:{CONTAINERAPACHE2LOGPATH}/{USERNAME}->{HOMEDIR}/logfiles:0777:{CONTAINERAPACHE
   #if $addServerName
   ServerName $domainname
   #end if
-  #if $wwwServerAlias
-  ServerAlias www.$domainname
+  #if $aliases
+  ServerAlias #echo ' '.join($aliases) #
   #end if
   
   #if $isWildcardDomain and $isWildCardTemplate == True
   ServerAlias *.$domainname
+  #end if
+  
+  #if $isAliasDomain == 'redirect' and $redirectDomain
+  Redirect Permanent $redirectDomain
   #end if
   
   ServerAdmin webmaster@$domainname

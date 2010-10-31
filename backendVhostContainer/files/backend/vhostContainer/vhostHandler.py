@@ -17,6 +17,7 @@ class vhostHandler(object):
         self.env = env
         self.domains = []
         self.vhostContainer = []
+        self.domainIDs = []
         vhostContainers = self.env.db.queryDict("SELECT      * \
                                                 FROM        cp" + self.env.cpnr + "_vhostContainer \
                                                 WHERE       isContainer = 1")
@@ -24,19 +25,29 @@ class vhostHandler(object):
             self.vhostContainer.append(vhostContainer(v, self.env))
             
     def addDomainToVhost(self, domain):
+        if domain.get('vhostContainerID') == None:
+            self.env.logger.append('Domain ' + domain.get('domainname') + ' has no VHostContainerID => ignore Domain!')
+            return
+        
         for v in self.vhostContainer:
             if int(v.get('vhostContainerID')) == int(domain.get('vhostContainerID')):
                 v.addDomain(domain)
+                self.env.logger.append('Domain ' + domain.get('domainname') + ' will be handled by ' + v.get('vhostName'))
+                break
         
     def addDomain(self, domainID):
-        self.addDomainToVhost(domain(domainID, self.env))
+        if self.domainIDs.count(domainID) == 0:
+            self.addDomainToVhost(domain(domainID, self.env))
+            self.domainIDs.append(domainID)
         
     def addDomainsForUser(self, userID):
         domains = self.env.db.query("SELECT      domainID \
                                      FROM        cp" + self.env.cpnr + "_domain \
                                      WHERE       userID = " + userID)
         for d in domains:
-            self.addDomainToVhost(domain(d[0], self.env))
+            if self.domainIDs.count(domainID) == 0:
+                self.addDomainToVhost(domain(d[0], self.env))
+                self.domainIDs.append(d[0])
         
     def addDomainsForVhost(self, vhostID):
         vhostField = self.env.db.querySingle("SELECT      optionID \
@@ -47,7 +58,9 @@ class vhostHandler(object):
                                      FROM        cp" + self.db.cpnr + "_domain_option_value \
                                      WHERE       domainOption" + str(vhostField[0]) + " = " + vhostID)
         for d in domains:
-            self.addDomainToVhost(domain(d[0], self.env))
+            if self.domainIDs.count(domainID) == 0:
+                self.addDomainToVhost(domain(d[0], self.env))
+                self.domainIDs.append(d[0])
             
     def createVhosts(self):
         for v in self.vhostContainer:

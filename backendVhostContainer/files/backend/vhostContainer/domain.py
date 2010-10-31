@@ -15,6 +15,8 @@ class domain(object):
         self.env = env
         self.domainID = domainID
         self.vhostContainer = None
+        self.domain = []
+        self.aliases = []
         self.loadDomain()
         self.getUser()
        
@@ -37,8 +39,8 @@ class domain(object):
                     var = True
                 else:
                     var = False
-            elif o[2] == 'integer':
-                if (self.domain[optionName] == ''):
+            elif o[2] == 'integer' or o[0].find('ID') == (len(o[0]) - 2): #is real integer or ends with ID
+                if self.domain[optionName] == '' or self.domain[optionName] == None:
                     var = 0
                 else:
                     var = int(self.domain[optionName])
@@ -50,11 +52,15 @@ class domain(object):
             self.domain[o[0]] = var
             del self.domain[optionName]
             
+            if o[0] == 'aliasDomainID':
+                self.aliasDomainOption = optionName
+            
         #TODO: load data from parentdomain, if given, and merge it with data of this domain
         #empty fields should be filled with data from parent
-        if self.domain['parentDomainID'] != 0:
+        if self.domain['parentDomainID'] > 0:
             parent = domain(self.domain['parentDomainID'], self.env)
-            self.domain['vhostContainerID'] = parent.get('vhostContainerID')
+            if self.domain['vhostContainerID'] == 0:
+                self.domain['vhostContainerID'] = parent.get('vhostContainerID')
             self.domain['domainname'] += '.' + parent.get('domainname')
         
     def get(self, option):
@@ -62,6 +68,13 @@ class domain(object):
             return self.domain[option]
         else:
             return None
+        
+    def getAliasDomains(self):
+        aliases = self.env.db.query("SELECT      domainID \
+                                     FROM        cp" + self.env.cpnr + "_domain_option_value domain_option \
+                                     WHERE       " + self.aliasDomainOption + " = " + str(self.domainID))
+        for a in aliases:
+            self.aliases.append(domain(a[0], self.env))
         
     def getUser(self):
         self.user = user(self.get('userID'), self.env)
