@@ -8,10 +8,10 @@ if (!defined('NO_IMPORTS'))
 /**
  * Domain class defines all functions to "get" the information (data) of a domain. It is a reading class only.
  *
- * This class provides all necessary functions to "read" all possible domaindata. 
- * This includes required data and optional data. To set this domaindata read 
+ * This class provides all necessary functions to "read" all possible domaindata.
+ * This includes required data and optional data. To set this domaindata read
  * the documentation of DomainEditor.class.php which extends Domain.class.php
- * 
+ *
  * @author		Tobias Friebel
  * @copyright	2010 Tobias Friebel
  * @license		GNU General Public License <http://opensource.org/licenses/gpl-2.0.php>
@@ -25,7 +25,7 @@ class Domain extends DatabaseObject
 	protected static $domainOptions = null;
 
 	/**
-	 * Gets the main data of the passed user (id, name or whole datablock) 
+	 * Gets the main data of the passed user (id, name or whole datablock)
 	 * and pass it over to the "protected function initUser()".
 	 * You can also create an emtpy user object e.g. to search for users.
 	 *
@@ -42,13 +42,13 @@ class Domain extends DatabaseObject
 		{
 			$sqlCondition = "domain.domainID = " . intval($domainID);
 		}
-		
+
 		if (!empty($sqlCondition))
 		{
-			$sql = "SELECT 		domain.*, domain_option.*, user.username AS username, 
+			$sql = "SELECT 		domain.*, domain_option.*, user.username AS username,
 								admin.username AS adminname, parentdomain.domainname AS parentDomainName
 					FROM 		cp" . CP_N . "_domain domain
-					LEFT JOIN 	cp" . CP_N . "_domain_option_value domain_option 
+					LEFT JOIN 	cp" . CP_N . "_domain_option_value domain_option
 							ON (domain_option.domainID = domain.domainID)
 					JOIN		wcf" . WCF_N . "_user user
 							ON (domain.userID = user.userID)
@@ -59,14 +59,14 @@ class Domain extends DatabaseObject
 					WHERE 	" . $sqlCondition;
 			$row = WCF :: getDB()->getFirstRow($sql);
 		}
-		
+
 		// handle result set
 		parent :: __construct($row);
 	}
 
 	/**
 	 * Returns a DomainEditor object to edit this user.
-	 * 
+	 *
 	 * @return	DomainEditor
 	 */
 	public function getEditor()
@@ -77,22 +77,22 @@ class Domain extends DatabaseObject
 
 	/**
 	 * Returns the value of the domain option with the given name.
-	 * 
+	 *
 	 * @param	string		$name		domain option name
 	 * @return	mixed					domain option value
 	 */
 	public function getDomainOption($name)
 	{
 		$optionID = self :: getDomainOptionID($name);
-		
+
 		if ($optionID === null)
 		{
 			return null;
 		}
-		
+
 		if (!isset($this->data['domainOption' . $optionID]))
 			return null;
-			
+
 		return $this->data['domainOption' . $optionID];
 	}
 
@@ -101,11 +101,14 @@ class Domain extends DatabaseObject
 	 */
 	public function __get($name)
 	{
+		if ($name == 'domainname' && $this->data['parentDomainID'])
+			return $this->data['domainname'] . '.' . $this->data['parentDomainName'];
+
 		$value = parent :: __get($name);
-		
+
 		if ($value === null)
 			$value = $this->getDomainOption($name);
-		
+
 		return $value;
 	}
 
@@ -120,7 +123,7 @@ class Domain extends DatabaseObject
 
 	/**
 	 * Returns the id of a domain option.
-	 * 
+	 *
 	 * @param	string		$name
 	 * @return	integer		id
 	 */
@@ -131,12 +134,12 @@ class Domain extends DatabaseObject
 		{
 			self :: getDomainOptionCache();
 		}
-		
+
 		if (!isset(self :: $domainOptions[$name]))
 		{
 			return null;
 		}
-		
+
 		return self :: $domainOptions[$name]['optionID'];
 	}
 }
