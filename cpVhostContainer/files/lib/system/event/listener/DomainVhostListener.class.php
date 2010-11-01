@@ -43,6 +43,7 @@ class DomainVhostListener implements EventListener
 		if ($domain->isAliasDomain == 'alias' && $domain->aliasDomainID != 0)
 		{
 			JobhandlerUtils :: addJob('createVhost', $domain->userID, array('domainID' => $domain->aliasDomainID));
+			JobhandlerUtils :: addJob('deleteVhost', $domain->userID, array('domainID' => $domain->domainID));
 			return;
 		}
 

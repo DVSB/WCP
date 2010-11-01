@@ -66,10 +66,6 @@ class vhostHandler(object):
         for v in self.vhostContainer:
             v.createVhosts()
         
-    def updateVhosts(self):
-        for v in self.vhostContainer:
-            v.updateVhosts()
-        
     def deleteVhosts(self):
         for v in self.vhostContainer:
             v.deleteVhosts()

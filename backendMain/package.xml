@@ -45,7 +45,6 @@
 		<eventlistener>eventlistener.xml</eventlistener>
 		<useroptions>useroptions.xml</useroptions>
 	 	<packageinstallationplugins>pip.tar</packageinstallationplugins>
-		<jobhandlertask>jobhandlertasks.xml</jobhandlertask>
 		<groupoptions>groupoptions.xml</groupoptions>
 	</instructions>
 </package>
