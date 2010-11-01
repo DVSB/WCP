@@ -99,8 +99,6 @@ class DomainUtil
 		$domains = array();
 		while ($row = WCF :: getDB()->fetchArray($result))
 		{
-			if (!empty($row['parentDomainName']))
-				$row['domainname'] .= '.' . $row['parentDomainName'];
 			$domains[$row['domainID']] = $row['domainname'];
 		}
 

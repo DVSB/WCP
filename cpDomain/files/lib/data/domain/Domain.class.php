@@ -101,9 +101,6 @@ class Domain extends DatabaseObject
 	 */
 	public function __get($name)
 	{
-		if ($name == 'domainname' && $this->data['parentDomainID'])
-			return $this->data['domainname'] . '.' . $this->data['parentDomainName'];
-
 		$value = parent :: __get($name);
 
 		if ($value === null)
