@@ -17,6 +17,8 @@
  		<item name="wcf.acp.option.mysql_postfix.description"><![CDATA[Dieser Wert wird an den Benutzernamen angefügt, um den Datenbanknamen zu erstellen. Das sieht dann z.B. so aus: mmustermann_sql4]]></item>
 		<item name="wcf.acp.option.mysql_access_host"><![CDATA[Adresse des MySQL-Servers]]></item>
 		<item name="wcf.acp.option.mysql_access_host.description"><![CDATA[Die Adresse auf der der MySQL-Server läuft, idR localhost]]></item>
+		<item name="wcf.acp.option.mysql_count_paths"><![CDATA[MySQL-Pfade]]></item>
+		<item name="wcf.acp.option.mysql_count_paths.description"><![CDATA[Diese Pfade werden für jeden Benutzer täglich ausgewertet.]]></item>
  	</category>
  	
 	<category name="cp.mysql">

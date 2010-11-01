@@ -25,6 +25,12 @@
 				<optiontype>text</optiontype>
 		        <defaultvalue>localhost</defaultvalue>
 		    </option>
+		    
+		    <option name="mysql_count_paths">
+				<categoryname>cp.backendpaths.countpaths</categoryname>
+				<optiontype>textarea</optiontype>
+				<defaultvalue>/var/lib/mysql/{USERNAME}{MYSQL_POSTFIX}*</defaultvalue>
+			</option>
 
 		</options>
 	</import>
