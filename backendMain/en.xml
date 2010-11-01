@@ -20,8 +20,8 @@
 	
 	<category name="wcf.user.option">
 		<item name="wcf.user.option.category.account.disk"><![CDATA[Space]]></item>
-		<item name="wcf.user.option.diskspace"><![CDATA[Space (used/unused)]]></item>
-		<item name="wcf.user.option.diskspace.description"><![CDATA[How much space is for this user available?]]></item>
+		<item name="wcf.user.option.diskspace"><![CDATA[Space (used/unused) in MB]]></item>
+		<item name="wcf.user.option.diskspace.description"><![CDATA[How much space (in Megabyte) is for this user available?]]></item>
 	</category>
 	
 	<category name="wcf.user.option">

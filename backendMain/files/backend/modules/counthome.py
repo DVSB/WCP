@@ -19,7 +19,7 @@ class counthome(basishandler):
         
         # parse dirs with options
         odirs = parseOptions(odirs, self.env.config)
-        
+
         for user in users:   
             # parse dirs with userdata
             dirs = parseUser(odirs, user)
@@ -45,9 +45,9 @@ class counthome(basishandler):
 
             # update user
             self.env.db.query("UPDATE  wcf" + self.env.wcfnr + "_user_option_value \
-                           SET     userOption" + str(option) + " = '" + str(bytes) + "' \
-                           WHERE   userID = " + str(user["userID"]))      
-                    
+                               SET     userOption" + str(option) + " = '" + str(bytes) + "' \
+                               WHERE   userID = " + str(user["userID"]))
+            
         return 'success'
             
             
@@ -58,12 +58,12 @@ class counthome(basishandler):
         # if * is in path, get all matching dirs
         if "*" in dir:
             dirs = glob.glob(dir)
-            
+
             for dir in dirs:
                 if dir in exclude: # do not enter excluded dirs
                     continue
                 dir_size += self.getDirSize(dir, exclude)
-                
+
             return dir_size
 
         # walk given dir, count all files and call func recursivly for subdirs

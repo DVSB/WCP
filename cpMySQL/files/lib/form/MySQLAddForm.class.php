@@ -12,17 +12,17 @@ class MySQLAddForm extends AbstractSecureForm
 	public $password = '';
 
 	public $description = '';
-	
+
 	public $neededPermissions = array('cp.mysql.canAddMySQL', 'cp.mysql.canListMySQL');
 
 	public $mysql;
-	
+
 	/**
 	 * @see Page::readData()
 	 */
 	public function readData()
 	{
-		if (WCF :: getUser()->mysqls >= WCF :: getUser()->mysqlsUsed)
+		if (WCF :: getUser()->mysqls <= WCF :: getUser()->mysqlsUsed)
 		{
 			require_once(WCF_DIR.'lib/system/exception/PermissionDeniedException.class.php');
 			throw new PermissionDeniedException();
@@ -53,7 +53,7 @@ class MySQLAddForm extends AbstractSecureForm
 		parent :: validate();
 
 		if (empty($this->password))
-			throw new UserInputException('password', 'notempty');
+			throw new UserInputException('password', 'empty');
 	}
 
 	/**
@@ -96,6 +96,9 @@ class MySQLAddForm extends AbstractSecureForm
 	{
 		require_once(WCF_DIR.'lib/page/util/menu/PageMenu.class.php');
 		PageMenu :: setActiveMenuItem('cp.header.menu.mysql');
+
+		if (!file_exists(CP_DIR . 'mysqlrootconfig.inc.php'))
+			throw new NamedUserException('Missing essential data, contact admin!');
 
 		parent :: show();
 	}

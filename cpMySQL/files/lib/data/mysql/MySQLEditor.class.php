@@ -80,10 +80,10 @@ class MySQLEditor extends MySQL
 			}
 		}
 
-		try 
+		try
 		{
 			self :: $rootDB->sendQuery("CREATE DATABASE IF NOT EXISTS `" . escapeString($dbname) . "`");
-	
+
 			self :: $rootDB->sendQuery("GRANT ALL PRIVILEGES ON `" . str_replace('_', '\_', escapeString($dbname)) . "`.* TO `" . escapeString($dbname) . "`@`" . MYSQL_ACCESS_HOST . "` IDENTIFIED BY '" . escapeString($password) . "'");
 
 			$sql = "INSERT INTO	cp" . CP_N . "_mysql
@@ -91,13 +91,13 @@ class MySQLEditor extends MySQL
 					VALUES
 							(" . $userID . ", '" . escapeString($dbname) . "', '" . escapeString($description) . "')";
 			WCF :: getDB()->sendQuery($sql);
-	
+
 			$mysqlID = WCF :: getDB()->getInsertID('cp' . CP_N . '_mysql', 'mysqlID');
-	
+
 			$user->getEditor()->updateOptions(array (
 				'mysqlsUsed' => ++$user->mysqlsUsed
 			));
-		
+
 			return new MySQLEditor($mysqlID);
 		}
 		catch (Exception $e)
@@ -133,7 +133,7 @@ class MySQLEditor extends MySQL
 
 		// get configuration
 		$dbName = $dbCharset = $root_user = $root_password = '';
-		require_once (CP_DIR . 'mysqlrootconfig.inc.php');
+		require (CP_DIR . 'mysqlrootconfig.inc.php');
 		require (WCF_DIR . 'config.inc.php');
 
 		// create database connection
@@ -146,16 +146,16 @@ class MySQLEditor extends MySQL
 	 */
 	public function delete()
 	{
-		try 
+		try
 		{
 			self :: $rootDB->sendQuery("DROP USER `" . $this->mysqlname . "`@`" . MYSQL_ACCESS_HOST . "`");
 			self :: $rootDB->sendQuery("DROP DATABASE IF EXISTS `" . $this->mysqlname . "`");
 
-	
+
 			$sql = "DELETE FROM	cp" . CP_N . "_mysql
 					WHERE		mysqlID = " . $this->mysqlID;
 			WCF :: getDB()->sendQuery($sql);
-	
+
 			require_once (WCF_DIR . '/lib/data/user/UserEditor.class.php');
 			$user = new UserEditor($this->userID);
 			$user->updateOptions(array (

@@ -70,8 +70,8 @@
 	<category name="wcf.acp.group">
 		<item name="wcf.acp.group.option.category.cp.email"><![CDATA[Email]]></item>
 		<item name="wcf.acp.group.option.category.cp.email.description"><![CDATA[]]></item>
-		<item name="wcf.acp.group.option.admin.cp.canSeeList"><![CDATA[Can see Emails]]></item>
-		<item name="wcf.acp.group.option.admin.cp.canSeeList.description"><![CDATA[Members of this group can see Email Adresses.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canSeeList"><![CDATA[Can see Emails]]></item>
+		<item name="wcf.acp.group.option.cp.email.canSeeList.description"><![CDATA[Members of this group can see Email Adresses.]]></item>
 		<item name="wcf.acp.group.option.cp.email.canAddAddress"><![CDATA[Can add Email Adresses]]></item>
 		<item name="wcf.acp.group.option.cp.email.canAddAddress.description"><![CDATA[Members of this group can add Email Adresses.]]></item>
 		<item name="wcf.acp.group.option.cp.email.canAddForward"><![CDATA[Can add Email Relegations]]></item>

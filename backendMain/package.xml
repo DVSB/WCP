@@ -36,20 +36,6 @@
 		<cronjobs>cronjobs.xml</cronjobs>
 	</instructions>
 	
-	<instructions type="update" fromversion="0.*">
-		<languages languagecode="de">de.xml</languages>
-		<options>options.xml</options>
-		<files>files.tar</files>
-		<acptemplates>acptemplates.tar</acptemplates>
-		<acpmenu>acpmenu.xml</acpmenu>
-		<eventlistener>eventlistener.xml</eventlistener>
-		<useroptions>useroptions.xml</useroptions>
-	 	<packageinstallationplugins>pip.tar</packageinstallationplugins>
-		<jobhandlertask>jobhandlertasks.xml</jobhandlertask>
-		<groupoptions>groupoptions.xml</groupoptions>
-		<cronjobs>cronjobs.xml</cronjobs>
-	</instructions>
-	
 	<instructions type="update" fromversion="1.*">
 		<languages languagecode="de">de.xml</languages>
 		<options>options.xml</options>
@@ -61,6 +47,5 @@
 	 	<packageinstallationplugins>pip.tar</packageinstallationplugins>
 		<jobhandlertask>jobhandlertasks.xml</jobhandlertask>
 		<groupoptions>groupoptions.xml</groupoptions>
-		<cronjobs>cronjobs.xml</cronjobs>
 	</instructions>
 </package>

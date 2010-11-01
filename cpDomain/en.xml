@@ -105,8 +105,8 @@
 		<item name="wcf.acp.group.option.cp.domain.canSeeDomains.description"><![CDATA[Members of this group can see domains]]></item>
 		<item name="wcf.acp.group.option.cp.domain.canAddSubDomain"><![CDATA[Can add subdomains]]></item>
 		<item name="wcf.acp.group.option.cp.domain.canAddSubDomain.description"><![CDATA[Members of this group can add subdomains]]></item>
-		<item name="wcf.acp.group.option.cp.domain.canEditDomains"><![CDATA[Can edit domains]]></item>
-		<item name="wcf.acp.group.option.cp.domain.canEditDomains.description"><![CDATA[Members of this group can edit domains]]></item>
+		<item name="wcf.acp.group.option.cp.domain.canEditDomain"><![CDATA[Can edit domains]]></item>
+		<item name="wcf.acp.group.option.cp.domain.canEditDomain.description"><![CDATA[Members of this group can edit domains]]></item>
 		<item name="wcf.acp.group.option.cp.domain.canDeleteSubDomains"><![CDATA[Can delete subdomains]]></item>
 		<item name="wcf.acp.group.option.cp.domain.canDeleteSubDomains.description"><![CDATA[Members of this group can delete subdomains]]></item>
 	</category>
