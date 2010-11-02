@@ -34,7 +34,7 @@ class DomainAddForm extends DynamicDomainOptionListForm
 
 	public $parentDomainID = 0;
 
-	public $disabled = 0;
+	public $deactivated = 0;
 
 	public $registrationDateDay = 0;
 	public $registrationDateMonth = 0;
@@ -57,8 +57,8 @@ class DomainAddForm extends DynamicDomainOptionListForm
 		if (isset($_POST['parentDomainID']))
 			$this->parentDomainID = StringUtil :: trim($_POST['parentDomainID']);
 
-		if (isset($_POST['disabled']))
-			$this->disabled = intval($_POST['disabled']);
+		if (isset($_POST['deactivated']))
+			$this->deactivated = intval($_POST['deactivated']);
 
 		if (isset($_POST['registrationDateDay']))
 			$this->registrationDateDay = intval($_POST['registrationDateDay']);
@@ -140,7 +140,7 @@ class DomainAddForm extends DynamicDomainOptionListForm
 		// create
 		require_once (CP_DIR . 'lib/data/domain/DomainEditor.class.php');
 		$this->additionalFields['registrationDate'] = $this->registrationDate;
-		$this->additionalFields['disabled'] = $this->disabled;
+		$this->additionalFields['deactivated'] = $this->deactivated;
 		$this->domain = DomainEditor :: create($this->domainname, $this->userID, $this->adminID, 0, $this->activeOptions, $this->additionalFields);
 		$this->saved();
 
@@ -190,9 +190,9 @@ class DomainAddForm extends DynamicDomainOptionListForm
 	 */
 	public function readData()
 	{
-		parent :: readData();
-
 		$this->parentDomains = DomainUtil :: getDomains(true, true);
+
+		parent :: readData();
 
 		$this->options = $this->getOptionTree();
 	}
@@ -215,6 +215,7 @@ class DomainAddForm extends DynamicDomainOptionListForm
 			'options' => $this->options,
 			'parentDomains' => $this->parentDomains,
 			'parentDomainID' => $this->parentDomainID,
+			'deactivated' => $this->deactivated,
 			'action' => 'add',
 		));
 	}

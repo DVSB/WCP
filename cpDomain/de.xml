@@ -25,6 +25,8 @@
 		<item name="cp.domain.parentDomain"><![CDATA[Elterndomain]]></item>
 		<item name="cp.domain.parentDomain.description"><![CDATA[Hier wählen Sie aus, zu welcher Domain Sie diese Subdomain anlegen wollen. Der Name wird dann automatisch vervollständigt.]]></item>
 		<item name="cp.domain.parentDomain.notValid"><![CDATA[Ungültige Elterndomain!]]></item>
+		<item name="cp.domain.deactivated"><![CDATA[Domain ist deaktiviert]]></item>
+		<item name="cp.domain.settings"><![CDATA[Einstellungen]]></item>
 	</category>
 	
 	<category name="cp.domain.option">

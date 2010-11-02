@@ -87,10 +87,10 @@ class DomainUtil
 							ON (domain.parentDomainID = parentdomain.domainID)
 				LEFT JOIN	cp" . CP_N . "_domain_option_value
 							ON (domain.domainID = cp" . CP_N . "_domain_option_value.domainID)
-				WHERE 	" . (!$addSubDomains ? ' AND (domain.parentDomainID IS NULL OR domain.parentDomainID = 0) ' : '');
+				WHERE 		1 = 1 " . (!$addSubDomains ? ' AND (domain.parentDomainID IS NULL OR domain.parentDomainID = 0) ' : '');
 
 		if (!$addDeactivated)
-			$sql .= "AND domain.deactivated = 0";
+			$sql .= " AND domain.deactivated = 0";
 
 		if ($additionalWhere)
 			$sql .= " AND "	. $additionalWhere;
@@ -103,7 +103,7 @@ class DomainUtil
 
 		$result = WCF :: getDB()->sendQuery($sql);
 
-		$domains = array();
+		$domains = array(0 => '---');
 		while ($row = WCF :: getDB()->fetchArray($result))
 		{
 			$domains[$row['domainID']] = $row['domainname'];

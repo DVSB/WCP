@@ -26,7 +26,7 @@ class SubDomainAddForm extends DynamicDomainOptionListForm
 
 	public $parentDomainID = 0;
 
-	public $disabled = 0;
+	public $deactivated = 0;
 
 	/**
 	 * @see Page::readData()
@@ -53,8 +53,8 @@ class SubDomainAddForm extends DynamicDomainOptionListForm
 		if (isset($_POST['parentDomainID']))
 			$this->parentDomainID = StringUtil :: trim($_POST['parentDomainID']);
 
-		if (isset($_POST['disabled']))
-			$this->disabled = intval($_POST['disabled']);
+		if (isset($_POST['deactivated']))
+			$this->deactivated = intval($_POST['deactivated']);
 
 		if (isset($_POST['activeTabMenuItem']))
 			$this->activeTabMenuItem = $_POST['activeTabMenuItem'];
@@ -111,7 +111,7 @@ class SubDomainAddForm extends DynamicDomainOptionListForm
 		// create
 		require_once (CP_DIR . 'lib/data/domain/DomainEditor.class.php');
 		$this->additionalFields['registrationDate'] = TIME_NOW;
-		$this->additionalFields['disabled'] = $this->disabled;
+		$this->additionalFields['deactivated'] = $this->deactivated;
 		$this->domain = DomainEditor :: create($this->domainname . '.' . $this->parentDomains[$this->parentDomainID], CPCore :: getUser()->userID, CPCore :: getUser()->adminID, $this->parentDomainID, $this->activeOptions, $this->additionalFields);
 		$this->saved();
 
@@ -155,7 +155,7 @@ class SubDomainAddForm extends DynamicDomainOptionListForm
 			'domainID' => $this->domainID,
 			'parentDomains' => $this->parentDomains,
 			'parentDomainID' => $this->parentDomainID,
-			'disabled' => $this->disabled,
+			'deactivated' => $this->deactivated,
 			'action' => 'add'
 		));
 	}

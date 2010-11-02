@@ -65,7 +65,7 @@ class SubDomainEditForm extends SubDomainAddForm
 
 		$this->parentDomainName = $this->domain->parentDomainName;
 		$this->parentDomainID = $this->domain->parentDomainID;
-		$this->disabled = $this->domain->disabled;
+		$this->deactivated = $this->domain->deactivated;
 
 		if ($this->parentDomainName)
 			$this->domainname = str_ireplace('.'.$this->parentDomainName, '', $this->domainname);
@@ -100,6 +100,7 @@ class SubDomainEditForm extends SubDomainAddForm
 		AbstractForm :: save();
 
 		// save domain
+		$this->additionalFields['deactivated'] = $this->deactivated;
 		$this->domain->update($this->domainname. '.' . $this->parentDomains[$this->parentDomainID], 0, 0, $this->parentDomainID, $this->activeOptions, $this->additionalFields);
 		$this->saved();
 

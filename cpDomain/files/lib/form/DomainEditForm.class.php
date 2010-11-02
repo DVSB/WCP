@@ -53,7 +53,7 @@ class DomainEditForm extends SubDomainAddForm
 	protected function readDefaultValues()
 	{
 		$this->domainname = $this->domain->domainname;
-		$this->disabled = $this->domain->disabled;
+		$this->deactivated = $this->domain->deactivated;
 
 		foreach ($this->activeOptions as $key => $option)
 		{

@@ -74,6 +74,8 @@ class DomainEditForm extends DomainAddForm
 		$this->adminname = $this->domain->adminname;
 		$this->adminID = $this->domain->adminID;
 
+		$this->deactivated = $this->domain->deactivated;
+
 		$this->parentDomainName = $this->domain->parentDomainName;
 		$this->parentDomainID = $this->domain->parentDomainID;
 

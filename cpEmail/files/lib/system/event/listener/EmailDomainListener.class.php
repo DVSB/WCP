@@ -12,7 +12,7 @@ class EmailDomainListener implements EventListener
 		switch ($eventName)
 		{
 			case 'assignVariables':
-				if (isset($eventObj->domain) && isset($eventObj->domain->isEmailDomain))
+				if (is_object($eventObj->domain))
 					WCF :: getTPL()->assign('isEmailDomain', $eventObj->domain->isEmailDomain);
 				else
 					WCF :: getTPL()->assign('isEmailDomain', true);
@@ -21,9 +21,9 @@ class EmailDomainListener implements EventListener
 
 			case 'save':
 				if (isset($_POST['isEmailDomain']))
-					$eventObj->additionalFields['isEmailID'] = intval($_POST['isEmailDomain']);
+					$eventObj->additionalFields['isEmailDomain'] = intval($_POST['isEmailDomain']);
 				else
-					$eventObj->additionalFields['isEmailID'] = 0;
+					$eventObj->additionalFields['isEmailDomain'] = 0;
 			break;
 		}
 	}
