@@ -32,3 +32,6 @@ CREATE TABLE cp1_1_mail_account (
 	PRIMARY KEY  (accountID),
 	UNIQUE KEY email (emailaddress)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+ALTER TABLE cp1_1_domain 
+ADD isEmailDomain tinyint(1) NOT NULL default '1';

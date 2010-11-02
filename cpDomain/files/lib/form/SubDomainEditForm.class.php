@@ -65,6 +65,7 @@ class SubDomainEditForm extends SubDomainAddForm
 
 		$this->parentDomainName = $this->domain->parentDomainName;
 		$this->parentDomainID = $this->domain->parentDomainID;
+		$this->disabled = $this->domain->disabled;
 
 		if ($this->parentDomainName)
 			$this->domainname = str_ireplace('.'.$this->parentDomainName, '', $this->domainname);

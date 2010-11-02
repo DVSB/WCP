@@ -79,7 +79,7 @@ class DomainUtil
 	 * @param	string		$additionalWhere	get only what you need
 	 * @return 	array
 	 */
-	public static function getDomainsForUser($userID, $addSubDomains = false, $additionalWhere = '')
+	public static function getDomains($addSubDomains = false, $addDeactivated = false, $additionalWhere = '')
 	{
 		$sql = "SELECT 		domain.domainID, domain.domainname, parentdomain.domainname AS parentDomainName
 				FROM 		cp" . CP_N . "_domain domain
@@ -87,12 +87,19 @@ class DomainUtil
 							ON (domain.parentDomainID = parentdomain.domainID)
 				LEFT JOIN	cp" . CP_N . "_domain_option_value
 							ON (domain.domainID = cp" . CP_N . "_domain_option_value.domainID)
-				WHERE 		domain.userID = '" . intval($userID) . "'
-						" . (!$addSubDomains ? ' AND (domain.parentDomainID IS NULL OR domain.parentDomainID = 0) ' : '') . "
-							AND domain.deactivated = 0";
+				WHERE 	" . (!$addSubDomains ? ' AND (domain.parentDomainID IS NULL OR domain.parentDomainID = 0) ' : '');
+
+		if (!$addDeactivated)
+			$sql .= "AND domain.deactivated = 0";
 
 		if ($additionalWhere)
-			$sql .= ' AND '	. $additionalWhere;
+			$sql .= " AND "	. $additionalWhere;
+
+		//check if used in ACP
+		if (class_exists('CPACP') && !WCF :: getUser()->getPermission('admin.general.isSuperAdmin'))
+		{
+			$sql .= " AND domain.adminID = " . intval(WCF :: getUser()->userID);
+		}
 
 		$result = WCF :: getDB()->sendQuery($sql);
 
@@ -103,6 +110,19 @@ class DomainUtil
 		}
 
 		return $domains;
+	}
+
+	/**
+	 * Returns domains for given userID, minus subdomains
+	 *
+	 * @param	int			$userID
+	 * @param 	bool		$addSubDomains		if true, subdomains will also be counted
+	 * @param	string		$additionalWhere	get only what you need
+	 * @return 	array
+	 */
+	public static function getDomainsForUser($userID, $addSubDomains = false, $additionalWhere = '')
+	{
+		return self :: getDomains($addSubDomains, "domain.userID = " . intval($userID));
 	}
 }
 ?>

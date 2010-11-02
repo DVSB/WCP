@@ -1,6 +1,6 @@
 {include file="documentHeader"}
 <head>
-	<title>{lang}cp.domain.{@$action}{/lang} - {PAGE_TITLE}</title>
+	<title>{lang}cp.domain.subDomain{@$action|ucfirst}{/lang} - {PAGE_TITLE}</title>
 
 	{include file='headInclude' sandbox=false}
 
@@ -27,24 +27,24 @@
 	<div class="mainHeadline">
 		<img src="{@RELATIVE_WCF_DIR}icon/domain{@$action|ucfirst}L.png" alt="" />
 		<div class="headlineContainer">
-			<h2>{lang}cp.domain.{@$action}{/lang}</h2>
+			<h2>{lang}cp.domain.subDomain{@$action|ucfirst}{/lang}</h2>
 		</div>
 	</div>
-	
+
 	{if $errorField}
 		<p class="error">{lang}wcf.global.form.error{/lang}</p>
 	{/if}
-	
+
 	{if $success|isset}
-		<p class="success">{lang}cp.domain.{@$action}.success{/lang}</p>	
+		<p class="success">{lang}cp.domain.{@$action}.success{/lang}</p>
 	{/if}
-	
+
 	<form method="post" action="index.php?form=SubDomain{@$action|ucfirst}">
 		<div class="border tabMenuContent">
 			<div class="container-1">
-				<fieldset>
+				<fieldset id="data">
 					<legend>{lang}cp.domain.data{/lang}</legend>
-					
+
 					<div class="formElement{if $errorType.domainname|isset} formError{/if}" id="domainnameDiv">
 						<div class="formFieldLabel">
 							<label for="domainname">{lang}cp.domain.domainname{/lang}</label>
@@ -61,7 +61,7 @@
 							<p>{lang}cp.domain.domainname.description{/lang}</p>
 						</div>
 					</div>
-					
+
 					<div class="formElement{if $errorType.parentDomain|isset} formError{/if}" id="parentDomainDiv">
 						<div class="formFieldLabel">
 							<label for="parentDomain">{lang}cp.domain.parentDomain{/lang}</label>
@@ -71,6 +71,7 @@
 							{if $errorType.parentDomain|isset}
 								<p class="innerError">
 									{if $errorType.parentDomain == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
+									{if $errorType.parentDomain == 'notValid'}{lang}cp.domain.parentDomain.notValid{/lang}{/if}
 								</p>
 							{/if}
 						</div>
@@ -78,35 +79,47 @@
 							<p>{lang}cp.domain.parentDomain.description{/lang}</p>
 						</div>
 					</div>
-					
+
 					{if $additionalFields|isset}{@$additionalFields}{/if}
 				</fieldset>
-			
+
+				<fieldset id="settings">
+					<legend>{lang}cp.domain.settings{/lang}</legend>
+
+					<div class="formElement">
+						<div class="formField">
+							<label id="deactivated"><input type="checkbox" name="deactivated" value="1" {if $deactivated}checked="checked" {/if}/> {lang}cp.domain.deactivated{/lang}</label>
+						</div>
+					</div>
+
+					{if $additionalSettings|isset}{@$additionalSettings}{/if}
+				</fieldset>
+
 				{if $additionalFieldSets|isset}{@$additionalFieldSets}{/if}
-			
+
 				{if $options|count || $additionalTabs|isset}
 				<div class="tabMenu">
 					<ul>
 						{foreach from=$options item=categoryLevel1}
 							<li id="{@$categoryLevel1.categoryName}"><a onclick="tabMenu.showSubTabMenu('{@$categoryLevel1.categoryName}');"><span>{lang}cp.domain.option.category.{@$categoryLevel1.categoryName}{/lang}</span></a></li>
 						{/foreach}
-						
+
 						{if $additionalTabs|isset}{@$additionalTabs}{/if}
 					</ul>
 				</div>
 				<div class="subTabMenu">
 					<div class="containerHead"><div> </div></div>
 				</div>
-				
+
 				{foreach from=$options item=categoryLevel1}
 					<div class="border tabMenuContent hidden" id="{@$categoryLevel1.categoryName}-content">
 						<div class="container-1">
 							<h3 class="subHeadline">{lang}cp.domain.option.category.{@$categoryLevel1.categoryName}{/lang}</h3>
-							
+
 							{foreach from=$categoryLevel1.categories item=categoryLevel2}
 								<fieldset>
 									<legend>{lang}cp.domain.option.category.{@$categoryLevel2.categoryName}{/lang}</legend>
-									
+
 									{include file='domainOptionFieldList' options=$categoryLevel2.options}
 								</fieldset>
 							{/foreach}
@@ -116,7 +129,7 @@
 			{/if}
 			</div>
 		</div>
-		
+
 		<div class="formSubmit">
 			{@SID_INPUT_TAG}
 			{@SECURITY_TOKEN_INPUT_TAG}
@@ -126,7 +139,7 @@
 			<input type="reset" accesskey="r" value="{lang}wcf.global.button.reset{/lang}" />
 	 	</div>
 	</form>
-	
+
 </div>
 
 {include file='footer'}

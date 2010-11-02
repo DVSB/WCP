@@ -22,7 +22,7 @@
 {/if}
 
 {if $success|isset}
-	<p class="success">{lang}cp.acp.domain.{@$action}.success{/lang}</p>	
+	<p class="success">{lang}cp.acp.domain.{@$action}.success{/lang}</p>
 {/if}
 
 <div class="contentHeader">
@@ -36,9 +36,9 @@
 <form method="post" action="index.php?form=Domain{@$action|ucfirst}">
 	<div class="border content">
 		<div class="container-1">
-			<fieldset>
+			<fieldset id="data">
 				<legend>{lang}cp.acp.domain.data{/lang}</legend>
-				
+
 				<div class="formElement{if $errorType.domainname|isset} formError{/if}" id="domainnameDiv">
 					<div class="formFieldLabel">
 						<label for="domainname">{lang}cp.acp.domain.domainname{/lang}</label>
@@ -60,7 +60,7 @@
 				<script type="text/javascript">//<![CDATA[
 					inlineHelp.register('domainname');
 				//]]></script>
-				
+
 				<div class="formElement{if $errorType.username|isset} formError{/if}" id="usernameDiv">
 					<div class="formFieldLabel">
 						<label for="username">{lang}cp.acp.domain.username{/lang}</label>
@@ -74,7 +74,7 @@
 							suggestion.init('username');
 							//]]>
 						</script>
-						
+
 						{if $errorType.username|isset}
 							<p class="innerError">
 								{if $errorType.username == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
@@ -91,27 +91,44 @@
 				<script type="text/javascript">//<![CDATA[
 					inlineHelp.register('username');
 				//]]></script>
-				
+
+				<div class="formElement{if $errorType.parentDomain|isset} formError{/if}" id="parentDomainDiv">
+					<div class="formFieldLabel">
+						<label for="parentDomain">{lang}cp.domain.parentDomain{/lang}</label>
+					</div>
+					<div class="formField">
+						{htmlOptions options=$parentDomains selected=$parentDomainID id=parentDomains name=parentDomainID}
+						{if $errorType.parentDomain|isset}
+							<p class="innerError">
+								{if $errorType.parentDomain == 'notValid'}{lang}cp.domain.parentDomain.notValid{/lang}{/if}
+							</p>
+						{/if}
+					</div>
+					<div class="formFieldDesc">
+						<p>{lang}cp.domain.parentDomain.description{/lang}</p>
+					</div>
+				</div>
+
 				<div class="formElement{if $errorType.registrationDate|isset} formError{/if}" id="registrationDateDiv">
 					<div class="formFieldLabel">
 						<label for="registrationDate">{lang}cp.acp.domain.registrationDate{/lang}</label>
 					</div>
-					<div class="formField">	
+					<div class="formField">
 						<div class="floatedElement">
 							<label for="registrationDateDay">{lang}wcf.global.date.day{/lang}</label>
 							{htmlOptions options=$dayOptions selected=$registrationDateDay id=registrationDateDay name=registrationDateDay}
 						</div>
-						
+
 						<div class="floatedElement">
 							<label for="registrationDateMonth">{lang}wcf.global.date.month{/lang}</label>
 							{htmlOptions options=$monthOptions selected=$registrationDateMonth id=registrationDateMonth name=registrationDateMonth}
 						</div>
-						
+
 						<div class="floatedElement">
 							<label for="registrationDateYear">{lang}wcf.global.date.year{/lang}</label>
 							<input id="registrationDateYear" class="inputText fourDigitInput" type="text" name="registrationDateYear" value="{@$registrationDateYear}" maxlength="4" />
 						</div>
-						
+
 						<div class="floatedElement">
 							<a id="registrationDateButton"><img src="{@RELATIVE_WCF_DIR}icon/datePickerOptionsM.png" alt="" /></a>
 							<div id="registrationDateCalendar" class="inlineCalendar"></div>
@@ -123,10 +140,22 @@
 						</div>
 					</div>
 				</div>
-				
+
 				{if $additionalFields|isset}{@$additionalFields}{/if}
 			</fieldset>
-		
+
+			<fieldset id="settings">
+				<legend>{lang}cp.domain.settings{/lang}</legend>
+
+				<div class="formElement">
+					<div class="formField">
+						<label id="deactivated"><input type="checkbox" name="deactivated" value="1" {if $deactivated}checked="checked" {/if}/> {lang}cp.domain.deactivated{/lang}</label>
+					</div>
+				</div>
+
+				{if $additionalSettings|isset}{@$additionalSettings}{/if}
+			</fieldset>
+
 			{if $additionalFieldSets|isset}{@$additionalFieldSets}{/if}
 
 			{if $options|count || $additionalTabs|isset}
@@ -135,23 +164,23 @@
 						{foreach from=$options item=categoryLevel1}
 							<li id="{@$categoryLevel1.categoryName}"><a onclick="tabMenu.showSubTabMenu('{@$categoryLevel1.categoryName}');"><span>{lang}cp.domain.option.category.{@$categoryLevel1.categoryName}{/lang}</span></a></li>
 						{/foreach}
-						
+
 						{if $additionalTabs|isset}{@$additionalTabs}{/if}
 					</ul>
 				</div>
 				<div class="subTabMenu">
 					<div class="containerHead"><div> </div></div>
 				</div>
-				
+
 				{foreach from=$options item=categoryLevel1}
 					<div class="border tabMenuContent hidden" id="{@$categoryLevel1.categoryName}-content">
 						<div class="container-1">
 							<h3 class="subHeadline">{lang}cp.domain.option.category.{@$categoryLevel1.categoryName}{/lang}</h3>
-							
+
 							{foreach from=$categoryLevel1.categories item=categoryLevel2}
 								<fieldset>
 									<legend>{lang}cp.domain.option.category.{@$categoryLevel2.categoryName}{/lang}</legend>
-									
+
 									{include file='optionFieldList' options=$categoryLevel2.options langPrefix='cp.domain.option.'}
 								</fieldset>
 							{/foreach}
@@ -161,7 +190,7 @@
 			{/if}
 		</div>
 	</div>
-	
+
 	<div class="formSubmit">
 		<input type="submit" accesskey="s" value="{lang}wcf.global.button.submit{/lang}" />
 		<input type="reset" accesskey="r" value="{lang}wcf.global.button.reset{/lang}" />

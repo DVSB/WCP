@@ -9,6 +9,36 @@
 		</eventlistener>
 		
 		<eventlistener>
+			<eventClassName>SubDomainAddForm</eventClassName>
+			<eventName>save</eventName>
+			<listenerClassFile>lib/system/event/listener/EmailDomainListener.class.php</listenerClassFile>
+			<inherit>1</inherit>
+		</eventlistener>
+		
+		<eventlistener>
+			<eventClassName>SubDomainAddForm</eventClassName>
+			<eventName>assignVariables</eventName>
+			<listenerClassFile>lib/system/event/listener/EmailDomainListener.class.php</listenerClassFile>
+			<inherit>1</inherit>
+		</eventlistener>
+		
+		<eventlistener>
+			<eventClassName>DomainAddForm</eventClassName>
+			<eventName>save</eventName>
+			<listenerClassFile>lib/system/event/listener/EmailDomainListener.class.php</listenerClassFile>
+			<environment>admin</environment>
+			<inherit>1</inherit>
+		</eventlistener>
+		
+		<eventlistener>
+			<eventClassName>DomainAddForm</eventClassName>
+			<eventName>assignVariables</eventName>
+			<listenerClassFile>lib/system/event/listener/EmailDomainListener.class.php</listenerClassFile>
+			<environment>admin</environment>
+			<inherit>1</inherit>
+		</eventlistener>
+		
+		<eventlistener>
 			<eventClassName>UserBanForm</eventClassName>
 			<eventName>saved</eventName>
 			<listenerClassFile>lib/system/event/listener/UserACPEmailsListener.class.php</listenerClassFile>

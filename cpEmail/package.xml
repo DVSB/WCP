@@ -28,12 +28,13 @@
 		<options>options.xml</options>
 		<files>files.tar</files>
 		<templates>templates.tar</templates>
+		<acptemplates>acptemplates.tar</acptemplates>
 		<groupoptions>groupoptions.xml</groupoptions>
 		<sql>install.sql</sql>
 		<pagemenu>pagemenu.xml</pagemenu>
 		<eventlistener>eventlistener.xml</eventlistener>
 		<useroptions>useroptions.xml</useroptions>
-		<domainoptions>domainoptions.xml</domainoptions>
+		<!-- <domainoptions>domainoptions.xml</domainoptions> -->
 	</instructions>
 	
 	<instructions type="update" fromversion="1.*">
@@ -42,11 +43,12 @@
 		<options>options.xml</options>
 		<files>files.tar</files>
 		<templates>templates.tar</templates>
+		<acptemplates>acptemplates.tar</acptemplates>
 		<groupoptions>groupoptions.xml</groupoptions>
 		<pagemenu>pagemenu.xml</pagemenu>
 		<eventlistener>eventlistener.xml</eventlistener>
 		<useroptions>useroptions.xml</useroptions>
-		<domainoptions>domainoptions.xml</domainoptions>
+		<!-- <domainoptions>domainoptions.xml</domainoptions> -->
 	</instructions>
 
 </package>

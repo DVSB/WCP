@@ -12,6 +12,7 @@
 		<item name="cp.domain.delete.success"><![CDATA[Domain erfolgreich gelöscht]]></item>
 		<item name="cp.domain.disabled.success"><![CDATA[Domain erfolgreich deaktiviert]]></item>
 		<item name="cp.domain.subDomainAdd"><![CDATA[Subdomain hinzufügen]]></item>
+		<item name="cp.domain.subDomainEdit"><![CDATA[Subdomain editieren]]></item>
 		<item name="cp.domain.domainID"><![CDATA[]]></item>
 		<item name="cp.domain.parentDomainName"><![CDATA[Elterndomain]]></item>
 		<item name="cp.domain.registrationDate"><![CDATA[Registrierdatum]]></item>
@@ -23,6 +24,7 @@
 		<item name="cp.domain.domainname.description"><![CDATA[Der Name der Domain.]]></item>
 		<item name="cp.domain.parentDomain"><![CDATA[Elterndomain]]></item>
 		<item name="cp.domain.parentDomain.description"><![CDATA[Hier wählen Sie aus, zu welcher Domain Sie diese Subdomain anlegen wollen. Der Name wird dann automatisch vervollständigt.]]></item>
+		<item name="cp.domain.parentDomain.notValid"><![CDATA[Ungültige Elterndomain!]]></item>
 	</category>
 	
 	<category name="cp.domain.option">

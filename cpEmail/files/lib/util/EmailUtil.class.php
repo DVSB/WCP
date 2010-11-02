@@ -76,7 +76,7 @@ class EmailUtil
 	{
 		require_once (CP_DIR . 'lib/data/domain/Domain.class.php');
 
-		return DomainUtil :: getDomainsForUser($userID, true, "domainOption" . Domain :: getDomainOptionID('isEmailDomain') . " = 1");
+		return DomainUtil :: getDomainsForUser($userID, true, "domain.isEmailDomain = 1");
 	}
 }
 ?>

@@ -24,25 +24,25 @@ class DomainEditForm extends SubDomainAddForm
 	public function readParameters()
 	{
 		AbstractPage :: readParameters();
-		
+
 		if (isset($_REQUEST['domainID']))
 		{
 			$this->domainID = intval($_REQUEST['domainID']);
-			
+
 			require_once (CP_DIR . 'lib/data/domain/DomainEditor.class.php');
-			
+
 			$this->domain = new DomainEditor($this->domainID);
-			
+
 			if (!$this->domain->domainID)
 			{
 				throw new IllegalLinkException();
 			}
-			
+
 			if ($this->domain->userID != WCF :: getUser()->userID)
 			{
 				throw new PermissionDeniedException();
 			}
-			
+
 			$this->readDefaultValues();
 		}
 	}
@@ -53,7 +53,8 @@ class DomainEditForm extends SubDomainAddForm
 	protected function readDefaultValues()
 	{
 		$this->domainname = $this->domain->domainname;
-			
+		$this->disabled = $this->domain->disabled;
+
 		foreach ($this->activeOptions as $key => $option)
 		{
 			$value = $this->user->{'userOption' . $option['optionID']};
@@ -63,15 +64,15 @@ class DomainEditForm extends SubDomainAddForm
 			}
 		}
 	}
-	
+
 	/**
 	 * @see Page::assignVariables()
 	 */
 	public function assignVariables()
 	{
 		parent :: assignVariables();
-		
-		WCF :: getTPL()->assign(array ( 
+
+		WCF :: getTPL()->assign(array (
 			'domainID' => $this->domainID,
 			'action' => 'edit',
 		));
@@ -85,18 +86,18 @@ class DomainEditForm extends SubDomainAddForm
 		// validate dynamic options
 		DynamicOptionListForm :: validate();
 	}
-	
+
 	/**
 	 * @see Form::save()
 	 */
 	public function save()
 	{
 		AbstractForm :: save();
-		
+
 		// save domain
 		$this->domain->update('', 0, 0, 0, $this->activeOptions, $this->additionalFields);
 		$this->saved();
-		
+
 		// show success message
 		WCF :: getTPL()->assign('success', true);
 	}
