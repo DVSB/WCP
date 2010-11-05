@@ -61,7 +61,6 @@ class domain(object):
             parent = domain(self.domain['parentDomainID'], self.env)
             if self.domain['vhostContainerID'] == 0:
                 self.domain['vhostContainerID'] = parent.get('vhostContainerID')
-            self.domain['domainname'] += '.' + parent.get('domainname')
         
     def get(self, option):
         if self.domain.has_key(option):

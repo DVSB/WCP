@@ -75,7 +75,7 @@
 		<item name="wcf.user.option.addDefaultSubdomain.description"><![CDATA[Add for this user a subdomain to a default domain (not implemented yet).]]></item>
 		<item name="wcf.user.option.domains"><![CDATA[Domains]]></item>
 		<item name="wcf.user.option.subdomains"><![CDATA[Subdomains (used/unused)]]></item>
-		<item name="wcf.user.option.subdomains.description"><![CDATA[How much subdomains are available?]]></item>
+		<item name="wcf.user.option.subdomains.description"><![CDATA[How many subdomains are available?]]></item>
 	</category>
 	
 	<category name="wcf.acp.option">

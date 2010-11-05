@@ -22,16 +22,32 @@ class DomainUtil
 	 */
 	public static function isValidDomainname($domainname)
 	{
-		$domainname_tmp = 'http://' . $domainname;
-
-		if(filter_var($domainname_tmp, FILTER_VALIDATE_URL) !== false)
-		{
-			return true;
-		}
-		else
-		{
+		// try php-filter, should be conform to http://www.faqs.org/rfcs/rfc2396.html
+		if(filter_var('http://' . $domainname, FILTER_VALIDATE_URL) === false)
 			return false;
+
+		// see http://tools.ietf.org/html/rfc1035
+		// the domainname must be shorter than 255
+		if (strlen($domainname) > 255)
+			return false;
+
+		// stolen from http://www.shauninman.com/archive/2006/05/08/validating_domain_names
+		// the domainname only consists of chars a-z, numbers (but not starting with one!) and - (but not starting or ending with one!)
+		// also, we check the toplevel-domain, this part can change over time as there are more tlds.
+		$regexp = '/^([a-z0-9]([-a-z0-9]*[a-z0-9])?\\.)+((a[cdefgilmnoqrstuwxz]|aero|arpa)|(b[abdefghijmnorstvwyz]|biz)|(c[acdfghiklmnorsuvxyz]|cat|com|coop)|d[ejkmoz]|(e[ceghrstu]|edu)|f[ijkmor]|(g[abdefghilmnpqrstuwy]|gov)|h[kmnrtu]|(i[delmnoqrst]|info|int)|(j[emop]|jobs)|k[eghimnprwyz]|l[abcikrstuvy]|(m[acdghklmnopqrstuvwxyz]|mil|mobi|museum)|(n[acefgilopruz]|name|net)|(om|org)|(p[aefghklmnrstwy]|pro)|qa|r[eouw]|s[abcdeghijklmnortvyz]|(t[cdfghjklmnoprtvwz]|travel)|u[agkmsyz]|v[aceginu]|w[fs]|y[etu]|z[amw])$/i';
+		if (preg_match($regexp, $domainname) !== 1)
+			return false;
+
+		// see http://tools.ietf.org/html/rfc1035
+		// no part of domainname is allowed to be longer than 63 characters
+		$tmp = explode('.', $domainname);
+		foreach ($tmp as $t)
+		{
+			if (strlen($t) > 63)
+				return false;
 		}
+
+		return true;
 	}
 
 	/**

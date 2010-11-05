@@ -5,9 +5,9 @@
 	<packageInformation>
 		<packageName>Web ControlPanel Domain Modul</packageName>
 		<packageDescription>Basismodul zur Domainverwaltung</packageDescription>
-		<version>1.0.0 RC2</version>
+		<version>1.0.0 RC2 pl1</version>
 		<plugin>com.toby.cp</plugin>
-		<date>2010-05-14</date>
+		<date>2010-11-05</date>
 	</packageInformation>
 
 	<authorInformation>
@@ -17,7 +17,7 @@
 	</authorInformation>
 
 	<requiredpackages>
-		<requiredpackage minversion="1.1.0 Alpha 1">com.woltlab.wcf</requiredpackage>
+		<requiredpackage minversion="1.1.0">com.woltlab.wcf</requiredpackage>
 		<requiredpackage>com.toby.cp</requiredpackage>
 	</requiredpackages>
 
@@ -38,33 +38,9 @@
 		<packageinstallationplugins>pip.tar</packageinstallationplugins>
 	</instructions>
 
-	<instructions type="update" fromversion="0.*">
+	<instructions type="update" fromversion="1.0.0 RC2">
 		<languages languagecode="de">de.xml</languages>
 		<languages languagecode="en">en.xml</languages>
-		<options>options.xml</options>
 		<files>files.tar</files>
-		<templates>templates.tar</templates>
-		<acptemplates>acptemplates.tar</acptemplates>
-		<groupoptions>groupoptions.xml</groupoptions>
-		<pagemenu>pagemenu.xml</pagemenu>
-		<eventlistener>eventlistener.xml</eventlistener>
-		<useroptions>useroptions.xml</useroptions>
-		<domainoptions>domainoptions.xml</domainoptions>
-		<packageinstallationplugins>pip.tar</packageinstallationplugins>
-	</instructions>
-
-	<instructions type="update" fromversion="1.*">
-		<languages languagecode="de">de.xml</languages>
-		<languages languagecode="en">en.xml</languages>
-		<options>options.xml</options>
-		<files>files.tar</files>
-		<templates>templates.tar</templates>
-		<acptemplates>acptemplates.tar</acptemplates>
-		<groupoptions>groupoptions.xml</groupoptions>
-		<pagemenu>pagemenu.xml</pagemenu>
-		<eventlistener>eventlistener.xml</eventlistener>
-		<useroptions>useroptions.xml</useroptions>
-		<domainoptions>domainoptions.xml</domainoptions>
-		<packageinstallationplugins>pip.tar</packageinstallationplugins>
 	</instructions>
 </package>

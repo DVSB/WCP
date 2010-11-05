@@ -27,6 +27,8 @@
 	
 	<category name="wcf.user.option">
  		<item name="wcf.user.option.ftpaccounts"><![CDATA[FTP-Zugänge (benutzt/verfügbar)]]></item>
+ 		<item name="wcf.user.option.ftpaccounts.description"><![CDATA[Wieviele FTP-Zugänge stehen zur Verfügung?]]></item>
+ 		<item name="wcf.user.option.category.account.ftp"><![CDATA[FTP]]></item>
  	</category>
  	
  	<category name="wcf.acp.option">

@@ -5,9 +5,9 @@
 	<packageInformation>
 		<packageName>Web ControlPanel eMail Modul</packageName>
 		<packageDescription>Ermöglicht Anlage von eMail-Adressen, Weiterleitungen, usw.</packageDescription>
-		<version>1.0.0 RC2</version>
+		<version>1.0.0 RC2 pl1</version>
 		<plugin>com.toby.cp</plugin>
-		<date>2010-05-14</date>
+		<date>2010-11-05</date>
 	</packageInformation>
 
 	<authorInformation>
@@ -34,21 +34,12 @@
 		<pagemenu>pagemenu.xml</pagemenu>
 		<eventlistener>eventlistener.xml</eventlistener>
 		<useroptions>useroptions.xml</useroptions>
-		<!-- <domainoptions>domainoptions.xml</domainoptions> -->
 	</instructions>
 	
-	<instructions type="update" fromversion="1.*">
+	<instructions type="update" fromversion="1.0.0 RC2">
 		<languages languagecode="de">de.xml</languages>
 		<languages languagecode="en">en.xml</languages>
-		<options>options.xml</options>
-		<files>files.tar</files>
-		<templates>templates.tar</templates>
-		<acptemplates>acptemplates.tar</acptemplates>
-		<groupoptions>groupoptions.xml</groupoptions>
-		<pagemenu>pagemenu.xml</pagemenu>
-		<eventlistener>eventlistener.xml</eventlistener>
-		<useroptions>useroptions.xml</useroptions>
-		<!-- <domainoptions>domainoptions.xml</domainoptions> -->
+		<sql>updateRC2.sql</sql>
 	</instructions>
 
 </package>

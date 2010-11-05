@@ -49,8 +49,8 @@ class containerDefault(object):
         
         self.domain.getAliasDomains()
         
-        self.file = os.path.abspath(self.vhostpath + '/' + self.fileprefix + '_' + str(self.domain.domainID) + '_' + self.domain.get("domainname") + '.conf')
-        self.wildcardfile = os.path.abspath(self.vhostpath + '/' + self.filewildcardprefix + '_' + str(self.domain.domainID) + '_' + self.domain.get("domainname") + '.conf')
+        self.file = os.path.abspath(self.vhostpath + '/' + self.fileprefix + '_' + str(self.domain.domainID) + '_' + self.domain.get("domainname").replace('/', '_') + '.conf')
+        self.wildcardfile = os.path.abspath(self.vhostpath + '/' + self.filewildcardprefix + '_' + str(self.domain.domainID) + '_' + self.domain.get("domainname").replace('/', '_') + '.conf')
     
     #create a domain
     def createDomain(self):

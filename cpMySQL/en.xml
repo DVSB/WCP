@@ -5,7 +5,7 @@
  	<category name="wcf.user.option">
  		<item name="wcf.user.option.category.account.mysql"><![CDATA[MySQL]]></item>
  		<item name="wcf.user.option.mysqls"><![CDATA[Databases (used/unused)]]></item>
- 		<item name="wcf.user.option.mysqls.description"><![CDATA[How much MySQL-Databases are available?]]></item>
+ 		<item name="wcf.user.option.mysqls.description"><![CDATA[How many MySQL-Databases are available?]]></item>
  	</category>
  	
  	<category name="wcf.acp.option">

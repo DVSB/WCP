@@ -5,7 +5,7 @@
 	<packageInformation>
 		<packageName>Web ControlPanel Backendhandler VhostContainer Modul</packageName>
 		<packageDescription>Basismodul zur Anlage von VhostContainern</packageDescription>
-		<version>1.0.0 RC2</version>
+		<version>1.0.0 RC2 pl1</version>
 		<date>2010-10-19</date>
 		<plugin>com.toby.cp</plugin>
 	</packageInformation>
@@ -24,12 +24,8 @@
 	<instructions type="install">
 		<files>files.tar</files>
 	</instructions>
-
-	<instructions type="update" fromversion="0.*">
-		<files>files.tar</files>
-	</instructions>
 	
-	<instructions type="update" fromversion="1.*">
+	<instructions type="update" fromversion="1.0.0 RC2">
 		<files>files.tar</files>
 	</instructions>
 

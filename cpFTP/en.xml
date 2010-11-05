@@ -27,6 +27,8 @@
 	
 	<category name="wcf.user.option">
  		<item name="wcf.user.option.ftpaccounts"><![CDATA[FTP-Accounts (used/unused)]]></item>
+ 		<item name="wcf.user.option.ftpaccounts.description"><![CDATA[How many FTP-Accounts are available?]]></item>
+ 		<item name="wcf.user.option.category.account.ftp"><![CDATA[FTP]]></item>
  	</category>
  	
  	<category name="wcf.acp.option">

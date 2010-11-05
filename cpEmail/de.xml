@@ -4,8 +4,8 @@
 	
 	<category name="cp.email">
 		<item name="cp.email.addForward"><![CDATA[Weiterleitung hinzufügen]]></item>
-		<item name="cp.email.details"><![CDATA[Email-Details]]></item>
-		<item name="cp.email.forward"><![CDATA[Email-Weiterleitung]]></item>
+		<item name="cp.email.details"><![CDATA[E-Mail-Details]]></item>
+		<item name="cp.email.forward"><![CDATA[E-Mail-Weiterleitung]]></item>
 		<item name="cp.email.forward.notvalid"><![CDATA[Weiterleitung nicht gültig]]></item>
 		<item name="cp.email.addAddress"><![CDATA[Emailadresse hinzufügen]]></item>
 		<item name="cp.email.emailaddress"><![CDATA[Emailadresse]]></item>
@@ -33,9 +33,9 @@
 	</category>
 	
 	<category name="wcf.acp.option">
-		<item name="wcf.acp.option.category.cpemail"><![CDATA[WCP - Email]]></item>
-		<item name="wcf.acp.option.category.cpemail.description"><![CDATA[Einstellungen für Emails]]></item>
-		<item name="wcf.acp.option.category.cpemail.quota"><![CDATA[Email-Quota]]></item>
+		<item name="wcf.acp.option.category.cpemail"><![CDATA[WCP - E-Mail]]></item>
+		<item name="wcf.acp.option.category.cpemail.description"><![CDATA[Einstellungen für E-Mails]]></item>
+		<item name="wcf.acp.option.category.cpemail.quota"><![CDATA[E-Mail-Quota]]></item>
 		<item name="wcf.acp.option.category.cpemail.quota.description"><![CDATA[Quota pro Mailbox]]></item>
 		<item name="wcf.acp.option.mail_quota_enabled"><![CDATA[Quota aktivieren]]></item>
 		<item name="wcf.acp.option.mail_quota_enabled.description"><![CDATA[]]></item>
@@ -44,7 +44,7 @@
 		<item name="wcf.acp.option.category.cpemail.parameters"><![CDATA[Einstellungen]]></item>
 		<item name="wcf.acp.option.category.cpemail.parameters.description"><![CDATA[]]></item>
 		<item name="wcf.acp.option.mail_store_plain_password"><![CDATA[Passwörter unverschlüsselt speichern]]></item>
-		<item name="wcf.acp.option.mail_store_plain_password.description"><![CDATA[Speichert die Passwörter für Emailkonten zusätzlich auch unverschlüsselt in der Datenbank. Nur so sind Verfahren wie CRAM-MD5 usw. möglich. Allerdings stellt dies ein Sicherheitsrisiko dar, falls die Datenbank kompromitiert wird.]]></item>
+		<item name="wcf.acp.option.mail_store_plain_password.description"><![CDATA[Speichert die Passwörter für E-Mail-Konten zusätzlich auch unverschlüsselt in der Datenbank. Nur so sind Verfahren wie CRAM-MD5 usw. möglich. Allerdings stellt dies ein Sicherheitsrisiko dar, falls die Datenbank kompromitiert wird.]]></item>
 		<item name="wcf.acp.option.mail_homedir"><![CDATA[Heimatverzeichnis]]></item>
 		<item name="wcf.acp.option.mail_homedir.description"><![CDATA[Das Heimatverzeichnis für alle Mailkonten]]></item>
 		<item name="wcf.acp.option.mail_uid"><![CDATA[UID]]></item>
@@ -54,13 +54,13 @@
 	</category>
 	
 	<category name="wcf.user.option">
-		<item name="wcf.user.option.category.account.email"><![CDATA[Emails]]></item>
-		<item name="wcf.user.option.emailAddresses"><![CDATA[Emailadressen (benutzt/verfügbar)]]></item>
-		<item name="wcf.user.option.emailAddresses.description"><![CDATA[Wieviele Emailadressen stehen zur Verfügung?]]></item>
-		<item name="wcf.user.option.emailAccounts"><![CDATA[Emailkonten (benutzt/verfügbar)]]></item>
-		<item name="wcf.user.option.emailAccounts.description"><![CDATA[Wieviele Weiterleitungen stehen zur Verfügung?]]></item>
-		<item name="wcf.user.option.emailForwards"><![CDATA[Emailweiterleitungen (benutzt/verfügbar)]]></item>
-		<item name="wcf.user.option.emailForwards.description"><![CDATA[Wieviele Konten stehen zur Verfügung?]]></item>
+		<item name="wcf.user.option.category.account.email"><![CDATA[E-Mails]]></item>
+		<item name="wcf.user.option.emailAddresses"><![CDATA[E-Mail-Adressen (benutzt/verfügbar)]]></item>
+		<item name="wcf.user.option.emailAddresses.description"><![CDATA[Wieviele E-Mail-Adressen stehen zur Verfügung?]]></item>
+		<item name="wcf.user.option.emailAccounts"><![CDATA[E-Mail-Konten (benutzt/verfügbar)]]></item>
+		<item name="wcf.user.option.emailAccounts.description"><![CDATA[Wieviele Konten stehen zur Verfügung?]]></item>
+		<item name="wcf.user.option.emailForwards"><![CDATA[E-Mail-Weiterleitungen (benutzt/verfügbar)]]></item>
+		<item name="wcf.user.option.emailForwards.description"><![CDATA[Wieviele Weiterleitungen stehen zur Verfügung?]]></item>
 		<item name="wcf.user.option.emailIMAPenabled"><![CDATA[IMAP aktivieren]]></item>
 		<item name="wcf.user.option.emailIMAPenabled.description"><![CDATA[Darf dieser Benutzer IMAP benutzen?]]></item>
 		<item name="wcf.user.option.emailPOP3enabled"><![CDATA[POP3 aktivieren]]></item>
@@ -68,28 +68,28 @@
 	</category>
 
 	<category name="wcf.acp.group">
-		<item name="wcf.acp.group.option.category.cp.email"><![CDATA[Email]]></item>
+		<item name="wcf.acp.group.option.category.cp.email"><![CDATA[E-Mail]]></item>
 		<item name="wcf.acp.group.option.category.cp.email.description"><![CDATA[]]></item>
-		<item name="wcf.acp.group.option.cp.email.canSeeList"><![CDATA[Darf Emails sehen]]></item>
-		<item name="wcf.acp.group.option.cp.email.canSeeList.description"><![CDATA[Mitglieder dieser Gruppe können sich Email-Adressen anzeigen lassen.]]></item>
-		<item name="wcf.acp.group.option.cp.email.canAddAddress"><![CDATA[Darf Email-Adressen erstellen]]></item>
-		<item name="wcf.acp.group.option.cp.email.canAddAddress.description"><![CDATA[Mitglieder dieser Gruppe dürfen Email-Adressen erstellen.]]></item>
-		<item name="wcf.acp.group.option.cp.email.canAddForward"><![CDATA[Darf Email-Weiterleitungen erstellen]]></item>
-		<item name="wcf.acp.group.option.cp.email.canAddForward.description"><![CDATA[Mitglieder dieser Gruppe dürfen Email-Weiterleitungen erstellen.]]></item>
-		<item name="wcf.acp.group.option.cp.email.canAddAccount"><![CDATA[Darf Email-Konten erstellen]]></item>
-		<item name="wcf.acp.group.option.cp.email.canAddAccount.description"><![CDATA[Mitglieder dieser Gruppe dürfen Email-Konten erstellen.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canSeeList"><![CDATA[Darf E-Mail-Adressen sehen]]></item>
+		<item name="wcf.acp.group.option.cp.email.canSeeList.description"><![CDATA[Mitglieder dieser Gruppe können sich E-Mail-Adressen anzeigen lassen.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddAddress"><![CDATA[Darf E-Mail-Adressen erstellen]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddAddress.description"><![CDATA[Mitglieder dieser Gruppe dürfen E-Mail-Adressen erstellen.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddForward"><![CDATA[Darf E-Mail-Weiterleitungen erstellen]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddForward.description"><![CDATA[Mitglieder dieser Gruppe dürfen E-Mail-Weiterleitungen erstellen.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddAccount"><![CDATA[Darf E-Mail-Konten erstellen]]></item>
+		<item name="wcf.acp.group.option.cp.email.canAddAccount.description"><![CDATA[Mitglieder dieser Gruppe dürfen E-Mail-Konten erstellen.]]></item>
 		<item name="wcf.acp.group.option.cp.email.canUseCatchall"><![CDATA[Darf Catchall-Adressen erstellen]]></item>
 		<item name="wcf.acp.group.option.cp.email.canUseCatchall.description"><![CDATA[Mitglieder dieser Gruppe dürfen pro Domain eine Catchall-Adresse erstellen.]]></item>
-		<item name="wcf.acp.group.option.cp.email.canDeleteAddresses"><![CDATA[Darf Email-Adressen löschen]]></item>
-		<item name="wcf.acp.group.option.cp.email.canDeleteAddresses.description"><![CDATA[Mitglieder dieser Gruppe dürfen Email-Adressen löschen.]]></item>
-		<item name="wcf.acp.group.option.cp.email.canDeleteForwards"><![CDATA[Darf Email-Weiterleitungen löschen]]></item>
-		<item name="wcf.acp.group.option.cp.email.canDeleteForwards.description"><![CDATA[Mitglieder dieser Gruppe dürfen Email-Weiterleitungen löschen.]]></item>
-		<item name="wcf.acp.group.option.cp.email.canDeleteAccounts"><![CDATA[Darf Email-Konten löschen]]></item>
-		<item name="wcf.acp.group.option.cp.email.canDeleteAccounts.description"><![CDATA[Mitglieder dieser Gruppe dürfen Email-Konten löschen.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteAddresses"><![CDATA[Darf E-Mail-Adressen löschen]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteAddresses.description"><![CDATA[Mitglieder dieser Gruppe dürfen E-Mail-Adressen löschen.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteForwards"><![CDATA[Darf E-Mail-Weiterleitungen löschen]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteForwards.description"><![CDATA[Mitglieder dieser Gruppe dürfen E-Mail-Weiterleitungen löschen.]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteAccounts"><![CDATA[Darf E-Mail-Konten löschen]]></item>
+		<item name="wcf.acp.group.option.cp.email.canDeleteAccounts.description"><![CDATA[Mitglieder dieser Gruppe dürfen E-Mail-Konten löschen.]]></item>
 	</category>
 	
 	<category name="cp.domain">
-		<item name="cp.domain.isEmailDomain"><![CDATA[Ist Email-Domain - Dieser Schalter kontrolliert, ob Sie Email-Adressen für diese Domain erstellen können und ob Emails für diese Domain zugestellt werden können. Wenn Sie diesen Schalter deaktivieren werden alle bereits für diese Domain angelegten Email-Konten keine Emails mehr empfangen können!]]></item>
+		<item name="cp.domain.isEmailDomain"><![CDATA[Ist E-Mail-Domain - Dieser Schalter kontrolliert, ob Sie E-Mail-Adressen für diese Domain erstellen können und ob Emails für diese Domain zugestellt werden können. Wenn Sie diesen Schalter deaktivieren werden alle bereits für diese Domain angelegten E-Mail-Konten keine E-Mails mehr empfangen können!]]></item>
 	</category>
 
 </language>
