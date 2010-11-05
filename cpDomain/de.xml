@@ -100,6 +100,8 @@
 		<item name="wcf.acp.group.option.admin.cp.canAddDomain.description"><![CDATA[Mitglieder dieser Gruppe können Domains erstellen]]></item>
 		<item name="wcf.acp.group.option.admin.cp.canEditDomain"><![CDATA[Kann Domains bearbeiten]]></item>
 		<item name="wcf.acp.group.option.admin.cp.canEditDomain.description"><![CDATA[Mitglieder dieser Gruppe können Domains bearbeiten]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canEditDomains"><![CDATA[Kann Domains bearbeiten]]></item>
+		<item name="wcf.acp.group.option.admin.cp.canEditDomains.description"><![CDATA[Mitglieder dieser Gruppe können Domains bearbeiten]]></item>
 		<item name="wcf.acp.group.option.admin.cp.canDeleteDomains"><![CDATA[Kann Domains löschen]]></item>
 		<item name="wcf.acp.group.option.admin.cp.canDeleteDomains.description"><![CDATA[Mitglieder dieser Gruppe können Domains löschen]]></item>
 		
