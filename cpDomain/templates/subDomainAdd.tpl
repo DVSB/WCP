@@ -54,6 +54,8 @@
 							{if $errorType.domainname|isset}
 								<p class="innerError">
 									{if $errorType.domainname == 'empty'}{lang}wcf.global.error.empty{/lang}{/if}
+									{if $errorType.domainname == 'notValid'}{lang}cp.acp.domain.domainname.notValid{/lang}{/if}
+									{if $errorType.domainname == 'notUnique'}{lang}cp.acp.domain.domainname.notUnique{/lang}{/if}
 								</p>
 							{/if}
 						</div>
