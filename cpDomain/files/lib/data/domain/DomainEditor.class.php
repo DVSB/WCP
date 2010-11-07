@@ -231,7 +231,7 @@ class DomainEditor extends Domain
 		{
 			if (!empty($updateSQL))
 				$updateSQL .= ',';
-			$updateSQL .= "userID = " . $userID;
+			$updateSQL .= "userID = " . intval($userID);
 			$this->userID = $userID;
 		}
 
@@ -239,7 +239,7 @@ class DomainEditor extends Domain
 		{
 			if (!empty($updateSQL))
 				$updateSQL .= ',';
-			$updateSQL .= "adminID = " . $adminID;
+			$updateSQL .= "adminID = " . intval($adminID);
 			$this->adminID = $adminID;
 		}
 
@@ -247,7 +247,7 @@ class DomainEditor extends Domain
 		{
 			if (!empty($updateSQL))
 				$updateSQL .= ',';
-			$updateSQL .= "parentDomainID = " . $parentDomainID;
+			$updateSQL .= "parentDomainID = " . intval($parentDomainID);
 			$this->parentDomainID = $parentDomainID;
 		}
 
@@ -398,7 +398,7 @@ class DomainEditor extends Domain
 				WHERE 	domainID IN (" . $domainIDsStr . ")";
 		WCF :: getDB()->sendQuery($sql);
 
-		return count($domainIDs);
+		return WCF :: getDB()->getAffectedRows();
 	}
 
 	/**
@@ -417,7 +417,7 @@ class DomainEditor extends Domain
 				WHERE 	domainID IN (" . $domainIDsStr . ")";
 		WCF :: getDB()->sendQuery($sql);
 
-		return count($domainIDs);
+		return WCF :: getDB()->getAffectedRows();
 	}
 
 	/**

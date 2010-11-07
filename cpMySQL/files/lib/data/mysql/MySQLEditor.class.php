@@ -175,7 +175,7 @@ class MySQLEditor extends MySQL
 	{
 		$sql = "SELECT 	mysqlID
 				FROM 	cp" . CP_N . "_mysql
-				WHERE 	userID = " . $userID;
+				WHERE 	userID = " . intval($userID);
 		$result = WCF :: getDB()->getResultList($sql);
 
 		foreach ($result as $id)
