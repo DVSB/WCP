@@ -42,7 +42,7 @@
 						<label for="domain">{lang}cp.email.account{/lang}</label>
 					</div>
 					<div class="formField">
-						<a href="index.php?form=EmailSetAccountPW&amp;mailID={@$mailID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}">{lang}cp.email.account.{if $accountID}pwchange{else}addaccount{/if}{/lang}</a> {if $accountID}<a href="index.php?action=EmailDeleteAccount&amp;mailID={@$mailID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}">{lang}cp.email.account.delete{/lang}</a>{/if}
+						<a href="index.php?form=EmailSetAccountPW&amp;mailID={@$mailID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}">{lang}cp.email.account.{if $accountID}pwchange{else}addAccount{/if}{/lang}</a> {if $accountID}<a href="index.php?action=EmailDeleteAccount&amp;mailID={@$mailID}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}">{lang}cp.email.account.delete{/lang}</a>{/if}
 					</div>
 				</div>
 				{/if}
