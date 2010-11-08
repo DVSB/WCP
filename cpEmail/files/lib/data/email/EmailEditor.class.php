@@ -71,6 +71,11 @@ class EmailEditor extends Email
 	{
 		$this->isCatchall = !$this->isCatchall;
 
+		if ($this->accountID)
+		{
+			$this->removeDestination($this->emailaddress);
+		}
+
 		if ($this->isCatchall)
 		{
 			$this->emailaddress = preg_replace('/.*@/', '@', $this->emailaddress_full);
@@ -80,10 +85,16 @@ class EmailEditor extends Email
 			$this->emailaddress = $this->emailaddress_full;
 		}
 
+		if ($this->accountID)
+		{
+			$this->addDestination($this->emailaddress);
+		}
+
 		// Update
 		$sql = "UPDATE	cp" . CP_N . "_mail_virtual
 				SET		emailaddress = '" . escapeString($this->emailaddress) . "',
-						isCatchall = " . intval($this->isCatchall) . "
+						isCatchall = " . intval($this->isCatchall) . ",
+						destination = '" . escapeString($this->data['destination']) . "'
 				WHERE 	mailID = " . $this->mailID;
 		WCF :: getDB()->sendQuery($sql);
 	}
@@ -248,7 +259,8 @@ class EmailEditor extends Email
 	 */
 	public function delete()
 	{
-		$user = new UserEditor($this->userID);
+		$user = new CPUser($this->userID);
+		$user = $user->getEditor();
 		$update = array(
 			'emailAddressesUsed' => --$user->emailAddressesUsed,
 			'emailForwardsUsed' => $user->emailForwardsUsed,

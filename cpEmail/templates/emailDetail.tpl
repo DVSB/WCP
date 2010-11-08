@@ -13,8 +13,8 @@
 	<ul class="breadCrumbs">
 		<li><a href="index.php{@SID_ARG_1ST}"><img alt="" src="{icon}wcpS.png{/icon}"> <span>{lang}cp.header.menu.start{/lang}</span></a> &raquo;</li>
 		<li><a href="index.php?page=EmailList{@SID_ARG_2ND}"><img alt="" src="{icon}emailS.png{/icon}"> <span>{lang}cp.header.menu.email{/lang}</span></a> &raquo;</li>
-	</ul>	
-	
+	</ul>
+
 	<div class="mainHeadline">
 		<img src="{icon}emailL.png{/icon}" alt="" />
 		<div class="headlineContainer">
@@ -57,7 +57,7 @@
 					</div>
 				</div>
 				{/if}
-				
+
 				<div class="formElement">
 					<div class="formFieldLabel">
 						<label for="domain">{lang}cp.email.forwards{/lang}</label>
@@ -66,7 +66,7 @@
 						<table width="100%">
 						{if $destination|is_array}
 						{foreach from=$destination item=d}
-							{if $d != $emailaddress_full}
+							{if $d != $emailaddress}
 							<tr>
 								<td>{$d}</td>
 								{if $this->user->getPermission('cp.email.canDeleteForwards')}<td><a href="index.php?action=EmailDeleteForward&amp;mailID={@$mailID}&amp;forward={$d}&amp;t={@SECURITY_TOKEN}{@SID_ARG_2ND}">{lang}cp.email.deleteForward{/lang}</a></td>{/if}

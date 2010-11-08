@@ -11,12 +11,12 @@ class EmailDeleteForwardAction extends AbstractSecureAction
 	public function execute()
 	{
 		WCF::getUser()->checkPermission('cp.email.canDeleteForwards');
-		
+
 		parent :: execute();
 
 		$email = new EmailEditor($_REQUEST['mailID']);
 
-		if ($email->userID == WCF :: getUser()->userID)
+		if ($email->userID == WCF :: getUser()->userID && $email->emailaddress != $_REQUEST['forward'])
 			$email->removeForward($_REQUEST['forward']);
 
 		$url = 'index.php?page=EmailDetail&mailID=' . $email->mailID . SID_ARG_2ND_NOT_ENCODED;
