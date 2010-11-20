@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTD/options.dtd">
+<data>
+	<import>
+		<categories>
+			<category name="account.ftp">
+				<parent>account</parent>
+			</category>
+		</categories>
+
+		<options>
+			<option name="ftpaccounts">
+				<categoryname>account.ftp</categoryname>
+				<optiontype>integer</optiontype>
+				<visible>0</visible>
+				<editable>3</editable>
+				<defaultvalue>1</defaultvalue>
+			</option>
+			<option name="ftpaccountsUsed">
+				<categoryname>account.ftp</categoryname>
+				<optiontype>integer</optiontype>
+				<visible>0</visible>
+				<editable>4</editable>
+			</option>
+		</options>
+	</import>
+
+</data>

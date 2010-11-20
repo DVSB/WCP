@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE import SYSTEM "DTD/import.dtd">
+<data>
+	<import>
+		<eventlistener>
+			<eventClassName>IndexPage</eventClassName>
+			<eventName>readData</eventName>
+			<listenerClassFile>lib/system/event/listener/IndexFTPListener.class.php</listenerClassFile>
+		</eventlistener>
+	</import>
+</data>

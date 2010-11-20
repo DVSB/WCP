@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "http://www.woltlab.com/DTDs/language.dtd">
+<language languagecode="de">
+	
+	<category name="cp.traffic">
+		<item name="cp.ftp.addAccount"><![CDATA[FTP-Zugang hinzufügen]]></item>
+	</category>
+	
+	<category name="cp.header.menu">
+		<item name="cp.header.menu.traffic"><![CDATA[Traffic]]></item>
+	</category>
+	
+	<category name="wcf.user.option">
+ 		<item name="wcf.user.option.ftpaccounts"><![CDATA[FTP-Zugänge (benutzt/verfügbar)]]></item>
+ 		<item name="wcf.user.option.ftpaccounts.description"><![CDATA[Wieviele FTP-Zugänge stehen zur Verfügung?]]></item>
+ 		<item name="wcf.user.option.category.account.ftp"><![CDATA[FTP]]></item>
+ 	</category>
+ 	
+ 	<category name="wcf.acp.option">
+ 		<item name="wcf.acp.option.category.cpftp"><![CDATA[WCP - FTP Zugänge]]></item>
+ 		<item name="wcf.acp.option.category.cpftp.description"><![CDATA[Einstellungen für FTP-Zugänge]]></item>
+ 		<item name="wcf.acp.option.category.cpftp.global"><![CDATA[Globale Einstellungen]]></item>
+ 		<item name="wcf.acp.option.category.cpftp.global.description"><![CDATA[]]></item>
+ 		<item name="wcf.acp.option.ftp_postfix"><![CDATA[FTP-Zugang-Namenspostfix]]></item>
+ 		<item name="wcf.acp.option.ftp_postfix.description"><![CDATA[Dieser Wert wird an den Benutzernamen angefügt, um den Loginnamen zu erstellen. Das sieht dann z.B. so aus: mmustermann_ftp4]]></item>
+ 	</category>
+ 	
+ 	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.category.cp.ftp"><![CDATA[FTP]]></item>
+		<item name="wcf.acp.group.option.category.cp.ftp.description"><![CDATA[]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canAddFTPAccount"><![CDATA[Darf FTP-Zugänge erstellen]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canAddFTPAccount.description"><![CDATA[Mitglieder dieser Gruppe dürfen FTP-Zugänge erstellen.]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canListFTPAccounts"><![CDATA[Darf FTP-Zugänge sehen]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canListFTPAccounts.description"><![CDATA[Mitglieder dieser Gruppe dürfen die Liste der FTP-Zugänge sehen.]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canDeleteFTPAccounts"><![CDATA[Darf FTP-Zugänge löschen]]></item>
+		<item name="wcf.acp.group.option.cp.ftp.canDeleteFTPAccounts.description"><![CDATA[Mitglieder dieser Gruppe dürfen FTP-Zugänge löschen.]]></item>
+	</category>
+
+</language>
+
+
+
+
+

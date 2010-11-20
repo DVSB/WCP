@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/options.dtd">
+<data>
+	<import>
+
+		<categories>
+			<category name="cp.ftp">
+				<parent>cp</parent>
+			</category>
+		</categories>
+
+		<options>
+			
+			<option name="cp.ftp.canAddFTPAccount">
+				<categoryname>cp.ftp</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</option>
+			
+			<option name="cp.ftp.canListFTPAccounts">
+				<categoryname>cp.ftp</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</option>
+			
+			<option name="cp.ftp.canDeleteFTPAccounts">
+				<categoryname>cp.ftp</categoryname>
+				<optiontype>boolean</optiontype>
+				<defaultvalue>1</defaultvalue>
+			</option>
+		</options>
+
+	</import>
+</data>

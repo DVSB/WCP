@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE package SYSTEM "DTD/package.dtd">
+<package name="com.toby.cp.traffic">
+
+	<packageInformation>
+		<packageName>Web ControlPanel Traffic Modul</packageName>
+		<packageDescription>Erfasst verbrauchten Traffic pro Kunde (HTTP, FTP, Mail)</packageDescription>
+		<version>0.0.1</version>
+		<plugin>com.toby.cp</plugin>
+		<date>2010-11-20</date>
+	</packageInformation>
+
+	<authorInformation>
+		<author>Tobias Friebel</author>
+		<authorURL>http://dev.hugin-hosting.de/</authorURL>
+		<license>GPL</license>
+	</authorInformation>
+
+	<requiredpackages>
+		<requiredpackage minversion="1.1.0">com.woltlab.wcf</requiredpackage>
+		<requiredpackage>com.toby.cp</requiredpackage>
+	</requiredpackages>
+
+	<instructions type="install">
+		<languages languagecode="de">de.xml</languages>
+		<languages languagecode="en">en.xml</languages>
+		<options>options.xml</options>
+		<files>files.tar</files>
+		<templates>templates.tar</templates>
+		<groupoptions>groupoptions.xml</groupoptions>
+		<sql>install.sql</sql>
+		<pagemenu>pagemenu.xml</pagemenu>
+		<eventlistener>eventlistener.xml</eventlistener>
+		<useroptions>useroptions.xml</useroptions>
+	</instructions>
+	
+</package>
