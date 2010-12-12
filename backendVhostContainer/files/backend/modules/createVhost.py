@@ -26,8 +26,8 @@ class createVhost(basishandler):
                     self.vhandler.addDomain(d)
             
             #create all domains with this vhosts
-            elif data.has_key('vhostID'):
-                self.vhandler.addDomainsForVhost(data['vhostID'])
+            elif data.has_key('vhostContainerID'):
+                self.vhandler.addDomainsForVhost(data['vhostContainerID'])
             
             #create all domains of this user
             elif data.has_key('userID'):

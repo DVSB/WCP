@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE package SYSTEM "DTD/package.dtd">
-<package name="com.toby.cp.mysql">
+<package name="com.burningpedia.cp.mysql">
 
 	<packageInformation>
 		<packageName>Web ControlPanel MySQL Modul</packageName>
 		<packageDescription>Ermöglicht die Anlage von MySQL-Datenbanken</packageDescription>
-		<version>1.0.0 RC2 pl1</version>
-		<plugin>com.toby.cp</plugin>
+		<version>1.0.0</version>
+		<plugin>com.burningpedia.cp</plugin>
 		<date>2010-11-05</date>
 	</packageInformation>
 
@@ -18,7 +18,7 @@
 
 	<requiredpackages>
 		<requiredpackage minversion="1.1.0">com.woltlab.wcf</requiredpackage>
-		<requiredpackage>com.toby.cp</requiredpackage>
+		<requiredpackage>com.burningpedia.cp</requiredpackage>
 	</requiredpackages>
 
 	<instructions type="install">
@@ -34,11 +34,6 @@
 		<useroptions>useroptions.xml</useroptions>
 		<acpmenu>acpmenu.xml</acpmenu>
 		<acptemplates>acptemplates.tar</acptemplates>
-	</instructions>
-	
-	<instructions type="update" fromversion="1.0.0 RC2">
-		<languages languagecode="de">de.xml</languages>
-		<languages languagecode="en">en.xml</languages>
 	</instructions>
 
 </package>

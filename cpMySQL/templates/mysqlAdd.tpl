@@ -11,15 +11,15 @@
 	<ul class="breadCrumbs">
 		<li><a href="index.php{@SID_ARG_1ST}"><img alt="" src="{icon}wcpS.png{/icon}"> <span>{lang}cp.header.menu.start{/lang}</span></a> &raquo;</li>
 		<li><a href="index.php?page=MySQLList{@SID_ARG_2ND}"><img alt="" src="{icon}databaseS.png{/icon}"> <span>{lang}cp.header.menu.mysql{/lang}</span></a> &raquo;</li>
-	</ul>	
-	
+	</ul>
+
 	<div class="mainHeadline">
-		<img src="{icon}mysqlL.png{/icon}" alt="" />
+		<img src="{icon}database{@$action}L.png{/icon}" alt="" />
 		<div class="headlineContainer">
 			<h2>{lang}cp.mysql.{@$action}{/lang}</h2>
 		</div>
 	</div>
-	
+
 	{capture append=userMessages}
 		{if $errorField}
 			<p class="error">{lang}wcf.global.form.error{/lang}</p>

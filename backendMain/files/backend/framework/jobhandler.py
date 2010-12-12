@@ -56,15 +56,14 @@ class jobhandler(object):
     def firePendingJobs(self):
         for job in self.jobs:
             self.env.logger.append('Start task: ' + job)
-            #try: 
-            #TODO: Enable back for Release!
-            module = loadModule(job, 'modules/')
-            func = getattr(module, job)
-            obj = func(self.jobs[job]['data'], self.env)
-            self.jobs[job]['retVar'] = obj.run()
-            #except Exception, e:
-             #   self.jobs[job]['retVar'] = e
-             #   self.env.logger.append("Error ocurred: " + str(self.jobs[job]))
+            try: 
+                module = loadModule(job, 'modules/')
+                func = getattr(module, job)
+                obj = func(self.jobs[job]['data'], self.env)
+                self.jobs[job]['retVar'] = obj.run()
+            except Exception, e:
+                self.jobs[job]['retVar'] = e
+                self.env.logger.append("Error ocurred: " + str(self.jobs[job]))
             
             self.env.logger.append('Finished task ' + job + ' with status: ' + str(self.jobs[job]['retVar']))
         

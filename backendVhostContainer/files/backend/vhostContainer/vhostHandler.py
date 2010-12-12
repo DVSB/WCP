@@ -55,12 +55,21 @@ class vhostHandler(object):
                                               WHERE       optionName = 'vhostContainerID'")
         
         domains = self.env.db.query("SELECT      domainID \
-                                     FROM        cp" + self.db.cpnr + "_domain_option_value \
-                                     WHERE       domainOption" + str(vhostField[0]) + " = " + vhostID)
+                                     FROM        cp" + self.env.cpnr + "_domain_option_value \
+                                     WHERE       domainOption" + str(vhostField[0]) + " = " + str(vhostID))
         for d in domains:
-            if self.domainIDs.count(domainID) == 0:
+            if self.domainIDs.count(d[0]) == 0:
                 self.addDomainToVhost(domain(d[0], self.env))
                 self.domainIDs.append(d[0])
+                
+                # get all subdomains for this domain
+                subdomains = self.env.db.query("SELECT      domainID \
+                                                 FROM        cp" + self.env.cpnr + "_domain \
+                                                 WHERE       parentDomainID = " + str(d[0]))
+                for s in subdomains:
+                    if self.domainIDs.count(s[0]) == 0:
+                        self.addDomainToVhost(domain(s[0], self.env))
+                        self.domainIDs.append(s[0])
             
     def createVhosts(self):
         for v in self.vhostContainer:

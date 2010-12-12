@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE package SYSTEM "DTD/package.dtd">
-<package name="com.toby.backendhandler">
+<package name="com.burningpedia.backendhandler">
 
 	<packageInformation>
 		<packageName>Web ControlPanel Backendhandler</packageName>
 		<packageDescription>Behandelt alle Aktionen die mit Rootrechten auf dem Webserver ausgeführt werden müssen</packageDescription>
-		<version>1.0.0 RC2</version>
-		<date>2010-10-25</date>
-		<plugin>com.toby.cp</plugin>
+		<version>1.0.0</version>
+		<date>2010-12-12</date>
+		<plugin>com.burningpedia.cp</plugin>
 	</packageInformation>
 
 	<authorInformation>
@@ -18,7 +18,7 @@
 
 	<requiredpackages>
 		<requiredpackage minversion="1.1.0">com.woltlab.wcf</requiredpackage>
-		<requiredpackage>com.toby.cp</requiredpackage>
+		<requiredpackage>com.burningpedia.cp</requiredpackage>
 	</requiredpackages>
 
 	<instructions type="install">

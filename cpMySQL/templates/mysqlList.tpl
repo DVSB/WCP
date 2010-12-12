@@ -8,13 +8,13 @@
 {include file='header' sandbox=false}
 
 <div id="main">
-	
+
 	<ul class="breadCrumbs">
 		<li><a href="index.php{@SID_ARG_1ST}"><img alt="" src="{icon}wcpS.png{/icon}"> <span>{lang}cp.header.menu.start{/lang}</span></a> &raquo;</li>
-	</ul>	
-	
+	</ul>
+
 	<div class="mainHeadline">
-		<img src="{icon}mysqlL.png{/icon}" alt="" />
+		<img src="{icon}databaseL.png{/icon}" alt="" />
 		<div class="headlineContainer">
 			<h2>{lang}cp.mysql.list{/lang}</h2>
 		</div>
@@ -27,7 +27,7 @@
 			<ul>
 				<li><a href="index.php?form=MySQLAdd{@SID_ARG_2ND}">
 				<img title="{lang}cp.mysql.add{/lang}" alt=""
-					src="{icon}mysqlAddM.png{/icon}" /> <span>{lang}cp.mysql.add{/lang}</span> </a></li>
+					src="{icon}databaseAddM.png{/icon}" /> <span>{lang}cp.mysql.add{/lang}</span> </a></li>
 			</ul>
 		</div>
 		{/if}

@@ -23,15 +23,15 @@ class VhostContainerEditForm extends VhostContainerAddForm
 	public function readParameters()
 	{
 		parent :: readParameters();
-		
+
 		if (isset($_REQUEST['vhostContainerID']))
 		{
 			$this->vhostContainerID = intval($_REQUEST['vhostContainerID']);
-			
+
 			require_once (CP_DIR . 'lib/data/vhost/VhostContainerEditor.class.php');
-			
+
 			$this->vhostContainer = new VhostContainerEditor($this->vhostContainerID);
-			
+
 			if (!$this->vhostContainer->vhostContainerID)
 			{
 				throw new IllegalLinkException();
@@ -46,7 +46,7 @@ class VhostContainerEditForm extends VhostContainerAddForm
 	{
 		if (!count($_POST))
 		{
-			$this->vhostName = $this->vhostContainer->vhostName; 
+			$this->vhostName = $this->vhostContainer->vhostName;
 			$this->ipAddress = $this->vhostContainer->ipAddress;
 			$this->port = $this->vhostContainer->port;
 			$this->vhostType = $this->vhostContainer->vhostType;
@@ -63,7 +63,7 @@ class VhostContainerEditForm extends VhostContainerAddForm
 			$this->sslCertKeyFile = $this->vhostContainer->sslCertKeyFile;
 			$this->sslCertChainFile = $this->vhostContainer->sslCertChainFile;
 		}
-		
+
 		parent :: readData();
 	}
 
@@ -73,9 +73,9 @@ class VhostContainerEditForm extends VhostContainerAddForm
 	public function assignVariables()
 	{
 		parent :: assignVariables();
-		
+
 		WCF :: getTPL()->assign(array (
-			'vhostContainerID' => $this->vhostContainer->vhostContainerID, 
+			'vhostContainerID' => $this->vhostContainer->vhostContainerID,
 			'action' => 'edit',
 		));
 	}
@@ -86,7 +86,7 @@ class VhostContainerEditForm extends VhostContainerAddForm
 	public function save()
 	{
 		ACPForm :: save();
-		
+
 		// save vhostContainer
 		$this->additionalFields['isContainer'] = $this->isContainer;
 		$this->additionalFields['isIPv6'] = $this->isIPv6;
@@ -101,11 +101,11 @@ class VhostContainerEditForm extends VhostContainerAddForm
 		$this->additionalFields['sslCertKeyFile'] = $this->sslCertKeyFile;
 		$this->additionalFields['sslCertChainFile'] = $this->sslCertChainFile;
 		$this->vhostContainer->update($this->vhostName, $this->ipAddress, $this->port, $this->vhostType, $this->additionalFields);
-		
-		JobhandlerUtils :: addJob('updateVhost', 0, array('vhostContainerID' => $this->vhostContainerID), 'asap');
-		
+
+		JobhandlerUtils :: addJob('createVhost', 0, array('vhostContainerID' => $this->vhostContainerID), 'asap');
+
 		$this->saved();
-		
+
 		// show success message
 		WCF :: getTPL()->assign('success', true);
 	}

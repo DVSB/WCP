@@ -23,37 +23,40 @@ class VhostContainerEditor extends VhostContainer
 	 *
 	 * @param 	string 		$vhostName
 	 * @param	array		$additionalFields
-	 * 
+	 *
 	 * @return 	VhostContainerEditor
 	 */
 	public static function create($vhostName, $ipAddress, $port, $vhostType, $additionalFields = array())
 	{
 		// insert main data
 		$vhostContainerID = self :: insert($vhostName, $ipAddress, $port, $vhostType, $additionalFields);
-		
+
 		$vhostContainer = new VhostContainerEditor($vhostContainerID);
-		
+
 		return $vhostContainer;
 	}
 
 	/**
-	 * Inserts the main vhostContainer data into the vhostContainer table. 
+	 * Inserts the main vhostContainer data into the vhostContainer table.
 	 *
 	 * @param 	string 		$vhostName
+	 * @param	string		$ipAddress
+	 * @param	int			$port
+	 * @param	string		$vhostType
 	 * @param	array		$additionalFields
-	 * 
+	 *
 	 * @return 	integer		new domainID
 	 */
 	public static function insert($vhostName, $ipAddress, $port, $vhostType, $additionalFields = array())
 	{
 		$additionalColumnNames = $additionalColumnValues = '';
-			
+
 		foreach ($additionalFields as $key => $value)
 		{
 			$additionalColumnNames .= ', ' . $key;
 			$additionalColumnValues .= ', ' . ((is_int($value)) ? $value : "'" . escapeString($value) . "'");
 		}
-		
+
 		$sql = "INSERT INTO	cp" . CP_N . "_vhostContainer
 						(vhostName, ipAddress, port, vhostType
 						" . $additionalColumnNames . ")
@@ -67,9 +70,12 @@ class VhostContainerEditor extends VhostContainer
 	}
 
 	/**
-	 * Updates this vhostContainer. 
-	 * 
+	 * Updates this vhostContainer.
+	 *
 	 * @param	string		$vhostName
+	 * @param	string		$ipAddress
+	 * @param	int			$port
+	 * @param	string		$vhostType
 	 * @param	array 		$additionalFields
 	 */
 	public function update($vhostName, $ipAddress, $port, $vhostType, $additionalFields = array())
@@ -79,7 +85,7 @@ class VhostContainerEditor extends VhostContainer
 
 	/**
 	 * Updates additional vhostContainer fields.
-	 * 
+	 *
 	 * @param	array 	$additionalFields
 	 */
 	public function updateFields($additionalFields)
@@ -91,6 +97,9 @@ class VhostContainerEditor extends VhostContainer
 	 * Updates the static data of this vhostContainer.
 	 *
  	 * @param 	string 		$vhostName
+ 	 * @param	string		$ipAddress
+	 * @param	int			$port
+	 * @param	string		$vhostType
 	 * @param	array		$additionalFields
 	 */
 	protected function updateVhostContainer($vhostName = '', $ipAddress = '', $port = 0, $vhostType = '', $additionalFields = array())
@@ -98,35 +107,43 @@ class VhostContainerEditor extends VhostContainer
 		$updateSQL = '';
 		if (!empty($vhostName))
 		{
-			$updateSQL = "vhostName = '" . escapeString($vhostName) . "'";
+			if (!empty($updateSQL))
+				$updateSQL .= ',';
+			$updateSQL .= "vhostName = '" . escapeString($vhostName) . "'";
 			$this->vhostName = $vhostName;
 		}
-		
+
 		if (!empty($ipAddress))
 		{
-			$updateSQL = "ipAddress = '" . escapeString($ipAddress) . "'";
+			if (!empty($updateSQL))
+				$updateSQL .= ',';
+			$updateSQL .= "ipAddress = '" . escapeString($ipAddress) . "'";
 			$this->ipAddress = $ipAddress;
 		}
-		
+
 		if ($port > 0)
 		{
-			$updateSQL = "port = " . intval($port);
+			if (!empty($updateSQL))
+				$updateSQL .= ',';
+			$updateSQL .= "port = " . intval($port);
 			$this->port = $port;
 		}
-		
+
 		if (!empty($vhostType))
 		{
-			$updateSQL = "vhostType = '" . escapeString($vhostType) . "'";
+			if (!empty($updateSQL))
+				$updateSQL .= ',';
+			$updateSQL .= "vhostType = '" . escapeString($vhostType) . "'";
 			$this->vhostType = $vhostType;
 		}
-		
+
 		foreach ($additionalFields as $key => $value)
 		{
 			if (!empty($updateSQL))
 				$updateSQL .= ',';
 			$updateSQL .= $key . '=' . ((is_int($value)) ? $value : "'" . escapeString($value) . "'");
 		}
-		
+
 		if (!empty($updateSQL))
 		{
 			// save user
@@ -148,18 +165,18 @@ class VhostContainerEditor extends VhostContainer
 	{
 		if (count($vhostContainerIDs) == 0)
 			return 0;
-		
+
 		$vhostContainerIDsStr = implode(',', $vhostContainerIDs);
-		
+
 		// delete options for this domain
 		$sql = "DELETE 	FROM cp" . CP_N . "_vhostContainer
 				WHERE 	vhostContainerID IN (" . $vhostContainerIDsStr . ")";
 		WCF :: getDB()->sendQuery($sql);
-		
+
 
 		return count($vhostContainerIDs);
 	}
-	
+
 	/**
 	 * Deletes this domain
 	 */

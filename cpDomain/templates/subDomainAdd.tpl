@@ -25,7 +25,7 @@
 	</ul>
 
 	<div class="mainHeadline">
-		<img src="{@RELATIVE_WCF_DIR}icon/domain{@$action|ucfirst}L.png" alt="" />
+		<img src="{icon}domain{@$action|ucfirst}L.png{/icon}" alt="" />
 		<div class="headlineContainer">
 			<h2>{lang}cp.domain.subDomain{@$action|ucfirst}{/lang}</h2>
 		</div>

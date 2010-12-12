@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE package SYSTEM "DTD/package.dtd">
-<package name="com.toby.cp.nginx">
+<package name="com.burningpedia.cp.nginx">
 
 	<packageInformation>
 		<packageName>Web ControlPanel Nginx Modul</packageName>
 		<packageDescription>Erstellt/Editiert Nginx-Vhosts</packageDescription>
-		<version>1.0.0 RC2</version>
-		<plugin>com.toby.cp</plugin>
+		<version>1.0.0</version>
+		<plugin>com.burningpedia.cp</plugin>
 		<date>2010-10-24</date>
 	</packageInformation>
 
@@ -18,27 +18,13 @@
 
 	<requiredpackages>
 		<requiredpackage minversion="1.1.0">com.woltlab.wcf</requiredpackage>
-		<requiredpackage>com.toby.cp</requiredpackage>
-		<requiredpackage file="requirements/com.toby.backendhandler.tar">com.toby.backendhandler</requiredpackage>
-		<requiredpackage file="requirements/com.toby.cp.vhostcontainer.tar">com.toby.cp.vhostcontainer</requiredpackage>
-		<requiredpackage file="requirements/com.toby.backend.vhostcontainer.nginx.tar">com.toby.backend.vhostcontainer.nginx</requiredpackage>	
+		<requiredpackage>com.burningpedia.cp</requiredpackage>
+		<requiredpackage file="requirements/com.burningpedia.backendhandler.tar">com.burningpedia.backendhandler</requiredpackage>
+		<requiredpackage file="requirements/com.burningpedia.cp.vhostcontainer.tar">com.burningpedia.cp.vhostcontainer</requiredpackage>
+		<requiredpackage file="requirements/com.burningpedia.backend.vhostcontainer.nginx.tar">com.burningpedia.backend.vhostcontainer.nginx</requiredpackage>	
 	</requiredpackages>
 
 	<instructions type="install">
-		<languages languagecode="de">de.xml</languages>
-		<languages languagecode="en">en.xml</languages>
-		<options>options.xml</options>
-		<files>files.tar</files>
-	</instructions>
-	
-	<instructions type="update" fromversion="0.*">
-		<languages languagecode="de">de.xml</languages>
-		<languages languagecode="en">en.xml</languages>
-		<options>options.xml</options>
-		<files>files.tar</files>
-	</instructions>
-	
-	<instructions type="update" fromversion="1.*">
 		<languages languagecode="de">de.xml</languages>
 		<languages languagecode="en">en.xml</languages>
 		<options>options.xml</options>
