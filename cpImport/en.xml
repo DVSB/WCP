@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com/XSD/language.xsd" languagecode="en">
+	<category name="wbb.acp.importer">
+		<item name="wbb.acp.importer"><![CDATA[Data Importer]]></item>
+		<item name="wbb.acp.importer.cli"><![CDATA[To start the import you need to enter the following command in the command line.]]></item>
+		<item name="wbb.acp.importer.configure.data"><![CDATA[Import the following Data:]]></item>
+		<item name="wbb.acp.importer.configure.data.attachments"><![CDATA[Attachments]]></item>
+		<item name="wbb.acp.importer.configure.data.avatars"><![CDATA[Avatars]]></item>
+		<item name="wbb.acp.importer.configure.data.boardPermissions"><![CDATA[Forum Permissions]]></item>
+		<item name="wbb.acp.importer.configure.data.boardSubscriptions"><![CDATA[Forum Subscriptions]]></item>
+		<item name="wbb.acp.importer.configure.data.boards"><![CDATA[Forums]]></item>
+		<item name="wbb.acp.importer.configure.data.calendarEvents"><![CDATA[Calendar Events]]></item>
+		<item name="wbb.acp.importer.configure.data.calendars"><![CDATA[Calendars]]></item>
+		<item name="wbb.acp.importer.configure.data.groups"><![CDATA[Usergroups]]></item>
+		<item name="wbb.acp.importer.configure.data.moderators"><![CDATA[Moderators]]></item>
+		<item name="wbb.acp.importer.configure.data.polls"><![CDATA[Polls]]></item>
+		<item name="wbb.acp.importer.configure.data.privateMessageFolders"><![CDATA[Private Message Folders]]></item>
+		<item name="wbb.acp.importer.configure.data.privateMessages"><![CDATA[Private Messages]]></item>
+		<item name="wbb.acp.importer.configure.data.selectAll"><![CDATA[Mark/Unmark all]]></item>
+		<item name="wbb.acp.importer.configure.data.smilies"><![CDATA[Smileys]]></item>
+		<item name="wbb.acp.importer.configure.data.threadRatings"><![CDATA[Thread Ratings]]></item>
+		<item name="wbb.acp.importer.configure.data.threadSubscriptions"><![CDATA[Thread Subscriptions]]></item>
+		<item name="wbb.acp.importer.configure.data.threads"><![CDATA[Threads and Posts]]></item>
+		<item name="wbb.acp.importer.configure.data.userOptions"><![CDATA[Individual User Profile Fields]]></item>
+		<item name="wbb.acp.importer.configure.data.users"><![CDATA[Users]]></item>
+		<item name="wbb.acp.importer.configure.db"><![CDATA[Source database information]]></item>
+		<item name="wbb.acp.importer.configure.db.class"><![CDATA[Type of database]]></item>
+		<item name="wbb.acp.importer.configure.db.error"><![CDATA[An Error occurred whilst attempting to connect to your database.]]></item>
+		<item name="wbb.acp.importer.configure.db.host"><![CDATA[Hostname]]></item>
+		<item name="wbb.acp.importer.configure.db.name"><![CDATA[Database Name]]></item>
+		<item name="wbb.acp.importer.configure.db.password"><![CDATA[Password]]></item>
+		<item name="wbb.acp.importer.configure.db.user"><![CDATA[Username]]></item>
+		<item name="wbb.acp.importer.configure.passwords"><![CDATA[Passwords]]></item>
+		<item name="wbb.acp.importer.configure.settings"><![CDATA[Settings]]></item>
+		<item name="wbb.acp.importer.configure.settings.boardID"><![CDATA[Import Threads into an existing Forum]]></item>
+		<item name="wbb.acp.importer.configure.settings.encoding"><![CDATA[Source Character-Encoding]]></item>
+		<item name="wbb.acp.importer.configure.settings.useCLI"><![CDATA[Import via command line (CLI)]]></item>
+		<item name="wbb.acp.importer.configure.settings.useCLI.description"><![CDATA[By enabling this option the import will be executed via command line. The import will be processed very fast especially with a high data volume. <b>To execute the import you need access to the command line (SSH access).</b>]]></item>
+		<item name="wbb.acp.importer.configure.settings.userMergeMode"><![CDATA[Merge options for duplicate usernames.]]></item>
+		<item name="wbb.acp.importer.configure.settings.userMergeMode.1"><![CDATA[Rename the user accounts.]]></item>
+		<item name="wbb.acp.importer.configure.settings.userMergeMode.2"><![CDATA[Merge the user accounts.]]></item>
+		<item name="wbb.acp.importer.configure.settings.userMergeMode.3"><![CDATA[Merge the user accounts only if the e-mail addresses are the same]]></item>
+		<item name="wbb.acp.importer.info.updateCounters"><![CDATA[After importing the data cached statistics have to be refreshed. You need to do this seperately with the function &quot;Refresh counters&quot; (System &raquo; Maintenance).]]></item>
+		<item name="wbb.acp.importer.progress.attachments"><![CDATA[Importing Attachments ...]]></item>
+		<item name="wbb.acp.importer.progress.avatars"><![CDATA[Importing Avatars ...]]></item>
+		<item name="wbb.acp.importer.progress.boardPermissions"><![CDATA[Importing forum pemissions...]]></item>
+		<item name="wbb.acp.importer.progress.boardSubscriptions"><![CDATA[Importing forum subscriptions...]]></item>
+		<item name="wbb.acp.importer.progress.boards"><![CDATA[Importing forums...]]></item>
+		<item name="wbb.acp.importer.progress.calendarEvents"><![CDATA[Importing calendar events ...]]></item>
+		<item name="wbb.acp.importer.progress.calendars"><![CDATA[Importing calendars ...]]></item>
+		<item name="wbb.acp.importer.progress.finish"><![CDATA[Data Import has finished.]]></item>
+		<item name="wbb.acp.importer.progress.groups"><![CDATA[Importing usergroups...]]></item>
+		<item name="wbb.acp.importer.progress.moderators"><![CDATA[Importing moderators...]]></item>
+		<item name="wbb.acp.importer.progress.pollOptionVotes"><![CDATA[Importing poll option votes...]]></item>
+		<item name="wbb.acp.importer.progress.pollOptions"><![CDATA[Importing poll options...]]></item>
+		<item name="wbb.acp.importer.progress.pollVotes"><![CDATA[Importing poll votes...]]></item>
+		<item name="wbb.acp.importer.progress.polls"><![CDATA[Importing polls...]]></item>
+		<item name="wbb.acp.importer.progress.posts"><![CDATA[Importing posts...]]></item>
+		<item name="wbb.acp.importer.progress.privateMessageFolders"><![CDATA[Importing private message folders...]]></item>
+		<item name="wbb.acp.importer.progress.privateMessageRecipients"><![CDATA[Importing private message recipients...]]></item>
+		<item name="wbb.acp.importer.progress.privateMessages"><![CDATA[Importing private messages...]]></item>
+		<item name="wbb.acp.importer.progress.smilies"><![CDATA[Importing smileys ...]]></item>
+		<item name="wbb.acp.importer.progress.threadRatings"><![CDATA[Importing thread ratings...]]></item>
+		<item name="wbb.acp.importer.progress.threadSubscriptions"><![CDATA[Importing thread subscriptions...]]></item>
+		<item name="wbb.acp.importer.progress.threads"><![CDATA[Importing threads...]]></item>
+		<item name="wbb.acp.importer.progress.userOptions"><![CDATA[Importing individual user profile fields...]]></item>
+		<item name="wbb.acp.importer.progress.users"><![CDATA[Importing users...]]></item>
+		<item name="wbb.acp.importer.selectSource"><![CDATA[Select the source to import from:]]></item>
+		<item name="wbb.acp.importer.selectSource.select"><![CDATA[The following sources are available:]]></item>
+	</category>
+	<category name="wbb.acp.menu">
+		<item name="wbb.acp.menu.link.system.importer"><![CDATA[Data Importer]]></item>
+	</category>
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.admin.maintenance.canImportData"><![CDATA[Can use the data importer]]></item>
+		<item name="wcf.acp.group.option.admin.maintenance.canImportData.description"><![CDATA[]]></item>
+	</category>
+	<category name="wcf.acp.package">
+		<item name="wcf.acp.package.step.install.ImportSourcePackageInstallationPlugin"><![CDATA[Installing import sources ...]]></item>
+		<item name="wcf.acp.package.step.uninstall.ImportSourcePackageInstallationPlugin"><![CDATA[Uninstalling import sources ...]]></item>
+		<item name="wcf.acp.package.step.update.ImportSourcePackageInstallationPlugin"><![CDATA[Updating import sources ...]]></item>
+	</category>
+</language>

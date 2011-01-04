@@ -25,14 +25,10 @@ class Domain extends DatabaseObject
 	protected static $domainOptions = null;
 
 	/**
-	 * Gets the main data of the passed user (id, name or whole datablock)
-	 * and pass it over to the "protected function initUser()".
-	 * You can also create an emtpy user object e.g. to search for users.
+	 * Gets the main data of the passed domain (id)
 	 *
-	 * @param 	string 		$userID
+	 * @param 	string 		$domainID
 	 * @param 	array 		$row
-	 * @param 	string 		$username
-	 * @param 	string 		$email
 	 */
 	public function __construct($domainID, $row = null)
 	{

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE data SYSTEM "http://www.woltlab.com/DTDs/acpMenu.dtd">
+<data>	
+	<import>
+		<acpmenuitem name="wbb.acp.menu.link.system.importer">
+			<parent>wcf.acp.menu.link.maintenance</parent>
+			<link>index.php?form=Importer</link>
+			<icon>icon/importerM.png</icon>
+			<permissions>admin.maintenance.canImportData</permissions>
+		</acpmenuitem>
+	</import>
+</data>

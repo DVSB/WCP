@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com/XSD/language.xsd" languagecode="en">
+	<category name="wbb.acp.importer">
+		<item name="wbb.acp.importer.wbb2x"><![CDATA[Burning Board 2.x / Burning Board Lite 1.0.x]]></item>
+		<item name="wbb.acp.importer.wbb2x.configure.db.number"><![CDATA[Installation number]]></item>
+		<item name="wbb.acp.importer.wbb2x.configure.db.number.error.invalid"><![CDATA[Database tables with the given installation number could not be found.]]></item>
+		<item name="wbb.acp.importer.wbb2x.configure.settings.convertPasswords"><![CDATA[Use Burning Board 2 password encryption (only Burning Board 2.0.x and Burning Board Lite 1.0.x)]]></item>
+		<item name="wbb.acp.importer.wbb2x.configure.settings.convertPasswords.description"><![CDATA[Burning Board 2 uses an alternative algorithm to encrypt user passwords than Burning Board 3. Enable this option to use the encryption algorithm of Burning Board 2, so that the imported users can login with their old passwords. Note that passwords of existing users will become invalid by this change. Please enter your administrator password to save it again encrypted with the new algorithm. <b>Do NOT enable this option if you import data from Burning Board 2.1.x or higher.</b>]]></item>
+		<item name="wbb.acp.importer.wbb2x.configure.source"><![CDATA[Source files]]></item>
+		<item name="wbb.acp.importer.wbb2x.configure.source.path"><![CDATA[Path to the source files]]></item>
+		<item name="wbb.acp.importer.wbb2x.configure.source.path.error.invalid"><![CDATA[No Burning Board installation could be found under the given path.]]></item>
+	</category>
+</language>

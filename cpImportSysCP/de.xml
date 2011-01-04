@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com/XSD/language.xsd" languagecode="de">
+	<category name="wbb.acp.importer">
+		<item name="wbb.acp.importer.wbb2x"><![CDATA[Burning Board 2.x / Burning Board Lite 1.0.x]]></item>
+		<item name="wbb.acp.importer.wbb2x.configure.db.number"><![CDATA[Installationsnummer]]></item>
+		<item name="wbb.acp.importer.wbb2x.configure.db.number.error.invalid"><![CDATA[Es wurde keine Datenbank-Tabelle mit dieser Installationsnummer gefunden.]]></item>
+		<item name="wbb.acp.importer.wbb2x.configure.settings.convertPasswords"><![CDATA[Kennwort-Verschlüsselung von Burning Board 2 übernehmen (nur Burning Board 2.0.x und Burning Board Lite 1.0.x)]]></item>
+		<item name="wbb.acp.importer.wbb2x.configure.settings.convertPasswords.description"><![CDATA[Burning Board 2 benutzt für die Kennwort-Verschlüsselung einen anderen Algorithmus als Burning Board 3. Durch Aktivieren dieser Option wird der Verschlüsselungs-Algorithmus von Burning Board 2 übernommen, damit sich die importierten Benutzer mit ihrem alten Kennwort im Forum anmelden können. Das Kennwort von bereits existierenden Benutzern wird dadurch allerdings ungültig. Bitte geben Sie Ihr Administrator-Kennwort ein, damit es mit dem neuen Verschlüsselungs-Algorithmus neu abgespeichert werden kann. <b>Bei einem Datenimport aus Burning Board 2.1.x oder höher ist die Aktivierung dieser Option NICHT notwendig.</b>]]></item>
+		<item name="wbb.acp.importer.wbb2x.configure.source"><![CDATA[Daten-Quelle]]></item>
+		<item name="wbb.acp.importer.wbb2x.configure.source.path"><![CDATA[Verzeichnis der Quelle]]></item>
+		<item name="wbb.acp.importer.wbb2x.configure.source.path.error.invalid"><![CDATA[Unter dem angegebenen Pfad konnte keine Installation von Burning Board gefunden werden.]]></item>
+	</category>
+</language>

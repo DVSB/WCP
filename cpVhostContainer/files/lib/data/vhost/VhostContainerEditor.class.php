@@ -22,6 +22,9 @@ class VhostContainerEditor extends VhostContainer
 	 * Creates a new vhost with all required and filled out additional fields.
 	 *
 	 * @param 	string 		$vhostName
+	 * @param	string		$ipAddress
+	 * @param	integer		$port
+	 * @param	string		$vhostType
 	 * @param	array		$additionalFields
 	 *
 	 * @return 	VhostContainerEditor

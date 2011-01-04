@@ -93,6 +93,8 @@ class FTPUserEditor extends FTPUser
 	 * change password of ftp-account
 	 *
 	 * @param string $password
+	 * @param string $homedir
+	 * @param string $description
 	 */
 	public function update($password, $homedir, $description)
 	{

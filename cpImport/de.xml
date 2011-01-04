@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com/XSD/language.xsd" languagecode="de">
+	<category name="wbb.acp.importer">
+		<item name="wbb.acp.importer"><![CDATA[Datenimport]]></item>
+		<item name="wbb.acp.importer.cli"><![CDATA[Um den Import zu starten, müssen Sie folgendes Kommando in der Kommandozeile ausführen.]]></item>
+		<item name="wbb.acp.importer.configure.data"><![CDATA[Folgende Daten importieren]]></item>
+		<item name="wbb.acp.importer.configure.data.attachments"><![CDATA[Dateianhänge]]></item>
+		<item name="wbb.acp.importer.configure.data.avatars"><![CDATA[Avatare]]></item>
+		<item name="wbb.acp.importer.configure.data.boardPermissions"><![CDATA[Foren-Zugriffsrechte]]></item>
+		<item name="wbb.acp.importer.configure.data.boardSubscriptions"><![CDATA[Foren-Abonnements]]></item>
+		<item name="wbb.acp.importer.configure.data.boards"><![CDATA[Foren]]></item>
+		<item name="wbb.acp.importer.configure.data.calendarEvents"><![CDATA[Kalender-Termine]]></item>
+		<item name="wbb.acp.importer.configure.data.calendars"><![CDATA[Kalender]]></item>
+		<item name="wbb.acp.importer.configure.data.groups"><![CDATA[Benutzergruppen]]></item>
+		<item name="wbb.acp.importer.configure.data.moderators"><![CDATA[Moderatoren]]></item>
+		<item name="wbb.acp.importer.configure.data.polls"><![CDATA[Umfragen]]></item>
+		<item name="wbb.acp.importer.configure.data.privateMessageFolders"><![CDATA[Ordner für private Nachrichten]]></item>
+		<item name="wbb.acp.importer.configure.data.privateMessages"><![CDATA[Private Nachrichten]]></item>
+		<item name="wbb.acp.importer.configure.data.selectAll"><![CDATA[Alles markieren/demarkieren]]></item>
+		<item name="wbb.acp.importer.configure.data.smilies"><![CDATA[Smileys]]></item>
+		<item name="wbb.acp.importer.configure.data.threadRatings"><![CDATA[Themen-Bewertungen]]></item>
+		<item name="wbb.acp.importer.configure.data.threadSubscriptions"><![CDATA[Themen-Abonnements]]></item>
+		<item name="wbb.acp.importer.configure.data.threads"><![CDATA[Themen &amp; Beiträge]]></item>
+		<item name="wbb.acp.importer.configure.data.userOptions"><![CDATA[Individuelle Benutzerprofilfelder]]></item>
+		<item name="wbb.acp.importer.configure.data.users"><![CDATA[Benutzer]]></item>
+		<item name="wbb.acp.importer.configure.db"><![CDATA[Datenbankzugang für Datenquelle]]></item>
+		<item name="wbb.acp.importer.configure.db.class"><![CDATA[Datenbank-Typ]]></item>
+		<item name="wbb.acp.importer.configure.db.error"><![CDATA[Es konnte keine erfolgreiche Verbindung zur Datenbank hergestellt werden.<br />Fehlermeldung:]]></item>
+		<item name="wbb.acp.importer.configure.db.host"><![CDATA[Hostname]]></item>
+		<item name="wbb.acp.importer.configure.db.name"><![CDATA[Datenbankname]]></item>
+		<item name="wbb.acp.importer.configure.db.password"><![CDATA[Kennwort]]></item>
+		<item name="wbb.acp.importer.configure.db.user"><![CDATA[Benutzername]]></item>
+		<item name="wbb.acp.importer.configure.passwords"><![CDATA[Kennwörter]]></item>
+		<item name="wbb.acp.importer.configure.settings"><![CDATA[Einstellungen]]></item>
+		<item name="wbb.acp.importer.configure.settings.boardID"><![CDATA[Themen in existierendes Forum importieren]]></item>
+		<item name="wbb.acp.importer.configure.settings.encoding"><![CDATA[Zeichenkodierung der Daten-Quelle]]></item>
+		<item name="wbb.acp.importer.configure.settings.useCLI"><![CDATA[Import via Kommandozeile (CLI)]]></item>
+		<item name="wbb.acp.importer.configure.settings.useCLI.description"><![CDATA[Mit dieser Option kann der Import via Kommandozeile durchgeführt werden. Besonders bei größeren Datenmengen kann dies den Import deutlich beschleunigen. <b>Für die Durchführung wird Zugriff auf die Kommandozeile benötigt (SSH-Zugang).</b>]]></item>
+		<item name="wbb.acp.importer.configure.settings.userMergeMode"><![CDATA[Verhalten bei sich überschneidenden Benutzernamen]]></item>
+		<item name="wbb.acp.importer.configure.settings.userMergeMode.1"><![CDATA[Benutzeraccounts umbennen]]></item>
+		<item name="wbb.acp.importer.configure.settings.userMergeMode.2"><![CDATA[Benutzeraccounts zusammenlegen]]></item>
+		<item name="wbb.acp.importer.configure.settings.userMergeMode.3"><![CDATA[Benutzeraccounts nur zusammenlegen, wenn auch die E-Mail-Adresse identisch ist]]></item>
+		<item name="wbb.acp.importer.info.updateCounters"><![CDATA[Nach der Durchführung des Datenimports müssen die Statistiken separat mit der Funktion &raquo;Anzeigen aktualisieren&laquo; (System &raquo; Wartung) aktualisiert werden.]]></item>
+		<item name="wbb.acp.importer.progress.attachments"><![CDATA[Importiere Dateianhänge ...]]></item>
+		<item name="wbb.acp.importer.progress.avatars"><![CDATA[Importiere Avatare ...]]></item>
+		<item name="wbb.acp.importer.progress.boardPermissions"><![CDATA[Importiere Foren-Zugriffsrechte ...]]></item>
+		<item name="wbb.acp.importer.progress.boardSubscriptions"><![CDATA[Importiere Foren-Abonnements ...]]></item>
+		<item name="wbb.acp.importer.progress.boards"><![CDATA[Importiere Foren ...]]></item>
+		<item name="wbb.acp.importer.progress.calendarEvents"><![CDATA[Importiere Kalender-Termine ...]]></item>
+		<item name="wbb.acp.importer.progress.calendars"><![CDATA[Importiere Kalender ...]]></item>
+		<item name="wbb.acp.importer.progress.finish"><![CDATA[Datenimport abgeschlossen]]></item>
+		<item name="wbb.acp.importer.progress.groups"><![CDATA[Importiere Benutzergruppen ...]]></item>
+		<item name="wbb.acp.importer.progress.moderators"><![CDATA[Importiere Moderatoren ...]]></item>
+		<item name="wbb.acp.importer.progress.pollOptionVotes"><![CDATA[Importiere Stimmen für Umfrage-Optionen ...]]></item>
+		<item name="wbb.acp.importer.progress.pollOptions"><![CDATA[Importiere Umfrage-Optionen ...]]></item>
+		<item name="wbb.acp.importer.progress.pollVotes"><![CDATA[Importiere Stimmen für Umfragen ...]]></item>
+		<item name="wbb.acp.importer.progress.polls"><![CDATA[Importiere Umfragen ...]]></item>
+		<item name="wbb.acp.importer.progress.posts"><![CDATA[Importiere Beiträge ...]]></item>
+		<item name="wbb.acp.importer.progress.privateMessageFolders"><![CDATA[Importiere Ordner für private Nachrichten ...]]></item>
+		<item name="wbb.acp.importer.progress.privateMessageRecipients"><![CDATA[Importiere Empfänger von private Nachrichten ...]]></item>
+		<item name="wbb.acp.importer.progress.privateMessages"><![CDATA[Importiere private Nachrichten ...]]></item>
+		<item name="wbb.acp.importer.progress.smilies"><![CDATA[Importiere Smileys ...]]></item>
+		<item name="wbb.acp.importer.progress.threadRatings"><![CDATA[Importiere Themen-Bewertungen ...]]></item>
+		<item name="wbb.acp.importer.progress.threadSubscriptions"><![CDATA[Importiere Themen-Abonnements ...]]></item>
+		<item name="wbb.acp.importer.progress.threads"><![CDATA[Importiere Themen ...]]></item>
+		<item name="wbb.acp.importer.progress.userOptions"><![CDATA[Importiere individuelle Benutzerprofilfelder ...]]></item>
+		<item name="wbb.acp.importer.progress.users"><![CDATA[Importiere Benutzer ...]]></item>
+		<item name="wbb.acp.importer.selectSource"><![CDATA[Quelle für Datenimport auswählen]]></item>
+		<item name="wbb.acp.importer.selectSource.select"><![CDATA[Es stehen folgende Quellen zur Auswahl]]></item>
+	</category>
+	<category name="wbb.acp.menu">
+		<item name="wbb.acp.menu.link.system.importer"><![CDATA[Datenimport]]></item>
+	</category>
+	<category name="wcf.acp.group">
+		<item name="wcf.acp.group.option.admin.maintenance.canImportData"><![CDATA[Kann Daten importieren]]></item>
+		<item name="wcf.acp.group.option.admin.maintenance.canImportData.description"><![CDATA[Mitglieder dieser Benutzergruppe können Daten aus einem anderen Foren-System in das Forum importieren.]]></item>
+	</category>
+	<category name="wcf.acp.package">
+		<item name="wcf.acp.package.step.install.ImportSourcePackageInstallationPlugin"><![CDATA[Import-Quellen werden installiert ...]]></item>
+		<item name="wcf.acp.package.step.uninstall.ImportSourcePackageInstallationPlugin"><![CDATA[Import-Quellen werden deinstalliert ...]]></item>
+		<item name="wcf.acp.package.step.update.ImportSourcePackageInstallationPlugin"><![CDATA[Import-Quellen werden aktualisiert ...]]></item>
+	</category>
+</language>
