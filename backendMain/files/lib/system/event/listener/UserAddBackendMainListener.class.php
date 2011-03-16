@@ -17,7 +17,7 @@ class UserAddBackendMainListener implements EventListener
 	 */
 	public function execute($eventObj, $className, $eventName)
 	{
-		if (empty($eventObj->cpUser->homedir))
+		if (empty($eventObj->cpUser->homedir) && $eventObj->cpUser->isCustomer)
 		{
 			// create cp user record
 			$sql = "UPDATE	cp" . CP_N . "_user
@@ -25,8 +25,8 @@ class UserAddBackendMainListener implements EventListener
 							guid = " . CPUtils :: getNewGUID() . "
 					WHERE	userID = " . $eventObj->cpUser->userID;
 			WCF :: getDB()->sendQuery($sql);
-				
-			if ($eventObj->user->isCustomer)
+
+			if ($eventObj->cpUser->isCustomer)
 				JobhandlerUtils :: addJob('createhome', $eventObj->user->userID, array(), 'asap', 100);
 		}
 	}

@@ -5,8 +5,8 @@
 	<packageInformation>
 		<packageName>Web ControlPanel Backendhandler</packageName>
 		<packageDescription>Behandelt alle Aktionen die mit Rootrechten auf dem Webserver ausgeführt werden müssen</packageDescription>
-		<version>1.0.0</version>
-		<date>2010-12-12</date>
+		<version>1.0.1</version>
+		<date>2011-03-16</date>
 		<plugin>com.burningpedia.cp</plugin>
 	</packageInformation>
 
